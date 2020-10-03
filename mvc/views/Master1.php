@@ -20,6 +20,15 @@
         <link rel="stylesheet" href="./public/css/owl.carousel.min.css" type="text/css">
         <link rel="stylesheet" href="./public/css/slicknav.min.css" type="text/css">
         <link rel="stylesheet" href="./public/css/style.css" type="text/css">
+        <style>
+            .language-option {
+                transition: 0.3s;
+            }
+
+            .language-option:hover {
+                color: #7fad39;
+            }
+        </style>
     </head>
 
     <body>
@@ -113,8 +122,8 @@
                                     <div>English</div>
                                     <span class="arrow_carrot-down"></span>
                                     <ul>
-                                        <li><a href="#">Spanis</a></li>
-                                        <li><a href="#">English</a></li>
+                                        <li><a href="#" class="language-option">Spanish</a></li>
+                                        <li><a href="#" class="language-option">English</a></li>
                                     </ul>
                                 </div>
                                 <div class="header__top__right__auth">

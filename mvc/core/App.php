@@ -6,7 +6,7 @@ class App{
 
     public function __construct(){
         $arr = $this->url_process();
-
+        
         if(isset($arr[0])){
             if(file_exists("./mvc/controllers/".$arr[0].".php")){
                 $this->controller = $arr[0];
@@ -24,7 +24,7 @@ class App{
         }
 
         $this->params = $arr?array_values($arr):[];
-
+        
         call_user_func_array([$this->controller, $this->action], $this->params);
     }
 

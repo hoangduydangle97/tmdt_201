@@ -25,9 +25,18 @@ class Item extends Database{
         return json_encode($result);
     }
 
-    public function getMaxId(){
-        $sql = "SELECT MAX(id_item) AS max_id FROM item;";
-        return mysqli_query($this->conn, $sql);
+    public function getLatestItems(){
+        $sql = "SELECT item.*, category.name_category".
+        " FROM item LEFT JOIN category ON item.category_item=category.id_category".
+        " ORDER BY date_created_item DESC LIMIT 6";
+        $array_result = array();
+        $sql_result = mysqli_query($this->conn, $sql);
+        if($sql_result){
+            while($row = mysqli_fetch_assoc($sql_result)){
+                $array_result[] = $row;
+            }
+        }
+        return json_encode($array_result);
     }
 }
 ?>

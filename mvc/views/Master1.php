@@ -27,6 +27,7 @@
 
             .language-option:hover {
                 color: #7fad39;
+                text-decoration: underline;
             }
         </style>
     </head>
@@ -184,13 +185,13 @@
                         <div class="hero__categories">
                             <div class="hero__categories__all">
                                 <i class="fa fa-bars"></i>
-                                <span>All departments</span>
+                                <span>All categories</span>
                             </div>
                             <ul>
                                 <?php $category_list = json_decode($data["category_list"]);
                                 for($row = 0; $row < count($category_list); $row++){
                                 ?>
-                                <li><a href="#"><?php echo $category_list[$row]->name_category?></a></li>
+                                <li><a href="#" class="language-option"><?php echo $category_list[$row]->name_category?></a></li>
                                 <?php }?>
                             </ul>
                         </div>
@@ -200,7 +201,7 @@
                             <div class="hero__search__form">
                                 <form action="#">
                                     <div class="hero__search__categories">
-                                        All Categories
+                                        Filter
                                         <span class="arrow_carrot-down"></span>
                                     </div>
                                     <input type="text" placeholder="What do you need?">
@@ -212,7 +213,7 @@
                                     <i class="fa fa-phone"></i>
                                 </div>
                                 <div class="hero__search__phone__text">
-                                    <h5>+65 11.188.888</h5>
+                                    <h5>+84 123.456.78</h5>
                                     <span>support 24/7 time</span>
                                 </div>
                             </div>
@@ -220,8 +221,8 @@
                         <?php if($data["page"] == "home"){?>
                         <div class="hero__item set-bg" data-setbg="/tmdt_201/public/img/hero/banner.jpg">
                             <div class="hero__text">
-                                <span>FRUIT FRESH</span>
-                                <h2>Vegetable <br />100% Organic</h2>
+                                <span>FRESH FRUIT</span>
+                                <h2>Vegetables <br />100% Organic</h2>
                                 <p>Free Pickup and Delivery Available</p>
                                 <a href="#" class="primary-btn">SHOP NOW</a>
                             </div>
@@ -247,8 +248,8 @@
                                 <a href="http://localhost/tmdt_201/home"><img src="/tmdt_201/public/img/logo.png" alt=""></a>
                             </div>
                             <ul>
-                                <li>Address: 60-49 Road 11378 New York</li>
-                                <li>Phone: +65 11.188.888</li>
+                                <li>Address: 123 Ly Thuong Kiet, Ward 14, District 10, TPHCM</li>
+                                <li>Phone: +84 123.456.78</li>
                                 <li>Email: hello@colorlib.com</li>
                             </ul>
                         </div>

@@ -328,7 +328,11 @@
                                     </ul>
                                 </div>
                                 <div class="product__item__text">
-                                    <h6><a href="http://localhost/tmdt_201/shop/detail/<?php echo $item_list[$row]->id_item;?>"><?php echo $item_list[$row]->name_item;?></a></h6>
+                                    <h6>
+                                        <a href="http://localhost/tmdt_201/shop/detail/<?php echo $item_list[$row]->id_item;?>" class="language-option">
+                                            <?php echo $item_list[$row]->name_item;?>
+                                        </a>
+                                    </h6>
                                     <h5>$30.00</h5>
                                 </div>
                             </div>

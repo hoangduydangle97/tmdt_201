@@ -1,6 +1,9 @@
     <!-- Categories Section Begin -->
     <section class="categories">
         <div class="container">
+            <div class="section-title">
+                <h2>Best Sellers</h2>
+            </div>
             <div class="row">
                 <div class="categories__slider owl-carousel">
                     <div class="col-lg-3">
@@ -20,12 +23,12 @@
                     </div>
                     <div class="col-lg-3">
                         <div class="categories__item set-bg" data-setbg="/tmdt_201/public/img/categories/cat-4.jpg">
-                            <h5><a href="#">drink fruits</a></h5>
+                            <h5><a href="#">Fruit Juice</a></h5>
                         </div>
                     </div>
                     <div class="col-lg-3">
                         <div class="categories__item set-bg" data-setbg="/tmdt_201/public/img/categories/cat-5.jpg">
-                            <h5><a href="#">drink fruits</a></h5>
+                            <h5><a href="#">Fresh Meat</a></h5>
                         </div>
                     </div>
                 </div>
@@ -40,7 +43,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title">
-                        <h2>Featured Product</h2>
+                        <h2>Featured Products</h2>
                     </div>
                     <div class="featured__controls">
                         <ul>
@@ -206,64 +209,25 @@
                     <div class="latest-product__text">
                         <h4>Latest Products</h4>
                         <div class="latest-product__slider owl-carousel">
+                            <?php $latest_item_list = json_decode($data["latest_item_list"]);
+                            $size_list = count($latest_item_list);
+                            for($row = 0; $row < $size_list; $row++){
+                                if($row % 3 == 0){
+                            ?>
                             <div class="latest-prdouct__slider__item">
+                            <?php }?>
                                 <a href="#" class="latest-product__item">
                                     <div class="latest-product__item__pic">
-                                        <img src="/tmdt_201/public/img/latest-product/lp-1.jpg" alt="">
+                                        <img src="/tmdt_201/public/img/product/<?php echo $latest_item_list[$row]->avatar_item; ?>.jpg" alt="" style="width: 110px; height: 110px;">
                                     </div>
                                     <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
+                                        <h6><?php echo $latest_item_list[$row]->name_item;?></h6>
                                         <span>$30.00</span>
                                     </div>
                                 </a>
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="/tmdt_201/public/img/latest-product/lp-2.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="/tmdt_201/public/img/latest-product/lp-3.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
+                            <?php if($row % 3 == 2){ ?>
                             </div>
-                            <div class="latest-prdouct__slider__item">
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="/tmdt_201/public/img/latest-product/lp-1.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="/tmdt_201/public/img/latest-product/lp-2.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="/tmdt_201/public/img/latest-product/lp-3.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
-                            </div>
+                            <?php }}?>
                         </div>
                     </div>
                 </div>

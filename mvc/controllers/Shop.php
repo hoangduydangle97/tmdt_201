@@ -1,12 +1,12 @@
 <?php
 class Shop extends Controller{
     public function action(){
-        $item = $this->model("Item");
-        $category = $this->model("Category");
+        $item_list = $this->model("Item");
+        $category_list = $this->model("Category");
         $this->view("Master1", array(
             "page"=>"shop",
-            "item"=>$item->getItems(),
-            "category"=>$category->getCategories()
+            "item_list"=>$item_list->getItems(),
+            "category_list"=>$category_list->getCategories()
         ));
     }
 

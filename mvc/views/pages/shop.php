@@ -6,7 +6,7 @@
                     <div class="breadcrumb__text">
                         <h2>Organi Shop</h2>
                         <div class="breadcrumb__option">
-                            <a href="./home">Home</a>
+                            <a href="http://localhost/tmdt_201/home">Home</a>
                             <span>Shop</span>
                         </div>
                     </div>
@@ -315,12 +315,12 @@
                         </div>
                     </div>
                     <div class="row">
-                        <?php
-                        while($row = mysqli_fetch_array($data["item"])){
+                        <?php $item_list = json_decode($data["item_list"]);
+                        for($row = 0; $row < count($item_list); $row++){
                         ?>
                         <div class="col-lg-4 col-md-6 col-sm-6">
                             <div class="product__item">
-                                <div class="product__item__pic set-bg" data-setbg="/tmdt_201/public/img/product/<?php echo $row["avatar_item"]; ?>.jpg">
+                                <div class="product__item__pic set-bg" data-setbg="/tmdt_201/public/img/product/<?php echo $item_list[$row]->avatar_item; ?>.jpg">
                                     <ul class="product__item__pic__hover">
                                         <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                         <li><a href="#"><i class="fa fa-retweet"></i></a></li>
@@ -328,7 +328,7 @@
                                     </ul>
                                 </div>
                                 <div class="product__item__text">
-                                    <h6><a href="./detail/<?php echo $row["id_item"];?>"><?php echo $row["name_item"];?></a></h6>
+                                    <h6><a href="http://localhost/tmdt_201/shop/detail/<?php echo $item_list[$row]->id_item;?>"><?php echo $item_list[$row]->name_item;?></a></h6>
                                     <h5>$30.00</h5>
                                 </div>
                             </div>

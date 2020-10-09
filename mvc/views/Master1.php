@@ -145,7 +145,7 @@
                         <nav class="header__menu">
                             <ul>
                                 <li <?php if($data["page"] == "home"){ ?>class="active"<?php }?>><a href="http://localhost/tmdt_201/home">Home</a></li>
-                                <li <?php if($data["page"] == "shop"){ ?>class="active"<?php }?>><a href="http://localhost/tmdt_201/shop">Shop</a></li>
+                                <li <?php if($data["page"] == "shop" || "detail"){ ?>class="active"<?php }?>><a href="http://localhost/tmdt_201/shop">Shop</a></li>
                                 <li><a href="#">Pages</a>
                                     <ul class="header__menu__dropdown">
                                         <li><a href="./shop-details.html">Shop Details</a></li>
@@ -177,7 +177,7 @@
         <!-- Header Section End -->
 
         <!-- Hero Section Begin -->
-        <section class="hero<?php echo $data["page"] == "home"?'':' hero-normal'?>">
+        <section class="hero<?php echo $data["page"] == "home"?'':' hero-normal'; ?>">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-3">
@@ -187,10 +187,10 @@
                                 <span>All departments</span>
                             </div>
                             <ul>
-                                <?php
-                                while($row = mysqli_fetch_array($data["category"])){
+                                <?php $category_list = json_decode($data["category_list"]);
+                                for($row = 0; $row < count($category_list); $row++){
                                 ?>
-                                <li><a href="#"><?php echo $row["name_category"]?></a></li>
+                                <li><a href="#"><?php echo $category_list[$row]->name_category?></a></li>
                                 <?php }?>
                             </ul>
                         </div>

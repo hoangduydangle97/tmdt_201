@@ -1,10 +1,10 @@
 <?php
 class Blog extends Controller{
     public function action(){
-        $category = $this->model("Category");
+        $category_list = $this->model("Category");
         $this->view("Master1", array(
             "page"=>"blog",
-            "category"=>$category->getCategories()
+            "category_list"=>$category_list->getCategories()
         ));
     }
 }

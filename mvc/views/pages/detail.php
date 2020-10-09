@@ -6,8 +6,8 @@
                     <div class="breadcrumb__text">
                         <h2>Vegetable’s Package</h2>
                         <div class="breadcrumb__option">
-                            <a href="./home">Home</a>
-                            <a href="./home">Vegetables</a>
+                            <a href="http://localhost/tmdt_201/home">Home</a>
+                            <a href="http://localhost/tmdt_201/home">Vegetables</a>
                             <span>Vegetable’s Package</span>
                         </div>
                     </div>
@@ -41,7 +41,8 @@
                 </div>
                 <div class="col-lg-6 col-md-6">
                     <div class="product__details__text">
-                        <h3><?php echo $data["item"]["name_item"]; ?></h3>
+                        <?php $item_object = json_decode($data["item"]); ?>
+                        <h3><?php echo $item_object->name_item; ?></h3>
                         <div class="product__details__rating">
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
@@ -66,7 +67,7 @@
                         <ul>
                             <li><b>Availability</b> 
                                 <span>
-                                    <?php echo $data["item"]["availability_item"] == 1?"In Stock":"Out of Stock"?>
+                                    <?php echo $item_object->availability_item == 1?"In Stock":"Out of Stock"?>
                                 </span>
                             </li>
                             <li><b>Shipping</b> <span>01 day shipping. <samp>Free pickup today</samp></span></li>

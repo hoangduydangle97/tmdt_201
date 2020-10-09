@@ -145,7 +145,7 @@
                         <nav class="header__menu">
                             <ul>
                                 <li <?php if($data["page"] == "home"){ ?>class="active"<?php }?>><a href="http://localhost/tmdt_201/home">Home</a></li>
-                                <li <?php if($data["page"] == "shop" || "detail"){ ?>class="active"<?php }?>><a href="http://localhost/tmdt_201/shop">Shop</a></li>
+                                <li <?php if($data["page"] == "shop" || $data["page"] == "detail"){ ?>class="active"<?php }?>><a href="http://localhost/tmdt_201/shop">Shop</a></li>
                                 <li><a href="#">Pages</a>
                                     <ul class="header__menu__dropdown">
                                         <li><a href="./shop-details.html">Shop Details</a></li>

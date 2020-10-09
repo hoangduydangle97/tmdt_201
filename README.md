@@ -1,2 +1,14 @@
-# tmdt_201
-Đây là github assignment môn Thương mại điện tử HK201
+<h1 align="center">E-Commerce App Project</h1>  
+
+## About The Project  
+### Built With  
+
+### Prerequisites  
+
+### Installation  
+
+## Acknowledgements  
+* JavaScript  
+* Php
+* CSS  
+* Bootstrap

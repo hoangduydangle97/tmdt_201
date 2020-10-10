@@ -109,64 +109,25 @@
                             <div class="latest-product__text">
                                 <h4>Latest Products</h4>
                                 <div class="latest-product__slider owl-carousel">
+                                    <?php $latest_item_list = json_decode($data["latest_item_list"]);
+                                    $size_latest_item_list = count($latest_item_list);
+                                    for($row = 0; $row < $size_latest_item_list; $row++){
+                                    if($row % 3 == 0){
+                                    ?>
                                     <div class="latest-prdouct__slider__item">
+                                    <?php }?>
                                         <a href="#" class="latest-product__item">
                                             <div class="latest-product__item__pic">
-                                                <img src="/tmdt_201/public/img/latest-product/lp-1.jpg" alt="">
+                                                <img src="/tmdt_201/public/img/product/<?php echo $latest_item_list[$row]->avatar_item; ?>.jpg" alt="" style="width: 110px;">
                                             </div>
                                             <div class="latest-product__item__text">
-                                                <h6>Crab Pool Security</h6>
+                                                <h6><?php echo $latest_item_list[$row]->name_item;?></h6>
                                                 <span>$30.00</span>
                                             </div>
                                         </a>
-                                        <a href="#" class="latest-product__item">
-                                            <div class="latest-product__item__pic">
-                                                <img src="/tmdt_201/public/img/latest-product/lp-2.jpg" alt="">
-                                            </div>
-                                            <div class="latest-product__item__text">
-                                                <h6>Crab Pool Security</h6>
-                                                <span>$30.00</span>
-                                            </div>
-                                        </a>
-                                        <a href="#" class="latest-product__item">
-                                            <div class="latest-product__item__pic">
-                                                <img src="/tmdt_201/public/img/latest-product/lp-3.jpg" alt="">
-                                            </div>
-                                            <div class="latest-product__item__text">
-                                                <h6>Crab Pool Security</h6>
-                                                <span>$30.00</span>
-                                            </div>
-                                        </a>
+                                        <?php if($row % 3 == 2){ ?>
                                     </div>
-                                    <div class="latest-prdouct__slider__item">
-                                        <a href="#" class="latest-product__item">
-                                            <div class="latest-product__item__pic">
-                                                <img src="/tmdt_201/public/img/latest-product/lp-1.jpg" alt="">
-                                            </div>
-                                            <div class="latest-product__item__text">
-                                                <h6>Crab Pool Security</h6>
-                                                <span>$30.00</span>
-                                            </div>
-                                        </a>
-                                        <a href="#" class="latest-product__item">
-                                            <div class="latest-product__item__pic">
-                                                <img src="/tmdt_201/public/img/latest-product/lp-2.jpg" alt="">
-                                            </div>
-                                            <div class="latest-product__item__text">
-                                                <h6>Crab Pool Security</h6>
-                                                <span>$30.00</span>
-                                            </div>
-                                        </a>
-                                        <a href="#" class="latest-product__item">
-                                            <div class="latest-product__item__pic">
-                                                <img src="/tmdt_201/public/img/latest-product/lp-3.jpg" alt="">
-                                            </div>
-                                            <div class="latest-product__item__text">
-                                                <h6>Crab Pool Security</h6>
-                                                <span>$30.00</span>
-                                            </div>
-                                        </a>
-                                    </div>
+                                    <?php }}?>
                                 </div>
                             </div>
                         </div>
@@ -303,7 +264,10 @@
                             </div>
                             <div class="col-lg-4 col-md-4">
                                 <div class="filter__found">
-                                    <h6><span>16</span> Products found</h6>
+                                    <?php $item_list = json_decode($data["item_list"]); 
+                                    $size_item_list = count($item_list);
+                                    ?>
+                                    <h6><span><?php echo $size_item_list?></span> Products found</h6>
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-3">
@@ -315,9 +279,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <?php $item_list = json_decode($data["item_list"]);
-                        for($row = 0; $row < count($item_list); $row++){
-                        ?>
+                        <?php for($row = 0; $row < $size_item_list; $row++){ ?>
                         <div class="col-lg-4 col-md-6 col-sm-6">
                             <div class="product__item">
                                 <div class="product__item__pic set-bg" data-setbg="/tmdt_201/public/img/product/<?php echo $item_list[$row]->avatar_item; ?>.jpg">

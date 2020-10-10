@@ -6,7 +6,8 @@ class Shop extends Controller{
         $this->view("Master1", array(
             "page"=>"shop",
             "item_list"=>$item_list->getItems(),
-            "category_list"=>$category_list->getCategories()
+            "category_list"=>$category_list->getCategories(),
+            "latest_item_list"=>$item_list->getLatestItems()
         ));
     }
 

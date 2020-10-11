@@ -264,10 +264,10 @@
                             </div>
                             <div class="col-lg-4 col-md-4">
                                 <div class="filter__found">
-                                    <?php $item_list = json_decode($data["item_list"]); 
+                                    <?php $item_list = json_decode($data['item_list']); 
                                     $size_item_list = count($item_list);
                                     ?>
-                                    <h6><span><?php echo $size_item_list?></span> Products found</h6>
+                                    <h6><span><?php echo json_decode($data['num_items']); ?></span> products found</h6>
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-3">
@@ -302,10 +302,13 @@
                         <?php }?>
                     </div>
                     <div class="product__pagination">
-                        <a href="#">1</a>
-                        <a href="#">2</a>
-                        <a href="#">3</a>
-                        <a href="#"><i class="fa fa-long-arrow-right"></i></a>
+                    <?php
+                    $num_pages = json_decode($data['num_pages']);
+                    $page_no = json_decode($data['page_no']);
+                    for($i = 1; $i <= $num_pages; $i++){
+                    ?>
+                        <a href="http://localhost/tmdt_201/shop/page/<?php echo $i; ?>" <?php echo $page_no == $i?'class="active"':''; ?>><?php echo $i; ?></a>
+                    <?php }?>
                     </div>
                 </div>
             </div>

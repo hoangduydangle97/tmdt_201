@@ -1,6 +1,6 @@
 <?php
 class Category extends Database{
-    public function getCategories(){
+    public function get_all_categories(){
         $sql = "SELECT name_category FROM category";
         $array_result = array();
         $sql_result = mysqli_query($this->conn, $sql);

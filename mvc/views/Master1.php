@@ -29,6 +29,11 @@
                 color: #7fad39;
                 text-decoration: underline;
             }
+            .product__pagination a.active, .blog__pagination a.active {
+                background: #7fad39;
+                border-color: #7fad39;
+                color: #ffffff;
+            }
         </style>
     </head>
 

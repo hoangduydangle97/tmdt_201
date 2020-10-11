@@ -4,7 +4,7 @@ class Blog extends Controller{
         $category_list = $this->model("Category");
         $this->view("Master1", array(
             "page"=>"blog",
-            "category_list"=>$category_list->getCategories()
+            "category_list"=>$category_list->get_all_categories()
         ));
     }
 }

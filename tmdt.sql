@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 14, 2020 lúc 07:52 PM
+-- Thời gian đã tạo: Th10 15, 2020 lúc 07:30 PM
 -- Phiên bản máy phục vụ: 10.4.14-MariaDB
 -- Phiên bản PHP: 7.4.10
 
@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `category` (
-  `id_category` varchar(10) NOT NULL,
+  `id_category` varchar(100) NOT NULL,
   `name_category` varchar(100) NOT NULL DEFAULT 'Default name'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -37,17 +37,17 @@ CREATE TABLE `category` (
 --
 
 INSERT INTO `category` (`id_category`, `name_category`) VALUES
-('BE', 'Beverages'),
-('CC', 'Chips $ Cereals'),
-('FF', 'Fastfood'),
-('FM', 'Fresh Meat'),
-('FR', 'Fresh Fruit'),
-('JU', 'Juice'),
-('MI', 'Milk'),
-('OF', 'Ocean Foods'),
-('OI', 'Oil'),
-('RI', 'Rice'),
-('VE', 'Vegetables');
+('beverages', 'Beverages'),
+('chips-cereals', 'Chips & Cereals'),
+('fastfood', 'Fastfood'),
+('fresh-fruit', 'Fresh Fruit'),
+('fresh-meat', 'Fresh Meat'),
+('juice', 'Juice'),
+('milk', 'Milk'),
+('ocean-foods', 'Ocean Foods'),
+('oil', 'Oil'),
+('rice', 'Rice'),
+('vegetables', 'Vegetables');
 
 -- --------------------------------------------------------
 
@@ -68,7 +68,7 @@ CREATE TABLE `item` (
   `best_seller_item` tinyint(1) NOT NULL DEFAULT 0,
   `date_created_item` datetime DEFAULT NULL,
   `latest_date_updated_item` datetime DEFAULT NULL,
-  `category_item` varchar(10) DEFAULT NULL
+  `category_item` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -76,21 +76,21 @@ CREATE TABLE `item` (
 --
 
 INSERT INTO `item` (`id_item`, `name_item`, `avatar_item`, `description_item`, `price_item`, `availability_item`, `weight_item`, `sale_off_item`, `featured`, `best_seller_item`, `date_created_item`, `latest_date_updated_item`, `category_item`) VALUES
-('apple', 'Apple', 'apple', 'Apples', 0, 1, 0, 0, 0, 0, '2020-10-09 18:42:10', NULL, 'FR'),
-('banana', 'Banana', 'banana', 'Bananas', 0, 1, 0, 0, 0, 0, '2020-10-09 18:43:11', NULL, 'FR'),
-('beef', 'Beef', 'beef', 'Beef', 0, 1, 0, 0, 0, 0, '2020-10-09 18:44:13', NULL, 'FM'),
-('bell-pepper', 'Bell pepper', 'bell-peppers', 'Bell peppers', 0, 1, 0, 0, 0, 0, '2020-10-10 23:20:14', NULL, 'VE'),
-('carrot', 'Carrot', 'carrot', 'Carrot', 0, 1, 0, 0, 0, 0, '2020-10-11 00:02:18', NULL, 'VE'),
-('chicken', 'Chicken', 'chicken', 'Chicken', 0, 1, 0, 0, 0, 0, '2020-10-09 18:44:37', NULL, 'FF'),
-('combo-fruit', 'Combo Fruit', 'combo-fruit', 'Combo Fruit', 0, 1, 0, 0, 0, 0, '2020-10-09 18:45:25', NULL, 'FR'),
-('common-guava', 'Common guava', 'common-guava', 'Common guava', 0, 1, 0, 0, 0, 0, '2020-10-09 18:46:04', NULL, 'FR'),
-('grape', 'Grape', 'grape', 'Grapes', 0, 1, 0, 0, 0, 0, '2020-10-09 18:47:48', NULL, 'FR'),
-('hamburger', 'Hamburger', 'hamburger', 'Hamburgers', 0, 1, 0, 0, 0, 0, '2020-10-09 18:49:22', NULL, 'FF'),
-('lettuce', 'Lettuce', 'lettuce', 'Lettuce', 0, 1, 0, 0, 0, 0, '2020-10-10 23:57:59', NULL, 'VE'),
-('mango', 'Mango', 'mango', 'Mangoes', 0, 1, 0, 0, 0, 0, '2020-10-09 18:52:11', NULL, 'FR'),
-('orange-juice', 'Orange Juice', 'orange-juice', 'Orange Juice', 0, 1, 0, 0, 0, 0, '2020-10-09 18:52:53', NULL, 'JU'),
-('sliwki-juice', 'Sliwki Juice', 'sliwki-juice', 'Sliwki Juice', 0, 1, 0, 0, 0, 0, '2020-10-09 18:54:09', NULL, 'JU'),
-('watermelon', 'Watermelon', 'watermelon', 'Watermelon', 0, 1, 0, 0, 0, 0, '2020-10-09 18:56:33', NULL, 'FR');
+('apple', 'Apple', 'apple', 'Apples', 0, 1, 0, 0, 0, 0, '2020-10-09 18:42:10', NULL, 'fresh-fruit'),
+('banana', 'Banana', 'banana', 'Bananas', 0, 1, 0, 0, 0, 0, '2020-10-09 18:43:11', NULL, 'fresh-fruit'),
+('beef', 'Beef', 'beef', 'Beef', 0, 1, 0, 0, 0, 0, '2020-10-09 18:44:13', NULL, 'fresh-meat'),
+('bell-pepper', 'Bell pepper', 'bell-peppers', 'Bell peppers', 0, 1, 0, 0, 0, 0, '2020-10-10 23:20:14', NULL, 'vegetables'),
+('carrot', 'Carrot', 'carrot', 'Carrot', 0, 1, 0, 0, 0, 0, '2020-10-11 00:02:18', NULL, 'vegetables'),
+('chicken', 'Chicken', 'chicken', 'Chicken', 0, 1, 0, 0, 0, 0, '2020-10-09 18:44:37', NULL, 'fastfood'),
+('combo-fruit', 'Combo Fruit', 'combo-fruit', 'Combo Fruit', 0, 1, 0, 0, 0, 0, '2020-10-09 18:45:25', NULL, 'fresh-fruit'),
+('common-guava', 'Common guava', 'common-guava', 'Common guava', 0, 1, 0, 0, 0, 0, '2020-10-09 18:46:04', NULL, 'fresh-fruit'),
+('grape', 'Grape', 'grape', 'Grapes', 0, 1, 0, 0, 0, 0, '2020-10-09 18:47:48', NULL, 'fresh-fruit'),
+('hamburger', 'Hamburger', 'hamburger', 'Hamburgers', 0, 1, 0, 0, 0, 0, '2020-10-09 18:49:22', NULL, 'fastfood'),
+('lettuce', 'Lettuce', 'lettuce', 'Lettuce', 0, 1, 0, 0, 0, 0, '2020-10-10 23:57:59', NULL, 'vegetables'),
+('mango', 'Mango', 'mango', 'Mangoes', 0, 1, 0, 0, 0, 0, '2020-10-09 18:52:11', NULL, 'fresh-fruit'),
+('orange-juice', 'Orange Juice', 'orange-juice', 'Orange Juice', 0, 1, 0, 0, 0, 0, '2020-10-09 18:52:53', NULL, 'juice'),
+('sliwki-juice', 'Sliwki Juice', 'sliwki-juice', 'Sliwki Juice', 0, 1, 0, 0, 0, 0, '2020-10-09 18:54:09', NULL, 'juice'),
+('watermelon', 'Watermelon', 'watermelon', 'Watermelon', 0, 1, 0, 0, 0, 0, '2020-10-09 18:56:33', NULL, 'fresh-fruit');
 
 -- --------------------------------------------------------
 

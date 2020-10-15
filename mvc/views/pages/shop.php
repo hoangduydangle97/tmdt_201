@@ -252,6 +252,18 @@
                         </div>
                     </div>
                     <div class="filter__item">
+                        <div class="section-title product__discount__title">
+                            <h2>
+                            <?php
+                            if(!isset($data['name_category'])){
+                                echo 'All of products';
+                            }
+                            else{
+                                echo json_decode($data['name_category'])->name_category;
+                            }
+                            ?>
+                            </h2>
+                        </div>
                         <div class="row">
                             <div class="col-lg-4 col-md-5">
                                 <div class="filter__sort">
@@ -305,9 +317,10 @@
                     <?php
                     $num_pages = json_decode($data['num_pages']);
                     $page_no = json_decode($data['page_no']);
+                    $category = $data['category'];
                     for($i = 1; $i <= $num_pages; $i++){
                     ?>
-                        <a href="http://localhost/tmdt_201/shop/page/<?php echo $i; ?>" <?php echo $page_no == $i?'class="active"':''; ?>><?php echo $i; ?></a>
+                        <a href="http://localhost/tmdt_201/shop/<?php echo $category == 'all'?'page':'category_page/'.$category; ?>/<?php echo $i; ?>" <?php echo $page_no == $i?'class="active"':''; ?>><?php echo $i; ?></a>
                     <?php }?>
                     </div>
                 </div>

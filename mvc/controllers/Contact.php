@@ -1,6 +1,7 @@
 <?php
 class Contact extends Controller{
     public function action(){
+        setcookie('path', 'contact');
         $category_list = $this->model("Category");
         $this->view("Master1", array(
             "page"=>"contact",

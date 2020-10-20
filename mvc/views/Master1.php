@@ -2,24 +2,24 @@
 <html lang="zxx">
     <head>
         <meta charset="UTF-8">
-        <meta name="description" content="Ogani Template">
+        <meta name="description" content="Ogani">
         <meta name="keywords" content="Ogani, unica, creative, html">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Ogani | Template</title>
+        <title>Ogani | <?php echo ucfirst($data['page']);?></title>
 
         <!-- Google Font -->
-        <link rel="stylesheet" href="/tmdt_201/public/css/google-font.css" type="text/css">
+        <link rel="stylesheet" href="/tmdt_201/public/master1/css/google-font.css" type="text/css">
 
         <!-- Css Styles -->
-        <link rel="stylesheet" href="/tmdt_201/public/css/bootstrap.min.css" type="text/css">
-        <link rel="stylesheet" href="/tmdt_201/public/css/font-awesome.min.css" type="text/css">
-        <link rel="stylesheet" href="/tmdt_201/public/css/elegant-icons.css" type="text/css">
-        <link rel="stylesheet" href="/tmdt_201/public/css/nice-select.css" type="text/css">
-        <link rel="stylesheet" href="/tmdt_201/public/css/jquery-ui.min.css" type="text/css">
-        <link rel="stylesheet" href="/tmdt_201/public/css/owl.carousel.min.css" type="text/css">
-        <link rel="stylesheet" href="/tmdt_201/public/css/slicknav.min.css" type="text/css">
-        <link rel="stylesheet" href="/tmdt_201/public/css/style.css" type="text/css">
+        <link rel="stylesheet" href="/tmdt_201/public/master1/css/bootstrap.min.css" type="text/css">
+        <link rel="stylesheet" href="/tmdt_201/public/master1/css/font-awesome.min.css" type="text/css">
+        <link rel="stylesheet" href="/tmdt_201/public/master1/css/elegant-icons.css" type="text/css">
+        <link rel="stylesheet" href="/tmdt_201/public/master1/css/nice-select.css" type="text/css">
+        <link rel="stylesheet" href="/tmdt_201/public/master1/css/jquery-ui.min.css" type="text/css">
+        <link rel="stylesheet" href="/tmdt_201/public/master1/css/owl.carousel.min.css" type="text/css">
+        <link rel="stylesheet" href="/tmdt_201/public/master1/css/slicknav.min.css" type="text/css">
+        <link rel="stylesheet" href="/tmdt_201/public/master1/css/style.css" type="text/css">
         <style>
             .language-option {
                 transition: 0.3s;
@@ -47,7 +47,7 @@
         <div class="humberger__menu__overlay"></div>
         <div class="humberger__menu__wrapper">
             <div class="humberger__menu__logo">
-                <a href="#"><img src="/tmdt_201/public/img/logo.png" alt=""></a>
+                <a href="#"><img src="/tmdt_201/public/master1/img/logo.png" alt=""></a>
             </div>
             <div class="humberger__menu__cart">
                 <ul>
@@ -58,7 +58,7 @@
             </div>
             <div class="humberger__menu__widget">
                 <div class="header__top__right__language">
-                    <img src="/tmdt_201/public/img/language.png" alt="">
+                    <img src="/tmdt_201/public/master1/img/language.png" alt="">
                     <div>English</div>
                     <span class="arrow_carrot-down"></span>
                     <ul>
@@ -67,7 +67,16 @@
                     </ul>
                 </div>
                 <div class="header__top__right__auth">
-                    <a href="#"><i class="fa fa-user"></i> Login</a>
+                    <a href="#"><i class="fa fa-user"></i>
+                    <?php 
+                    if(isset($_SESSION['username'])){
+                        echo $_SESSION['username'];
+                    }
+                    else{
+                        echo 'Login';
+                    }
+                    ?>
+                    </a>
                 </div>
             </div>
             <nav class="humberger__menu__nav mobile-menu">
@@ -118,13 +127,12 @@
                         <div class="col-lg-6 col-md-6">
                             <div class="header__top__right">
                                 <div class="header__top__right__social">
-                                    <a href="#"><i class="fa fa-facebook"></i></a>
-                                    <a href="#"><i class="fa fa-twitter"></i></a>
-                                    <a href="#"><i class="fa fa-linkedin"></i></a>
-                                    <a href="#"><i class="fa fa-pinterest-p"></i></a>
+                                    <a href="#" class="language-option"><i class="fa fa-facebook"></i></a>
+                                    <a href="#" class="language-option"><i class="fa fa-twitter"></i></a>
+                                    <a href="#" class="language-option"><i class="fa fa-youtube"></i></a>
                                 </div>
                                 <div class="header__top__right__language">
-                                    <img src="/tmdt_201/public/img/language.png" alt="">
+                                    <img src="/tmdt_201/public/master1/img/language.png" alt="">
                                     <div>English</div>
                                     <span class="arrow_carrot-down"></span>
                                     <ul>
@@ -132,9 +140,24 @@
                                         <li><a href="#" class="language-option">English</a></li>
                                     </ul>
                                 </div>
-                                <div class="header__top__right__auth">
-                                    <a href="#"><i class="fa fa-user"></i> Login</a>
+                                <?php if(isset($_SESSION['username'])){?>
+                                <div class="header__top__right__language">
+                                    <i class="fa fa-user"></i> 
+                                    <div><?php echo $_SESSION['username']; ?></div>
+                                    <span class="arrow_carrot-down"></span>
+                                    <ul>
+                                        <li><a href="#" class="language-option">Profile</a></li>
+                                        <li><a href="http://localhost/tmdt_201/logout" class="language-option">Logout</a></li>
+                                    </ul>
                                 </div>
+                                <?php }
+                                else{?>
+                                <div class="header__top__right__auth">
+                                    <a href="http://localhost/tmdt_201/login" class="language-option">
+                                        <i class="fa fa-user"></i> Login
+                                    </a>
+                                </div>
+                                <?php }?>
                             </div>
                         </div>
                     </div>
@@ -144,7 +167,7 @@
                 <div class="row">
                     <div class="col-lg-3">
                         <div class="header__logo">
-                            <a href="http://localhost/tmdt_201/home"><img src="/tmdt_201/public/img/logo.png" alt=""></a>
+                            <a href="http://localhost/tmdt_201/home"><img src="/tmdt_201/public/master1/img/logo.png" alt=""></a>
                         </div>
                     </div>
                     <div class="col-lg-6">
@@ -224,7 +247,7 @@
                             </div>
                         </div>
                         <?php if($data["page"] == "home"){?>
-                        <div class="hero__item set-bg" data-setbg="/tmdt_201/public/img/hero/banner.jpg">
+                        <div class="hero__item set-bg" data-setbg="/tmdt_201/public/master1/img/hero/banner.jpg">
                             <div class="hero__text">
                                 <span>FRESH FRUIT</span>
                                 <h2>Vegetables <br />100% Organic</h2>
@@ -250,7 +273,7 @@
                     <div class="col-lg-3 col-md-6 col-sm-6">
                         <div class="footer__about">
                             <div class="footer__about__logo">
-                                <a href="http://localhost/tmdt_201/home"><img src="/tmdt_201/public/img/logo.png" alt=""></a>
+                                <a href="http://localhost/tmdt_201/home"><img src="/tmdt_201/public/master1/img/logo.png" alt=""></a>
                             </div>
                             <ul>
                                 <li>Address: 123 Ly Thuong Kiet, Ward 14, District 10, TPHCM</li>
@@ -307,7 +330,7 @@
                                     <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                                 </p>
                             </div>
-                            <div class="footer__copyright__payment"><img src="/tmdt_201/public/img/payment-item.png" alt=""></div>
+                            <div class="footer__copyright__payment"><img src="/tmdt_201/public/master1/img/payment-item.png" alt=""></div>
                         </div>
                     </div>
                 </div>
@@ -316,14 +339,14 @@
         <!-- Footer Section End -->
 
         <!-- Js Plugins -->
-        <script src="/tmdt_201/public/js/jquery-3.3.1.min.js"></script>
-        <script src="/tmdt_201/public/js/bootstrap.min.js"></script>
-        <script src="/tmdt_201/public/js/jquery.nice-select.min.js"></script>
-        <script src="/tmdt_201/public/js/jquery-ui.min.js"></script>
-        <script src="/tmdt_201/public/js/jquery.slicknav.js"></script>
-        <script src="/tmdt_201/public/js/mixitup.min.js"></script>
-        <script src="/tmdt_201/public/js/owl.carousel.min.js"></script>
-        <script src="/tmdt_201/public/js/main.js"></script>
+        <script src="/tmdt_201/public/master1/js/jquery-3.3.1.min.js"></script>
+        <script src="/tmdt_201/public/master1/js/bootstrap.min.js"></script>
+        <script src="/tmdt_201/public/master1/js/jquery.nice-select.min.js"></script>
+        <script src="/tmdt_201/public/master1/js/jquery-ui.min.js"></script>
+        <script src="/tmdt_201/public/master1/js/jquery.slicknav.js"></script>
+        <script src="/tmdt_201/public/master1/js/mixitup.min.js"></script>
+        <script src="/tmdt_201/public/master1/js/owl.carousel.min.js"></script>
+        <script src="/tmdt_201/public/master1/js/main.js"></script>
 
     </body>
 

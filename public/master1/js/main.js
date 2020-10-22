@@ -203,8 +203,8 @@
 		Quantity change
 	--------------------- */
     var proQty = $('.pro-qty');
-    proQty.prepend('<span class="dec qtybtn">-</span>');
-    proQty.append('<span class="inc qtybtn">+</span>');
+    proQty.prepend('<button class="dec qtybtn border-0 bg-transparent" type="button">-</button>');
+    proQty.append('<button class="inc qtybtn border-0 bg-transparent" type="button">+</button>');
     proQty.on('click', '.qtybtn', function () {
         var $button = $(this);
         var oldValue = $button.parent().find('input').val();
@@ -221,4 +221,77 @@
         $button.parent().find('input').val(newVal);
     });
 
+    /*-------------------
+		Star rating
+	--------------------- */
+    var $star_rating = $('.star-rating .fa');
+    //var $star_rating_disabled = $('.star-rating-disabled .fa');
+    var $level_rating = " - Good!";
+    var $level_rating_color = "blue";
+    var $reset_button = $('.reset-btn');
+    var SetRatingStar = function() {
+        return $star_rating.each(function() {
+            if (parseInt($star_rating.siblings('input.rating-value').val()) >= parseInt($(this).data('rating'))) {
+                return $(this).removeClass('fa-star-o').addClass('fa-star');
+            } 
+            else {
+                return $(this).removeClass('fa-star').addClass('fa-star-o');
+            }
+        });
+    };
+
+    $star_rating.on('mouseenter', function() {
+        $star_rating.siblings('input.rating-value').val($(this).data('rating'));
+        switch($(this).data('rating')){
+            case 1:
+                $level_rating = " - Very Bad!";
+                $level_rating_color = "red";
+                break;
+            case 2:
+                $level_rating = " - Bad!";
+                $level_rating_color = "orange";
+                break;
+            case 3:
+                $level_rating = " - OK!";
+                $level_rating_color = "darkmagenta";
+                break;
+            case 4:
+                $level_rating = " - Good!";
+                $level_rating_color = "blue";
+                break;
+            case 5:
+                $level_rating = " - Very Good!";
+                $level_rating_color = "limegreen";
+                break;
+        }
+        $('.level-rating').html($level_rating).css("color", $level_rating_color);
+        return SetRatingStar();
+    });
+
+    $('.level-rating').html($level_rating).css("color", $level_rating_color);
+    SetRatingStar();
+    $reset_button.on('click', function() {
+        $star_rating.siblings('input.rating-value').val(4);
+        SetRatingStar();
+        $level_rating = " - Good!";
+        $level_rating_color = "blue";
+        $('.level-rating').html($level_rating).css("color", $level_rating_color);
+    });
+
+    /*-------------------
+		Back to Top Button
+    --------------------- */
+    var btn = $('#back-to-top-btn');
+    $(window).scroll(function() {
+    if ($(window).scrollTop() > 300) {
+        btn.addClass('show');
+    } 
+    else {
+        btn.removeClass('show');
+    }
+    });
+    btn.on('click', function(e) {
+        e.preventDefault();
+        $('html, body').animate({scrollTop:0}, '300');
+    });
 })(jQuery);

@@ -34,6 +34,60 @@
                 border-color: #7fad39;
                 color: #ffffff;
             }
+
+            .star-rating, .star-rating-disabled {
+                line-height:32px;
+                font-size:1.25em;
+            }
+
+            .star-rating .fa-star:hover {
+                cursor: pointer;
+            }
+
+            .star-rating .fa-star, .star-rating-disabled .fa-star {
+                color: yellow;
+            }
+
+            #back-to-top-btn {
+                display: inline-block;
+                background-color: #FF9800;
+                width: 50px;
+                height: 50px;
+                text-align: center;
+                border-radius: 4px;
+                position: fixed;
+                bottom: 30px;
+                right: 30px;
+                transition: background-color .3s, 
+                            opacity .5s, visibility .5s;
+                opacity: 0;
+                visibility: hidden;
+                z-index: 1000;
+            }
+            
+            #back-to-top-btn::after {
+                content: "\f077";
+                font-family: FontAwesome;
+                font-weight: normal;
+                font-style: normal;
+                font-size: 2em;
+                line-height: 50px;
+                color: #fff;
+            }
+
+            #back-to-top-btn:hover {
+                cursor: pointer;
+                background-color: #333;
+            }
+
+            #back-to-top-btn:active {
+                background-color: #555;
+            }
+
+            #back-to-top-btn.show {
+                opacity: 1;
+                visibility: visible;
+            }
         </style>
     </head>
 
@@ -42,6 +96,9 @@
         <div id="preloder">
             <div class="loader"></div>
         </div>
+
+        <!-- Back to Top Button -->
+        <a id="back-to-top-btn"></a>
 
         <!-- Humberger Begin -->
         <div class="humberger__menu__overlay"></div>
@@ -313,9 +370,8 @@
                             </form>
                             <div class="footer__widget__social">
                                 <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-instagram"></i></a>
                                 <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-pinterest"></i></a>
+                                <a href="#"><i class="fa fa-youtube"></i></a>
                             </div>
                         </div>
                     </div>

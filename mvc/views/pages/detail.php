@@ -4,11 +4,12 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="breadcrumb__text">
-                        <h2>Vegetable’s Package</h2>
+                        <?php $item_object = json_decode($data["item"]); ?>
+                        <h2><?php echo $item_object->name_category; ?></h2>
                         <div class="breadcrumb__option">
                             <a href="http://localhost/tmdt_201/home">Home</a>
-                            <a href="http://localhost/tmdt_201/home">Vegetables</a>
-                            <span>Vegetable’s Package</span>
+                            <a href="http://localhost/tmdt_201/shop/<?php echo $item_object->category_item; ?>"><?php echo $item_object->name_category; ?></a>
+                            <span><?php echo $item_object->name_item; ?></span>
                         </div>
                     </div>
                 </div>
@@ -41,7 +42,6 @@
                 </div>
                 <div class="col-lg-6 col-md-6">
                     <div class="product__details__text">
-                        <?php $item_object = json_decode($data["item"]); ?>
                         <h3><?php echo $item_object->name_item; ?></h3>
                         <div class="product__details__rating">
                             <i class="fa fa-star"></i>
@@ -58,7 +58,7 @@
                         <div class="product__details__quantity">
                             <div class="quantity">
                                 <div class="pro-qty">
-                                    <input type="text" value="1">
+                                    <input type="text" value="1" readonly>
                                 </div>
                             </div>
                         </div>
@@ -76,8 +76,7 @@
                                 <div class="share">
                                     <a href="#"><i class="fa fa-facebook"></i></a>
                                     <a href="#"><i class="fa fa-twitter"></i></a>
-                                    <a href="#"><i class="fa fa-instagram"></i></a>
-                                    <a href="#"><i class="fa fa-pinterest"></i></a>
+                                    <a href="#"><i class="fa fa-youtube"></i></a>
                                 </div>
                             </li>
                         </ul>
@@ -146,18 +145,67 @@
                             </div>
                             <div class="tab-pane" id="tabs-3" role="tabpanel">
                                 <div class="product__details__tab__desc">
-                                    <h6>Products Infomation</h6>
-                                    <p>Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.
-                                        Pellentesque in ipsum id orci porta dapibus. Proin eget tortor risus.
-                                        Vivamus suscipit tortor eget felis porttitor volutpat. Vestibulum ac diam
-                                        sit amet quam vehicula elementum sed sit amet dui. Donec rutrum congue leo
-                                        eget malesuada. Vivamus suscipit tortor eget felis porttitor volutpat.
-                                        Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Praesent
-                                        sapien massa, convallis a pellentesque nec, egestas non nisi. Vestibulum ac
-                                        diam sit amet quam vehicula elementum sed sit amet dui. Vestibulum ante
-                                        ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
-                                        Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula.
-                                        Proin eget tortor risus.</p>
+                                <div class="row">
+                                        <div class="col-3 col-md-2 col-lg-1">
+                                            <img src="/tmdt_201/public/master1/img/user/hoangduydangle.jpg">
+                                        </div>
+                                        <div class="col-9 col-md-10 col-lg-11">
+                                            <div class="container pl-0 mb-2">
+                                                @hoangduydangle | Hoangduy Dangle | at 23:20 on 2020/10/22
+                                            </div>
+                                            <div class="container pl-0 mb-2">
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <div class="star-rating-disabled mb-2">
+                                                            <span class="fa fa-star" data-rating="1"></span>
+                                                            <span class="fa fa-star" data-rating="2"></span>
+                                                            <span class="fa fa-star" data-rating="3"></span>
+                                                            <span class="fa fa-star" data-rating="4"></span>
+                                                            <span class="fa fa-star-o" data-rating="5"></span>
+                                                            <span class="level-rating-disabled"> - Good!</span>
+                                                            <input type="hidden" name="rating-value" class="rating-value" value="4">
+                                                        </div>
+                                                        <div class="container py-3 bg-light border border-secondary rounded">
+                                                            Apples are good!
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-3 col-md-2 col-lg-1">
+                                            <img src="/tmdt_201/public/master1/img/user/hoangduydangle.jpg">
+                                        </div>
+                                        <div class="col-9 col-md-10 col-lg-11">
+                                            <div class="container pl-0 mb-2">
+                                                @hoangduydangle | Hoangduy Dangle
+                                            </div>
+                                            <form method="POST">
+                                                <div class="container pl-0 mb-2">
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <div class="star-rating">
+                                                                <span class="fa fa-star-o" data-rating="1"></span>
+                                                                <span class="fa fa-star-o" data-rating="2"></span>
+                                                                <span class="fa fa-star-o" data-rating="3"></span>
+                                                                <span class="fa fa-star-o" data-rating="4"></span>
+                                                                <span class="fa fa-star-o" data-rating="5"></span>
+                                                                <span class="level-rating"></span>
+                                                                <input type="hidden" name="rating-value" class="rating-value" value="4">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <textarea class="form-control" rows="5" cols="10" placeholder="Leave your comment ..." id="comment" name="comment"></textarea>
+                                                </div>
+                                                <input type="submit" class="btn btn-primary mr-3" name="submit" value="Add review">
+                                                <input type="reset" class="btn btn-warning reset-btn" name="reset" value="Reset">
+                                            </form>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

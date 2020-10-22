@@ -320,7 +320,7 @@
                     $category = $data['category'];
                     for($i = 1; $i <= $num_pages; $i++){
                     ?>
-                        <a href="http://localhost/tmdt_201/shop/<?php echo $category == 'all'?'page':'category_page/'.$category; ?>/<?php echo $i; ?>" <?php echo $page_no == $i?'class="active"':''; ?>><?php echo $i; ?></a>
+                        <a href="http://localhost/tmdt_201/shop/<?php echo $category == 'all'?'page':'category/'.$category; ?>/<?php echo $i; ?>" <?php echo $page_no == $i?'class="active"':''; ?>><?php echo $i; ?></a>
                     <?php }?>
                     </div>
                 </div>

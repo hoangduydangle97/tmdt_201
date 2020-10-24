@@ -253,7 +253,7 @@
                     </div>
                     <div class="filter__item">
                         <div class="section-title product__discount__title">
-                            <h2>
+                            <h2 id="scroll-pos">
                             <?php
                             if(!isset($data['name_category'])){
                                 echo 'All of products';

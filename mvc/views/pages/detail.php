@@ -145,7 +145,47 @@
                             </div>
                             <div class="tab-pane" id="tabs-3" role="tabpanel">
                                 <div class="product__details__tab__desc">
-                                <div class="row">
+                                    <div class="row mb-4">
+                                        <div class="col-3 col-md-2 col-lg-1">
+                                            <img src="/tmdt_201/public/master1/img/user/hoangduydangle.jpg">
+                                        </div>
+                                        <div class="col-9 col-md-10 col-lg-11">
+                                            <div class="container pl-0 mb-2">
+                                                <div class="row">
+                                                    <div class="col-10">
+                                                        @hoangduydangle | Hoangduy Dangle | at 23:20 on 2020/10/22
+                                                    </div>
+                                                    <div class="col-2" style="text-align: right;">
+                                                        <button class="border-0 review-option" data-toggle="dropdown">
+                                                            <i class="fa fa-ellipsis-h"></i>
+                                                        </button>
+                                                        <div class="dropdown-menu dropdown-menu-right">
+                                                            <button class="dropdown-item" type="button" data-toggle="modal" data-target="#modify-modal" id="modify-btn">Modify</button>
+                                                            <div class="dropdown-divider"></div>
+                                                            <button class="dropdown-item" type="button" data-toggle="modal" data-target="#delete-modal">Delete</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="container pl-0 mb-2">
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <div class="star-rating-disabled mb-2">
+                                                            <span class="fa fa-star" data-rating="1"></span>
+                                                            <span class="fa fa-star" data-rating="2"></span>
+                                                            <span class="fa fa-star" data-rating="3"></span>
+                                                            <span class="fa fa-star" data-rating="4"></span>
+                                                            <span class="fa fa-star-o" data-rating="5"></span>
+                                                            <span class="level-rating-disabled" id="level-rating-1"> - Good!</span>
+                                                            <input type="hidden" name="rating-value" id="rating-value-1" value="4">
+                                                        </div>
+                                                        <div class="container py-3 bg-light border border-secondary rounded" id="comment-1">Apples are good!</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-4">
                                         <div class="col-3 col-md-2 col-lg-1">
                                             <img src="/tmdt_201/public/master1/img/user/hoangduydangle.jpg">
                                         </div>
@@ -173,14 +213,17 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <?php $user = json_decode($data['user']);
+                                    if($user != null){                            
+                                    ?>
                                     <hr>
                                     <div class="row">
                                         <div class="col-3 col-md-2 col-lg-1">
-                                            <img src="/tmdt_201/public/master1/img/user/hoangduydangle.jpg">
+                                            <img src="<?php echo $user->avatar_user;?>">
                                         </div>
                                         <div class="col-9 col-md-10 col-lg-11">
                                             <div class="container pl-0 mb-2">
-                                                @hoangduydangle | Hoangduy Dangle
+                                                @<?php echo $user->username_user;?> | <?php echo $user->fname_user; ?> <?php echo $user->lname_user;?>
                                             </div>
                                             <form method="POST">
                                                 <div class="container pl-0 mb-2">
@@ -199,13 +242,14 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <textarea class="form-control" rows="5" cols="10" placeholder="Leave your comment ..." id="comment" name="comment"></textarea>
+                                                    <textarea class="form-control" rows="5" cols="10" placeholder="Leave your comment ..." id="create-comment" name="comment"></textarea>
                                                 </div>
                                                 <input type="submit" class="btn btn-primary mr-3" name="submit" value="Add review">
                                                 <input type="reset" class="btn btn-warning reset-btn" name="reset" value="Reset">
                                             </form>
                                         </div>
                                     </div>
+                                    <?php }?>
                                 </div>
                             </div>
                         </div>
@@ -229,7 +273,7 @@
             <div class="row">
                 <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="/tmdt_201/public/master1/img/product/product-1.jpg">
+                        <div class="product__item__pic set-bg" data-setbg="#">
                             <ul class="product__item__pic__hover">
                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>
@@ -244,7 +288,7 @@
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="/tmdt_201/public/master1/img/product/product-2.jpg">
+                        <div class="product__item__pic set-bg" data-setbg="#">
                             <ul class="product__item__pic__hover">
                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>
@@ -259,7 +303,7 @@
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="/tmdt_201/public/master1/img/product/product-3.jpg">
+                        <div class="product__item__pic set-bg" data-setbg="#">
                             <ul class="product__item__pic__hover">
                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>
@@ -274,7 +318,7 @@
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="/tmdt_201/public/master1/img/product/product-7.jpg">
+                        <div class="product__item__pic set-bg" data-setbg="#">
                             <ul class="product__item__pic__hover">
                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>
@@ -291,3 +335,81 @@
         </div>
     </section>
     <!-- Related Product Section End -->
+
+    <!-- Delete Modal -->
+    <div class="modal fade" id="delete-modal" data-backdrop="static">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title text-warning">
+                        <i class="fa fa-exclamation-triangle"></i>
+                        Warning!
+                    </h4>
+                </div>
+                <!-- Modal body -->
+                <div class="modal-body">
+                    Your review will be deleted. Are you sure?
+                </div>                                                                  
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                </div>                                                                 
+            </div>
+        </div>
+    </div>
+
+    <!-- Modify Modal -->
+    <div class="modal fade" id="modify-modal" data-backdrop="static">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title text-success">
+                        <i class="fa fa-pencil"></i>
+                        Modify
+                    </h4>
+                </div>
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-3 col-md-2 col-lg-1">
+                            <img src="/tmdt_201/public/master1/img/user/hoangduydangle.jpg">
+                        </div>
+                        <div class="col-9 col-md-10 col-lg-11">
+                            <div class="container pl-0 mb-2">
+                                @hoangduydangle | Hoangduy Dangle
+                            </div>
+                            <form method="POST">
+                                <div class="container pl-0 mb-2">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="star-rating-modify">
+                                                <span class="fa fa-star-o" data-rating="1"></span>
+                                                <span class="fa fa-star-o" data-rating="2"></span>
+                                                <span class="fa fa-star-o" data-rating="3"></span>
+                                                <span class="fa fa-star-o" data-rating="4"></span>
+                                                <span class="fa fa-star-o" data-rating="5"></span>
+                                                <span class="level-rating-modify"></span>
+                                                <input type="hidden" name="rating-value" class="rating-value-modify" value="4">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <textarea class="form-control" rows="5" cols="10" placeholder="Leave your comment ..." id="modify-comment" name="comment"></textarea>
+                                </div>
+                                <input type="submit" class="btn btn-primary mr-3" name="submit" value="Update review">
+                                <input type="reset" class="btn btn-warning reset-btn-modify" name="reset" value="Reset">
+                            </form>
+                        </div>
+                    </div>
+                </div>                                                                  
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                </div>                                                                 
+            </div>
+        </div>
+    </div>

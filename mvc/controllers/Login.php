@@ -21,9 +21,10 @@ class Login extends Controller{
         }
         if($check){
             $_SESSION['username'] = $username;
-            header('location: http://localhost/tmdt_201/home');
+            header("location: http://localhost".$_SESSION['path']);
         }
         else{
+            $_SESSION['error'] = true;
             header('location: http://localhost/tmdt_201/login');
         }
     }

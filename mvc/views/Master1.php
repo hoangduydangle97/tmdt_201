@@ -35,7 +35,7 @@
                 color: #ffffff;
             }
 
-            .star-rating, .star-rating-disabled {
+            .star-rating, .star-rating-disabled, .star-rating-modify {
                 line-height:32px;
                 font-size:1.25em;
             }
@@ -44,7 +44,7 @@
                 cursor: pointer;
             }
 
-            .star-rating .fa-star, .star-rating-disabled .fa-star {
+            .star-rating .fa-star, .star-rating-disabled .fa-star, .star-rating-modify .fa-star {
                 color: yellow;
             }
 
@@ -88,6 +88,16 @@
                 opacity: 1;
                 visibility: visible;
             }
+
+            .review-option:hover {
+                cursor: pointer;
+                background-color: lightgray;
+            }
+
+            .dropdown-item:hover {
+                color: white;
+                background-color: #007bff;
+            }
         </style>
     </head>
 
@@ -123,18 +133,24 @@
                         <li><a href="#">English</a></li>
                     </ul>
                 </div>
+                <?php if(isset($_SESSION['username'])){?>
                 <div class="header__top__right__auth">
-                    <a href="#"><i class="fa fa-user"></i>
-                    <?php 
-                    if(isset($_SESSION['username'])){
-                        echo $_SESSION['username'];
-                    }
-                    else{
-                        echo 'Login';
-                    }
-                    ?>
+                    <i class="fa fa-user"></i> 
+                    <div><?php echo $_SESSION['username']; ?></div>
+                    <span class="arrow_carrot-down"></span>
+                    <ul>
+                        <li><a href="#" class="language-option">Profile</a></li>
+                        <li><a href="http://localhost/tmdt_201/logout" class="language-option">Logout</a></li>
+                    </ul>
+                </div>
+                <?php }
+                else{?>
+                <div class="header__top__right__auth">
+                    <a href="http://localhost/tmdt_201/login" class="language-option">
+                         <i class="fa fa-user"></i> Login
                     </a>
                 </div>
+                <?php }?>
             </div>
             <nav class="humberger__menu__nav mobile-menu">
                 <ul>
@@ -198,7 +214,7 @@
                                     </ul>
                                 </div>
                                 <?php if(isset($_SESSION['username'])){?>
-                                <div class="header__top__right__language">
+                                <div class="header__top__right__auth">
                                     <i class="fa fa-user"></i> 
                                     <div><?php echo $_SESSION['username']; ?></div>
                                     <span class="arrow_carrot-down"></span>
@@ -396,6 +412,7 @@
 
         <!-- Js Plugins -->
         <script src="/tmdt_201/public/master1/js/jquery-3.3.1.min.js"></script>
+        <script src="/tmdt_201/public/master1/js/popper.min.js"></script>
         <script src="/tmdt_201/public/master1/js/bootstrap.min.js"></script>
         <script src="/tmdt_201/public/master1/js/jquery.nice-select.min.js"></script>
         <script src="/tmdt_201/public/master1/js/jquery-ui.min.js"></script>

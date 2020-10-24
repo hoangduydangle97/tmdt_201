@@ -29,6 +29,16 @@
             var containerEl = document.querySelector('.featured__filter');
             var mixer = mixitup(containerEl);
         }
+
+        var path = location.pathname;
+        var last_path = path.charAt(path.length - 1);
+        if(last_path != ''){
+            if(!isNaN(Number(last_path))){
+                $('html, body').animate({
+                    scrollTop: $('#scroll-pos').offset().top
+                }, 'slow');
+            }
+        }
     });
 
     /*------------------
@@ -294,4 +304,64 @@
         e.preventDefault();
         $('html, body').animate({scrollTop:0}, '300');
     });
+
+    /*-------------
+		Modify
+    --------------- */
+    $('#modify-btn').on('click', function() {
+        $('#modify-comment').val($('#comment-1').text());
+    });
+    var $star_rating_modify = $('.star-rating-modify .fa');
+    var $level_rating_modify = $('#level-rating-1').text();
+    var $level_rating_color_modify = $('#level-rating-1').css('color');
+    var $reset_button_modify = $('.reset-btn-modify');
+    var SetRatingStarModify = function() {
+        return $star_rating_modify.each(function() {
+            if (parseInt($star_rating_modify.siblings('input.rating-value-modify').val()) >= parseInt($(this).data('rating'))) {
+                return $(this).removeClass('fa-star-o').addClass('fa-star');
+            } 
+            else {
+                return $(this).removeClass('fa-star').addClass('fa-star-o');
+            }
+        });
+    };
+
+    $star_rating_modify.on('mouseenter', function() {
+        $star_rating_modify.siblings('input.rating-value-modify').val($(this).data('rating'));
+        switch($(this).data('rating')){
+            case 1:
+                $level_rating_modify = " - Very Bad!";
+                $level_rating_color_modify = "red";
+                break;
+            case 2:
+                $level_rating_modify = " - Bad!";
+                $level_rating_color_modify = "orange";
+                break;
+            case 3:
+                $level_rating_modify = " - OK!";
+                $level_rating_color_modify = "darkmagenta";
+                break;
+            case 4:
+                $level_rating_modify = " - Good!";
+                $level_rating_color_modify = "blue";
+                break;
+            case 5:
+                $level_rating_modify = " - Very Good!";
+                $level_rating_color_modify = "limegreen";
+                break;
+        }
+        $('.level-rating-modify').html($level_rating_modify).css("color", $level_rating_color_modify);
+        return SetRatingStarModify();
+    });
+
+    $('.level-rating-modify').html($level_rating_modify).css("color", $level_rating_color_modify);
+    SetRatingStarModify();
+    $reset_button_modify.on('click', function() {
+        $star_rating_modify.siblings('input.rating-value-modify').val(4);
+        SetRatingStarModify();
+        $level_rating_modify = " - Good!";
+        $level_rating_color_modify = "blue";
+        $('.level-rating-modify').html($level_rating_modify).css("color", $level_rating_color_modify);
+    });
+
 })(jQuery);

@@ -65,6 +65,13 @@
                     </div>
 
                     <form class="login100-form validate-form" method="POST" action="http://localhost/tmdt_201/login/check_login">
+                        <?php if(isset($_SESSION['error']) && $_SESSION['error'] == true){?>
+                        <div class="container text-danger">
+                            * Username or password is wrong!
+                        </div>
+                        <?php 
+                        $_SESSION['error'] = false;
+                        }?>
                         <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
                             <span class="label-input100">Username</span>
                             <input class="input100" type="text" name="username" placeholder="Enter username">

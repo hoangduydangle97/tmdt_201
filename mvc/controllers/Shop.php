@@ -25,10 +25,16 @@ class Shop extends Controller{
     public function detail($params){
         $item = $this->model("Item");
         $category = $this->model("Category");
+        $user = $this->model("User");
+        $username = '';
+        if(isset($_SESSION['username'])){
+            $username = $_SESSION['username'];
+        }
         $this->view("Master1", array(
             "page"=>"detail",
             "item"=>$item->get_item($params),
-            "category_list"=>$category->get_all_categories()
+            "category_list"=>$category->get_all_categories(),
+            "user"=>$user->get_info_user($username)
         ));
     }
 

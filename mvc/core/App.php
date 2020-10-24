@@ -6,8 +6,9 @@ class App{
 
     final public function __construct(){
         $arr = $this->url_process();
-       
+        $url = '';
         if(isset($arr[0])){
+            $url = $arr[0];
             if(file_exists("./mvc/controllers/".$arr[0].".php")){
                 $this->controller = $arr[0];
                 unset($arr[0]);
@@ -21,8 +22,10 @@ class App{
             }
             unset($arr[1]);
         }
-        
         $this->params = $arr?array_values($arr):[];
+        if($url != 'login' && $url != 'logout'){
+            $_SESSION['path'] = $_SERVER['REQUEST_URI'];
+        }
         call_user_func_array([$this->controller, $this->action], $this->params);
     }
 

@@ -26,6 +26,7 @@ class Shop extends Controller{
         $item = $this->model("Item");
         $category = $this->model("Category");
         $user = $this->model("User");
+        $review_list = $this->model("Review");
         $username = '';
         if(isset($_SESSION['username'])){
             $username = $_SESSION['username'];
@@ -34,7 +35,8 @@ class Shop extends Controller{
             "page"=>"detail",
             "item"=>$item->get_item($params),
             "category_list"=>$category->get_all_categories(),
-            "user"=>$user->get_info_user($username)
+            "user"=>$user->get_info_user($username),
+            "review_list"=>$review_list->get_all_reviews($params)
         ));
     }
 
@@ -55,6 +57,27 @@ class Shop extends Controller{
             "num_pages"=>$item_list->get_num_category_pages($category),
             "page_no"=>$item_list->get_page_no()
         ));
+    }
+
+    public function review($params){
+        $review = $this->model("Review");
+        $username = isset($_POST['username'])?$_POST['username']:null;
+        $item = isset($_POST['item'])?$_POST['item']:null;
+        $date = isset($_POST['date'])?$_POST['date']:null;
+        $rating = isset($_POST['rating'])?$_POST['rating']:null;
+        $comment = isset($_POST['comment'])?$_POST['comment']:null;
+        if($comment != null){
+            $comment = str_replace("'", "\\'", $comment);
+        }
+        if($params == 'update'){
+            $review->update_review($username, $item, $date ,$rating, $comment);
+        }
+        else if($params == 'insert'){
+            $review->insert_review($username, $item, $rating, $comment);
+        }
+        else if($params == 'delete'){
+            $review->delete_review($username, $item, $date);
+        }
     }
 }
 ?>

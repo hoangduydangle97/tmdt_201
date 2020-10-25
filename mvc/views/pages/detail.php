@@ -43,13 +43,21 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="product__details__text">
                         <h3><?php echo $item_object->name_item; ?></h3>
+                        <?php $review_list = json_decode($data['review_list']);
+                        $size_list = count($review_list);
+                        $average_rating = 0;
+                        for($i = 0; $i < $size_list; $i++){
+                            $average_rating += $review_list[$i]->rating;
+                        }
+                        $average_rating/=$size_list;
+                        ?>
                         <div class="product__details__rating">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star-half-o"></i>
-                            <span>(18 reviews)</span>
+                            <i class="fa <?php echo ($average_rating > 0 && $average_rating < 0.3)?'fa-star-o':(($average_rating >= 0.3 && $average_rating < 0.7)?'fa-star-half-o':'fa-star');?>"></i>
+                            <i class="fa <?php echo (($average_rating > 1 && $average_rating < 1.3) || $average_rating <= 1)?'fa-star-o':(($average_rating >= 1.3 && $average_rating < 1.7)?'fa-star-half-o':'fa-star');?>"></i>
+                            <i class="fa <?php echo (($average_rating > 2 && $average_rating < 2.3) || $average_rating <= 2)?'fa-star-o':(($average_rating >= 2.3 && $average_rating < 2.7)?'fa-star-half-o':'fa-star');?>"></i>
+                            <i class="fa <?php echo (($average_rating > 3 && $average_rating < 3.3) || $average_rating <= 3)?'fa-star-o':(($average_rating >= 3.3 && $average_rating < 3.7)?'fa-star-half-o':'fa-star');?>"></i>
+                            <i class="fa <?php echo (($average_rating > 4 && $average_rating < 4.3) || $average_rating <= 4)?'fa-star-o':(($average_rating >= 4.3 && $average_rating < 4.7)?'fa-star-half-o':'fa-star');?>"></i>
+                            <span>(<?php echo $size_list; ?> reviews)</span>
                         </div>
                         <div class="product__details__price">$50.00</div>
                         <p>Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vestibulum ac diam sit amet quam
@@ -86,20 +94,20 @@
                     <div class="product__details__tab">
                         <ul class="nav nav-tabs" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab"
-                                    aria-selected="true">Description</a>
+                                <a class="nav-link" data-toggle="tab" href="#tabs-1" role="tab"
+                                    aria-selected="false">Description</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab"
                                     aria-selected="false">Information</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab"
-                                    aria-selected="false">Reviews <span>(1)</span></a>
+                                <a class="nav-link active" data-toggle="tab" href="#tabs-3" role="tab"
+                                    aria-selected="true">Reviews <span>(<?php echo $size_list; ?>)</span></a>
                             </li>
                         </ul>
                         <div class="tab-content">
-                            <div class="tab-pane active" id="tabs-1" role="tabpanel">
+                            <div class="tab-pane" id="tabs-1" role="tabpanel">
                                 <div class="product__details__tab__desc">
                                     <h6>Products Infomation</h6>
                                     <p>Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.
@@ -143,26 +151,86 @@
                                         nibh. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.</p>
                                 </div>
                             </div>
-                            <div class="tab-pane" id="tabs-3" role="tabpanel">
+                            <div class="tab-pane active" id="tabs-3" role="tabpanel">
                                 <div class="product__details__tab__desc">
+                                    <?php
+                                    for($row = 0; $row < $size_list; $row++){
+                                        $id_review = $review_list[$row]->username_user_rating." ".
+                                        $review_list[$row]->id_item_rating." ".
+                                        $review_list[$row]->date_rating;
+                                        $id_review = str_replace(' ', '-', $id_review);
+                                        $level_rating = "level-rating-".$id_review;
+                                        $rating_value = "rating-value-".$id_review;
+                                        $comment = "comment-".$id_review;
+                                        $rating = $review_list[$row]->rating;
+                                        $level_rating_content = '';
+                                        $level_rating_color = '';
+                                        switch($rating){
+                                            case 1:
+                                                $level_rating_content = " - Very Bad!";
+                                                $level_rating_color = "red";
+                                                break;
+                                            case 2:
+                                                $level_rating_content = " - Bad!";
+                                                $level_rating_color = "orange";
+                                                break;
+                                            case 3:
+                                                $level_rating_content = " - OK!";
+                                                $level_rating_color = "darkmagenta";
+                                                break;
+                                            case 4:
+                                                $level_rating_content = " - Good!";
+                                                $level_rating_color = "blue";
+                                                break;
+                                            case 5:
+                                                $level_rating_content = " - Very Good!";
+                                                $level_rating_color = "limegreen";
+                                                break;
+                                    }
+                                    $func_modify = "SetContentModify('".$review_list[$row]->username_user_rating."', '".
+                                    $review_list[$row]->fname_user."', '".$review_list[$row]->lname_user."', '".
+                                    $level_rating_content."', '".$level_rating_color."', '".$rating."', '".
+                                    $review_list[$row]->avatar_user."', '".str_replace("'", "\\'",$review_list[$row]->review)."', '".
+                                    $review_list[$row]->id_item_rating."', '".$review_list[$row]->date_rating."')";
+
+                                    $func_delete = "SetContentDelete('".$review_list[$row]->username_user_rating."', '".
+                                    $review_list[$row]->id_item_rating."', '".$review_list[$row]->date_rating."')";
+                                    ?>
                                     <div class="row mb-4">
                                         <div class="col-3 col-md-2 col-lg-1">
-                                            <img src="/tmdt_201/public/master1/img/user/hoangduydangle.jpg">
+                                            <img src="<?php echo $review_list[$row]->avatar_user;?>">
                                         </div>
                                         <div class="col-9 col-md-10 col-lg-11">
                                             <div class="container pl-0 mb-2">
                                                 <div class="row">
                                                     <div class="col-10">
-                                                        @hoangduydangle | Hoangduy Dangle | at 23:20 on 2020/10/22
+                                                        @<?php echo $review_list[$row]->username_user_rating." | ".
+                                                        $review_list[$row]->fname_user." ".$review_list[$row]->lname_user." | ".
+                                                        "at ".$review_list[$row]->date_rating;
+                                                        ?>
                                                     </div>
                                                     <div class="col-2" style="text-align: right;">
-                                                        <button class="border-0 review-option" data-toggle="dropdown">
+                                                        <?php 
+                                                        $disabled = '';
+                                                        if(!isset($_SESSION['username']) || 
+                                                            (isset($_SESSION['username']) 
+                                                            && $_SESSION['username'] != $review_list[$row]->username_user_rating)){
+                                                                $disabled = 'disabled';
+                                                            }
+                                                        ?>
+                                                        <button class="border-0 review-option" data-toggle="dropdown" <?php echo $disabled;?>>
                                                             <i class="fa fa-ellipsis-h"></i>
                                                         </button>
                                                         <div class="dropdown-menu dropdown-menu-right">
-                                                            <button class="dropdown-item" type="button" data-toggle="modal" data-target="#modify-modal" id="modify-btn">Modify</button>
+                                                            <button class="dropdown-item" type="button" data-toggle="modal" data-target="#modify-modal" 
+                                                            id="modify-btn" onclick="<?php echo $func_modify;?>">
+                                                                Modify
+                                                            </button>
                                                             <div class="dropdown-divider"></div>
-                                                            <button class="dropdown-item" type="button" data-toggle="modal" data-target="#delete-modal">Delete</button>
+                                                            <button class="dropdown-item" type="button" data-toggle="modal" data-target="#delete-modal"
+                                                            onclick="<?php echo $func_delete;?>">
+                                                                Delete
+                                                            </button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -171,49 +239,24 @@
                                                 <div class="row">
                                                     <div class="col-lg-12">
                                                         <div class="star-rating-disabled mb-2">
-                                                            <span class="fa fa-star" data-rating="1"></span>
-                                                            <span class="fa fa-star" data-rating="2"></span>
-                                                            <span class="fa fa-star" data-rating="3"></span>
-                                                            <span class="fa fa-star" data-rating="4"></span>
-                                                            <span class="fa fa-star-o" data-rating="5"></span>
-                                                            <span class="level-rating-disabled" id="level-rating-1"> - Good!</span>
-                                                            <input type="hidden" name="rating-value" id="rating-value-1" value="4">
+                                                            <span class="fa <?php echo $rating > 0?'fa-star':'fa-star-o';?>" data-rating="1"></span>
+                                                            <span class="fa <?php echo $rating > 1?'fa-star':'fa-star-o';?>" data-rating="2"></span>
+                                                            <span class="fa <?php echo $rating > 2?'fa-star':'fa-star-o';?>" data-rating="3"></span>
+                                                            <span class="fa <?php echo $rating > 3?'fa-star':'fa-star-o';?>" data-rating="4"></span>
+                                                            <span class="fa <?php echo $rating > 4?'fa-star':'fa-star-o';?>" data-rating="5"></span>
+                                                            <span class="level-rating-disabled" id="<?php echo $level_rating;?>" style="color: <?php echo $level_rating_color;?>;"> 
+                                                                <?php echo $level_rating_content;?>
+                                                            </span>
+                                                            <input type="hidden" name="rating-value" id="<?php echo $rating_value;?>" value="<?php echo $rating;?>">
                                                         </div>
-                                                        <div class="container py-3 bg-light border border-secondary rounded" id="comment-1">Apples are good!</div>
+                                                        <div class="container py-3 bg-light border border-secondary rounded" id="<?php echo $comment;?>"><?php echo $review_list[$row]->review;?></div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row mb-4">
-                                        <div class="col-3 col-md-2 col-lg-1">
-                                            <img src="/tmdt_201/public/master1/img/user/hoangduydangle.jpg">
-                                        </div>
-                                        <div class="col-9 col-md-10 col-lg-11">
-                                            <div class="container pl-0 mb-2">
-                                                @hoangduydangle | Hoangduy Dangle | at 23:20 on 2020/10/22
-                                            </div>
-                                            <div class="container pl-0 mb-2">
-                                                <div class="row">
-                                                    <div class="col-lg-12">
-                                                        <div class="star-rating-disabled mb-2">
-                                                            <span class="fa fa-star" data-rating="1"></span>
-                                                            <span class="fa fa-star" data-rating="2"></span>
-                                                            <span class="fa fa-star" data-rating="3"></span>
-                                                            <span class="fa fa-star" data-rating="4"></span>
-                                                            <span class="fa fa-star-o" data-rating="5"></span>
-                                                            <span class="level-rating-disabled"> - Good!</span>
-                                                            <input type="hidden" name="rating-value" class="rating-value" value="4">
-                                                        </div>
-                                                        <div class="container py-3 bg-light border border-secondary rounded">
-                                                            Apples are good!
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <?php $user = json_decode($data['user']);
+                                    <?php }
+                                    $user = json_decode($data['user']);
                                     if($user != null){                            
                                     ?>
                                     <hr>
@@ -225,7 +268,7 @@
                                             <div class="container pl-0 mb-2">
                                                 @<?php echo $user->username_user;?> | <?php echo $user->fname_user; ?> <?php echo $user->lname_user;?>
                                             </div>
-                                            <form method="POST">
+                                            <form action="http://localhost/tmdt_201/shop/review/insert" method="POST">
                                                 <div class="container pl-0 mb-2">
                                                     <div class="row">
                                                         <div class="col-lg-12">
@@ -236,13 +279,15 @@
                                                                 <span class="fa fa-star-o" data-rating="4"></span>
                                                                 <span class="fa fa-star-o" data-rating="5"></span>
                                                                 <span class="level-rating"></span>
-                                                                <input type="hidden" name="rating-value" class="rating-value" value="4">
+                                                                <input type="hidden" name="rating" class="rating-value" value="4">
+                                                                <input type="hidden" name="username" value="<?php echo $user->username_user;?>">
+                                                                <input type="hidden" name="item" value="<?php echo $item_object->id_item;?>">
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <textarea class="form-control" rows="5" cols="10" placeholder="Leave your comment ..." id="create-comment" name="comment"></textarea>
+                                                    <textarea class="form-control" rows="5" cols="10" placeholder="Leave your comment ..." maxlength="200" id="create-comment" name="comment"></textarea>
                                                 </div>
                                                 <input type="submit" class="btn btn-primary mr-3" name="submit" value="Add review">
                                                 <input type="reset" class="btn btn-warning reset-btn" name="reset" value="Reset">
@@ -352,10 +397,13 @@
                     Your review will be deleted. Are you sure?
                 </div>                                                                  
                 <!-- Modal footer -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+                <form class="modal-footer" action="http://localhost/tmdt_201/shop/review/delete" method="POST">
+                    <input type="hidden" name="username" id="username-value-delete">
+                    <input type="hidden" name="item" id="item-value-delete">
+                    <input type="hidden" name="date" id="date-value-delete">
+                    <button type="submit" class="btn btn-primary">OK</button>
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-                </div>                                                                 
+                </form>                                                                 
             </div>
         </div>
     </div>
@@ -375,30 +423,33 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-3 col-md-2 col-lg-1">
-                            <img src="/tmdt_201/public/master1/img/user/hoangduydangle.jpg">
+                            <img src="#" id="avatar">
                         </div>
                         <div class="col-9 col-md-10 col-lg-11">
                             <div class="container pl-0 mb-2">
-                                @hoangduydangle | Hoangduy Dangle
+                                @<span id="username"></span> | <span id="fname"></span> <span id="lname"></span>
                             </div>
-                            <form method="POST">
+                            <form action="http://localhost/tmdt_201/shop/review/update" method="POST">
                                 <div class="container pl-0 mb-2">
                                     <div class="row">
                                         <div class="col-lg-12">
                                             <div class="star-rating-modify">
-                                                <span class="fa fa-star-o" data-rating="1"></span>
-                                                <span class="fa fa-star-o" data-rating="2"></span>
-                                                <span class="fa fa-star-o" data-rating="3"></span>
-                                                <span class="fa fa-star-o" data-rating="4"></span>
-                                                <span class="fa fa-star-o" data-rating="5"></span>
+                                                <span class="fa fa-star-o" data-rating="1" id="r-1"></span>
+                                                <span class="fa fa-star-o" data-rating="2" id="r-2"></span>
+                                                <span class="fa fa-star-o" data-rating="3" id="r-3"></span>
+                                                <span class="fa fa-star-o" data-rating="4" id="r-4"></span>
+                                                <span class="fa fa-star-o" data-rating="5" id="r-5"></span>
                                                 <span class="level-rating-modify"></span>
-                                                <input type="hidden" name="rating-value" class="rating-value-modify" value="4">
+                                                <input type="hidden" name="rating" class="rating-value-modify" value="4">
+                                                <input type="hidden" name="username" class="username-value-modify">
+                                                <input type="hidden" name="item" class="item-value-modify">
+                                                <input type="hidden" name="date" class="date-value-modify">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <textarea class="form-control" rows="5" cols="10" placeholder="Leave your comment ..." id="modify-comment" name="comment"></textarea>
+                                    <textarea class="form-control" rows="5" cols="10" placeholder="Leave your comment ..." maxlength="200" id="modify-comment" name="comment"></textarea>
                                 </div>
                                 <input type="submit" class="btn btn-primary mr-3" name="submit" value="Update review">
                                 <input type="reset" class="btn btn-warning reset-btn-modify" name="reset" value="Reset">

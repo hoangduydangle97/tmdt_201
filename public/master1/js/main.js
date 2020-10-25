@@ -288,9 +288,9 @@
         $('.level-rating').html($level_rating).css("color", $level_rating_color);
     });
 
-    /*-------------------
+    /*-----------------------
 		Back to Top Button
-    --------------------- */
+    ------------------------- */
     var btn = $('#back-to-top-btn');
     $(window).scroll(function() {
     if ($(window).scrollTop() > 300) {
@@ -308,9 +308,6 @@
     /*-------------
 		Modify
     --------------- */
-    $('#modify-btn').on('click', function() {
-        $('#modify-comment').val($('#comment-1').text());
-    });
     var $star_rating_modify = $('.star-rating-modify .fa');
     var $level_rating_modify = $('#level-rating-1').text();
     var $level_rating_color_modify = $('#level-rating-1').css('color');
@@ -365,3 +362,37 @@
     });
 
 })(jQuery);
+
+function SetContentModify(username, fname, lname, lvcontent, lvcolor, rating, avatar, content, item, date){
+    $('#username').html(username);
+    $('#fname').html(fname);
+    $('#lname').html(lname);
+    $('#avatar').attr('src', avatar);
+    $('#modify-comment').val(content);
+    $('.star-rating-modify input.username-value-modify').val(username);
+    $('.star-rating-modify input.rating-value-modify').val(rating);
+    $('.star-rating-modify input.item-value-modify').val(item);
+    $('.star-rating-modify input.date-value-modify').val(date);
+    $('.star-rating-modify span.level-rating-modify').text(lvcontent).css('color', lvcolor);
+    if(rating > 0){
+        $('.star-rating-modify span#r-1').removeClass('fa-star-o').addClass('fa-star');
+    }
+    if(rating > 1){
+        $('.star-rating-modify span#r-2').removeClass('fa-star-o').addClass('fa-star');
+    }
+    if(rating > 2){
+        $('.star-rating-modify span#r-3').removeClass('fa-star-o').addClass('fa-star');
+    }
+    if(rating > 3){
+        $('.star-rating-modify span#r-4').removeClass('fa-star-o').addClass('fa-star');
+    }
+    if(rating > 4){
+        $('.star-rating-modify span#r-5').removeClass('fa-star-o').addClass('fa-star');
+    }
+}
+
+function SetContentDelete(username, item, date){
+    $('#username-value-delete').val(username);
+    $('#item-value-delete').val(item);
+    $('#date-value-delete').val(date);
+}

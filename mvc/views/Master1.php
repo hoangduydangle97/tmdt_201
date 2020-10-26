@@ -89,7 +89,7 @@
                 visibility: visible;
             }
 
-            .review-option:hover {
+            .review-option:hover:not([disabled]) {
                 cursor: pointer;
                 background-color: lightgray;
             }

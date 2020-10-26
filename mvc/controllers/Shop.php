@@ -70,12 +70,15 @@ class Shop extends Controller{
             $comment = str_replace("'", "\\'", $comment);
         }
         if($params == 'update'){
+            $_SESSION['review'] = true;
             $review->update_review($username, $item, $date ,$rating, $comment);
         }
         else if($params == 'insert'){
+            $_SESSION['review'] = true;
             $review->insert_review($username, $item, $rating, $comment);
         }
         else if($params == 'delete'){
+            $_SESSION['review'] = true;
             $review->delete_review($username, $item, $date);
         }
     }

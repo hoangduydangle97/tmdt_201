@@ -39,6 +39,13 @@
                 }, 'slow');
             }
         }
+
+        var scroll_pos = $('#scroll-pos-review');
+        if(scroll_pos){
+            $('html, body').animate({
+                scrollTop: scroll_pos.offset().top
+            }, 'slow');
+        }
     });
 
     /*------------------
@@ -309,8 +316,8 @@
 		Modify
     --------------- */
     var $star_rating_modify = $('.star-rating-modify .fa');
-    var $level_rating_modify = $('#level-rating-1').text();
-    var $level_rating_color_modify = $('#level-rating-1').css('color');
+    var $level_rating_modify = '';
+    var $level_rating_color_modify = '';
     var $reset_button_modify = $('.reset-btn-modify');
     var SetRatingStarModify = function() {
         return $star_rating_modify.each(function() {
@@ -374,6 +381,11 @@ function SetContentModify(username, fname, lname, lvcontent, lvcolor, rating, av
     $('.star-rating-modify input.item-value-modify').val(item);
     $('.star-rating-modify input.date-value-modify').val(date);
     $('.star-rating-modify span.level-rating-modify').text(lvcontent).css('color', lvcolor);
+    $('.star-rating-modify span#r-1').removeClass('fa-star').addClass('fa-star-o');
+    $('.star-rating-modify span#r-2').removeClass('fa-star').addClass('fa-star-o');
+    $('.star-rating-modify span#r-3').removeClass('fa-star').addClass('fa-star-o');
+    $('.star-rating-modify span#r-4').removeClass('fa-star').addClass('fa-star-o');
+    $('.star-rating-modify span#r-5').removeClass('fa-star').addClass('fa-star-o');
     if(rating > 0){
         $('.star-rating-modify span#r-1').removeClass('fa-star-o').addClass('fa-star');
     }

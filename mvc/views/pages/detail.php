@@ -92,7 +92,8 @@
                 </div>
                 <div class="col-lg-12">
                     <div class="product__details__tab">
-                        <ul class="nav nav-tabs" role="tablist">
+                        <?php $check_review = isset($_SESSION['review']) && $_SESSION['review'] == true;?>
+                        <ul class="nav nav-tabs" <?php if($check_review){echo 'id="scroll-pos-review"'; $_SESSION['review'] = false;}?> role="tablist">
                             <li class="nav-item">
                                 <a class="nav-link" data-toggle="tab" href="#tabs-1" role="tab"
                                     aria-selected="false">Description</a>
@@ -249,7 +250,9 @@
                                                             </span>
                                                             <input type="hidden" name="rating-value" id="<?php echo $rating_value;?>" value="<?php echo $rating;?>">
                                                         </div>
-                                                        <div class="container py-3 bg-light border border-secondary rounded" id="<?php echo $comment;?>"><?php echo $review_list[$row]->review;?></div>
+                                                        <div class="container py-3 bg-light border border-secondary rounded" id="<?php echo $comment;?>">
+                                                        <?php echo $review_list[$row]->review == ''?'<i>No comment.</i>':$review_list[$row]->review;?>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>

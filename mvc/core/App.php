@@ -25,7 +25,9 @@ class App{
         }
         $this->params = $arr?array_values($arr):[];
 
-        if($url[0] != 'login' && $url[0] != 'logout' && $url[1] != 'review'){
+        if((isset($url[0]) && $url[0] != 'login') 
+            && (isset($url[0]) && $url[0] != 'logout') 
+            && (isset($url[1]) && $url[1] != 'review')){
             $_SESSION['path'] = $_SERVER['REQUEST_URI'];
         }
         call_user_func_array([$this->controller, $this->action], $this->params);

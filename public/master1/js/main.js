@@ -32,12 +32,11 @@
 
         var path = location.pathname;
         var last_path = path.charAt(path.length - 1);
-        if(last_path != ''){
-            if(!isNaN(Number(last_path))){
-                $('html, body').animate({
-                    scrollTop: $('#scroll-pos').offset().top
-                }, 'slow');
-            }
+        var check_path = path.indexOf('category');
+        if((last_path != '' && !isNaN(Number(last_path))) || check_path != -1){
+            $('html, body').animate({
+                scrollTop: $('#scroll-pos').offset().top
+            }, 'slow');
         }
 
         var scroll_pos = document.getElementById('scroll-pos-review');

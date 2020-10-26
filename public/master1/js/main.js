@@ -40,10 +40,10 @@
             }
         }
 
-        var scroll_pos = $('#scroll-pos-review');
+        var scroll_pos = document.getElementById('scroll-pos-review');
         if(scroll_pos){
             $('html, body').animate({
-                scrollTop: scroll_pos.offset().top
+                scrollTop: $('#scroll-pos-review').offset().top
             }, 'slow');
         }
     });

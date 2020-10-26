@@ -265,27 +265,12 @@
                             </h2>
                         </div>
                         <div class="row">
-                            <div class="col-lg-4 col-md-5">
-                                <div class="filter__sort">
-                                    <span>Sort By</span>
-                                    <select>
-                                        <option value="0">Default</option>
-                                        <option value="0">Default</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-4">
+                            <div class="col-12">
                                 <div class="filter__found">
                                     <?php $item_list = json_decode($data['item_list']); 
                                     $size_item_list = count($item_list);
                                     ?>
                                     <h6><span><?php echo json_decode($data['num_items']); ?></span> products found</h6>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-3">
-                                <div class="filter__option">
-                                    <span class="icon_grid-2x2"></span>
-                                    <span class="icon_ul"></span>
                                 </div>
                             </div>
                         </div>

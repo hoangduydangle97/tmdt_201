@@ -119,7 +119,7 @@
             <div class="humberger__menu__cart">
                 <ul>
                     <li><a href="#"><i class="fa fa-gift"></i> <span>1</span></a></li>
-                    <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                    <li><a href="#"><i class="fa fa-shopping-cart"></i> <span>3</span></a></li>
                 </ul>
                 <div class="header__cart__price">Total: <span>$150.00</span></div>
             </div>
@@ -167,8 +167,7 @@
                 <ul>
                     <li class="active"><a href="http://localhost/tmdt_201/home">Home</a></li>
                     <li><a href="http://localhost/tmdt_201/shop">Shop</a></li>
-                    <li><a href="#">Cart</a></li>
-                    <li><a href="http://localhost/tmdt_201/blog">Blog</a></li>
+                    <li><a href="#">Shopping Cart</a></li>
                     <li><a href="http://localhost/tmdt_201/contact">Contact</a></li>
                 </ul>
             </nav>
@@ -262,8 +261,7 @@
                             <ul>
                                 <li <?php if($data["page"] == "home"){ ?>class="active"<?php }?>><a href="http://localhost/tmdt_201/home">Home</a></li>
                                 <li <?php if($data["page"] == "shop" || $data["page"] == "detail"){ ?>class="active"<?php }?>><a href="http://localhost/tmdt_201/shop">Shop</a></li>
-                                <li><a href="#">Cart</a></li>
-                                <li <?php if($data["page"] == "blog"){ ?>class="active"<?php }?>><a href="http://localhost/tmdt_201/blog">Blog</a></li>
+                                <li><a href="#">Shopping Cart</a></li>
                                 <li <?php if($data["page"] == "contact"){ ?>class="active"<?php }?>><a href="http://localhost/tmdt_201/contact">Contact</a></li>
                             </ul>
                         </nav>
@@ -272,7 +270,7 @@
                         <div class="header__cart">
                             <ul>
                                 <li><a href="#"><i class="fa fa-gift"></i> <span>1</span></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                                <li><a href="#"><i class="fa fa-shopping-cart"></i> <span>3</span></a></li>
                             </ul>
                             <div class="header__cart__price">Total: <span>$150.00</span></div>
                         </div>

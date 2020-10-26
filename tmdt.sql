@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 25, 2020 lúc 09:03 PM
+-- Thời gian đã tạo: Th10 26, 2020 lúc 05:07 PM
 -- Phiên bản máy phục vụ: 10.4.14-MariaDB
 -- Phiên bản PHP: 7.4.10
 
@@ -127,7 +127,7 @@ CREATE TABLE `rating_user_item` (
 INSERT INTO `rating_user_item` (`username_user_rating`, `id_item_rating`, `rating`, `review`, `date_rating`) VALUES
 ('hoangduydangle', 'apple', 5, 'Apples are good!  I love them.', '2020-10-26 01:28:36'),
 ('johnwick', 'apple', 4, 'Good', '2020-10-25 15:44:42'),
-('tonystark', 'apple', 1, 'Disappointed!', '2020-10-26 02:44:20');
+('tonystark', 'apple', 1, 'Disappointed!', '2020-10-26 21:54:50');
 
 -- --------------------------------------------------------
 

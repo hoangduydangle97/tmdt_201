@@ -15,7 +15,7 @@ class App{
             }
         }
         require_once "./mvc/controllers/".$this->controller.".php";
-        $this->controller = new $this->controller;
+        $this->controller = new $this->controller();
         if(isset($arr[1])){
             $url[] = $arr[1];
             if(method_exists($this->controller, $arr[1])){

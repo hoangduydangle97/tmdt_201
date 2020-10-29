@@ -45,13 +45,7 @@
                         <h3><?php echo $item_object->name_item; ?></h3>
                         <?php $review_list = json_decode($data['review_list']);
                         $size_list = count($review_list);
-                        $average_rating = 0;
-                        for($i = 0; $i < $size_list; $i++){
-                            $average_rating += $review_list[$i]->rating;
-                        }
-                        if($size_list != 0){
-                            $average_rating/=$size_list;
-                        }
+                        $average_rating = json_decode($data['average_rating']);
                         ?>
                         <div class="product__details__rating">
                             <i class="fa <?php echo (($average_rating > 0 && $average_rating < 0.3) || $average_rating == 0)?'fa-star-o':(($average_rating >= 0.3 && $average_rating < 0.7)?'fa-star-half-o':'fa-star');?>"></i>

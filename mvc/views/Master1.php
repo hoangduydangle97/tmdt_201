@@ -139,8 +139,16 @@
                     <div><?php echo $_SESSION['username']; ?></div>
                     <span class="arrow_carrot-down"></span>
                     <ul>
-                        <li><a href="#" class="language-option">Profile</a></li>
-                        <li><a href="http://localhost/tmdt_201/logout" class="language-option">Logout</a></li>
+                        <li>
+                            <a href="#" class="language-option">
+                                <i class="fa fa-user"></i> Profile
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://localhost/tmdt_201/logout" class="language-option">
+                            <i class="fa fa-sign-out"></i> Logout
+                            </a>
+                        </li>
                     </ul>
                 </div>
                 <?php }
@@ -221,8 +229,16 @@
                                     <div><?php echo $_SESSION['username']; ?></div>
                                     <span class="arrow_carrot-down"></span>
                                     <ul>
-                                        <li><a href="#" class="language-option">Profile</a></li>
-                                        <li><a href="http://localhost/tmdt_201/logout" class="language-option">Logout</a></li>
+                                        <li>
+                                            <a href="#" class="language-option">
+                                                <i class="fa fa-user"></i> Profile
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost/tmdt_201/logout" class="language-option">
+                                                <i class="fa fa-sign-out"></i> Logout
+                                            </a>
+                                        </li>
                                     </ul>
                                 </div>
                                 <?php }

@@ -116,7 +116,7 @@
                                     ?>
                                     <div class="latest-prdouct__slider__item">
                                     <?php }?>
-                                        <a href="#" class="latest-product__item">
+                                        <a href="http://localhost/tmdt_201/shop/detail/<?php echo $latest_item_list[$row]->id_item;?>" class="latest-product__item">
                                             <div class="latest-product__item__pic">
                                                 <img src="/tmdt_201/public/master1/img/product/<?php echo $latest_item_list[$row]->avatar_item; ?>.jpg" alt="" style="width: 110px;">
                                             </div>

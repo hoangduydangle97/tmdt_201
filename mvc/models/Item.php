@@ -121,5 +121,33 @@ class Item extends Database{
         }
         return json_encode($name_category);
     }
+
+    public function get_average_rated_item($item){
+        $sql = "SELECT AVG(rating) AS average_rating FROM rating_user_item WHERE id_item_rating='".$item."'";
+        $sql_result = mysqli_query($this->conn, $sql);
+        $result = false;
+        if($sql_result){
+            $result = mysqli_fetch_assoc($sql_result);
+            if($result["average_rating"] == null){
+                $result["average_rating"] = 0;
+            }
+        }
+        return json_encode($result["average_rating"]);
+    }
+
+    public function get_top_rated_items(){
+        $sql = "SELECT id_item, name_item, avatar_item FROM item";
+        $array_result = array();
+        $sql_result = mysqli_query($this->conn, $sql);
+        if($sql_result){
+            while($row = mysqli_fetch_assoc($sql_result)){
+                $rating = floatval(json_decode($this->get_average_rated_item($row['id_item'])));
+                if($rating >= 4){
+                    $array_result[] = $row;
+                }
+            }
+        }
+        return json_encode($array_result);
+    }
 }
 ?>

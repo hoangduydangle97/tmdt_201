@@ -1,10 +1,15 @@
 <?php
 class Contact extends Controller{
+    protected $category_object;
+
+    final public function __construct(){
+        $this->category_object = $this->model("Category");
+    }
+
     public function action(){
-        $category_list = $this->model("Category");
         $this->view("Master1", array(
             "page"=>"contact",
-            "category_list"=>$category_list->get_all_categories()
+            "category_list"=>$this->category_object->get_all_categories()
         ));
     }
 }

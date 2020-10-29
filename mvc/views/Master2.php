@@ -57,7 +57,7 @@
                 <div class="wrap-login100">
                     <div class="login100-form-title" style="background-image: url(/tmdt_201/public/master2/images/bg-01.jpg);">
                         <span class="login100-form-title-1">
-                            <?php echo $data['page'] == 'login'?'LOGIN':'SIGN UP';?>
+                            <?php echo $data['page'] == 'login'?'LOG IN':'SIGN UP';?>
                         </span>
                         <div>
                             <a href="http://localhost/tmdt_201/home" class="return-home">Return home</a>

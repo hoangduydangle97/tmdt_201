@@ -13,7 +13,10 @@ class Home extends Controller{
             "page"=>"home",
             "category_list"=>$this->category_object->get_all_categories(),
             "latest_item_list"=>$this->item_object->get_latest_items(),
-            "top_rated_item_list"=>$this->item_object->get_top_rated_items()
+            "featured_category_list"=>$this->item_object->get_featured_categories(),
+            "featured_item_list"=>$this->item_object->get_featured_items(),
+            "top_rated_item_list"=>$this->item_object->get_top_rated_items(),
+            "top_review_item_list"=>$this->item_object->get_top_review_items()
         ));
     }
 }

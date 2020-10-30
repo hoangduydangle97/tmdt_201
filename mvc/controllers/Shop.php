@@ -33,6 +33,7 @@ class Shop extends Controller{
     }
 
     public function detail($params){
+        //$this->item_object->set_view_item($params);
         $username = '';
         if(isset($_SESSION['username'])){
             $username = $_SESSION['username'];
@@ -43,7 +44,8 @@ class Shop extends Controller{
             "category_list"=>$this->category_object->get_all_categories(),
             "user"=>$this->user_object->get_info_user($username),
             "review_list"=>$this->review_object->get_all_reviews($params),
-            "average_rating"=>$this->item_object->get_average_rated_item($params)
+            "average_rating"=>$this->item_object->get_average_rated_item($params),
+            "related_item_list"=>$this->item_object->get_related_items($params)
         ));
     }
 
@@ -88,8 +90,10 @@ class Shop extends Controller{
     }
 
     /*public function test(){
-        $a = $this->item_object->get_top_rated_items();
-        var_dump(json_decode($a));
+        $a = json_decode($this->item_object->get_featured_items());
+        $b = json_decode($this->item_object->get_featured_categories());
+        var_dump($a);
+        var_dump($b);
     }*/
 }
 ?>

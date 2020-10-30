@@ -201,9 +201,9 @@
                                             <div class="container pl-0 mb-2">
                                                 <div class="row">
                                                     <div class="col-10">
-                                                        @<?php echo $review_list[$row]->username_user_rating." | ".
-                                                        $review_list[$row]->fname_user." ".$review_list[$row]->lname_user." | ".
-                                                        "at ".$review_list[$row]->date_rating;
+                                                        <?php echo "<b>@".$review_list[$row]->username_user_rating."</b> | <i>".
+                                                        $review_list[$row]->fname_user." ".$review_list[$row]->lname_user."</i> | ".
+                                                        date_format(date_create($review_list[$row]->date_rating), '\a\t H:i:s \o\n d/m/Y');
                                                         ?>
                                                     </div>
                                                     <div class="col-2" style="text-align: right;">
@@ -310,14 +310,18 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title related__product__title">
-                        <h2>Related Product</h2>
+                        <h2>Related Products</h2>
                     </div>
                 </div>
             </div>
             <div class="row">
+                <?php $related_item_list = json_decode($data['related_item_list']);
+                $size_list = count($related_item_list);
+                for($row = 0; $row < $size_list; $row++){
+                ?>
                 <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="#">
+                        <div class="product__item__pic set-bg" data-setbg="/tmdt_201/public/master1/img/product/<?php echo $related_item_list[$row]->avatar_item; ?>.jpg">
                             <ul class="product__item__pic__hover">
                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>
@@ -325,56 +329,16 @@
                             </ul>
                         </div>
                         <div class="product__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
+                            <h6>
+                                <a href="http://localhost/tmdt_201/shop/detail/<?php echo $related_item_list[$row]->id_item;?>" class="language-option">
+                                    <?php echo $related_item_list[$row]->name_item;?>
+                                </a>
+                            </h6>
                             <h5>$30.00</h5>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="#">
-                            <ul class="product__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="product__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="#">
-                            <ul class="product__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="product__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="#">
-                            <ul class="product__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="product__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
-                        </div>
-                    </div>
-                </div>
+                <?php }?>
             </div>
         </div>
     </section>

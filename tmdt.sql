@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 26, 2020 lúc 05:07 PM
+-- Thời gian đã tạo: Th10 30, 2020 lúc 08:10 PM
 -- Phiên bản máy phục vụ: 10.4.14-MariaDB
 -- Phiên bản PHP: 7.4.10
 
@@ -76,7 +76,7 @@ CREATE TABLE `item` (
 --
 
 INSERT INTO `item` (`id_item`, `name_item`, `avatar_item`, `description_item`, `price_item`, `availability_item`, `weight_item`, `sale_off_item`, `featured`, `best_seller_item`, `date_created_item`, `latest_date_updated_item`, `category_item`) VALUES
-('apple', 'Apple', 'apple', 'Apples', 0, 1, 0, 0, 0, 1, '2020-10-09 18:42:10', NULL, 'fresh-fruit'),
+('apple', 'Apple', 'apple', 'Apples', 0, 1, 0, 0, 1, 1, '2020-10-09 18:42:10', NULL, 'fresh-fruit'),
 ('banana', 'Banana', 'banana', 'Bananas', 0, 1, 0, 0, 0, 1, '2020-10-09 18:43:11', NULL, 'fresh-fruit'),
 ('beef', 'Beef', 'beef', 'Beef', 0, 1, 0, 0, 1, 0, '2020-10-09 18:44:13', NULL, 'fresh-meat'),
 ('bell-pepper', 'Bell pepper', 'bell-peppers', 'Bell peppers', 0, 1, 0, 0, 0, 0, '2020-10-10 23:20:14', NULL, 'vegetables'),
@@ -90,7 +90,7 @@ INSERT INTO `item` (`id_item`, `name_item`, `avatar_item`, `description_item`, `
 ('mango', 'Mango', 'mango', 'Mangoes', 0, 1, 0, 0, 1, 0, '2020-10-09 18:52:11', NULL, 'fresh-fruit'),
 ('orange-juice', 'Orange Juice', 'orange-juice', 'Orange Juice', 0, 1, 0, 0, 0, 0, '2020-10-09 18:52:53', NULL, 'juice'),
 ('sliwki-juice', 'Sliwki Juice', 'sliwki-juice', 'Sliwki Juice', 0, 1, 0, 0, 0, 0, '2020-10-09 18:54:09', NULL, 'juice'),
-('watermelon', 'Watermelon', 'watermelon', 'Watermelon', 0, 1, 0, 0, 0, 0, '2020-10-09 18:56:33', NULL, 'fresh-fruit');
+('watermelon', 'Watermelon', 'watermelon', 'Watermelon', 0, 1, 0, 0, 1, 0, '2020-10-09 18:56:33', NULL, 'fresh-fruit');
 
 -- --------------------------------------------------------
 
@@ -126,8 +126,36 @@ CREATE TABLE `rating_user_item` (
 
 INSERT INTO `rating_user_item` (`username_user_rating`, `id_item_rating`, `rating`, `review`, `date_rating`) VALUES
 ('hoangduydangle', 'apple', 5, 'Apples are good!  I love them.', '2020-10-26 01:28:36'),
+('hoangduydangle', 'banana', 4, 'Good.', '2020-10-29 12:04:57'),
+('hoangduydangle', 'beef', 5, 'Exellent!', '2020-10-30 01:39:03'),
+('hoangduydangle', 'chicken', 5, 'Delicious!', '2020-10-29 12:15:40'),
+('hoangduydangle', 'hamburger', 2, 'Not special.', '2020-10-30 18:54:54'),
+('hoangduydangle', 'mango', 5, NULL, '2020-10-30 23:17:39'),
 ('johnwick', 'apple', 4, 'Good', '2020-10-25 15:44:42'),
-('tonystark', 'apple', 1, 'Disappointed!', '2020-10-26 21:54:50');
+('johnwick', 'banana', 3, 'OK.', '2020-10-29 12:05:18'),
+('johnwick', 'bell-pepper', 4, 'Good', '2020-10-30 01:39:43'),
+('johnwick', 'chicken', 4, 'Good', '2020-10-29 12:16:30'),
+('johnwick', 'hamburger', 5, 'Delicious! I love it.', '2020-10-30 19:02:17'),
+('johnwick', 'mango', 4, 'Good', '2020-10-30 23:18:18'),
+('johnwick', 'watermelon', 5, 'Yeah. It\'s so good!', '2020-10-29 12:06:57'),
+('tonystark', 'apple', 1, 'Disappointed!', '2020-10-26 21:54:50'),
+('tonystark', 'watermelon', 5, 'Exellent!', '2020-10-29 12:07:02');
+
+--
+-- Bẫy `rating_user_item`
+--
+DELIMITER $$
+CREATE TRIGGER `tg_delete_average_rating` AFTER DELETE ON `rating_user_item` FOR EACH ROW UPDATE top_item SET average_rating=(SELECT AVG(rating) FROM `rating_user_item` WHERE id_item_rating=OLD.id_item_rating), num_review=(SELECT COUNT(*) AS num_review FROM rating_user_item WHERE id_item_rating=OLD.id_item_rating AND review IS NOT NULL) WHERE id_item_top=OLD.id_item_rating
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `tg_insert_average_rating` AFTER INSERT ON `rating_user_item` FOR EACH ROW UPDATE top_item SET average_rating=(SELECT AVG(rating) FROM `rating_user_item` WHERE id_item_rating=NEW.id_item_rating), num_review=(SELECT COUNT(*) AS num_review FROM rating_user_item WHERE id_item_rating=NEW.id_item_rating AND review IS NOT NULL) WHERE id_item_top=NEW.id_item_rating
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `tg_update_average_rating` AFTER UPDATE ON `rating_user_item` FOR EACH ROW UPDATE top_item SET average_rating=(SELECT AVG(rating) FROM `rating_user_item` WHERE id_item_rating=NEW.id_item_rating), num_review=(SELECT COUNT(*) AS num_review FROM rating_user_item WHERE id_item_rating=NEW.id_item_rating AND review IS NOT NULL) WHERE id_item_top=NEW.id_item_rating
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -155,6 +183,39 @@ CREATE TABLE `select_user_item` (
 -- --------------------------------------------------------
 
 --
+-- Cấu trúc bảng cho bảng `top_item`
+--
+
+CREATE TABLE `top_item` (
+  `id_item_top` varchar(100) NOT NULL,
+  `average_rating` float NOT NULL,
+  `num_review` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Đang đổ dữ liệu cho bảng `top_item`
+--
+
+INSERT INTO `top_item` (`id_item_top`, `average_rating`, `num_review`) VALUES
+('apple', 3.33333, 3),
+('banana', 3.5, 2),
+('beef', 5, 1),
+('bell-pepper', 4, 1),
+('carrot', 0, 0),
+('chicken', 4.5, 2),
+('combo-fruit', 0, 0),
+('common-guava', 0, 0),
+('grape', 0, 0),
+('hamburger', 3.5, 2),
+('lettuce', 0, 0),
+('mango', 4.5, 1),
+('orange-juice', 0, 0),
+('sliwki-juice', 0, 0),
+('watermelon', 5, 2);
+
+-- --------------------------------------------------------
+
+--
 -- Cấu trúc bảng cho bảng `user`
 --
 
@@ -163,7 +224,7 @@ CREATE TABLE `user` (
   `password_user` varchar(500) NOT NULL,
   `fname_user` varchar(100) NOT NULL,
   `lname_user` varchar(100) NOT NULL,
-  `bday_user` date NOT NULL,
+  `bday_user` date DEFAULT NULL,
   `avatar_user` varchar(500) DEFAULT NULL,
   `address_user` varchar(500) DEFAULT NULL,
   `email_user` varchar(500) DEFAULT NULL,
@@ -175,9 +236,9 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`username_user`, `password_user`, `fname_user`, `lname_user`, `bday_user`, `avatar_user`, `address_user`, `email_user`, `role_user`) VALUES
-('hoangduydangle', '$2y$10$2d9x5b1ruHgPh9.4OxDz0ebpixI590JLZMOQBwZFmKr7MdnhoOCky', 'Hoangduy', 'Dangle', '1997-09-30', '/tmdt_201/public/master1/img/user/hoangduydangle/avatar.jpg', NULL, NULL, NULL),
-('johnwick', '$2y$10$SZ.c3c3Xje7vW9uXjgCuouKmVQ/FVJotzEW.TPFqgn3NLqKkGr0Tu', 'Johnathan', 'Wick', '1967-10-15', '/tmdt_201/public/master1/img/user/default-avatar.jpg', NULL, NULL, NULL),
-('tonystark', '$2y$10$3eqWspe4pFNQsFqaJogBSern8YK1RVDNHdE6fQAso4GdnYJRl9BjS', 'Tony', 'Stark', '1970-05-29', '/tmdt_201/public/master1/img/user/default-avatar.jpg', NULL, NULL, NULL);
+('hoangduydangle', '$2y$10$2d9x5b1ruHgPh9.4OxDz0ebpixI590JLZMOQBwZFmKr7MdnhoOCky', 'Hoangduy', 'Dangle', '1997-09-30', '/tmdt_201/public/master1/img/user/hoangduydangle/avatar.jpg', NULL, NULL, 0),
+('johnwick', '$2y$10$SZ.c3c3Xje7vW9uXjgCuouKmVQ/FVJotzEW.TPFqgn3NLqKkGr0Tu', 'Johnathan', 'Wick', '1967-10-15', '/tmdt_201/public/master1/img/user/default-avatar.jpg', NULL, NULL, 0),
+('tonystark', '$2y$10$3eqWspe4pFNQsFqaJogBSern8YK1RVDNHdE6fQAso4GdnYJRl9BjS', 'Tony', 'Stark', '1970-05-29', '/tmdt_201/public/master1/img/user/default-avatar.jpg', NULL, NULL, 0);
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -206,7 +267,8 @@ ALTER TABLE `order_list`
 -- Chỉ mục cho bảng `rating_user_item`
 --
 ALTER TABLE `rating_user_item`
-  ADD PRIMARY KEY (`username_user_rating`,`id_item_rating`,`date_rating`);
+  ADD PRIMARY KEY (`username_user_rating`,`id_item_rating`,`date_rating`),
+  ADD KEY `fk_item_rating` (`id_item_rating`);
 
 --
 -- Chỉ mục cho bảng `role`
@@ -219,6 +281,12 @@ ALTER TABLE `role`
 --
 ALTER TABLE `select_user_item`
   ADD PRIMARY KEY (`id_user_select`,`id_item_select`);
+
+--
+-- Chỉ mục cho bảng `top_item`
+--
+ALTER TABLE `top_item`
+  ADD PRIMARY KEY (`id_item_top`);
 
 --
 -- Chỉ mục cho bảng `user`
@@ -235,6 +303,19 @@ ALTER TABLE `user`
 --
 ALTER TABLE `item`
   ADD CONSTRAINT `fk_categoty_item` FOREIGN KEY (`category_item`) REFERENCES `category` (`id_category`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+--
+-- Các ràng buộc cho bảng `rating_user_item`
+--
+ALTER TABLE `rating_user_item`
+  ADD CONSTRAINT `fk_item_rating` FOREIGN KEY (`id_item_rating`) REFERENCES `item` (`id_item`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_user_rating` FOREIGN KEY (`username_user_rating`) REFERENCES `user` (`username_user`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Các ràng buộc cho bảng `top_item`
+--
+ALTER TABLE `top_item`
+  ADD CONSTRAINT `fk_item_average_rating` FOREIGN KEY (`id_item_top`) REFERENCES `item` (`id_item`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

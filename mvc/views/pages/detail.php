@@ -66,8 +66,11 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="#" class="primary-btn">ADD TO CARD</a>
-                        <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
+                        <?php $username = isset($_SESSION['username'])?$_SESSION['username']:'none' ?>
+                        <button type="button" class="btn primary-btn text-light" id="add-to-card-btn" 
+                                onclick="SetCard(<?php echo "'".$item_object->id_item."', '".$username."'"; ?>)">
+                            ADD TO CARD
+                        </button>
                         <ul>
                             <li><b>Availability</b> 
                                 <span>

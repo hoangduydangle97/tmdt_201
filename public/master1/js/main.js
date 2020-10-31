@@ -30,6 +30,8 @@
             var mixer = mixitup(containerEl);
         }
 
+        $('.selected-product').html(getCookie('sum'));
+
         var path = location.pathname;
         var last_path = path.charAt(path.length - 1);
         var check_path = path.indexOf('category');
@@ -406,4 +408,60 @@ function SetContentDelete(username, item, date){
     $('#username-value-delete').val(username);
     $('#item-value-delete').val(item);
     $('#date-value-delete').val(date);
+}
+
+function setCookie(cname, cvalue, exdays) {
+    var expires = "expires="+ exdays;
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+        var c = ca[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+function checkCookie(cname) {
+    var value = getCookie(cname);
+    if (value != "") {
+        return true;
+    } 
+    else {
+        return false;
+    }
+}
+
+function SetCard(id_item, username){
+    var cvalue = $('.pro-qty input').val();
+    if(checkCookie(id_item) == false){
+        var cname = "selected-" + id_item;
+        if(checkCookie('sum') == false){
+            var d = new Date();
+            var exdays = 1;
+            d.setTime(d.getTime() + (exdays*24*60*60*1000));
+            var expires = d.toUTCString();
+            setCookie('expires', expires, expires);
+            setCookie(cname, cvalue, expires);
+            var cookie = document.cookie;
+            var sum = (cookie.match(/selected-/g) || []).length;
+            setCookie('sum', sum, expires);
+        }
+        else{
+            setCookie(cname, cvalue, getCookie('expires'));
+            var cookie = document.cookie;
+            var sum = (cookie.match(/selected-/g) || []).length;
+            setCookie('sum', sum, getCookie('expires'));
+        }
+    }
+    $('.selected-product').html(getCookie('sum'));
 }

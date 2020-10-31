@@ -39,7 +39,6 @@ class Review extends Database{
     public function delete_review($username, $item, $date){
         $sql = "DELETE FROM rating_user_item WHERE username_user_rating='".
         $username."' AND id_item_rating='".$item."' AND date_rating='".$date."';";
-        //echo $sql;
         $sql_result = mysqli_query($this->conn, $sql);
         if($sql_result){
             header("location: http://localhost".$_SESSION['path']);

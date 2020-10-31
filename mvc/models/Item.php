@@ -133,7 +133,7 @@ class Item extends Database{
     }
 
     public function get_top_rated_items(){
-        $sql = "SELECT id_item, name_item, avatar_item". 
+        $sql = "SELECT id_item, name_item, avatar_item, average_rating". 
         " FROM (SELECT * FROM top_item t1 LEFT JOIN".
         " item t2 ON t1.id_item_top=t2.id_item HAVING".
         " average_rating > 0 ORDER BY average_rating DESC LIMIT 6) t3";
@@ -148,7 +148,7 @@ class Item extends Database{
     }
 
     public function get_top_review_items(){
-        $sql = "SELECT id_item, name_item, avatar_item". 
+        $sql = "SELECT id_item, name_item, avatar_item, num_review". 
         " FROM (SELECT * FROM top_item t1 LEFT JOIN".
         " item t2 ON t1.id_item_top=t2.id_item HAVING".
         " num_review > 0 ORDER BY num_review DESC LIMIT 6) t3";
@@ -203,7 +203,7 @@ class Item extends Database{
 
     public function get_featured_categories(){
         $sql = "SELECT DISTINCT category_item, name_category FROM item t1".
-        " LEFT JOIN category t2 ON t1.category_item=t2.id_category WHERE featured='1'";
+        " LEFT JOIN category t2 ON t1.category_item=t2.id_category WHERE featured='1';";
         $array_result = array();
         $sql_result = mysqli_query($this->conn, $sql);
         if($sql_result){

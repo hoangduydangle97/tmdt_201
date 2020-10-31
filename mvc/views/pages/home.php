@@ -131,6 +131,7 @@
                                     <div class="latest-product__item__text">
                                         <h6><?php echo $latest_item_list[$row]->name_item;?></h6>
                                         <span>$30.00</span>
+                                        <span style="font-weight: normal;"><?php echo date_format(date_create($latest_item_list[$row]->date_created_item), '\(d/m/Y\)');?></span>
                                     </div>
                                 </a>
                             <?php if($row % 3 == 2 || ($row == $size_list - 1 && $row % 3 < 2)){ ?>
@@ -157,6 +158,12 @@
                                     <div class="latest-product__item__text">
                                         <h6><?php echo $top_rated_item_list[$row]->name_item;?></h6>
                                         <span>$30.00</span>
+                                        <?php $average_rating = $top_rated_item_list[$row]->average_rating;?>
+                                        <i style="color: #EDBB0E;" class="fa <?php echo (($average_rating > 0 && $average_rating < 0.3) || $average_rating == 0)?'fa-star-o':(($average_rating >= 0.3 && $average_rating < 0.7)?'fa-star-half-o':'fa-star');?>"></i>
+                                        <i style="color: #EDBB0E;" class="fa <?php echo (($average_rating > 1 && $average_rating < 1.3) || $average_rating <= 1)?'fa-star-o':(($average_rating >= 1.3 && $average_rating < 1.7)?'fa-star-half-o':'fa-star');?>"></i>
+                                        <i style="color: #EDBB0E;" class="fa <?php echo (($average_rating > 2 && $average_rating < 2.3) || $average_rating <= 2)?'fa-star-o':(($average_rating >= 2.3 && $average_rating < 2.7)?'fa-star-half-o':'fa-star');?>"></i>
+                                        <i style="color: #EDBB0E;" class="fa <?php echo (($average_rating > 3 && $average_rating < 3.3) || $average_rating <= 3)?'fa-star-o':(($average_rating >= 3.3 && $average_rating < 3.7)?'fa-star-half-o':'fa-star');?>"></i>
+                                        <i style="color: #EDBB0E;" class="fa <?php echo (($average_rating > 4 && $average_rating < 4.3) || $average_rating <= 4)?'fa-star-o':(($average_rating >= 4.3 && $average_rating < 4.7)?'fa-star-half-o':'fa-star');?>"></i>
                                     </div>
                                 </a>
                             <?php if($row % 3 == 2 || ($row == $size_list - 1 && $row % 3 < 2)){ ?>
@@ -183,6 +190,7 @@
                                     <div class="latest-product__item__text">
                                         <h6><?php echo $top_review_item_list[$row]->name_item;?></h6>
                                         <span>$30.00</span>
+                                        <span style="font-weight: normal;">(<?php echo $top_review_item_list[$row]->num_review;?> reviews)</span>
                                     </div>
                                 </a>
                             <?php if($row % 3 == 2 || ($row == $size_list - 1 && $row % 3 < 2)){ ?>

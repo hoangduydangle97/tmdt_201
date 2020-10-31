@@ -265,7 +265,7 @@
                                         </div>
                                         <div class="col-9 col-md-10 col-lg-11">
                                             <div class="container pl-0 mb-2">
-                                                @<?php echo $user->username_user;?> | <?php echo $user->fname_user; ?> <?php echo $user->lname_user;?>
+                                                <b>@<?php echo $user->username_user;?></b> | <?php echo $user->fname_user; ?> <?php echo $user->lname_user;?>
                                             </div>
                                             <form action="http://localhost/tmdt_201/shop/review/insert" method="POST">
                                                 <div class="container pl-0 mb-2">

@@ -13,7 +13,8 @@ class Signup extends Controller{
     }
 
     public function insert_user(){
-        $this->user_object->insert_user();
+        $role = 0;
+        $this->user_object->insert_user($role);
     }
 
     public function check_username($username){

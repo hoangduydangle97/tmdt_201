@@ -42,7 +42,7 @@ class User extends Database{
         return json_encode($result);
     }
 
-    public function insert_user(){
+    public function insert_user($role){
         $username = $_POST['username'];
         $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
         $fname = $_POST['fname'];
@@ -50,7 +50,6 @@ class User extends Database{
         $bday = $_POST['bday'];
         $addr = $_POST['addr'];
         $email = $_POST['email'];
-        $role = '0';
 
         $avatar = '/tmdt_201/public/master1/img/user/';
         $avatar_name = $_FILES['avatar']['name'];
@@ -71,6 +70,13 @@ class User extends Database{
             $addr = 'NULL';
         }
 
+        if($email != ''){
+            $email = "'".$email."'";
+        }
+        else{
+            $email = 'NULL';
+        }
+
         if($avatar_name != ''){
             $target_dir = "./public/master1/img/user/".$username;
             mkdir($target_dir, 0700, true);
@@ -78,21 +84,21 @@ class User extends Database{
             $avatar = "'".$avatar.$avatar_name."'";
         }
         else{
-            $avatar = "'".$avatar."default.jpg'";
+            $avatar = "'".$avatar."default-avatar.jpg'";
         }
 
-        /*$sql = "INSERT INTO user(username_user, password_user, fname_user,". 
+        $sql = "INSERT INTO user(username_user, password_user, fname_user,". 
         " lname_user, bday_user, avatar_user, address_user, email_user, role_user)".
         " VALUES ('".$username."', '".$password."', '".$fname."', '".$lname."', ".$bday.
         ", ".$avatar.", ".$addr.", ".$email.", '".$role."')";
-        
+
         $sql_result = mysqli_query($this->conn, $sql);
         if($sql_result){
             header("location: http://localhost/tmdt_201/login");
         }
         else{
             header("location: http://localhost/tmdt_201/signup");
-        }*/
+        }
     }
 }
 ?>

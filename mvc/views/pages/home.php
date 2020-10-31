@@ -69,8 +69,8 @@
                     <div class="featured__item">
                         <div class="featured__item__pic set-bg" data-setbg="/tmdt_201/public/master1/img/product/<?php echo $featured_item_list[$row]->avatar_item; ?>.jpg">
                             <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                                <!--<li><a href="#"><i class="fa fa-heart"></i></a></li>
+                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>-->
                                 <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
                             </ul>
                         </div>
@@ -81,6 +81,15 @@
                                 </a>
                             </h6>
                             <h5>$30.00</h5>
+                            <div>
+                                <?php $average_rating = $featured_item_list[$row]->average_rating;?>
+                                <i style="color: #EDBB0E;" class="fa <?php echo (($average_rating > 0 && $average_rating < 0.3) || $average_rating == 0)?'fa-star-o':(($average_rating >= 0.3 && $average_rating < 0.7)?'fa-star-half-o':'fa-star');?>"></i>
+                                <i style="color: #EDBB0E;" class="fa <?php echo (($average_rating > 1 && $average_rating < 1.3) || $average_rating <= 1)?'fa-star-o':(($average_rating >= 1.3 && $average_rating < 1.7)?'fa-star-half-o':'fa-star');?>"></i>
+                                <i style="color: #EDBB0E;" class="fa <?php echo (($average_rating > 2 && $average_rating < 2.3) || $average_rating <= 2)?'fa-star-o':(($average_rating >= 2.3 && $average_rating < 2.7)?'fa-star-half-o':'fa-star');?>"></i>
+                                <i style="color: #EDBB0E;" class="fa <?php echo (($average_rating > 3 && $average_rating < 3.3) || $average_rating <= 3)?'fa-star-o':(($average_rating >= 3.3 && $average_rating < 3.7)?'fa-star-half-o':'fa-star');?>"></i>
+                                <i style="color: #EDBB0E;" class="fa <?php echo (($average_rating > 4 && $average_rating < 4.3) || $average_rating <= 4)?'fa-star-o':(($average_rating >= 4.3 && $average_rating < 4.7)?'fa-star-half-o':'fa-star');?>"></i>
+                                <span>(<?php echo $featured_item_list[$row]->num_review;?> reviews)</span>
+                            </div>
                         </div>
                     </div>
                 </div>

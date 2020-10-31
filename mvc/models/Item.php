@@ -5,8 +5,8 @@ class Item extends Database{
 
     public function get_all_items_per_page(){
         $from = ($this->page_no - 1)*$this->num_per_page;
-        $sql = "SELECT item.*, category.name_category".
-        " FROM item LEFT JOIN category ON item.category_item=category.id_category".
+        $sql = "SELECT id_item, name_item, avatar_item, average_rating, num_review".
+        " FROM item t1 LEFT JOIN top_item t2 ON t1.id_item=t2.id_item_top".
         " LIMIT ".$from.", ".$this->num_per_page.";";
         $array_result = array();
         $sql_result = mysqli_query($this->conn, $sql);
@@ -76,9 +76,9 @@ class Item extends Database{
 
     public function get_items_from_category_per_page($category){
         $from = ($this->page_no - 1)*$this->num_per_page;
-        $sql = "SELECT item.*, category.name_category".
-        " FROM item LEFT JOIN category ON item.category_item=category.id_category".
-        " WHERE category_item='".$category."'".
+        $sql = "SELECT id_item, name_item, avatar_item, average_rating, num_review".
+        " FROM (SELECT * FROM item t1 LEFT JOIN category t2 ON t1.category_item=t2.id_category".
+        " WHERE category_item='".$category."') t3 LEFT JOIN top_item t4 ON t3.id_item=t4.id_item_top".
         " LIMIT ".$from.", ".$this->num_per_page.";";
         $array_result = array();
         $sql_result = mysqli_query($this->conn, $sql);
@@ -190,7 +190,8 @@ class Item extends Database{
     }
 
     public function get_featured_items(){
-        $sql = "SELECT id_item, name_item, avatar_item, category_item FROM item WHERE featured='1';";
+        $sql = "SELECT id_item, name_item, avatar_item, category_item, average_rating, num_review".
+        " FROM item t1 LEFT JOIN top_item t2 ON t1.id_item=t2.id_item_top WHERE featured='1';";
         $array_result = array();
         $sql_result = mysqli_query($this->conn, $sql);
         if($sql_result){

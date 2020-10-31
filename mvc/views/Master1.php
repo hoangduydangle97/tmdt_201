@@ -45,7 +45,7 @@
             }
 
             .star-rating .fa-star, .star-rating-disabled .fa-star, .star-rating-modify .fa-star {
-                color: yellow;
+                color: #EDBB0E;
             }
 
             #back-to-top-btn {

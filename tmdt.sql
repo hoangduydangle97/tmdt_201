@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 30, 2020 lúc 08:10 PM
+-- Thời gian đã tạo: Th10 31, 2020 lúc 11:33 AM
 -- Phiên bản máy phục vụ: 10.4.14-MariaDB
 -- Phiên bản PHP: 7.4.10
 
@@ -131,6 +131,8 @@ INSERT INTO `rating_user_item` (`username_user_rating`, `id_item_rating`, `ratin
 ('hoangduydangle', 'chicken', 5, 'Delicious!', '2020-10-29 12:15:40'),
 ('hoangduydangle', 'hamburger', 2, 'Not special.', '2020-10-30 18:54:54'),
 ('hoangduydangle', 'mango', 5, NULL, '2020-10-30 23:17:39'),
+('johnsmith', 'beef', 3, 'OK', '2020-10-31 16:06:01'),
+('johnsmith', 'combo-fruit', 4, 'Good', '2020-10-31 16:01:15'),
 ('johnwick', 'apple', 4, 'Good', '2020-10-25 15:44:42'),
 ('johnwick', 'banana', 3, 'OK.', '2020-10-29 12:05:18'),
 ('johnwick', 'bell-pepper', 4, 'Good', '2020-10-30 01:39:43'),
@@ -199,11 +201,11 @@ CREATE TABLE `top_item` (
 INSERT INTO `top_item` (`id_item_top`, `average_rating`, `num_review`) VALUES
 ('apple', 3.33333, 3),
 ('banana', 3.5, 2),
-('beef', 5, 1),
+('beef', 4, 2),
 ('bell-pepper', 4, 1),
 ('carrot', 0, 0),
 ('chicken', 4.5, 2),
-('combo-fruit', 0, 0),
+('combo-fruit', 4, 1),
 ('common-guava', 0, 0),
 ('grape', 0, 0),
 ('hamburger', 3.5, 2),
@@ -237,6 +239,7 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`username_user`, `password_user`, `fname_user`, `lname_user`, `bday_user`, `avatar_user`, `address_user`, `email_user`, `role_user`) VALUES
 ('hoangduydangle', '$2y$10$2d9x5b1ruHgPh9.4OxDz0ebpixI590JLZMOQBwZFmKr7MdnhoOCky', 'Hoangduy', 'Dangle', '1997-09-30', '/tmdt_201/public/master1/img/user/hoangduydangle/avatar.jpg', NULL, NULL, 0),
+('johnsmith', '$2y$10$F1rYCKRdYGNlWlzfnhXivuiKMJVy6CvNdk1eri0k6d66ZpYoOozWS', 'john', 'Smith', '1964-10-31', '/tmdt_201/public/master1/img/user/default-avatar.jpg', NULL, 'johnsmith@gmail.com', 0),
 ('johnwick', '$2y$10$SZ.c3c3Xje7vW9uXjgCuouKmVQ/FVJotzEW.TPFqgn3NLqKkGr0Tu', 'Johnathan', 'Wick', '1967-10-15', '/tmdt_201/public/master1/img/user/default-avatar.jpg', NULL, NULL, 0),
 ('tonystark', '$2y$10$3eqWspe4pFNQsFqaJogBSern8YK1RVDNHdE6fQAso4GdnYJRl9BjS', 'Tony', 'Stark', '1970-05-29', '/tmdt_201/public/master1/img/user/default-avatar.jpg', NULL, NULL, 0);
 

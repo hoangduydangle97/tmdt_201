@@ -119,7 +119,7 @@
             <div class="humberger__menu__cart">
                 <ul>
                     <li><a href="#"><i class="fa fa-gift"></i> <span>0</span></a></li>
-                    <li><a href="#"><i class="fa fa-shopping-cart"></i> <span class="selected-product">0</span></a></li>
+                    <li><a href="http://localhost/tmdt_201/cart"><i class="fa fa-shopping-cart"></i> <span class="selected-product">0</span></a></li>
                 </ul>
                 <div class="header__cart__price">Total: <span>$150.00</span></div>
             </div>
@@ -286,7 +286,7 @@
                         <div class="header__cart">
                             <ul>
                                 <li><a href="#"><i class="fa fa-gift"></i> <span>0</span></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i> <span class="selected-product">0</span></a></li>
+                                <li><a href="http://localhost/tmdt_201/cart"><i class="fa fa-shopping-cart"></i> <span class="selected-product">0</span></a></li>
                             </ul>
                             <div class="header__cart__price">Total: <span>$150.00</span></div>
                         </div>

@@ -445,29 +445,34 @@ function checkCookie(cname) {
     }
 }
 
-function SetCard(id_item, username){
-    var cvalue = $('.pro-qty input').val();
-    if(checkCookie(id_item) == false){
-        var cname = "selected-" + id_item;
-        if(checkCookie('sum') == false){
-            var d = new Date();
-            var exdays = 1;
-            d.setTime(d.getTime() + (exdays*24*60*60*1000));
-            var expires = d.toUTCString();
-            setCookie('expires', expires, expires);
-            setCookie(cname, cvalue, expires);
-            var cookie = document.cookie;
-            var sum = (cookie.match(/selected-/g) || []).length;
-            setCookie('sum', sum, expires);
+function SetCart(id_item, username){
+    if(username == 'none'){
+        var cvalue = $('.pro-qty input').val();
+        if(checkCookie(id_item) == false){
+            var cname = "selected-" + id_item;
+            if(checkCookie('sum') == false){
+                var d = new Date();
+                var exdays = 1;
+                d.setTime(d.getTime() + (exdays*24*60*60*1000));
+                var expires = d.toUTCString();
+                setCookie('expires', expires, expires);
+                setCookie(cname, cvalue, expires);
+                var cookie = document.cookie;
+                var sum = (cookie.match(/selected-/g) || []).length;
+                setCookie('sum', sum, expires);
+            }
+            else{
+                setCookie(cname, cvalue, getCookie('expires'));
+                var cookie = document.cookie;
+                var sum = (cookie.match(/selected-/g) || []).length;
+                setCookie('sum', sum, getCookie('expires'));
+            }
         }
-        else{
-            setCookie(cname, cvalue, getCookie('expires'));
-            var cookie = document.cookie;
-            var sum = (cookie.match(/selected-/g) || []).length;
-            setCookie('sum', sum, getCookie('expires'));
-        }
+        $('.selected-product').html(getCookie('sum'));
     }
-    $('.selected-product').html(getCookie('sum'));
+    else{
+
+    }
 }
 
 /*

@@ -19,6 +19,13 @@
     <!-- Shoping Cart Section Begin -->
     <section class="shoping-cart spad">
         <div class="container">
+        <?php $item_list = json_decode($data['item_list']);
+        $size_list = count($item_list);
+        if($size_list == 0){
+            echo '<h4 class="font-italic">There is no any products in your cart.</h4>';
+        }
+        else{
+        ?>
             <div class="row">
                 <div class="col-lg-12">
                     <div class="shoping__cart__table">
@@ -33,10 +40,14 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                <?php 
+                                for($row = 0; $row < $size_list; $row++){                              
+                                ?>
                                 <tr>
                                     <td class="shoping__cart__item">
-                                        <img src="/tmdt_201/public/master1/img/cart/cart-1.jpg" alt="">
-                                        <h5>Vegetable’s Package</h5>
+                                        <img src="/tmdt_201/public/master1/img/product/<?php echo $item_list[$row]->avatar_item; ?>.jpg" 
+                                            alt="" width=100 height=100>
+                                        <h5><?php echo $item_list[$row]->name_item; ?></h5>
                                     </td>
                                     <td class="shoping__cart__price">
                                         $55.00
@@ -44,7 +55,7 @@
                                     <td class="shoping__cart__quantity">
                                         <div class="quantity">
                                             <div class="pro-qty">
-                                                <input type="text" value="1">
+                                                <input type="text" value="<?php echo $item_list[$row]->quantity; ?>">
                                             </div>
                                         </div>
                                     </td>
@@ -55,50 +66,7 @@
                                         <span class="icon_close"></span>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td class="shoping__cart__item">
-                                        <img src="/tmdt_201/public/master1/img/cart/cart-2.jpg" alt="">
-                                        <h5>Fresh Garden Vegetable</h5>
-                                    </td>
-                                    <td class="shoping__cart__price">
-                                        $39.00
-                                    </td>
-                                    <td class="shoping__cart__quantity">
-                                        <div class="quantity">
-                                            <div class="pro-qty">
-                                                <input type="text" value="1">
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="shoping__cart__total">
-                                        $39.99
-                                    </td>
-                                    <td class="shoping__cart__item__close">
-                                        <span class="icon_close"></span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="shoping__cart__item">
-                                        <img src="/tmdt_201/public/master1/img/cart/cart-3.jpg" alt="">
-                                        <h5>Organic Bananas</h5>
-                                    </td>
-                                    <td class="shoping__cart__price">
-                                        $69.00
-                                    </td>
-                                    <td class="shoping__cart__quantity">
-                                        <div class="quantity">
-                                            <div class="pro-qty">
-                                                <input type="text" value="1">
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="shoping__cart__total">
-                                        $69.99
-                                    </td>
-                                    <td class="shoping__cart__item__close">
-                                        <span class="icon_close"></span>
-                                    </td>
-                                </tr>
+                                <?php }?>
                             </tbody>
                         </table>
                     </div>
@@ -134,6 +102,7 @@
                     </div>
                 </div>
             </div>
+            <?php }?>
         </div>
     </section>
     <!-- Shoping Cart Section End -->

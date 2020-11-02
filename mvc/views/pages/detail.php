@@ -68,7 +68,7 @@
                         </div>
                         <?php $username = isset($_SESSION['username'])?$_SESSION['username']:'none' ?>
                         <button type="button" class="btn primary-btn text-light" id="add-to-card-btn" 
-                                onclick="SetCard(<?php echo "'".$item_object->id_item."', '".$username."'"; ?>)">
+                                onclick="SetCart(<?php echo "'".$item_object->id_item."', '".$username."'"; ?>)">
                             ADD TO CARD
                         </button>
                         <ul>

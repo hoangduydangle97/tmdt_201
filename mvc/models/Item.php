@@ -60,6 +60,16 @@ class Item extends Database{
         return json_encode($result);
     }
 
+    public function get_item_list($arr){
+        $item_list = [];
+        foreach($arr as $key => $val){
+            $item = json_decode($this->get_item($key), true);
+            $item['quantity'] = $val;
+            $item_list[] = $item;
+        }
+        return json_encode($item_list);
+    }
+
     public function get_latest_items(){
         $sql = "SELECT item.*, category.name_category".
         " FROM item LEFT JOIN category ON item.category_item=category.id_category".

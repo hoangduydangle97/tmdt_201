@@ -175,7 +175,7 @@
                 <ul>
                     <li class="active"><a href="http://localhost/tmdt_201/home">Home</a></li>
                     <li><a href="http://localhost/tmdt_201/shop">Shop</a></li>
-                    <li><a href="#">Shopping Cart</a></li>
+                    <li><a href="http://localhost/tmdt_201/cart">Cart</a></li>
                     <li><a href="http://localhost/tmdt_201/contact">Contact</a></li>
                 </ul>
             </nav>
@@ -277,7 +277,7 @@
                             <ul>
                                 <li <?php if($data["page"] == "home"){ ?>class="active"<?php }?>><a href="http://localhost/tmdt_201/home">Home</a></li>
                                 <li <?php if($data["page"] == "shop" || $data["page"] == "detail"){ ?>class="active"<?php }?>><a href="http://localhost/tmdt_201/shop">Shop</a></li>
-                                <li><a href="#">Shopping Cart</a></li>
+                                <li <?php if($data["page"] == "cart"){ ?>class="active"<?php }?>><a href="http://localhost/tmdt_201/cart">Cart</a></li>
                                 <li <?php if($data["page"] == "contact"){ ?>class="active"<?php }?>><a href="http://localhost/tmdt_201/contact">Contact</a></li>
                             </ul>
                         </nav>

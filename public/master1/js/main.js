@@ -29,9 +29,13 @@
             var containerEl = document.querySelector('.featured__filter');
             var mixer = mixitup(containerEl);
         }
-
-        $('.selected-product').html(getCookie('sum'));
-
+        if(checkCookie('sum')){
+            $('.selected-product').html(getCookie('sum'));
+        }
+        else{
+            $('.selected-product').html(0);
+        }
+        
         var path = location.pathname;
         var last_path = path.charAt(path.length - 1);
         var check_path = path.indexOf('category');
@@ -465,3 +469,14 @@ function SetCard(id_item, username){
     }
     $('.selected-product').html(getCookie('sum'));
 }
+
+/*
+cookie = document.cookie;
+arr = cookie.match(/selected-([a-z]|-)+;/g);
+arr_item = [];
+var i = 0;
+while(i < arr.length){
+    arr_item.push(arr[i].replace(/(selected-|;)/g, ''));
+    i++;
+}
+*/

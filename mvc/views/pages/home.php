@@ -71,7 +71,22 @@
                             <ul class="featured__item__pic__hover">
                                 <!--<li><a href="#"><i class="fa fa-heart"></i></a></li>
                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>-->
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                <?php $username = isset($_SESSION['username'])?$_SESSION['username']:'none'; 
+                                $selected = false;
+                                if(isset($_COOKIE)){
+                                    foreach($_COOKIE as $key => $val){
+                                        if($key == "selected-".$featured_item_list[$row]->id_item){
+                                            $selected = true;
+                                        }
+                                    }
+                                }
+                                ?>
+                                <li>
+                                    <a onclick="SetCart('<?php echo $featured_item_list[$row]->id_item;?>','<?php echo $username;?>', this)"> 
+                                        <i class="fa fa-shopping-cart"></i>
+                                        <i class="fa fa-check-circle selected" <?php echo $selected == true?'':'hidden'?>></i>
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                         <div class="featured__item__text">

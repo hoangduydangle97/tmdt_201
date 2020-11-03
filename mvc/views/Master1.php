@@ -21,11 +21,15 @@
         <link rel="stylesheet" href="/tmdt_201/public/master1/css/slicknav.min.css" type="text/css">
         <link rel="stylesheet" href="/tmdt_201/public/master1/css/style.css" type="text/css">
         <style>
-            .language-option {
+            .language-option, .item-cart {
                 transition: 0.3s;
             }
 
-            .language-option:hover {
+            .item-cart {
+                color: #252525;
+            }
+
+            .language-option:hover, .item-cart:hover {
                 color: #7fad39;
                 text-decoration: underline;
             }
@@ -48,7 +52,7 @@
                 color: #EDBB0E;
             }
 
-            #back-to-top-btn {
+            #back-to-top-btn, #cart-btn, #home-btn {
                 display: inline-block;
                 background-color: #FF9800;
                 width: 50px;
@@ -64,6 +68,16 @@
                 visibility: hidden;
                 z-index: 1000;
             }
+
+            #cart-btn {
+                background-color: dodgerblue;
+                bottom: 100px;
+            }
+
+            #home-btn {
+                background-color: red;
+                bottom: 170px;
+            }
             
             #back-to-top-btn::after {
                 content: "\f077";
@@ -75,7 +89,35 @@
                 color: #fff;
             }
 
+            #cart-btn i, #home-btn i {
+                font-family: FontAwesome;
+                font-size: 1.5em;
+                line-height: 50px;
+                color: #fff;
+            }
+
+            #cart-btn span {
+                height: 18px;
+                width: 18px;
+                background: green;
+                font-size: 15px;
+                color: #ffffff;
+                line-height: 18px;
+                text-align: center;
+                font-weight: 700;
+                display: inline-block;
+                border-radius: 50%;
+                position: absolute;
+                top: 7px;
+                right: 8px;
+            }
+
             #back-to-top-btn:hover {
+                cursor: pointer;
+                background-color: #333;
+            }
+
+            #cart-btn:hover, #home-btn:hover {
                 cursor: pointer;
                 background-color: #333;
             }
@@ -84,7 +126,7 @@
                 background-color: #555;
             }
 
-            #back-to-top-btn.show {
+            #back-to-top-btn.show, #cart-btn.show, #home-btn.show {
                 opacity: 1;
                 visibility: visible;
             }
@@ -109,6 +151,17 @@
 
         <!-- Back to Top Button -->
         <a id="back-to-top-btn"></a>
+
+        <!-- Cart Button -->
+        <a href="http://localhost/tmdt_201/cart" id="cart-btn" class="rounded-circle">
+            <i class="fa fa-shopping-cart"></i>
+            <span class="selected-product">0</span>
+        </a>
+
+        <!-- Home Button -->
+        <a href="http://localhost/tmdt_201/home" id="home-btn" class="rounded-circle">
+            <i class="fa fa-home"></i>
+        </a>
 
         <!-- Humberger Begin -->
         <div class="humberger__menu__overlay"></div>

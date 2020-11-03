@@ -18,6 +18,7 @@ class Cart extends Controller{
                 }
             }
         }
+        ksort($arr_cookie);
         $this->view("Master1", array(
             "page"=>"cart",
             "category_list"=>$this->category_object->get_all_categories(),

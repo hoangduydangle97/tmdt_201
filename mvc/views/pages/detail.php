@@ -59,16 +59,28 @@
                         <p>Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vestibulum ac diam sit amet quam
                             vehicula elementum sed sit amet dui. Sed porttitor lectus nibh. Vestibulum ac diam sit amet
                             quam vehicula elementum sed sit amet dui. Proin eget tortor risus.</p>
+                        <?php $username = isset($_SESSION['username'])?$_SESSION['username']:'none'; ?>
                         <div class="product__details__quantity">
                             <div class="quantity">
-                                <div class="pro-qty">
-                                    <input type="text" value="1" readonly>
+                                <div class="pro-qty"> 
+                                    <input type="hidden" class="hidden-input id_item" value="<?php echo $item_object->id_item; ?>">
+                                    <input type="hidden" class="hidden-input username" value="<?php echo $username; ?>">
+                                    <?php $input_value = 1;
+                                    if(isset($_COOKIE)){
+                                        foreach($_COOKIE as $key => $val){
+                                            if($key == "selected-".$item_object->id_item){
+                                                $input_value = $val;
+                                            }
+                                        }
+                                    }
+                                    ?>
+                                    <input type="text" class="text-input" id="<?php echo $item_object->id_item; ?>" value="<?php echo $input_value; ?>" readonly>
                                 </div>
                             </div>
                         </div>
-                        <?php $username = isset($_SESSION['username'])?$_SESSION['username']:'none' ?>
                         <button type="button" class="btn primary-btn text-light" id="add-to-card-btn" 
-                                onclick="SetCart(<?php echo "'".$item_object->id_item."', '".$username."'"; ?>)">
+                                onclick="SetCart(<?php echo "'".$item_object->id_item."', '".$username."'"; ?>)"
+                                data-toggle="modal" data-target="#info-modal">
                             ADD TO CARD
                         </button>
                         <ul>
@@ -347,6 +359,34 @@
     </section>
     <!-- Related Product Section End -->
 
+    <!-- Info Modal -->
+    <div class="modal fade" id="info-modal" data-backdrop="static">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title text-info">
+                        <i class="fa fa-info-circle"></i>
+                        Info!
+                    </h4>
+                </div>
+                <!-- Modal body -->
+                <div class="modal-body">
+                    You just add '<?php echo $item_object->name_item; ?>' into your cart
+                </div>                                                                  
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="location.href=&quot;http://localhost/tmdt_201/cart&quot;">
+                        <i class="fa fa-arrow-right"></i> To your cart
+                    </button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">
+                        <i class="fa fa-close"></i> Cancel
+                    </button>
+                </div>                                                                  
+            </div>
+        </div>
+    </div>
+
     <!-- Delete Modal -->
     <div class="modal fade" id="delete-modal" data-backdrop="static">
         <div class="modal-dialog modal-sm">
@@ -368,7 +408,9 @@
                     <input type="hidden" name="item" id="item-value-delete">
                     <input type="hidden" name="date" id="date-value-delete">
                     <button type="submit" class="btn btn-primary">OK</button>
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">
+                        <i class="fa fa-close"></i> Cancel
+                    </button>
                 </form>                                                                 
             </div>
         </div>
@@ -425,7 +467,9 @@
                 </div>                                                                  
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">
+                        <i class="fa fa-close"></i> Cancel
+                    </button>
                 </div>                                                                 
             </div>
         </div>

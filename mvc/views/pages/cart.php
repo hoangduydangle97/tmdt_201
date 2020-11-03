@@ -43,11 +43,16 @@
                                 <?php 
                                 for($row = 0; $row < $size_list; $row++){                              
                                 ?>
-                                <tr>
+                                <tr id="<?php echo $item_list[$row]->id_item; ?>">
                                     <td class="shoping__cart__item">
                                         <img src="/tmdt_201/public/master1/img/product/<?php echo $item_list[$row]->avatar_item; ?>.jpg" 
                                             alt="" width=100 height=100>
-                                        <h5><?php echo $item_list[$row]->name_item; ?></h5>
+                                        <h5>
+                                            <a href="http://localhost/tmdt_201/shop/detail/<?php echo $item_list[$row]->id_item;?>"
+                                                class="item-cart">
+                                                <?php echo $item_list[$row]->name_item; ?>
+                                            </a>
+                                        </h5>
                                     </td>
                                     <td class="shoping__cart__price">
                                         $55.00
@@ -55,7 +60,10 @@
                                     <td class="shoping__cart__quantity">
                                         <div class="quantity">
                                             <div class="pro-qty">
-                                                <input type="text" value="<?php echo $item_list[$row]->quantity; ?>">
+                                                <?php $username = isset($_SESSION['username'])?$_SESSION['username']:'none'; ?>
+                                                <input type="hidden" class="hidden-input id_item" value="<?php echo $item_list[$row]->id_item; ?>">
+                                                <input type="hidden" class="hidden-input username" value="<?php echo $username; ?>">
+                                                <input type="text" class="text-input" id="<?php echo $item_list[$row]->id_item; ?>" value="<?php echo $item_list[$row]->quantity; ?>" readonly>
                                             </div>
                                         </div>
                                     </td>
@@ -63,7 +71,7 @@
                                         $110.00
                                     </td>
                                     <td class="shoping__cart__item__close">
-                                        <span class="icon_close"></span>
+                                        <span class="icon_close" onclick="deleteCookie('<?php echo $item_list[$row]->id_item; ?>', '<?php echo $username; ?>')"></span>
                                     </td>
                                 </tr>
                                 <?php }?>

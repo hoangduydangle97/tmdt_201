@@ -229,18 +229,20 @@
     proQty.append('<button class="inc qtybtn border-0 bg-transparent" type="button">+</button>');
     proQty.on('click', '.qtybtn', function () {
         var $button = $(this);
-        var oldValue = $button.parent().find('input').val();
+        var $input = $button.parent().find('.hidden-input');
+        var oldValue = $button.parent().find('.text-input').val();
         if ($button.hasClass('inc')) {
             var newVal = parseFloat(oldValue) + 1;
         } else {
-            // Don't allow decrementing below zero
+            // Don't allow decrementing below one
             if (oldValue > 1) {
                 var newVal = parseFloat(oldValue) - 1;
             } else {
                 newVal = 1;
             }
         }
-        $button.parent().find('input').val(newVal);
+        $button.parent().find('.text-input').val(newVal);
+        SetCart($input.filter(".id_item").val(), $input.filter(".username").val());
     });
 
     /*-------------------
@@ -304,12 +306,18 @@
 		Back to Top Button
     ------------------------- */
     var btn = $('#back-to-top-btn');
+    var cart_btn = $('#cart-btn');
+    var home_btn = $('#home-btn');
     $(window).scroll(function() {
-    if ($(window).scrollTop() > 300) {
-        btn.addClass('show');
+        if ($(window).scrollTop() > 300) {
+            btn.addClass('show');
+            cart_btn.addClass('show');
+            home_btn.addClass('show');
     } 
     else {
         btn.removeClass('show');
+        cart_btn.removeClass('show');
+        home_btn.removeClass('show');
     }
     });
     btn.on('click', function(e) {
@@ -372,7 +380,6 @@
         $level_rating_color_modify = "blue";
         $('.level-rating-modify').html($level_rating_modify).css("color", $level_rating_color_modify);
     });
-
 })(jQuery);
 
 function SetContentModify(username, fname, lname, lvcontent, lvcolor, rating, avatar, content, item, date){
@@ -419,6 +426,17 @@ function setCookie(cname, cvalue, exdays) {
     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
 
+function deleteCookie(id_item, username) {
+    if(username == 'none'){
+        var cname = "selected-" + id_item;
+        document.cookie = cname + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+        var cookie = document.cookie;
+        var sum = (cookie.match(/selected-/g) || []).length;
+        setCookie('sum', sum, getCookie('expires'));
+        location.reload();
+    }
+}
+
 function getCookie(cname) {
     var name = cname + "=";
     var decodedCookie = decodeURIComponent(document.cookie);
@@ -445,9 +463,17 @@ function checkCookie(cname) {
     }
 }
 
-function SetCart(id_item, username){
+function SetCart(id_item, username, instance = null){
     if(username == 'none'){
-        var cvalue = $('.pro-qty input').val();
+        var cvalue = $('.pro-qty .text-input').filter('#'+id_item).val();
+        if(cvalue === undefined){
+            if(checkCookie('selected-' + id_item)){
+                cvalue = getCookie('selected-' + id_item);
+            }
+            else{
+                cvalue = 1;
+            }
+        }
         if(checkCookie(id_item) == false){
             var cname = "selected-" + id_item;
             if(checkCookie('sum') == false){
@@ -469,6 +495,9 @@ function SetCart(id_item, username){
             }
         }
         $('.selected-product').html(getCookie('sum'));
+        if(instance != null){
+            $(instance).find('.selected').removeAttr("hidden");
+        }
     }
     else{
 

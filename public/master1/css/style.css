@@ -331,7 +331,7 @@ ol {
 }
 
 .header__top__right__language:hover ul, .header__top__right__auth:hover ul {
-	top: 23px;
+	top: 30px;
 	opacity: 1;
 	visibility: visible;
 }
@@ -893,6 +893,7 @@ ol {
 }
 
 .featured__item__pic__hover li:hover a {
+	cursor: pointer;
 	background: #7fad39;
 	border-color: #7fad39;
 }
@@ -900,6 +901,10 @@ ol {
 .featured__item__pic__hover li:hover a i {
 	color: #ffffff;
 	transform: rotate(360deg);
+}
+
+.featured__item__pic__hover li:hover a span {
+	color: #ffffff;
 }
 
 .featured__item__pic__hover li a {
@@ -1569,6 +1574,7 @@ ol {
 }
 
 .product__item__pic__hover li:hover a {
+	cursor: pointer;
 	background: #7fad39;
 	border-color: #7fad39;
 }

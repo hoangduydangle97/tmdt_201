@@ -495,6 +495,17 @@ function SetCart(id_item, username, instance = null){
             }
         }
         $('.selected-product').html(getCookie('sum'));
+        var total = 0;
+        var price_item = parseFloat($('.shoping__cart__price').filter('#' + id_item).text().trim().slice(1));
+        var total_items = $('.shoping__cart__total');
+        total_items.filter('#' + id_item).html('$' + (price_item * cvalue).toFixed(2));
+        var i = 0;
+        while(i < total_items.length){
+            total = total + parseFloat(total_items[i].textContent.trim().slice(1));
+            i++;
+        }
+        $('.sub-total').html('$' + total.toFixed(2));
+        $('.total').html('$' + total.toFixed(2));
         if(instance != null){
             $(instance).find('.selected').removeAttr("hidden");
         }

@@ -281,8 +281,6 @@
                             <div class="product__item">
                                 <div class="product__item__pic set-bg" data-setbg="/tmdt_201/public/master1/img/product/<?php echo $item_list[$row]->avatar_item; ?>.jpg">
                                     <ul class="product__item__pic__hover">
-                                        <!--<li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-retweet"></i></a></li>-->
                                         <?php $username = isset($_SESSION['username'])?$_SESSION['username']:'none'; 
                                         $selected = false;
                                         if(isset($_COOKIE)){
@@ -307,7 +305,7 @@
                                             <?php echo $item_list[$row]->name_item;?>
                                         </a>
                                     </h6>
-                                    <h5>$30.00</h5>
+                                    <h5>$<?php echo $item_list[$row]->price_item;?></h5>
                                     <div>
                                         <?php $average_rating = $item_list[$row]->average_rating;?>
                                         <i style="color: #EDBB0E;" class="fa <?php echo (($average_rating > 0 && $average_rating < 0.3) || $average_rating == 0)?'fa-star-o':(($average_rating >= 0.3 && $average_rating < 0.7)?'fa-star-half-o':'fa-star');?>"></i>

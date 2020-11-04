@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 31, 2020 lúc 11:33 AM
+-- Thời gian đã tạo: Th10 04, 2020 lúc 10:49 AM
 -- Phiên bản máy phục vụ: 10.4.14-MariaDB
 -- Phiên bản PHP: 7.4.10
 
@@ -60,7 +60,7 @@ CREATE TABLE `item` (
   `name_item` varchar(100) NOT NULL DEFAULT 'Default name',
   `avatar_item` varchar(500) NOT NULL DEFAULT 'Default link',
   `description_item` varchar(500) NOT NULL DEFAULT 'Default description',
-  `price_item` int(11) NOT NULL DEFAULT 0,
+  `price_item` float NOT NULL DEFAULT 0,
   `availability_item` tinyint(1) NOT NULL DEFAULT 1,
   `weight_item` float NOT NULL DEFAULT 0,
   `sale_off_item` int(11) NOT NULL DEFAULT 0,
@@ -76,21 +76,21 @@ CREATE TABLE `item` (
 --
 
 INSERT INTO `item` (`id_item`, `name_item`, `avatar_item`, `description_item`, `price_item`, `availability_item`, `weight_item`, `sale_off_item`, `featured`, `best_seller_item`, `date_created_item`, `latest_date_updated_item`, `category_item`) VALUES
-('apple', 'Apple', 'apple', 'Apples', 0, 1, 0, 0, 1, 1, '2020-10-09 18:42:10', NULL, 'fresh-fruit'),
-('banana', 'Banana', 'banana', 'Bananas', 0, 1, 0, 0, 0, 1, '2020-10-09 18:43:11', NULL, 'fresh-fruit'),
-('beef', 'Beef', 'beef', 'Beef', 0, 1, 0, 0, 1, 0, '2020-10-09 18:44:13', NULL, 'fresh-meat'),
-('bell-pepper', 'Bell pepper', 'bell-peppers', 'Bell peppers', 0, 1, 0, 0, 0, 0, '2020-10-10 23:20:14', NULL, 'vegetables'),
-('carrot', 'Carrot', 'carrot', 'Carrot', 0, 1, 0, 0, 1, 0, '2020-10-11 00:02:18', NULL, 'vegetables'),
-('chicken', 'Chicken', 'chicken', 'Chicken', 0, 1, 0, 0, 0, 0, '2020-10-09 18:44:37', NULL, 'fastfood'),
-('combo-fruit', 'Combo Fruit', 'combo-fruit', 'Combo Fruit', 0, 1, 0, 0, 1, 0, '2020-10-09 18:45:25', NULL, 'fresh-fruit'),
-('common-guava', 'Common guava', 'common-guava', 'Common guava', 0, 1, 0, 0, 0, 0, '2020-10-09 18:46:04', NULL, 'fresh-fruit'),
-('grape', 'Grape', 'grape', 'Grapes', 0, 1, 0, 0, 1, 0, '2020-10-09 18:47:48', NULL, 'fresh-fruit'),
-('hamburger', 'Hamburger', 'hamburger', 'Hamburgers', 0, 1, 0, 0, 0, 0, '2020-10-09 18:49:22', NULL, 'fastfood'),
-('lettuce', 'Lettuce', 'lettuce', 'Lettuce', 0, 1, 0, 0, 0, 0, '2020-10-10 23:57:59', NULL, 'vegetables'),
-('mango', 'Mango', 'mango', 'Mangoes', 0, 1, 0, 0, 1, 0, '2020-10-09 18:52:11', NULL, 'fresh-fruit'),
-('orange-juice', 'Orange Juice', 'orange-juice', 'Orange Juice', 0, 1, 0, 0, 0, 0, '2020-10-09 18:52:53', NULL, 'juice'),
-('sliwki-juice', 'Sliwki Juice', 'sliwki-juice', 'Sliwki Juice', 0, 1, 0, 0, 0, 0, '2020-10-09 18:54:09', NULL, 'juice'),
-('watermelon', 'Watermelon', 'watermelon', 'Watermelon', 0, 1, 0, 0, 1, 0, '2020-10-09 18:56:33', NULL, 'fresh-fruit');
+('apple', 'Apple', 'apple', 'Apples', 1.49, 1, 0, 0, 1, 1, '2020-10-09 18:42:10', NULL, 'fresh-fruit'),
+('banana', 'Banana', 'banana', 'Bananas', 0.57, 1, 0, 0, 0, 1, '2020-10-09 18:43:11', NULL, 'fresh-fruit'),
+('beef', 'Beef', 'beef', 'Beef', 2.49, 1, 0, 0, 1, 0, '2020-10-09 18:44:13', NULL, 'fresh-meat'),
+('bell-pepper', 'Bell pepper', 'bell-peppers', 'Bell peppers', 4.59, 1, 0, 0, 0, 0, '2020-10-10 23:20:14', NULL, 'vegetables'),
+('carrot', 'Carrot', 'carrot', 'Carrot', 1.22, 1, 0, 0, 1, 0, '2020-10-11 00:02:18', NULL, 'vegetables'),
+('chicken', 'Chicken', 'chicken', 'Chicken', 6.99, 1, 0, 0, 0, 0, '2020-10-09 18:44:37', NULL, 'fastfood'),
+('combo-fruit', 'Combo Fruit', 'combo-fruit', 'Combo Fruit', 19.99, 1, 0, 0, 1, 0, '2020-10-09 18:45:25', NULL, 'fresh-fruit'),
+('common-guava', 'Common guava', 'common-guava', 'Common guava', 3.49, 1, 0, 0, 0, 0, '2020-10-09 18:46:04', NULL, 'fresh-fruit'),
+('grape', 'Grape', 'grape', 'Grapes', 2.09, 1, 0, 0, 1, 0, '2020-10-09 18:47:48', NULL, 'fresh-fruit'),
+('hamburger', 'Hamburger', 'hamburger', 'Hamburgers', 6.99, 1, 0, 0, 0, 0, '2020-10-09 18:49:22', NULL, 'fastfood'),
+('lettuce', 'Lettuce', 'lettuce', 'Lettuce', 0.35, 1, 0, 0, 0, 0, '2020-10-10 23:57:59', NULL, 'vegetables'),
+('mango', 'Mango', 'mango', 'Mangoes', 7.39, 1, 0, 0, 1, 0, '2020-10-09 18:52:11', NULL, 'fresh-fruit'),
+('orange-juice', 'Orange Juice', 'orange-juice', 'Orange Juice', 2.62, 1, 0, 0, 0, 0, '2020-10-09 18:52:53', NULL, 'juice'),
+('sliwki-juice', 'Sliwki Juice', 'sliwki-juice', 'Sliwki Juice', 2.99, 1, 0, 0, 0, 0, '2020-10-09 18:54:09', NULL, 'juice'),
+('watermelon', 'Watermelon', 'watermelon', 'Watermelon', 0.55, 1, 0, 0, 1, 0, '2020-10-09 18:56:33', NULL, 'fresh-fruit');
 
 -- --------------------------------------------------------
 
@@ -177,8 +177,8 @@ CREATE TABLE `role` (
 --
 
 CREATE TABLE `select_user_item` (
-  `id_user_select` int(11) NOT NULL,
-  `id_item_select` int(11) NOT NULL,
+  `username_user_select` varchar(100) NOT NULL,
+  `id_item_select` varchar(100) NOT NULL,
   `quantity_item` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -239,7 +239,7 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`username_user`, `password_user`, `fname_user`, `lname_user`, `bday_user`, `avatar_user`, `address_user`, `email_user`, `role_user`) VALUES
 ('hoangduydangle', '$2y$10$2d9x5b1ruHgPh9.4OxDz0ebpixI590JLZMOQBwZFmKr7MdnhoOCky', 'Hoangduy', 'Dangle', '1997-09-30', '/tmdt_201/public/master1/img/user/hoangduydangle/avatar.jpg', NULL, NULL, 0),
-('johnsmith', '$2y$10$F1rYCKRdYGNlWlzfnhXivuiKMJVy6CvNdk1eri0k6d66ZpYoOozWS', 'john', 'Smith', '1964-10-31', '/tmdt_201/public/master1/img/user/default-avatar.jpg', NULL, 'johnsmith@gmail.com', 0),
+('johnsmith', '$2y$10$F1rYCKRdYGNlWlzfnhXivuiKMJVy6CvNdk1eri0k6d66ZpYoOozWS', 'John', 'Smith', '1964-10-31', '/tmdt_201/public/master1/img/user/default-avatar.jpg', NULL, 'johnsmith@gmail.com', 0),
 ('johnwick', '$2y$10$SZ.c3c3Xje7vW9uXjgCuouKmVQ/FVJotzEW.TPFqgn3NLqKkGr0Tu', 'Johnathan', 'Wick', '1967-10-15', '/tmdt_201/public/master1/img/user/default-avatar.jpg', NULL, NULL, 0),
 ('tonystark', '$2y$10$3eqWspe4pFNQsFqaJogBSern8YK1RVDNHdE6fQAso4GdnYJRl9BjS', 'Tony', 'Stark', '1970-05-29', '/tmdt_201/public/master1/img/user/default-avatar.jpg', NULL, NULL, 0);
 
@@ -283,7 +283,7 @@ ALTER TABLE `role`
 -- Chỉ mục cho bảng `select_user_item`
 --
 ALTER TABLE `select_user_item`
-  ADD PRIMARY KEY (`id_user_select`,`id_item_select`);
+  ADD PRIMARY KEY (`username_user_select`,`id_item_select`);
 
 --
 -- Chỉ mục cho bảng `top_item`

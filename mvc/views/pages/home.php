@@ -69,8 +69,6 @@
                     <div class="featured__item">
                         <div class="featured__item__pic set-bg" data-setbg="/tmdt_201/public/master1/img/product/<?php echo $featured_item_list[$row]->avatar_item; ?>.jpg">
                             <ul class="featured__item__pic__hover">
-                                <!--<li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>-->
                                 <?php $username = isset($_SESSION['username'])?$_SESSION['username']:'none'; 
                                 $selected = false;
                                 if(isset($_COOKIE)){
@@ -95,7 +93,7 @@
                                     <?php echo $featured_item_list[$row]->name_item;?>
                                 </a>
                             </h6>
-                            <h5>$30.00</h5>
+                            <h5>$<?php echo $featured_item_list[$row]->price_item;?></h5>
                             <div>
                                 <?php $average_rating = $featured_item_list[$row]->average_rating;?>
                                 <i style="color: #EDBB0E;" class="fa <?php echo (($average_rating > 0 && $average_rating < 0.3) || $average_rating == 0)?'fa-star-o':(($average_rating >= 0.3 && $average_rating < 0.7)?'fa-star-half-o':'fa-star');?>"></i>
@@ -154,7 +152,7 @@
                                     </div>
                                     <div class="latest-product__item__text">
                                         <h6><?php echo $latest_item_list[$row]->name_item;?></h6>
-                                        <span>$30.00</span>
+                                        <span>$<?php echo $latest_item_list[$row]->price_item;?></span>
                                         <span style="font-weight: normal;"><?php echo date_format(date_create($latest_item_list[$row]->date_created_item), '\(d/m/Y\)');?></span>
                                     </div>
                                 </a>
@@ -181,7 +179,7 @@
                                     </div>
                                     <div class="latest-product__item__text">
                                         <h6><?php echo $top_rated_item_list[$row]->name_item;?></h6>
-                                        <span>$30.00</span>
+                                        <span>$<?php echo $top_rated_item_list[$row]->price_item;?></span>
                                         <?php $average_rating = $top_rated_item_list[$row]->average_rating;?>
                                         <i style="color: #EDBB0E;" class="fa <?php echo (($average_rating > 0 && $average_rating < 0.3) || $average_rating == 0)?'fa-star-o':(($average_rating >= 0.3 && $average_rating < 0.7)?'fa-star-half-o':'fa-star');?>"></i>
                                         <i style="color: #EDBB0E;" class="fa <?php echo (($average_rating > 1 && $average_rating < 1.3) || $average_rating <= 1)?'fa-star-o':(($average_rating >= 1.3 && $average_rating < 1.7)?'fa-star-half-o':'fa-star');?>"></i>
@@ -213,7 +211,7 @@
                                     </div>
                                     <div class="latest-product__item__text">
                                         <h6><?php echo $top_review_item_list[$row]->name_item;?></h6>
-                                        <span>$30.00</span>
+                                        <span>$<?php echo $top_review_item_list[$row]->price_item;?></span>
                                         <span style="font-weight: normal;">(<?php echo $top_review_item_list[$row]->num_review;?> reviews)</span>
                                     </div>
                                 </a>

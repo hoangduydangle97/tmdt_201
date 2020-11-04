@@ -1,10 +1,10 @@
-<!-- Breadcrumb Section Begin -->
-<section class="breadcrumb-section set-bg" data-setbg="/tmdt_201/public/master1/img/breadcrumb.jpg">
+    <!-- Breadcrumb Section Begin -->
+    <section class="breadcrumb-section set-bg" data-setbg="/tmdt_201/public/master1/img/breadcrumb.jpg">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="breadcrumb__text">
-                        <h2>Shopping Cart</h2>
+                        <h2>Cart</h2>
                         <div class="breadcrumb__option">
                             <a href="http://localhost/tmdt_201/home">Home</a>
                             <span>Cart</span>
@@ -40,10 +40,10 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php 
+                                <?php $sub_total = 0;
                                 for($row = 0; $row < $size_list; $row++){                              
                                 ?>
-                                <tr id="<?php echo $item_list[$row]->id_item; ?>">
+                                <tr>
                                     <td class="shoping__cart__item">
                                         <img src="/tmdt_201/public/master1/img/product/<?php echo $item_list[$row]->avatar_item; ?>.jpg" 
                                             alt="" width=100 height=100>
@@ -54,8 +54,8 @@
                                             </a>
                                         </h5>
                                     </td>
-                                    <td class="shoping__cart__price">
-                                        $55.00
+                                    <td class="shoping__cart__price" id="<?php echo $item_list[$row]->id_item; ?>">
+                                        $<?php echo $item_list[$row]->price_item; ?>
                                     </td>
                                     <td class="shoping__cart__quantity">
                                         <div class="quantity">
@@ -67,8 +67,11 @@
                                             </div>
                                         </div>
                                     </td>
-                                    <td class="shoping__cart__total">
-                                        $110.00
+                                    <td class="shoping__cart__total" id="<?php echo $item_list[$row]->id_item; ?>">
+                                        $<?php $item_total = $item_list[$row]->price_item * $item_list[$row]->quantity;
+                                        $sub_total += $item_total;
+                                        echo $item_total;
+                                        ?>
                                     </td>
                                     <td class="shoping__cart__item__close">
                                         <span class="icon_close" onclick="deleteCookie('<?php echo $item_list[$row]->id_item; ?>', '<?php echo $username; ?>')"></span>
@@ -103,8 +106,8 @@
                     <div class="shoping__checkout">
                         <h5>Cart Total</h5>
                         <ul>
-                            <li>Subtotal <span>$454.98</span></li>
-                            <li>Total <span>$454.98</span></li>
+                            <li>Subtotal <span class="sub-total">$<?php echo $sub_total;?></span></li>
+                            <li>Total <span class="total">$<?php echo $sub_total;?></span></li>
                         </ul>
                         <a href="#" class="primary-btn">PROCEED TO CHECKOUT</a>
                     </div>

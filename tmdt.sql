@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 04, 2020 lúc 10:49 AM
+-- Thời gian đã tạo: Th10 06, 2020 lúc 01:58 PM
 -- Phiên bản máy phục vụ: 10.4.14-MariaDB
 -- Phiên bản PHP: 7.4.10
 
@@ -76,21 +76,21 @@ CREATE TABLE `item` (
 --
 
 INSERT INTO `item` (`id_item`, `name_item`, `avatar_item`, `description_item`, `price_item`, `availability_item`, `weight_item`, `sale_off_item`, `featured`, `best_seller_item`, `date_created_item`, `latest_date_updated_item`, `category_item`) VALUES
-('apple', 'Apple', 'apple', 'Apples', 1.49, 1, 0, 0, 1, 1, '2020-10-09 18:42:10', NULL, 'fresh-fruit'),
-('banana', 'Banana', 'banana', 'Bananas', 0.57, 1, 0, 0, 0, 1, '2020-10-09 18:43:11', NULL, 'fresh-fruit'),
-('beef', 'Beef', 'beef', 'Beef', 2.49, 1, 0, 0, 1, 0, '2020-10-09 18:44:13', NULL, 'fresh-meat'),
-('bell-pepper', 'Bell pepper', 'bell-peppers', 'Bell peppers', 4.59, 1, 0, 0, 0, 0, '2020-10-10 23:20:14', NULL, 'vegetables'),
-('carrot', 'Carrot', 'carrot', 'Carrot', 1.22, 1, 0, 0, 1, 0, '2020-10-11 00:02:18', NULL, 'vegetables'),
-('chicken', 'Chicken', 'chicken', 'Chicken', 6.99, 1, 0, 0, 0, 0, '2020-10-09 18:44:37', NULL, 'fastfood'),
-('combo-fruit', 'Combo Fruit', 'combo-fruit', 'Combo Fruit', 19.99, 1, 0, 0, 1, 0, '2020-10-09 18:45:25', NULL, 'fresh-fruit'),
-('common-guava', 'Common guava', 'common-guava', 'Common guava', 3.49, 1, 0, 0, 0, 0, '2020-10-09 18:46:04', NULL, 'fresh-fruit'),
-('grape', 'Grape', 'grape', 'Grapes', 2.09, 1, 0, 0, 1, 0, '2020-10-09 18:47:48', NULL, 'fresh-fruit'),
-('hamburger', 'Hamburger', 'hamburger', 'Hamburgers', 6.99, 1, 0, 0, 0, 0, '2020-10-09 18:49:22', NULL, 'fastfood'),
-('lettuce', 'Lettuce', 'lettuce', 'Lettuce', 0.35, 1, 0, 0, 0, 0, '2020-10-10 23:57:59', NULL, 'vegetables'),
-('mango', 'Mango', 'mango', 'Mangoes', 7.39, 1, 0, 0, 1, 0, '2020-10-09 18:52:11', NULL, 'fresh-fruit'),
-('orange-juice', 'Orange Juice', 'orange-juice', 'Orange Juice', 2.62, 1, 0, 0, 0, 0, '2020-10-09 18:52:53', NULL, 'juice'),
-('sliwki-juice', 'Sliwki Juice', 'sliwki-juice', 'Sliwki Juice', 2.99, 1, 0, 0, 0, 0, '2020-10-09 18:54:09', NULL, 'juice'),
-('watermelon', 'Watermelon', 'watermelon', 'Watermelon', 0.55, 1, 0, 0, 1, 0, '2020-10-09 18:56:33', NULL, 'fresh-fruit');
+('apple', 'Apple', 'apple', 'Apples', 1.49, 1, 0, 0, 1, 1, '2020-10-09 18:42:10', '2020-10-09 18:42:10', 'fresh-fruit'),
+('banana', 'Banana', 'banana', 'Bananas', 0.57, 1, 0, 0, 0, 1, '2020-10-09 18:43:11', '2020-10-09 18:43:11', 'fresh-fruit'),
+('beef', 'Beef', 'beef', 'Beef', 2.49, 1, 0, 0, 1, 0, '2020-10-09 18:44:13', '2020-10-09 18:44:13', 'fresh-meat'),
+('bell-pepper', 'Bell pepper', 'bell-peppers', 'Bell peppers', 4.59, 1, 0, 0, 0, 0, '2020-10-10 23:20:14', '2020-10-10 23:20:14', 'vegetables'),
+('carrot', 'Carrot', 'carrot', 'Carrot', 1.22, 1, 0, 0, 1, 0, '2020-10-11 00:02:18', '2020-10-11 00:02:18', 'vegetables'),
+('chicken', 'Chicken', 'chicken', 'Chicken', 6.99, 1, 0, 0, 0, 0, '2020-10-09 18:44:37', '2020-10-09 18:44:37', 'fastfood'),
+('combo-fruit', 'Combo Fruit', 'combo-fruit', 'Combo Fruit', 19.99, 1, 0, 0, 1, 0, '2020-10-09 18:45:25', '2020-10-09 18:45:25', 'fresh-fruit'),
+('common-guava', 'Common guava', 'common-guava', 'Common guava', 3.49, 1, 0, 0, 0, 0, '2020-10-09 18:46:04', '2020-10-09 18:46:04', 'fresh-fruit'),
+('grape', 'Grape', 'grape', 'Grapes', 2.09, 1, 0, 0, 1, 0, '2020-10-09 18:47:48', '2020-10-09 18:47:48', 'fresh-fruit'),
+('hamburger', 'Hamburger', 'hamburger', 'Hamburgers', 6.99, 1, 0, 0, 0, 0, '2020-10-09 18:49:22', '2020-10-09 18:49:22', 'fastfood'),
+('lettuce', 'Lettuce', 'lettuce', 'Lettuce', 0.35, 1, 0, 0, 0, 0, '2020-10-10 23:57:59', '2020-10-10 23:57:59', 'vegetables'),
+('mango', 'Mango', 'mango', 'Mangoes', 7.39, 1, 0, 0, 1, 0, '2020-10-09 18:52:11', '2020-10-09 18:52:11', 'fresh-fruit'),
+('orange-juice', 'Orange Juice', 'orange-juice', 'Orange Juice', 2.62, 1, 0, 0, 0, 0, '2020-10-09 18:52:53', '2020-10-09 18:52:53', 'juice'),
+('sliwki-juice', 'Sliwki Juice', 'sliwki-juice', 'Sliwki Juice', 2.99, 1, 0, 0, 0, 0, '2020-10-09 18:54:09', '2020-10-09 18:54:09', 'juice'),
+('watermelon', 'Watermelon', 'watermelon', 'Watermelon', 0.55, 1, 0, 0, 1, 0, '2020-10-09 18:56:33', '2020-10-09 18:56:33', 'fresh-fruit');
 
 -- --------------------------------------------------------
 
@@ -238,6 +238,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`username_user`, `password_user`, `fname_user`, `lname_user`, `bday_user`, `avatar_user`, `address_user`, `email_user`, `role_user`) VALUES
+('admin', '$2y$10$BrGCoW9ovXA9tym7pTlefeKyMMNPvkfq6/D4oNv85rBghI78Nd35C', 'Jacob', 'Browns', '1980-11-06', '/tmdt_201/public/master1/img/user/default-avatar.jpg', NULL, 'jacob1106browns@gmail.com', 1),
 ('hoangduydangle', '$2y$10$2d9x5b1ruHgPh9.4OxDz0ebpixI590JLZMOQBwZFmKr7MdnhoOCky', 'Hoangduy', 'Dangle', '1997-09-30', '/tmdt_201/public/master1/img/user/hoangduydangle/avatar.jpg', NULL, NULL, 0),
 ('johnsmith', '$2y$10$F1rYCKRdYGNlWlzfnhXivuiKMJVy6CvNdk1eri0k6d66ZpYoOozWS', 'John', 'Smith', '1964-10-31', '/tmdt_201/public/master1/img/user/default-avatar.jpg', NULL, 'johnsmith@gmail.com', 0),
 ('johnwick', '$2y$10$SZ.c3c3Xje7vW9uXjgCuouKmVQ/FVJotzEW.TPFqgn3NLqKkGr0Tu', 'Johnathan', 'Wick', '1967-10-15', '/tmdt_201/public/master1/img/user/default-avatar.jpg', NULL, NULL, 0),

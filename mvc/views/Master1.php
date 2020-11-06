@@ -19,6 +19,7 @@
         <link rel="stylesheet" href="/tmdt_201/public/master1/css/jquery-ui.min.css" type="text/css">
         <link rel="stylesheet" href="/tmdt_201/public/master1/css/owl.carousel.min.css" type="text/css">
         <link rel="stylesheet" href="/tmdt_201/public/master1/css/slicknav.min.css" type="text/css">
+        <link rel="stylesheet" href="/tmdt_201/public/master1/css/dataTables.bootstrap.min.css" type="text/css">
         <link rel="stylesheet" href="/tmdt_201/public/master1/css/style.css" type="text/css">
         <style>
             .language-option, .item-cart {
@@ -108,7 +109,7 @@
                 display: inline-block;
                 border-radius: 50%;
                 position: absolute;
-                top: 7px;
+                top: 5px;
                 right: 8px;
             }
 
@@ -153,15 +154,30 @@
         <a id="back-to-top-btn"></a>
 
         <!-- Cart Button -->
+        <?php if(isset($data['cms'])){?>
+            <a href="http://localhost/tmdt_201/order" id="cart-btn" class="rounded-circle">
+            <i class="fa fa-cart-arrow-down"></i>
+            <span class="selected-product">0</span>
+        </a>
+        <?php }
+        else{?>
         <a href="http://localhost/tmdt_201/cart" id="cart-btn" class="rounded-circle">
             <i class="fa fa-shopping-cart"></i>
             <span class="selected-product">0</span>
         </a>
+        <?php }?>
 
         <!-- Home Button -->
+        <?php if(isset($data['cms'])){?>
+        <a href="http://localhost/tmdt_201/admin" id="home-btn" class="rounded-circle">
+            <i class="fa fa-user-secret"></i>
+        </a>
+        <?php }
+        else{?>
         <a href="http://localhost/tmdt_201/home" id="home-btn" class="rounded-circle">
             <i class="fa fa-home"></i>
         </a>
+        <?php }?>
 
         <!-- Humberger Begin -->
         <div class="humberger__menu__overlay"></div>
@@ -226,10 +242,20 @@
             </div>
             <nav class="humberger__menu__nav mobile-menu">
                 <ul>
-                    <li class="active"><a href="http://localhost/tmdt_201/home">Home</a></li>
-                    <li><a href="http://localhost/tmdt_201/shop">Shop</a></li>
-                    <li><a href="http://localhost/tmdt_201/cart">Cart</a></li>
-                    <li><a href="http://localhost/tmdt_201/contact">Contact</a></li>
+                    <li <?php if($data["page"] == "home"){ ?>class="active"<?php }?>><a href="http://localhost/tmdt_201/home">Home</a></li>
+                    <?php if(!isset($data['cms'])){?>
+                    <li <?php if($data["page"] == "shop" || $data["page"] == "detail"){ ?>class="active"<?php }?>><a href="http://localhost/tmdt_201/shop">Shop</a></li>
+                    <li <?php if($data["page"] == "cart"){ ?>class="active"<?php }?>><a href="http://localhost/tmdt_201/cart">Cart</a></li>
+                    <li <?php if($data["page"] == "contact"){ ?>class="active"<?php }?>><a href="http://localhost/tmdt_201/contact">Contact</a></li>
+                    <?php if(isset($_SESSION['role']) && $_SESSION['role'] == 1){?>
+                    <li <?php if($data["page"] == "admin"){ ?>class="active"<?php }?>><a href="http://localhost/tmdt_201/admin">Cms</a></li>
+                    <?php }}
+                    else{
+                    ?>
+                    <li <?php if($data["page"] == "admin"){ ?>class="active"<?php }?>><a href="http://localhost/tmdt_201/admin">Admin</a></li>
+                    <li <?php if($data["page"] == "product"){ ?>class="active"<?php }?>><a href="http://localhost/tmdt_201/product">Product</a></li>
+                    <li <?php if($data["page"] == "order"){ ?>class="active"<?php }?>><a href="http://localhost/tmdt_201/order">Order</a></li>
+                    <?php }?>
                 </ul>
             </nav>
             <div id="mobile-menu-wrap"></div>
@@ -329,19 +355,37 @@
                         <nav class="header__menu">
                             <ul>
                                 <li <?php if($data["page"] == "home"){ ?>class="active"<?php }?>><a href="http://localhost/tmdt_201/home">Home</a></li>
+                                <?php if(!isset($data['cms'])){?>
                                 <li <?php if($data["page"] == "shop" || $data["page"] == "detail"){ ?>class="active"<?php }?>><a href="http://localhost/tmdt_201/shop">Shop</a></li>
                                 <li <?php if($data["page"] == "cart"){ ?>class="active"<?php }?>><a href="http://localhost/tmdt_201/cart">Cart</a></li>
                                 <li <?php if($data["page"] == "contact"){ ?>class="active"<?php }?>><a href="http://localhost/tmdt_201/contact">Contact</a></li>
+                                <?php if(isset($_SESSION['role']) && $_SESSION['role'] == 1){?>
+                                <li <?php if($data["page"] == "admin"){ ?>class="active"<?php }?>><a href="http://localhost/tmdt_201/admin">Cms</a></li>
+                                <?php }}
+                                else{
+                                ?>
+                                <li <?php if($data["page"] == "admin"){ ?>class="active"<?php }?>><a href="http://localhost/tmdt_201/admin">Admin</a></li>
+                                <li <?php if($data["page"] == "product"){ ?>class="active"<?php }?>><a href="http://localhost/tmdt_201/product">Product</a></li>
+                                <li <?php if($data["page"] == "order"){ ?>class="active"<?php }?>><a href="http://localhost/tmdt_201/order">Order</a></li>
+                                <?php }?>
                             </ul>
                         </nav>
                     </div>
                     <div class="col-lg-3">
                         <div class="header__cart">
+                            <?php if(!isset($data['cms'])){?>
                             <ul>
                                 <li><a href="#"><i class="fa fa-gift"></i> <span>0</span></a></li>
                                 <li><a href="http://localhost/tmdt_201/cart"><i class="fa fa-shopping-cart"></i> <span class="selected-product">0</span></a></li>
                             </ul>
                             <div class="header__cart__price">Total: <span>$150.00</span></div>
+                            <?php }
+                            else{?>
+                            <ul>
+                                <li><a href="#"><i class="fa fa-info-circle"></i> <span>0</span></a></li>
+                                <li><a href="http://localhost/tmdt_201/order"><i class="fa fa-cart-arrow-down"></i> <span>0</span></a></li>
+                            </ul>
+                            <?php }?>
                         </div>
                     </div>
                 </div>
@@ -353,6 +397,7 @@
         <!-- Header Section End -->
 
         <!-- Hero Section Begin -->
+        <?php if(isset($data['category_list'])){?>
         <section class="hero<?php echo $data["page"] == "home"?'':' hero-normal'; ?>">
             <div class="container">
                 <div class="row">
@@ -407,6 +452,7 @@
                 </div>
             </div>
         </section>
+        <?php }?>
         <!-- Hero Section End -->
 
         <?php
@@ -493,6 +539,10 @@
         <script src="/tmdt_201/public/master1/js/jquery.slicknav.js"></script>
         <script src="/tmdt_201/public/master1/js/mixitup.min.js"></script>
         <script src="/tmdt_201/public/master1/js/owl.carousel.min.js"></script>
+        <script src="/tmdt_201/public/master1/js/moment.js"></script>
+        <script src="/tmdt_201/public/master1/js/jquery.dataTables.min.js"></script>
+        <script src="/tmdt_201/public/master1/js/datetime-moment.js"></script>
+        <script src="/tmdt_201/public/master1/js/dataTables.bootstrap.min.js"></script>
         <script src="/tmdt_201/public/master1/js/main.js"></script>
 
     </body>

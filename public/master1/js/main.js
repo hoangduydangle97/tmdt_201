@@ -29,6 +29,17 @@
             var containerEl = document.querySelector('.featured__filter');
             var mixer = mixitup(containerEl);
         }
+        $.fn.dataTable.moment('HH:mm:ss - DD/MM/YYYY');
+        $('#dataTable').DataTable({
+            "aaSorting": [],
+            "columnDefs": [{
+                orderable: false,
+                targets: [0, 3]
+            }],
+            "scrollX": true,
+            "scrollY": 400
+        });
+
         if(checkCookie('sum')){
             $('.selected-product').html(getCookie('sum'));
         }

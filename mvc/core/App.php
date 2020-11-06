@@ -28,8 +28,11 @@ class App{
         if((isset($url[0]) && $url[0] != 'login') 
             && (isset($url[0]) && $url[0] != 'logout') 
             && (isset($url[0]) && $url[0] != 'signup')
-            && (isset($url[0]) && $url[0] == 'shop' && isset($url[1]) && $url[1] != 'review')){
+            || (isset($url[0]) && $url[0] == 'shop' && isset($url[1]) && $url[1] != 'review')){
             $_SESSION['path'] = $_SERVER['REQUEST_URI'];
+        }
+        else{
+            $_SESSION['path'] = '/tmdt_201/home';
         }
 
         call_user_func_array([$this->controller, $this->action], $this->params);

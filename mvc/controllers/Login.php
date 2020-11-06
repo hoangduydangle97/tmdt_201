@@ -1,5 +1,11 @@
 <?php
 class Login extends Controller{
+    protected $user_object;
+
+    final public function __construct(){
+        $this->user_object = $this->model("User");
+    }
+
     public function action(){
         $this->view("Master2", array(
             "page"=>"login"
@@ -14,13 +20,13 @@ class Login extends Controller{
             $username = $_POST['username'];
             $password = $_POST['password'];
         }
-        $user = $this->model("User");
-        $hashed_password = json_decode($user->get_password_user($username))->password_user;
+        $hashed_password = json_decode($this->user_object->get_password_user($username))->password_user;
         if($hashed_password){
-            $check = json_decode($user->check_password($password, $hashed_password));
+            $check = json_decode($this->user_object->check_password($password, $hashed_password));
         }
         if($check){
             $_SESSION['username'] = $username;
+            $_SESSION['role'] = intval(json_decode($this->user_object->get_role_user($username))->role_user);
             header("location: http://localhost".$_SESSION['path']);
         }
         else{

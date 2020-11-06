@@ -18,6 +18,22 @@ class Item extends Database{
         return json_encode($array_result);
     }
 
+    public function get_all_items(){
+        $from = ($this->page_no - 1)*$this->num_per_page;
+        $sql = "SELECT t3.*, t4.average_rating, t4.num_review".
+        " FROM (SELECT t1.*, t2.name_category FROM item t1 LEFT".
+        " JOIN category t2 ON t1.category_item=t2.id_category) t3".
+        " LEFT JOIN top_item t4 ON t3.id_item=t4.id_item_top;";
+        $array_result = array();
+        $sql_result = mysqli_query($this->conn, $sql);
+        if($sql_result){
+            while($row = mysqli_fetch_assoc($sql_result)){
+                $array_result[] = $row;
+            }
+        }
+        return json_encode($array_result);
+    }
+
     public function set_page_no($page_no){
         $this->page_no = (int)$page_no;
     }

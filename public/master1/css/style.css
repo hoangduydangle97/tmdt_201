@@ -464,7 +464,7 @@ ol {
 	padding: 5px 15px;
 }
 
-.header__menu ul li.active a {
+.header__menu ul li.active a, .slicknav_nav ul li.active a {
 	color: #7fad39;
 }
 

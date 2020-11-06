@@ -67,7 +67,7 @@
                 ?>
                 <div class="col-lg-3 col-md-4 col-sm-6 mix <?php echo $featured_item_list[$row]->category_item;?>">
                     <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="/tmdt_201/public/master1/img/product/<?php echo $featured_item_list[$row]->avatar_item; ?>.jpg">
+                        <div class="featured__item__pic set-bg" data-setbg="/tmdt_201/<?php echo $featured_item_list[$row]->avatar_item; ?>">
                             <ul class="featured__item__pic__hover">
                                 <?php $username = isset($_SESSION['username'])?$_SESSION['username']:'none'; 
                                 $selected = false;
@@ -118,12 +118,12 @@
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-6">
                     <div class="banner__pic">
-                        <img src="/tmdt_201/public/master1/img/banner/banner-1.jpg" alt="">
+                        <img src="/tmdt_201/public/master1/images/banner/banner-1.jpg" alt="banner-1">
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6">
                     <div class="banner__pic">
-                        <img src="/tmdt_201/public/master1/img/banner/banner-2.jpg" alt="">
+                        <img src="/tmdt_201/public/master1/images/banner/banner-2.jpg" alt="banner-2">
                     </div>
                 </div>
             </div>
@@ -148,7 +148,8 @@
                             <?php }?>
                                 <a href="http://localhost/tmdt_201/shop/detail/<?php echo $latest_item_list[$row]->id_item;?>" class="latest-product__item">
                                     <div class="latest-product__item__pic">
-                                        <img src="/tmdt_201/public/master1/img/product/<?php echo $latest_item_list[$row]->avatar_item; ?>.jpg" alt="" style="width: 110px; height: 110px;">
+                                        <img src="/tmdt_201/<?php echo $latest_item_list[$row]->avatar_item; ?>" 
+                                            alt="<?php echo $latest_item_list[$row]->id_item;?>" style="width: 110px; height: 110px;">
                                     </div>
                                     <div class="latest-product__item__text">
                                         <h6><?php echo $latest_item_list[$row]->name_item;?></h6>
@@ -175,7 +176,8 @@
                             <?php }?>
                                 <a href="http://localhost/tmdt_201/shop/detail/<?php echo $top_rated_item_list[$row]->id_item;?>" class="latest-product__item">
                                     <div class="latest-product__item__pic">
-                                        <img src="/tmdt_201/public/master1/img/product/<?php echo $top_rated_item_list[$row]->avatar_item; ?>.jpg" alt="" style="width: 110px; height: 110px;">
+                                        <img src="/tmdt_201/<?php echo $top_rated_item_list[$row]->avatar_item; ?>" 
+                                            alt="<?php echo $top_rated_item_list[$row]->id_item;?>" style="width: 110px; height: 110px;">
                                     </div>
                                     <div class="latest-product__item__text">
                                         <h6><?php echo $top_rated_item_list[$row]->name_item;?></h6>
@@ -207,7 +209,8 @@
                             <?php }?>
                                 <a href="http://localhost/tmdt_201/shop/detail/<?php echo $top_review_item_list[$row]->id_item;?>" class="latest-product__item">
                                     <div class="latest-product__item__pic">
-                                        <img src="/tmdt_201/public/master1/img/product/<?php echo $top_review_item_list[$row]->avatar_item; ?>.jpg" alt="" style="width: 110px; height: 110px;">
+                                        <img src="/tmdt_201/<?php echo $top_review_item_list[$row]->avatar_item; ?>" 
+                                            alt="<?php echo $top_review_item_list[$row]->id_item;?>" style="width: 110px; height: 110px;">
                                     </div>
                                     <div class="latest-product__item__text">
                                         <h6><?php echo $top_review_item_list[$row]->name_item;?></h6>

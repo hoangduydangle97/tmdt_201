@@ -1,5 +1,5 @@
     <!-- Breadcrumb Section Begin -->
-    <section class="breadcrumb-section set-bg" data-setbg="/tmdt_201/public/master1/img/breadcrumb.jpg">
+    <section class="breadcrumb-section set-bg" data-setbg="/tmdt_201/public/master1/images/breadcrumb.jpg">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -26,17 +26,17 @@
                     <div class="product__details__pic">
                         <div class="product__details__pic__item">
                             <img class="product__details__pic__item--large"
-                                src="/tmdt_201/public/master1/img/product/details/product-details-1.jpg" alt="">
+                                src="/tmdt_201/public/images/uploads/products/details/product-details-1.jpg" alt="">
                         </div>
                         <div class="product__details__pic__slider owl-carousel">
-                            <img data-imgbigurl="/tmdt_201/public/master1/img/product/details/product-details-2.jpg"
-                                src="/tmdt_201/public/master1/img/product/details/thumb-1.jpg" alt="">
-                            <img data-imgbigurl="/tmdt_201/public/master1/img/product/details/product-details-3.jpg"
-                                src="/tmdt_201/public/master1/img/product/details/thumb-2.jpg" alt="">
-                            <img data-imgbigurl="/tmdt_201/public/master1/img/product/details/product-details-5.jpg"
-                                src="/tmdt_201/public/master1/img/product/details/thumb-3.jpg" alt="">
-                            <img data-imgbigurl="/tmdt_201/public/master1/img/product/details/product-details-4.jpg"
-                                src="/tmdt_201/public/master1/img/product/details/thumb-4.jpg" alt="">
+                            <img data-imgbigurl="/tmdt_201/public/images/uploads/products/details/details/product-details-2.jpg"
+                                src="/tmdt_201/public/images/uploads/products/details/thumb-1.jpg" alt="">
+                            <img data-imgbigurl="/tmdt_201/public/images/uploads/products/details/product-details-3.jpg"
+                                src="/tmdt_201/public/images/uploads/products/details/thumb-2.jpg" alt="">
+                            <img data-imgbigurl="/tmdt_201/public/images/uploads/products/details/product-details-5.jpg"
+                                src="/tmdt_201/public/images/uploads/products/details/thumb-3.jpg" alt="">
+                            <img data-imgbigurl="/tmdt_201/public/images/uploads/products/details/product-details-4.jpg"
+                                src="/tmdt_201/public/images/uploads/products/details/thumb-4.jpg" alt="">
                         </div>
                     </div>
                 </div>
@@ -210,7 +210,8 @@
                                     ?>
                                     <div class="row mb-4">
                                         <div class="col-3 col-md-2 col-lg-1">
-                                            <img src="<?php echo $review_list[$row]->avatar_user;?>">
+                                            <img src="/tmdt_201/<?php echo $review_list[$row]->avatar_user;?>"
+                                                alt="<?php echo $review_list[$row]->username_user_rating;?>">
                                         </div>
                                         <div class="col-9 col-md-10 col-lg-11">
                                             <div class="container pl-0 mb-2">
@@ -276,7 +277,8 @@
                                     <hr>
                                     <div class="row">
                                         <div class="col-3 col-md-2 col-lg-1">
-                                            <img src="<?php echo $user->avatar_user;?>">
+                                            <img src="/tmdt_201/<?php echo $user->avatar_user;?>"
+                                                alt="<?php echo $user->username_user;?>">
                                         </div>
                                         <div class="col-9 col-md-10 col-lg-11">
                                             <div class="container pl-0 mb-2">
@@ -332,15 +334,33 @@
             <div class="row">
                 <?php $related_item_list = json_decode($data['related_item_list']);
                 $size_list = count($related_item_list);
-                for($row = 0; $row < $size_list; $row++){
+                if($size_list == 0){
+                ?>
+                <h4 class="font-italic mx-auto">There is no any related products.</h4>
+                <?php }
+                else{
+                    for($row = 0; $row < $size_list; $row++){
                 ?>
                 <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="/tmdt_201/public/master1/img/product/<?php echo $related_item_list[$row]->avatar_item; ?>.jpg">
+                        <div class="product__item__pic set-bg" data-setbg="/tmdt_201/<?php echo $related_item_list[$row]->avatar_item; ?>">
                             <ul class="product__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                <?php $username = isset($_SESSION['username'])?$_SESSION['username']:'none'; 
+                                $selected = false;
+                                if(isset($_COOKIE)){
+                                    foreach($_COOKIE as $key => $val){
+                                        if($key == "selected-".$related_item_list[$row]->id_item){
+                                            $selected = true;
+                                        }
+                                    }
+                                }
+                                ?>
+                                <li>
+                                    <a onclick="SetCart('<?php echo $related_item_list[$row]->id_item;?>','<?php echo $username;?>', this)"> 
+                                        <i class="fa fa-shopping-cart"></i>
+                                        <i class="fa fa-check-circle selected" <?php echo $selected == true?'':'hidden'?>></i>
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                         <div class="product__item__text">
@@ -350,10 +370,19 @@
                                 </a>
                             </h6>
                             <h5>$<?php echo $related_item_list[$row]->price_item;?></h5>
+                            <div>
+                                <?php $average_rating = $related_item_list[$row]->average_rating;?>
+                                <i style="color: #EDBB0E;" class="fa <?php echo (($average_rating > 0 && $average_rating < 0.3) || $average_rating == 0)?'fa-star-o':(($average_rating >= 0.3 && $average_rating < 0.7)?'fa-star-half-o':'fa-star');?>"></i>
+                                <i style="color: #EDBB0E;" class="fa <?php echo (($average_rating > 1 && $average_rating < 1.3) || $average_rating <= 1)?'fa-star-o':(($average_rating >= 1.3 && $average_rating < 1.7)?'fa-star-half-o':'fa-star');?>"></i>
+                                <i style="color: #EDBB0E;" class="fa <?php echo (($average_rating > 2 && $average_rating < 2.3) || $average_rating <= 2)?'fa-star-o':(($average_rating >= 2.3 && $average_rating < 2.7)?'fa-star-half-o':'fa-star');?>"></i>
+                                <i style="color: #EDBB0E;" class="fa <?php echo (($average_rating > 3 && $average_rating < 3.3) || $average_rating <= 3)?'fa-star-o':(($average_rating >= 3.3 && $average_rating < 3.7)?'fa-star-half-o':'fa-star');?>"></i>
+                                <i style="color: #EDBB0E;" class="fa <?php echo (($average_rating > 4 && $average_rating < 4.3) || $average_rating <= 4)?'fa-star-o':(($average_rating >= 4.3 && $average_rating < 4.7)?'fa-star-half-o':'fa-star');?>"></i>
+                                <span>(<?php echo $related_item_list[$row]->num_review;?> reviews)</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <?php }?>
+                <?php }}?>
             </div>
         </div>
     </section>

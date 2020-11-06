@@ -7,6 +7,7 @@ class App{
     final public function __construct(){
         $arr = $this->url_process();
         $url = [];
+        $_SESSION['temp_path'] = '';
         if(isset($arr[0])){
             $url[] = $arr[0];
             if(file_exists("./mvc/controllers/".$arr[0].".php")){
@@ -25,14 +26,24 @@ class App{
         }
         $this->params = $arr?array_values($arr):[];
 
+        if(isset($_SESSION['path'])){
+            $_SESSION['temp_path'] = $_SESSION['path'];
+        }
+
         if((isset($url[0]) && $url[0] != 'login') 
             && (isset($url[0]) && $url[0] != 'logout') 
-            && (isset($url[0]) && $url[0] != 'signup')
-            || (isset($url[0]) && $url[0] == 'shop' && isset($url[1]) && $url[1] != 'review')){
+            && (isset($url[0]) && $url[0] != 'signup')){
             $_SESSION['path'] = $_SERVER['REQUEST_URI'];
+            if($url[0] == 'shop'){
+                if(isset($url[1])){
+                    if($url[1] == 'review'){
+                        $_SESSION['path'] = $_SESSION['temp_path'];
+                    }
+                }
+            }
         }
         else{
-            $_SESSION['path'] = '/tmdt_201/home';
+            $_SESSION['path'] = $_SESSION['temp_path'];
         }
 
         call_user_func_array([$this->controller, $this->action], $this->params);

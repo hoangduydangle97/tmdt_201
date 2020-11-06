@@ -201,8 +201,8 @@ class Item extends Database{
 
     public function get_related_items($item){
         $category = json_decode($this->get_category_item($item))->category_item;
-        $sql = "SELECT id_item, name_item, avatar_item, price_item FROM item t1".
-        " LEFT JOIN top_item t2 on t1.id_item=t2.id_item_top".
+        $sql = "SELECT id_item, name_item, avatar_item, price_item, average_rating,".
+        " num_review FROM item t1 LEFT JOIN top_item t2 on t1.id_item=t2.id_item_top".
         " WHERE category_item='".$category."' AND NOT id_item='".$item."' ORDER BY".
         " average_rating DESC LIMIT 4";
         $array_result = array();
@@ -217,7 +217,7 @@ class Item extends Database{
 
     public function get_featured_items(){
         $sql = "SELECT id_item, name_item, avatar_item, price_item,".
-        " average_rating, num_review FROM item t1".
+        " average_rating, num_review, category_item FROM item t1".
         " LEFT JOIN top_item t2 ON t1.id_item=t2.id_item_top WHERE featured='1';";
         $array_result = array();
         $sql_result = mysqli_query($this->conn, $sql);

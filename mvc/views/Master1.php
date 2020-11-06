@@ -154,7 +154,7 @@
         <a id="back-to-top-btn"></a>
 
         <!-- Cart Button -->
-        <?php if(isset($data['cms'])){?>
+        <?php if(isset($_SESSION['cms'])){?>
             <a href="http://localhost/tmdt_201/order" id="cart-btn" class="rounded-circle">
             <i class="fa fa-cart-arrow-down"></i>
             <span class="selected-product">0</span>
@@ -168,7 +168,7 @@
         <?php }?>
 
         <!-- Home Button -->
-        <?php if(isset($data['cms'])){?>
+        <?php if(isset($_SESSION['cms'])){?>
         <a href="http://localhost/tmdt_201/admin" id="home-btn" class="rounded-circle">
             <i class="fa fa-user-secret"></i>
         </a>
@@ -183,7 +183,7 @@
         <div class="humberger__menu__overlay"></div>
         <div class="humberger__menu__wrapper">
             <div class="humberger__menu__logo">
-                <a href="#"><img src="/tmdt_201/public/master1/img/logo.png" alt=""></a>
+                <a href="#"><img src="/tmdt_201/public/master1/images/logo.png" alt="logo"></a>
             </div>
             <div class="humberger__menu__cart">
                 <ul>
@@ -194,7 +194,7 @@
             </div>
             <div class="humberger__menu__widget">
                 <div class="header__top__right__language mb-2">
-                    <img src="/tmdt_201/public/master1/img/language.png" alt="">
+                    <img src="/tmdt_201/public/master1/images/language.png" alt="language">
                     <div>English</div>
                     <span class="arrow_carrot-down"></span>
                     <ul>
@@ -243,7 +243,7 @@
             <nav class="humberger__menu__nav mobile-menu">
                 <ul>
                     <li <?php if($data["page"] == "home"){ ?>class="active"<?php }?>><a href="http://localhost/tmdt_201/home">Home</a></li>
-                    <?php if(!isset($data['cms'])){?>
+                    <?php if(!isset($_SESSION['cms'])){?>
                     <li <?php if($data["page"] == "shop" || $data["page"] == "detail"){ ?>class="active"<?php }?>><a href="http://localhost/tmdt_201/shop">Shop</a></li>
                     <li <?php if($data["page"] == "cart"){ ?>class="active"<?php }?>><a href="http://localhost/tmdt_201/cart">Cart</a></li>
                     <li <?php if($data["page"] == "contact"){ ?>class="active"<?php }?>><a href="http://localhost/tmdt_201/contact">Contact</a></li>
@@ -294,7 +294,7 @@
                                     <a href="#" class="language-option"><i class="fa fa-youtube"></i></a>
                                 </div>
                                 <div class="header__top__right__language">
-                                    <img src="/tmdt_201/public/master1/img/language.png" alt="">
+                                    <img src="/tmdt_201/public/master1/images/language.png" alt="language">
                                     <div>English</div>
                                     <span class="arrow_carrot-down"></span>
                                     <ul>
@@ -348,14 +348,14 @@
                 <div class="row">
                     <div class="col-lg-3">
                         <div class="header__logo">
-                            <a href="http://localhost/tmdt_201/home"><img src="/tmdt_201/public/master1/img/logo.png" alt=""></a>
+                            <a href="http://localhost/tmdt_201/home"><img src="/tmdt_201/public/master1/images/logo.png" alt="logo"></a>
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <nav class="header__menu">
                             <ul>
                                 <li <?php if($data["page"] == "home"){ ?>class="active"<?php }?>><a href="http://localhost/tmdt_201/home">Home</a></li>
-                                <?php if(!isset($data['cms'])){?>
+                                <?php if(!isset($_SESSION['cms'])){?>
                                 <li <?php if($data["page"] == "shop" || $data["page"] == "detail"){ ?>class="active"<?php }?>><a href="http://localhost/tmdt_201/shop">Shop</a></li>
                                 <li <?php if($data["page"] == "cart"){ ?>class="active"<?php }?>><a href="http://localhost/tmdt_201/cart">Cart</a></li>
                                 <li <?php if($data["page"] == "contact"){ ?>class="active"<?php }?>><a href="http://localhost/tmdt_201/contact">Contact</a></li>
@@ -373,7 +373,7 @@
                     </div>
                     <div class="col-lg-3">
                         <div class="header__cart">
-                            <?php if(!isset($data['cms'])){?>
+                            <?php if(!isset($_SESSION['cms'])){?>
                             <ul>
                                 <li><a href="#"><i class="fa fa-gift"></i> <span>0</span></a></li>
                                 <li><a href="http://localhost/tmdt_201/cart"><i class="fa fa-shopping-cart"></i> <span class="selected-product">0</span></a></li>
@@ -439,7 +439,7 @@
                             </div>
                         </div>
                         <?php if($data["page"] == "home"){?>
-                        <div class="hero__item set-bg" data-setbg="/tmdt_201/public/master1/img/hero/banner.jpg">
+                        <div class="hero__item set-bg" data-setbg="/tmdt_201/public/master1/images/hero/banner.jpg">
                             <div class="hero__text">
                                 <span>FRESH FRUIT</span>
                                 <h2>Vegetables <br />100% Organic</h2>
@@ -466,7 +466,7 @@
                     <div class="col-lg-3 col-md-6 col-sm-6">
                         <div class="footer__about">
                             <div class="footer__about__logo">
-                                <a href="http://localhost/tmdt_201/home"><img src="/tmdt_201/public/master1/img/logo.png" alt=""></a>
+                                <a href="http://localhost/tmdt_201/home"><img src="/tmdt_201/public/master1/images/logo.png" alt="logo"></a>
                             </div>
                             <ul>
                                 <li>Address: 123 Ly Thuong Kiet, Ward 14, District 10, TPHCM</li>
@@ -522,7 +522,7 @@
                                     <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                                 </p>
                             </div>
-                            <div class="footer__copyright__payment"><img src="/tmdt_201/public/master1/img/payment-item.png" alt=""></div>
+                            <div class="footer__copyright__payment"><img src="/tmdt_201/public/master1/images/payment-item.png" alt="payment-item"></div>
                         </div>
                     </div>
                 </div>

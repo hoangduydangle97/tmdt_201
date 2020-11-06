@@ -1,5 +1,5 @@
     <!-- Breadcrumb Section Begin -->
-    <section class="breadcrumb-section set-bg" data-setbg="/tmdt_201/public/master1/img/breadcrumb.jpg">
+    <section class="breadcrumb-section set-bg" data-setbg="/tmdt_201/public/master1/images/breadcrumb.jpg">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -22,7 +22,7 @@
         <?php $item_list = json_decode($data['item_list']);
         $size_list = count($item_list);
         if($size_list == 0){
-            echo '<h4 class="font-italic">There is no any products in your cart.</h4>';
+            echo '<h4 class="font-italic text-center">There is no any products in your cart.</h4>';
         }
         else{
         ?>

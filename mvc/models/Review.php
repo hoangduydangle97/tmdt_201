@@ -32,6 +32,7 @@ class Review extends Database{
         $username."' AND id_item_rating='".$item."' AND date_rating='".$date."';";
         $sql_result = mysqli_query($this->conn, $sql);
         if($sql_result){
+            //echo $_SESSION['path'];
             header("location: http://localhost".$_SESSION['path']);
         }
     }

@@ -1,5 +1,5 @@
     <!-- Breadcrumb Section Begin -->
-    <section class="breadcrumb-section set-bg" data-setbg="/tmdt_201/public/master1/img/breadcrumb.jpg">
+    <section class="breadcrumb-section set-bg" data-setbg="/tmdt_201/public/master1/images/breadcrumb.jpg">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -118,7 +118,8 @@
                                     <?php }?>
                                         <a href="http://localhost/tmdt_201/shop/detail/<?php echo $latest_item_list[$row]->id_item;?>" class="latest-product__item">
                                             <div class="latest-product__item__pic">
-                                                <img src="/tmdt_201/public/master1/img/product/<?php echo $latest_item_list[$row]->avatar_item; ?>.jpg" alt="" style="width: 110px;">
+                                                <img src="/tmdt_201/<?php echo $latest_item_list[$row]->avatar_item; ?>" 
+                                                    alt="<?php echo $latest_item_list[$row]->id_item;?>" style="width: 110px;">
                                             </div>
                                             <div class="latest-product__item__text">
                                                 <h6><?php echo $latest_item_list[$row]->name_item;?></h6>
@@ -143,7 +144,7 @@
                                 <div class="col-lg-4">
                                     <div class="product__discount__item">
                                         <div class="product__discount__item__pic set-bg"
-                                            data-setbg="/tmdt_201/public/master1/img/product/discount/pd-1.jpg">
+                                            data-setbg="/tmdt_201/public/images/uploads/products/discount/pd-1.jpg">
                                             <div class="product__discount__percent">-20%</div>
                                             <ul class="product__item__pic__hover">
                                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
@@ -161,7 +162,7 @@
                                 <div class="col-lg-4">
                                     <div class="product__discount__item">
                                         <div class="product__discount__item__pic set-bg"
-                                            data-setbg="/tmdt_201/public/master1/img/product/discount/pd-2.jpg">
+                                            data-setbg="/tmdt_201/public/images/uploads/products/discount/pd-2.jpg">
                                             <div class="product__discount__percent">-20%</div>
                                             <ul class="product__item__pic__hover">
                                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
@@ -179,7 +180,7 @@
                                 <div class="col-lg-4">
                                     <div class="product__discount__item">
                                         <div class="product__discount__item__pic set-bg"
-                                            data-setbg="/tmdt_201/public/master1/img/product/discount/pd-3.jpg">
+                                            data-setbg="/tmdt_201/public/images/uploads/products/discount/pd-3.jpg">
                                             <div class="product__discount__percent">-20%</div>
                                             <ul class="product__item__pic__hover">
                                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
@@ -197,7 +198,7 @@
                                 <div class="col-lg-4">
                                     <div class="product__discount__item">
                                         <div class="product__discount__item__pic set-bg"
-                                            data-setbg="/tmdt_201/public/master1/img/product/discount/pd-4.jpg">
+                                            data-setbg="/tmdt_201/public/images/uploads/products/discount/pd-4.jpg">
                                             <div class="product__discount__percent">-20%</div>
                                             <ul class="product__item__pic__hover">
                                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
@@ -215,7 +216,7 @@
                                 <div class="col-lg-4">
                                     <div class="product__discount__item">
                                         <div class="product__discount__item__pic set-bg"
-                                            data-setbg="/tmdt_201/public/master1/img/product/discount/pd-5.jpg">
+                                            data-setbg="/tmdt_201/public/images/uploads/products/discount/pd-5.jpg">
                                             <div class="product__discount__percent">-20%</div>
                                             <ul class="product__item__pic__hover">
                                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
@@ -233,7 +234,7 @@
                                 <div class="col-lg-4">
                                     <div class="product__discount__item">
                                         <div class="product__discount__item__pic set-bg"
-                                            data-setbg="/tmdt_201/public/master1/img/product/discount/pd-6.jpg">
+                                            data-setbg="/tmdt_201/public/images/uploads/products/discount/pd-6.jpg">
                                             <div class="product__discount__percent">-20%</div>
                                             <ul class="product__item__pic__hover">
                                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
@@ -279,7 +280,7 @@
                         <?php for($row = 0; $row < $size_item_list; $row++){ ?>
                         <div class="col-lg-4 col-md-6 col-sm-6">
                             <div class="product__item">
-                                <div class="product__item__pic set-bg" data-setbg="/tmdt_201/public/master1/img/product/<?php echo $item_list[$row]->avatar_item; ?>.jpg">
+                                <div class="product__item__pic set-bg" data-setbg="/tmdt_201/<?php echo $item_list[$row]->avatar_item; ?>">
                                     <ul class="product__item__pic__hover">
                                         <?php $username = isset($_SESSION['username'])?$_SESSION['username']:'none'; 
                                         $selected = false;

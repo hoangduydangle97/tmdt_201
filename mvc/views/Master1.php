@@ -154,7 +154,7 @@
         <a id="back-to-top-btn"></a>
 
         <!-- Cart Button -->
-        <?php if(isset($_SESSION['cms'])){?>
+        <?php if(isset($data['cms'])){?>
             <a href="http://localhost/tmdt_201/order" id="cart-btn" class="rounded-circle">
             <i class="fa fa-cart-arrow-down"></i>
             <span class="selected-product">0</span>
@@ -168,7 +168,7 @@
         <?php }?>
 
         <!-- Home Button -->
-        <?php if(isset($_SESSION['cms'])){?>
+        <?php if(isset($data['cms'])){?>
         <a href="http://localhost/tmdt_201/admin" id="home-btn" class="rounded-circle">
             <i class="fa fa-user-secret"></i>
         </a>
@@ -243,7 +243,7 @@
             <nav class="humberger__menu__nav mobile-menu">
                 <ul>
                     <li <?php if($data["page"] == "home"){ ?>class="active"<?php }?>><a href="http://localhost/tmdt_201/home">Home</a></li>
-                    <?php if(!isset($_SESSION['cms'])){?>
+                    <?php if(!isset($data['cms'])){?>
                     <li <?php if($data["page"] == "shop" || $data["page"] == "detail"){ ?>class="active"<?php }?>><a href="http://localhost/tmdt_201/shop">Shop</a></li>
                     <li <?php if($data["page"] == "cart"){ ?>class="active"<?php }?>><a href="http://localhost/tmdt_201/cart">Cart</a></li>
                     <li <?php if($data["page"] == "contact"){ ?>class="active"<?php }?>><a href="http://localhost/tmdt_201/contact">Contact</a></li>
@@ -267,7 +267,13 @@
             <div class="humberger__menu__contact">
                 <ul>
                     <li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
+                    <?php if(!isset($data['cms'])){?>
                     <li>Free Shipping for all Order of $99</li>
+                    <?php }
+                    else{
+                    ?>
+                    <li>Content Management System Page (CMS)</li>
+                    <?php }?>
                 </ul>
             </div>
         </div>
@@ -282,7 +288,13 @@
                             <div class="header__top__left">
                                 <ul>
                                     <li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
+                                    <?php if(!isset($data['cms'])){?>
                                     <li>Free Shipping for all Order of $99</li>
+                                    <?php }
+                                    else{
+                                    ?>
+                                    <li>Content Management System Page (CMS)</li>
+                                    <?php }?>
                                 </ul>
                             </div>
                         </div>
@@ -355,7 +367,7 @@
                         <nav class="header__menu">
                             <ul>
                                 <li <?php if($data["page"] == "home"){ ?>class="active"<?php }?>><a href="http://localhost/tmdt_201/home">Home</a></li>
-                                <?php if(!isset($_SESSION['cms'])){?>
+                                <?php if(!isset($data['cms'])){?>
                                 <li <?php if($data["page"] == "shop" || $data["page"] == "detail"){ ?>class="active"<?php }?>><a href="http://localhost/tmdt_201/shop">Shop</a></li>
                                 <li <?php if($data["page"] == "cart"){ ?>class="active"<?php }?>><a href="http://localhost/tmdt_201/cart">Cart</a></li>
                                 <li <?php if($data["page"] == "contact"){ ?>class="active"<?php }?>><a href="http://localhost/tmdt_201/contact">Contact</a></li>
@@ -373,7 +385,7 @@
                     </div>
                     <div class="col-lg-3">
                         <div class="header__cart">
-                            <?php if(!isset($_SESSION['cms'])){?>
+                            <?php if(!isset($data['cms'])){?>
                             <ul>
                                 <li><a href="#"><i class="fa fa-gift"></i> <span>0</span></a></li>
                                 <li><a href="http://localhost/tmdt_201/cart"><i class="fa fa-shopping-cart"></i> <span class="selected-product">0</span></a></li>

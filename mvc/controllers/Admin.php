@@ -9,10 +9,8 @@ class Admin extends Controller{
     }
 
     public function action(){
-        if(!isset($_SESSION['cms'])){
-            $_SESSION['cms'] = true;
-        }
         $this->view("Master1", array(
+            "cms"=>true,
             "page"=>"admin"
         ));
     }

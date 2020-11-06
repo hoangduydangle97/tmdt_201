@@ -1,5 +1,5 @@
     <!-- Breadcrumb Section Begin -->
-    <section class="breadcrumb-section set-bg" data-setbg="/tmdt_201/public/master1/img/breadcrumb.jpg">
+    <section class="breadcrumb-section set-bg" data-setbg="/tmdt_201/public/master1/images/breadcrumb.jpg">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -17,8 +17,8 @@
     <!-- Breadcrumb Section End -->
 
     <div class="card shadow my-4">
-        <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">List of products</h6>
+        <div class="card-header text-center py-3">
+            <h4 class="m-0 font-weight-bold text-primary">List of products</h4>
         </div>
         <div class="card-body">
             <div class="table-responsive">

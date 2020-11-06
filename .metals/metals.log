@@ -1,4 +1,0 @@
-2020.11.06 13:20:03 INFO  started: Metals version 0.9.4 in workspace 'E:\xampp\htdocs\tmdt_201' for client vscode.
-2020.11.06 13:20:04 INFO  time: initialize in 1.4s
-2020.11.06 13:20:08 WARN  no build tool detected in workspace 'E:\xampp\htdocs\tmdt_201'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
-2020.11.06 13:21:04 INFO  shutting down Metals

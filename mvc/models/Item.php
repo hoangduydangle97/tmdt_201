@@ -100,6 +100,19 @@ class Item extends Database{
         return json_encode($array_result);
     }
 
+    public function get_sale_off_items(){
+        $sql = "SELECT t1.*, t2.name_category FROM (SELECT * FROM `item` HAVING".
+        " sale_off_item > 0) t1 LEFT JOIN category t2 ON t1.category_item=t2.id_category;";
+        $array_result = array();
+        $sql_result = mysqli_query($this->conn, $sql);
+        if($sql_result){
+            while($row = mysqli_fetch_assoc($sql_result)){
+                $array_result[] = $row;
+            }
+        }
+        return json_encode($array_result);
+    }
+
     public function get_items_from_category_per_page($category){
         $from = ($this->page_no - 1)*$this->num_per_page;
         $sql = "SELECT id_item, name_item, avatar_item, price_item, average_rating, num_review".

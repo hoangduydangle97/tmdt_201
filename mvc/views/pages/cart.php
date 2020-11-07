@@ -45,7 +45,7 @@
                                 ?>
                                 <tr>
                                     <td class="shoping__cart__item">
-                                        <img src="/tmdt_201/public/master1/img/product/<?php echo $item_list[$row]->avatar_item; ?>.jpg" 
+                                        <img src="/tmdt_201/<?php echo $item_list[$row]->avatar_item; ?>" 
                                             alt="" width=100 height=100>
                                         <h5>
                                             <a href="http://localhost/tmdt_201/shop/detail/<?php echo $item_list[$row]->id_item;?>"

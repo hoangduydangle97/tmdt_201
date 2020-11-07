@@ -34,6 +34,9 @@
                             <th>Id</th>
                             <th>Name</th>
                             <th>Avatar</th>
+                            <th>Detail-1</th>
+                            <th>Detail-2</th>
+                            <th>Detail-3</th>
                             <th>Description</th>
                             <th>Price ($)</th>
                             <th>Availability</th>
@@ -73,6 +76,21 @@
                             <td class="align-middle">
                                 <a class="popover-hover" data-toggle="popover-hover" data-img="/tmdt_201/<?php echo $item_list[$row]->avatar_item;?>">
                                     <?php echo $item_list[$row]->avatar_item;?>
+                                </a>
+                            </td>
+                            <td class="align-middle">
+                                <a class="popover-hover" data-toggle="popover-hover" data-img="/tmdt_201/<?php echo $item_list[$row]->detail_item_1;?>">
+                                    <?php echo $item_list[$row]->detail_item_1;?>
+                                </a>
+                            </td>
+                            <td class="align-middle">
+                                <a class="popover-hover" data-toggle="popover-hover" data-img="/tmdt_201/<?php echo $item_list[$row]->detail_item_2;?>">
+                                    <?php echo $item_list[$row]->detail_item_2;?>
+                                </a>
+                            </td>
+                            <td class="align-middle">
+                                <a class="popover-hover" data-toggle="popover-hover" data-img="/tmdt_201/<?php echo $item_list[$row]->detail_item_3;?>">
+                                    <?php echo $item_list[$row]->detail_item_3;?>
                                 </a>
                             </td>
                             <td class="align-middle"><?php echo $item_list[$row]->description_item;?></td>

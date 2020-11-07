@@ -5,10 +5,10 @@
                 <div class="col-lg-12 text-center">
                     <div class="breadcrumb__text">
                         <?php $item_object = json_decode($data["item"]); ?>
-                        <h2><?php echo $item_object->name_category; ?></h2>
+                        <h2><?php echo $item_object->name_item; ?></h2>
                         <div class="breadcrumb__option">
                             <a href="http://localhost/tmdt_201/home">Home</a>
-                            <a href="http://localhost/tmdt_201/shop/<?php echo $item_object->category_item; ?>"><?php echo $item_object->name_category; ?></a>
+                            <a href="http://localhost/tmdt_201/shop/category/<?php echo $item_object->category_item; ?>"><?php echo $item_object->name_category; ?></a>
                             <span><?php echo $item_object->name_item; ?></span>
                         </div>
                     </div>
@@ -26,17 +26,17 @@
                     <div class="product__details__pic">
                         <div class="product__details__pic__item">
                             <img class="product__details__pic__item--large"
-                                src="/tmdt_201/public/images/uploads/products/details/product-details-1.jpg" alt="">
+                                src="/tmdt_201/<?php echo $item_object->avatar_item; ?>" alt="<?php echo $item_object->id_item; ?>">
                         </div>
                         <div class="product__details__pic__slider owl-carousel">
-                            <img data-imgbigurl="/tmdt_201/public/images/uploads/products/details/details/product-details-2.jpg"
-                                src="/tmdt_201/public/images/uploads/products/details/thumb-1.jpg" alt="">
-                            <img data-imgbigurl="/tmdt_201/public/images/uploads/products/details/product-details-3.jpg"
-                                src="/tmdt_201/public/images/uploads/products/details/thumb-2.jpg" alt="">
-                            <img data-imgbigurl="/tmdt_201/public/images/uploads/products/details/product-details-5.jpg"
-                                src="/tmdt_201/public/images/uploads/products/details/thumb-3.jpg" alt="">
-                            <img data-imgbigurl="/tmdt_201/public/images/uploads/products/details/product-details-4.jpg"
-                                src="/tmdt_201/public/images/uploads/products/details/thumb-4.jpg" alt="">
+                            <img data-imgbigurl="/tmdt_201/<?php echo $item_object->detail_item_1; ?>"
+                                src="/tmdt_201/<?php echo $item_object->detail_item_1; ?>" alt="<?php echo $item_object->id_item; ?>">
+                            <img data-imgbigurl="/tmdt_201/<?php echo $item_object->detail_item_2; ?>"
+                                src="/tmdt_201/<?php echo $item_object->detail_item_2; ?>" alt="detail-1-<?php echo $item_object->id_item; ?>">
+                            <img data-imgbigurl="/tmdt_201/<?php echo $item_object->detail_item_3; ?>"
+                                src="/tmdt_201/<?php echo $item_object->detail_item_3; ?>" alt="detail-2-<?php echo $item_object->id_item; ?>">
+                            <img data-imgbigurl="/tmdt_201/<?php echo $item_object->avatar_item; ?>"
+                                src="/tmdt_201/<?php echo $item_object->avatar_item; ?>" alt="detail-3-<?php echo $item_object->id_item; ?>">
                         </div>
                     </div>
                 </div>
@@ -90,7 +90,7 @@
                                 </span>
                             </li>
                             <li><b>Shipping</b> <span>01 day shipping. <samp>Free pickup today</samp></span></li>
-                            <li><b>Weight</b> <span>0.5 kg</span></li>
+                            <li><b>Weight</b> <span><?php echo $item_object->weight_item; ?> lb</span></li>
                             <li><b>Share on</b>
                                 <div class="share">
                                     <a href="#"><i class="fa fa-facebook"></i></a>

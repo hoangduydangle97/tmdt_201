@@ -19,9 +19,12 @@ class Shop extends Controller{
         $this->view("Master1", array(
             "page"=>"shop",
             "category"=>"all",
+            "sale_off_item_list"=>$this->item_object->get_sale_off_items(),
             "item_list"=>$this->item_object->get_all_items_per_page(),
             "category_list"=>$this->category_object->get_all_categories(),
             "latest_item_list"=>$this->item_object->get_latest_items(),
+            "top_rated_item_list"=>$this->item_object->get_top_rated_items(),
+            "top_review_item_list"=>$this->item_object->get_top_review_items(),
             "num_items"=>$this->item_object->get_num_all_items(),
             "num_pages"=>$this->item_object->get_num_all_pages(),
             "page_no"=>$this->item_object->get_page_no()

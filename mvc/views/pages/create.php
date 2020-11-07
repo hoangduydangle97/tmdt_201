@@ -16,7 +16,7 @@
     </section>
     <!-- Breadcrumb Section End -->
 
-    <form class="container py-5">
+    <form class="container py-5" enctype="multipart/form-data">
         <div class="form-group row">
             <label for="name" class="col-sm-2 col-form-label">Name</label>
             <div class="col-sm-10">
@@ -46,6 +46,12 @@
             <label for="new-category" class="col-sm-2 col-form-label">-> New Category</label>
             <div class="col-sm-10">
                 <input type="text" name="new-category" class="form-control" id="new-category" placeholder="New category">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="avatar" class="col-sm-2 col-form-label">Avatar</label>
+            <div class="col-sm-10">
+                <input type="file" name="avatar" id="avatar" accept=".png, .jpg, .jpeg">
             </div>
         </div>
         <div class="form-group row">

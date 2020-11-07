@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 06, 2020 lúc 07:32 PM
+-- Thời gian đã tạo: Th10 07, 2020 lúc 10:27 PM
 -- Phiên bản máy phục vụ: 10.4.14-MariaDB
 -- Phiên bản PHP: 7.4.10
 
@@ -59,11 +59,14 @@ CREATE TABLE `item` (
   `id_item` varchar(100) NOT NULL,
   `name_item` varchar(100) NOT NULL DEFAULT 'Default name',
   `avatar_item` varchar(500) NOT NULL DEFAULT 'Default link',
+  `detail_item_1` varchar(500) DEFAULT NULL,
+  `detail_item_2` varchar(500) DEFAULT NULL,
+  `detail_item_3` varchar(500) DEFAULT NULL,
   `description_item` varchar(500) NOT NULL DEFAULT 'Default description',
   `price_item` float NOT NULL DEFAULT 0,
   `availability_item` tinyint(1) NOT NULL DEFAULT 1,
   `weight_item` float NOT NULL DEFAULT 0,
-  `sale_off_item` int(11) NOT NULL DEFAULT 0,
+  `sale_off_item` float NOT NULL DEFAULT 0,
   `featured` tinyint(1) NOT NULL DEFAULT 0,
   `best_seller_item` tinyint(1) NOT NULL DEFAULT 0,
   `date_created_item` datetime DEFAULT NULL,
@@ -75,22 +78,22 @@ CREATE TABLE `item` (
 -- Đang đổ dữ liệu cho bảng `item`
 --
 
-INSERT INTO `item` (`id_item`, `name_item`, `avatar_item`, `description_item`, `price_item`, `availability_item`, `weight_item`, `sale_off_item`, `featured`, `best_seller_item`, `date_created_item`, `latest_date_updated_item`, `category_item`) VALUES
-('apple', 'Apple', 'public/images/uploads/products/apple/avatar/apple.jpg', 'Apples', 1.49, 1, 0, 0, 1, 1, '2020-10-09 18:42:10', '2020-10-09 18:42:10', 'fresh-fruit'),
-('banana', 'Banana', 'public/images/uploads/products/banana/avatar/banana.jpg', 'Bananas', 0.57, 1, 0, 0, 0, 1, '2020-10-09 18:43:11', '2020-10-09 18:43:11', 'fresh-fruit'),
-('beef', 'Beef', 'public/images/uploads/products/beef/avatar/beef.jpg', 'Beef', 2.49, 1, 0, 0, 1, 0, '2020-10-09 18:44:13', '2020-10-09 18:44:13', 'fresh-meat'),
-('bell-pepper', 'Bell pepper', 'public/images/uploads/products/bell-pepper/avatar/bell-peppers.jpg', 'Bell peppers', 4.59, 1, 0, 0, 0, 0, '2020-10-10 23:20:14', '2020-10-10 23:20:14', 'vegetables'),
-('carrot', 'Carrot', 'public/images/uploads/products/carrot/avatar/carrot.jpg', 'Carrot', 1.22, 1, 0, 0, 1, 0, '2020-10-11 00:02:18', '2020-10-11 00:02:18', 'vegetables'),
-('chicken', 'Chicken', 'public/images/uploads/products/chicken/avatar/chicken.jpg', 'Chicken', 6.99, 1, 0, 0, 0, 0, '2020-10-09 18:44:37', '2020-10-09 18:44:37', 'fastfood'),
-('combo-fruit', 'Combo Fruit', 'public/images/uploads/products/combo-fruit/avatar/combo-fruit.jpg', 'Combo Fruit', 19.99, 1, 0, 0, 1, 0, '2020-10-09 18:45:25', '2020-10-09 18:45:25', 'fresh-fruit'),
-('common-guava', 'Common guava', 'public/images/uploads/products/common-guava/avatar/common-guava.jpg', 'Common guava', 3.49, 1, 0, 0, 0, 0, '2020-10-09 18:46:04', '2020-10-09 18:46:04', 'fresh-fruit'),
-('grape', 'Grape', 'public/images/uploads/products/grape/avatar/grape.jpg', 'Grapes', 2.09, 1, 0, 0, 1, 0, '2020-10-09 18:47:48', '2020-10-09 18:47:48', 'fresh-fruit'),
-('hamburger', 'Hamburger', 'public/images/uploads/products/hamburger/avatar/hamburger.jpg', 'Hamburgers', 6.99, 1, 0, 0, 0, 0, '2020-10-09 18:49:22', '2020-10-09 18:49:22', 'fastfood'),
-('lettuce', 'Lettuce', 'public/images/uploads/products/lettuce/avatar/lettuce.jpg', 'Lettuce', 0.35, 1, 0, 0, 0, 0, '2020-10-10 23:57:59', '2020-10-10 23:57:59', 'vegetables'),
-('mango', 'Mango', 'public/images/uploads/products/mango/avatar/mango.jpg', 'Mangoes', 7.39, 1, 0, 0, 1, 0, '2020-10-09 18:52:11', '2020-10-09 18:52:11', 'fresh-fruit'),
-('orange-juice', 'Orange Juice', 'public/images/uploads/products/orange-juice/avatar/orange-juice.jpg', 'Orange Juice', 2.62, 1, 0, 0, 0, 0, '2020-10-09 18:52:53', '2020-10-09 18:52:53', 'juice'),
-('sliwki-juice', 'Sliwki Juice', 'public/images/uploads/products/sliwki-juice/avatar/sliwki-juice.jpg', 'Sliwki Juice', 2.99, 1, 0, 0, 0, 0, '2020-10-09 18:54:09', '2020-10-09 18:54:09', 'juice'),
-('watermelon', 'Watermelon', 'public/images/uploads/products/watermelon/avatar/watermelon.jpg', 'Watermelon', 0.55, 1, 0, 0, 1, 0, '2020-10-09 18:56:33', '2020-10-09 18:56:33', 'fresh-fruit');
+INSERT INTO `item` (`id_item`, `name_item`, `avatar_item`, `detail_item_1`, `detail_item_2`, `detail_item_3`, `description_item`, `price_item`, `availability_item`, `weight_item`, `sale_off_item`, `featured`, `best_seller_item`, `date_created_item`, `latest_date_updated_item`, `category_item`) VALUES
+('apple', 'Apple', 'public/images/uploads/products/apple/avatar/apple.jpg', 'public/images/uploads/products/apple/details/detail-1-apple.jpg', 'public/images/uploads/products/apple/details/detail-2-apple.jpg', 'public/images/uploads/products/apple/details/detail-3-apple.jpg', 'Apples', 1.49, 1, 1, 20, 1, 1, '2020-10-09 18:42:10', '2020-10-09 18:42:10', 'fresh-fruit'),
+('avocado', 'Avocado', 'public/images/uploads/products/avocado/avatar/avocado.jpg', 'public/images/uploads/products/avocado/details/detail-1-avocado.jpg', 'public/images/uploads/products/avocado/details/detail-2-avocado.jpg', 'public/images/uploads/products/avocado/details/detail-3-avocado.jpg', 'Avocado', 9.99, 1, 1, 0, 1, 0, '2020-10-09 18:45:25', '2020-10-09 18:45:25', 'fresh-fruit'),
+('banana', 'Banana', 'public/images/uploads/products/banana/avatar/banana.jpg', 'public/images/uploads/products/banana/details/detail-1-banana.jpg', 'public/images/uploads/products/banana/details/detail-2-banana.jpg', 'public/images/uploads/products/banana/details/detail-3-banana.jpg', 'Bananas', 0.57, 1, 1, 15, 0, 1, '2020-10-09 18:43:11', '2020-10-09 18:43:11', 'fresh-fruit'),
+('beef', 'Beef', 'public/images/uploads/products/beef/avatar/beef.jpg', 'public/images/uploads/products/beef/details/detail-1-beef.jpg', 'public/images/uploads/products/beef/details/detail-2-beef.jpg', 'public/images/uploads/products/beef/details/detail-3-beef.jpg', 'Beef', 2.49, 1, 1, 25, 1, 0, '2020-10-09 18:44:13', '2020-10-09 18:44:13', 'fresh-meat'),
+('bell-pepper', 'Bell pepper', 'public/images/uploads/products/bell-pepper/avatar/bell-peppers.jpg', 'public/images/uploads/products/bell-pepper/details/detail-1-bell-pepper.jpg', 'public/images/uploads/products/bell-pepper/details/detail-2-bell-pepper.jpg', 'public/images/uploads/products/bell-pepper/details/detail-3-bell-pepper.jpg', 'Bell peppers', 4.59, 1, 1, 0, 0, 0, '2020-10-10 23:20:14', '2020-10-10 23:20:14', 'vegetables'),
+('carrot', 'Carrot', 'public/images/uploads/products/carrot/avatar/carrot.jpg', 'public/images/uploads/products/carrot/details/detail-1-carrot.jpg', 'public/images/uploads/products/carrot/details/detail-2-carrot.jpg', 'public/images/uploads/products/carrot/details/detail-3-carrot.jpg', 'Carrot', 1.22, 1, 1, 0, 1, 0, '2020-10-11 00:02:18', '2020-10-11 00:02:18', 'vegetables'),
+('chicken', 'Chicken', 'public/images/uploads/products/chicken/avatar/chicken.jpg', 'public/images/uploads/products/chicken/details/detail-1-chicken.jpg', 'public/images/uploads/products/chicken/details/detail-2-chicken.jpg', 'public/images/uploads/products/chicken/details/detail-3-chicken.jpg', 'Chicken', 6.99, 1, 1, 0, 0, 0, '2020-10-09 18:44:37', '2020-10-09 18:44:37', 'fastfood'),
+('dragon-fruit', 'Dragon fruit', 'public/images/uploads/products/dragon-fruit/avatar/dragon-fruit.jpg', 'public/images/uploads/products/dragon-fruit/details/detail-1-dragon-fruit.jpg', 'public/images/uploads/products/dragon-fruit/details/detail-2-dragon-fruit.jpg', 'public/images/uploads/products/dragon-fruit/details/detail-3-dragon-fruit.jpg', 'Dragon fruit', 3.49, 1, 1, 0, 0, 0, '2020-10-09 18:46:04', '2020-10-09 18:46:04', 'fresh-fruit'),
+('grape', 'Grape', 'public/images/uploads/products/grape/avatar/grape.jpg', 'public/images/uploads/products/grape/details/detail-1-grape.jpg', 'public/images/uploads/products/grape/details/detail-2-grape.jpg', 'public/images/uploads/products/grape/details/detail-3-grape.jpg', 'Grapes', 2.09, 1, 1, 20, 1, 0, '2020-10-09 18:47:48', '2020-10-09 18:47:48', 'fresh-fruit'),
+('hamburger', 'Hamburger', 'public/images/uploads/products/hamburger/avatar/hamburger.jpg', 'public/images/uploads/products/hamburger/details/detail-1-hamburger.jpg', 'public/images/uploads/products/hamburger/details/detail-2-hamburger.jpg', 'public/images/uploads/products/hamburger/details/detail-3-hamburger.jpg', 'Hamburgers', 6.99, 1, 1, 0, 0, 0, '2020-10-09 18:49:22', '2020-10-09 18:49:22', 'fastfood'),
+('lettuce', 'Lettuce', 'public/images/uploads/products/lettuce/avatar/lettuce.jpg', 'public/images/uploads/products/lettuce/details/detail-1-lettuce.jpg', 'public/images/uploads/products/lettuce/details/detail-2-lettuce.jpg', 'public/images/uploads/products/lettuce/details/detail-3-lettuce.jpg', 'Lettuce', 0.35, 1, 1, 0, 0, 0, '2020-10-10 23:57:59', '2020-10-10 23:57:59', 'vegetables'),
+('mango', 'Mango', 'public/images/uploads/products/mango/avatar/mango.jpg', 'public/images/uploads/products/mango/details/detail-1-mango.jpg', 'public/images/uploads/products/mango/details/detail-2-mango.jpg', 'public/images/uploads/products/mango/details/detail-3-mango.jpg', 'Mangoes', 7.39, 1, 1, 0, 1, 0, '2020-10-09 18:52:11', '2020-10-09 18:52:11', 'fresh-fruit'),
+('orange-juice', 'Orange Juice', 'public/images/uploads/products/orange-juice/avatar/orange-juice.jpg', 'public/images/uploads/products/orange-juice/details/detail-1-orange-juice.jpg', 'public/images/uploads/products/orange-juice/details/detail-2-orange-juice.jpg', 'public/images/uploads/products/orange-juice/details/detail-3-orange-juice.jpg', 'Orange Juice', 2.62, 1, 1, 5, 0, 0, '2020-10-09 18:52:53', '2020-10-09 18:52:53', 'juice'),
+('strawberry-juice', 'Strawberry Juice', 'public/images/uploads/products/strawberry-juice/avatar/strawberry-juice.jpg', 'public/images/uploads/products/strawberry-juice/details/detail-1-strawberry-juice.jpg', 'public/images/uploads/products/strawberry-juice/details/detail-2-strawberry-juice.jpg', 'public/images/uploads/products/strawberry-juice/details/detail-3-strawberry-juice.jpg', 'Strawberry Juice', 2.99, 1, 1, 0, 0, 0, '2020-10-09 18:54:09', '2020-10-09 18:54:09', 'juice'),
+('watermelon', 'Watermelon', 'public/images/uploads/products/watermelon/avatar/watermelon.jpg', 'public/images/uploads/products/watermelon/details/detail-1-watermelon.jpg', 'public/images/uploads/products/watermelon/details/detail-2-watermelon.jpg', 'public/images/uploads/products/watermelon/details/detail-3-watermelon.jpg', 'Watermelon', 0.55, 1, 1, 0, 1, 0, '2020-10-09 18:56:33', '2020-10-09 18:56:33', 'fresh-fruit');
 
 -- --------------------------------------------------------
 
@@ -132,8 +135,8 @@ INSERT INTO `rating_user_item` (`username_user_rating`, `id_item_rating`, `ratin
 ('hoangduydangle', 'chicken', 5, 'Delicious!', '2020-10-29 12:15:40'),
 ('hoangduydangle', 'hamburger', 2, 'Not special.', '2020-10-30 18:54:54'),
 ('hoangduydangle', 'mango', 5, NULL, '2020-10-30 23:17:39'),
+('johnsmith', 'avocado', 4, 'Good', '2020-10-31 16:01:15'),
 ('johnsmith', 'beef', 3, 'OK', '2020-10-31 16:06:01'),
-('johnsmith', 'combo-fruit', 4, 'Good', '2020-10-31 16:01:15'),
 ('johnwick', 'apple', 4, 'Good', '2020-10-25 15:44:42'),
 ('johnwick', 'banana', 3, 'OK', '2020-11-06 22:35:58'),
 ('johnwick', 'bell-pepper', 4, 'Good', '2020-10-30 01:39:43'),
@@ -201,19 +204,19 @@ CREATE TABLE `top_item` (
 
 INSERT INTO `top_item` (`id_item_top`, `average_rating`, `num_review`) VALUES
 ('apple', 3.33333, 3),
+('avocado', 4, 1),
 ('banana', 4, 3),
 ('beef', 4, 2),
 ('bell-pepper', 4, 1),
 ('carrot', 0, 0),
 ('chicken', 4.5, 2),
-('combo-fruit', 4, 1),
-('common-guava', 0, 0),
+('dragon-fruit', 0, 0),
 ('grape', 0, 0),
 ('hamburger', 3.5, 2),
 ('lettuce', 0, 0),
 ('mango', 4.5, 1),
 ('orange-juice', 0, 0),
-('sliwki-juice', 0, 0),
+('strawberry-juice', 0, 0),
 ('watermelon', 5, 2);
 
 -- --------------------------------------------------------

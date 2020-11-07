@@ -95,9 +95,9 @@
                                 }
                                 ?>
                                 <li>
-                                    <a onclick="SetCart('<?php echo $featured_item_list[$row]->id_item;?>','<?php echo $username;?>', this)"> 
+                                    <a onclick="SetCart('<?php echo $featured_item_list[$row]->id_item;?>','<?php echo $username;?>')"> 
                                         <i class="fa fa-shopping-cart"></i>
-                                        <i class="fa fa-check-circle selected" <?php echo $selected == true?'':'hidden'?>></i>
+                                        <i class="fa fa-check-circle selected <?php echo $featured_item_list[$row]->id_item;?>" <?php echo $selected == true?'':'hidden'?>></i>
                                     </a>
                                 </li>
                             </ul>

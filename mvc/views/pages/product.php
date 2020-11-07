@@ -22,7 +22,7 @@
         </div>
         <div class="card-body">
             <div class="text-right">
-                <button type="button" class="btn btn-primary mb-3">
+                <button type="button" class="btn btn-primary mb-3" onclick="directToCreate()">
                     <i class="fa fa-plus-square"></i> Create a new product
                 </button>
             </div>
@@ -58,9 +58,13 @@
                                         Action
                                     </button>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="#">Modify</a>
+                                        <a class="dropdown-item" href="/tmdt_201/product/update/<?php echo $item_list[$row]->id_item;?>">
+                                            <i class="fa fa-edit"></i> Modify
+                                        </a>
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#">Delete</a>
+                                        <a class="dropdown-item" href="/tmdt_201/product/delete/<?php echo $item_list[$row]->id_item;?>">
+                                            <i class="fa fa-trash"></i> Delete
+                                        </a>
                                     </div>
                                 </div>
                             </td>

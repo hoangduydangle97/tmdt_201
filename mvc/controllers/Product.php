@@ -23,5 +23,14 @@ class Product extends Controller{
             "category_list"=>$this->category_object->get_all_categories()
         ));
     }
+
+    public function update($item){
+        $this->view("Master1", array(
+            "cms"=>true,
+            "page"=>"update",
+            "category_list"=>$this->category_object->get_all_categories(),
+            "item"=>$this->item_object->get_item($item)
+        ));
+    }
 }
 ?>

@@ -542,3 +542,7 @@ function changeOption(val){
         $('.new-category').attr('hidden', true);
     }
 }
+
+function directToCreate(){
+    location.href = '/tmdt_201/product/create';
+}

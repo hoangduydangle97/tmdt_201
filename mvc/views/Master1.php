@@ -45,7 +45,7 @@
                 font-size:1.25em;
             }
 
-            .star-rating .fa-star:hover, .star-rating-modify .fa-star:hover {
+            .star-rating .fa-star:hover, .star-rating-modify .fa-star:hover, .popover-hover {
                 cursor: pointer;
             }
 

@@ -17,10 +17,15 @@
     <!-- Breadcrumb Section End -->
 
     <div class="card shadow my-4">
-        <div class="card-header text-center py-3">
+        <div class="card-header py-3 text-center">
             <h4 class="m-0 font-weight-bold text-primary">List of products</h4>
         </div>
         <div class="card-body">
+            <div class="text-right">
+                <button type="button" class="btn btn-primary mb-3">
+                    <i class="fa fa-plus-square"></i> Create a new product
+                </button>
+            </div>
             <div class="table-responsive">
                 <table class="table table-bordered table-striped table-hover text-nowrap" id="dataTable" width="100%" cellspacing="0">
                     <thead>
@@ -31,7 +36,7 @@
                             <th>Avatar</th>
                             <th>Description</th>
                             <th>Price ($)</th>
-                            <th>Avalibility</th>
+                            <th>Availability</th>
                             <th>Weight (lb)</th>
                             <th>Sale off (%)</th>
                             <th>Featured</th>
@@ -61,7 +66,11 @@
                             </td>
                             <td class="align-middle"><?php echo $item_list[$row]->id_item;?></td>
                             <td class="align-middle"><?php echo $item_list[$row]->name_item;?></td>
-                            <td class="align-middle"><?php echo $item_list[$row]->avatar_item;?></td>
+                            <td class="align-middle">
+                                <a class="popover-hover" data-toggle="popover-hover" data-img="/tmdt_201/<?php echo $item_list[$row]->avatar_item;?>">
+                                    <?php echo $item_list[$row]->avatar_item;?>
+                                </a>
+                            </td>
                             <td class="align-middle"><?php echo $item_list[$row]->description_item;?></td>
                             <td class="align-middle"><?php echo $item_list[$row]->price_item;?></td>
                             <td class="align-middle"><?php echo $item_list[$row]->availability_item;?></td>

@@ -45,7 +45,7 @@
                 font-size:1.25em;
             }
 
-            .star-rating .fa-star:hover, .star-rating-modify .fa-star:hover, .popover-hover {
+            .star-rating .fa-star:hover, .star-rating-modify .fa-star:hover, .popover-hover, .category-btn:hover {
                 cursor: pointer;
             }
 
@@ -253,7 +253,9 @@
                     else{
                     ?>
                     <li <?php if($data["page"] == "admin"){ ?>class="active"<?php }?>><a href="http://localhost/tmdt_201/admin">Admin</a></li>
-                    <li <?php if($data["page"] == "product"){ ?>class="active"<?php }?>><a href="http://localhost/tmdt_201/product">Product</a></li>
+                    <li <?php if($data["page"] == "product" || $data["page"] == "create" || $data["page"] == "update" || $data["page"] == "category"){ ?>class="active"<?php }?>>
+                        <a href="http://localhost/tmdt_201/product">Product</a>
+                    </li>
                     <li <?php if($data["page"] == "order"){ ?>class="active"<?php }?>><a href="http://localhost/tmdt_201/order">Order</a></li>
                     <?php }?>
                 </ul>
@@ -377,7 +379,9 @@
                                 else{
                                 ?>
                                 <li <?php if($data["page"] == "admin"){ ?>class="active"<?php }?>><a href="http://localhost/tmdt_201/admin">Admin</a></li>
-                                <li <?php if($data["page"] == "product"){ ?>class="active"<?php }?>><a href="http://localhost/tmdt_201/product">Product</a></li>
+                                <li <?php if($data["page"] == "product" || $data["page"] == "create" || $data["page"] == "update" || $data["page"] == "category"){ ?>class="active"<?php }?>>
+                                    <a href="http://localhost/tmdt_201/product">Product</a>
+                                </li>
                                 <li <?php if($data["page"] == "order"){ ?>class="active"<?php }?>><a href="http://localhost/tmdt_201/order">Order</a></li>
                                 <?php }?>
                             </ul>
@@ -409,7 +413,7 @@
         <!-- Header Section End -->
 
         <!-- Hero Section Begin -->
-        <?php if(isset($data['category_list'])){?>
+        <?php if(!isset($data['cms'])){?>
         <section class="hero<?php echo $data["page"] == "home"?'':' hero-normal'; ?>">
             <div class="container">
                 <div class="row">

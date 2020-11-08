@@ -12,7 +12,7 @@ class Login extends Controller{
         ));
     }
 
-    public function check_login(){
+    public function login(){
         $username = '';
         $password = '';
         $check = false;
@@ -30,7 +30,7 @@ class Login extends Controller{
             header("location: http://localhost".$_SESSION['path']);
         }
         else{
-            $_SESSION['error'] = true;
+            $_SESSION['error'] = [true, 'Username or Password is wrong!'];
             header('location: http://localhost/tmdt_201/login');
         }
     }

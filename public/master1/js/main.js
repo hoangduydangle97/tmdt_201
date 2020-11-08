@@ -29,32 +29,7 @@
             var containerEl = document.querySelector('.featured__filter');
             var mixer = mixitup(containerEl);
         }
-        $.fn.dataTable.moment('HH:mm:ss - DD/MM/YYYY');
-        $('#dataTable').DataTable({
-            "aaSorting": [],
-            "columnDefs": [{
-                orderable: false,
-                targets: [0, 3, 4, 5, 6]
-            }],
-            "fnDrawCallback": function () {
-                $('[data-toggle="popover-hover"]').popover({
-                    html: true,
-                    trigger: 'hover',
-                    placement: 'right',
-                    content: function () { return '<img src="' + $(this).data('img') + '" />'; }
-                });
-            },
-            "scrollX": true,
-            "scrollY": 400
-        });
 
-        if(checkCookie('sum')){
-            $('.selected-product').html(getCookie('sum'));
-        }
-        else{
-            $('.selected-product').html(0);
-        }
-        
         var path = location.pathname;
         var last_path = path.charAt(path.length - 1);
         var check_path = path.indexOf('category');
@@ -70,6 +45,46 @@
                 scrollTop: $('#scroll-pos-review').offset().top
             }, 'slow');
         }
+
+        $.fn.dataTable.moment('HH:mm:ss - DD/MM/YYYY');
+        if(path != '/tmdt_201/product/categories'){
+            $('#dataTable').DataTable({
+                "aaSorting": [],
+                "columnDefs": [{
+                    orderable: false,
+                    targets: [0, 3, 4, 5, 6]
+                }],
+                "fnDrawCallback": function () {
+                    $('[data-toggle="popover-hover"]').popover({
+                        html: true,
+                        trigger: 'hover',
+                        placement: 'right',
+                        content: function () { return '<img src="' + $(this).data('img') + '" />'; }
+                    });
+                },
+                "scrollX": true,
+                "scrollY": 400
+            });
+        }
+        else{
+            $('#dataTable').DataTable({
+                "aaSorting": [],
+                "columnDefs": [{
+                    orderable: false,
+                    targets: 0
+                }],
+                "scrollX": true,
+                "scrollY": 400
+            });
+        }
+
+        if(checkCookie('sum')){
+            $('.selected-product').html(getCookie('sum'));
+        }
+        else{
+            $('.selected-product').html(0);
+        }
+    
     });
 
     /*------------------
@@ -328,7 +343,7 @@
     var cart_btn = $('#cart-btn');
     var home_btn = $('#home-btn');
     $(window).scroll(function() {
-        if ($(window).scrollTop() > 350) {
+        if ($(window).scrollTop() > 400) {
             btn.addClass('show');
             cart_btn.addClass('show');
             home_btn.addClass('show');
@@ -532,15 +547,28 @@ function SetCart(id_item, username){
     }
 }
 
-function changeOption(val){
-    if(val == 'new'){
-        $('.new-category').removeAttr('hidden');
+function directToCreate(params){
+    if(params == 'create'){
+        location.href = '/tmdt_201/product/create';
     }
-    else{
-        $('.new-category').attr('hidden', true);
+    else if(params == 'categories'){
+        location.href = '/tmdt_201/product/categories';
     }
 }
 
-function directToCreate(){
-    location.href = '/tmdt_201/product/create';
+function changeClick(val, id = null, name = null){
+    if(val == 'create-category'){
+        $('.form-category').removeAttr('hidden').attr('action', 'http://localhost/tmdt_201/product/categories/create'); 
+        $('#name').removeAttr('disabled');
+        $('#submit').val('Create category');
+    }
+    else if(val == 'cancel-create-category'){
+        $('.form-category').attr('hidden', true).removeAttr('action'); 
+        $('#name').attr('disabled', true);
+    }
+    else if(val == 'update-category'){
+        $('.form-category').removeAttr('hidden').attr('action', 'http://localhost/tmdt_201/product/categories/update/' + id); 
+        $('#name').removeAttr('disabled').val(name).after('<input type="hidden" name="current-id" value="' + id + '">');
+        $('#submit').val('Update category');
+    }
 }

@@ -22,10 +22,21 @@
         </div>
         <div class="card-body">
             <div class="text-right">
-                <button type="button" class="btn btn-primary mb-3" onclick="directToCreate()">
+                <button type="button" class="btn btn-primary mb-3 mr-3" onclick="directToCreate('create')">
                     <i class="fa fa-plus-square"></i> Create a new product
                 </button>
+                <button type="button" class="btn btn-primary mb-3" onclick="directToCreate('categories')">
+                    <i class="fa fa-tasks"></i> Manage categories
+                </button>
             </div>
+            <?php if(isset($_SESSION['error'])){
+                if($_SESSION['error'] != false){?>
+            <div class="container <?php echo $_SESSION['error'][0] == false?'text-success':'text-danger';?> text-center mb-3 error-info">
+            <i class="fa fa-info-circle"></i> <?php echo $_SESSION['error'][1];?> <i class="fa fa-times category-btn" onclick="$('.error-info').attr('hidden', true)"></i>
+            </div>
+            <?php }
+            $_SESSION['error'] = false;
+            }?>
             <div class="table-responsive">
                 <table class="table table-bordered table-striped table-hover text-nowrap" id="dataTable" width="100%" cellspacing="0">
                     <thead>
@@ -51,8 +62,8 @@
                     </thead>
                     <tbody>
                         <?php $item_list = json_decode($data['item_list']); 
-                        $size_item_list = count($item_list);
-                        for($row = 0; $row < $size_item_list; $row++){
+                        $size_list = count($item_list);
+                        for($row = 0; $row < $size_list; $row++){
                         ?>
                         <tr>
                             <td class="text-center">

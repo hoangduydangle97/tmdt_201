@@ -53,15 +53,16 @@ class User extends Database{
     }
 
     public function insert_user($role){
-        $username = $_POST['username'];
+        $username = trim($_POST['username']);
         $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-        $fname = $_POST['fname'];
-        $lname = $_POST['lname'];
-        $bday = $_POST['bday'];
-        $addr = $_POST['addr'];
-        $email = $_POST['email'];
+        $fname = trim($_POST['fname']);
+        $lname = trim($_POST['lname']);
+        $bday = trim($_POST['bday']);
+        $addr = trim($_POST['addr']);
+        $email = trim($_POST['email']);
+        $phone = trim($_POST['phone']);
 
-        $avatar = '/tmdt_201/public/master1/img/user/';
+        $avatar = '/tmdt_201/public/images/uploads/user/';
         $avatar_name = $_FILES['avatar']['name'];
         $avatar_tmp = $_FILES['avatar']['tmp_name'];
         $target_dir = '';
@@ -73,22 +74,8 @@ class User extends Database{
             $bday = 'NULL';
         }
 
-        if($addr != ''){
-            $addr = "'".$addr."'";
-        }
-        else{
-            $addr = 'NULL';
-        }
-
-        if($email != ''){
-            $email = "'".$email."'";
-        }
-        else{
-            $email = 'NULL';
-        }
-
         if($avatar_name != ''){
-            $target_dir = "./public/master1/img/user/".$username;
+            $target_dir = "./public/images/uploads/user/".$username;
             mkdir($target_dir, 0700, true);
             move_uploaded_file($avatar_tmp, $target_dir."/".$avatar_name);
             $avatar = "'".$avatar.$avatar_name."'";
@@ -97,16 +84,18 @@ class User extends Database{
             $avatar = "'".$avatar."default-avatar.jpg'";
         }
 
-        $sql = "INSERT INTO user(username_user, password_user, fname_user,". 
-        " lname_user, bday_user, avatar_user, address_user, email_user, role_user)".
+        $sql = "INSERT INTO user(username_user, password_user, fname_user, lname_user,".
+        " bday_user, avatar_user, address_user, phone_user, email_user, role_user)".
         " VALUES ('".$username."', '".$password."', '".$fname."', '".$lname."', ".$bday.
-        ", ".$avatar.", ".$addr.", ".$email.", '".$role."')";
+        ", ".$avatar.", '".$addr."', '".$email."', '".$role."')";
 
         $sql_result = mysqli_query($this->conn, $sql);
         if($sql_result){
+            $_SESSION['error'] = [false, 'Create successfully! Login to continue!'];
             header("location: http://localhost/tmdt_201/login");
         }
         else{
+            $_SESSION['error'] = [true, 'There may be errors, please check your input again!'];
             header("location: http://localhost/tmdt_201/signup");
         }
     }

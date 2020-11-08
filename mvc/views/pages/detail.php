@@ -55,7 +55,7 @@
                             <i class="fa <?php echo (($average_rating > 4 && $average_rating < 4.3) || $average_rating <= 4)?'fa-star-o':(($average_rating >= 4.3 && $average_rating < 4.7)?'fa-star-half-o':'fa-star');?>"></i>
                             <span>(<?php echo $size_list; ?> reviews)</span>
                         </div>
-                        <div class="product__details__price">$<?php echo $item_object->price_item;?></div>
+                        <div class="product__details__price">$<?php echo number_format($item_object->price_item, 2);?></div>
                         <p>Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vestibulum ac diam sit amet quam
                             vehicula elementum sed sit amet dui. Sed porttitor lectus nibh. Vestibulum ac diam sit amet
                             quam vehicula elementum sed sit amet dui. Proin eget tortor risus.</p>

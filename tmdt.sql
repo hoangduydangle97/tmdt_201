@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 07, 2020 lúc 10:27 PM
+-- Thời gian đã tạo: Th10 09, 2020 lúc 12:06 AM
 -- Phiên bản máy phục vụ: 10.4.14-MariaDB
 -- Phiên bản PHP: 7.4.10
 
@@ -29,25 +29,28 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `category` (
   `id_category` varchar(100) NOT NULL,
-  `name_category` varchar(100) NOT NULL DEFAULT 'Default name'
+  `name_category` varchar(100) NOT NULL DEFAULT 'Default name',
+  `date_created_category` datetime DEFAULT NULL,
+  `latest_date_updated_category` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Đang đổ dữ liệu cho bảng `category`
 --
 
-INSERT INTO `category` (`id_category`, `name_category`) VALUES
-('beverages', 'Beverages'),
-('chips-cereals', 'Chips & Cereals'),
-('fastfood', 'Fastfood'),
-('fresh-fruit', 'Fresh Fruit'),
-('fresh-meat', 'Fresh Meat'),
-('juice', 'Juice'),
-('milk', 'Milk'),
-('ocean-foods', 'Ocean Foods'),
-('oil', 'Oil'),
-('rice', 'Rice'),
-('vegetables', 'Vegetables');
+INSERT INTO `category` (`id_category`, `name_category`, `date_created_category`, `latest_date_updated_category`) VALUES
+('another', 'Another', '2020-11-09 04:15:25', '2020-11-09 04:15:25'),
+('beverages', 'Beverages', '2020-10-09 18:30:12', '2020-10-09 18:30:12'),
+('chips-cereals', 'Chips & Cereals', '2020-10-09 18:31:15', '2020-10-09 18:31:15'),
+('fastfood', 'Fastfood', '2020-10-09 18:32:07', '2020-10-09 18:32:07'),
+('fresh-fruit', 'Fresh Fruit', '2020-10-09 18:33:20', '2020-10-09 18:33:20'),
+('fresh-meat', 'Fresh Meat', '2020-10-09 18:35:43', '2020-10-09 18:35:43'),
+('juice', 'Juice', '2020-10-09 18:38:22', '2020-10-09 18:38:22'),
+('milk', 'Milk', '2020-10-09 18:40:10', '2020-10-09 18:40:10'),
+('ocean-foods', 'Ocean Foods', '2020-10-09 18:41:17', '2020-10-09 18:41:17'),
+('oil', 'Oil', '2020-10-09 18:42:56', '2020-10-09 18:42:56'),
+('rice', 'Rice', '2020-10-09 18:44:31', '2020-10-09 18:44:31'),
+('vegetables', 'Vegetables', '2020-10-09 18:45:49', '2020-10-09 18:45:49');
 
 -- --------------------------------------------------------
 
@@ -57,12 +60,12 @@ INSERT INTO `category` (`id_category`, `name_category`) VALUES
 
 CREATE TABLE `item` (
   `id_item` varchar(100) NOT NULL,
-  `name_item` varchar(100) NOT NULL DEFAULT 'Default name',
-  `avatar_item` varchar(500) NOT NULL DEFAULT 'Default link',
+  `name_item` varchar(100) NOT NULL,
+  `avatar_item` varchar(500) NOT NULL,
   `detail_item_1` varchar(500) DEFAULT NULL,
   `detail_item_2` varchar(500) DEFAULT NULL,
   `detail_item_3` varchar(500) DEFAULT NULL,
-  `description_item` varchar(500) NOT NULL DEFAULT 'Default description',
+  `description_item` varchar(500) DEFAULT NULL,
   `price_item` float NOT NULL DEFAULT 0,
   `availability_item` tinyint(1) NOT NULL DEFAULT 1,
   `weight_item` float NOT NULL DEFAULT 0,
@@ -90,10 +93,19 @@ INSERT INTO `item` (`id_item`, `name_item`, `avatar_item`, `detail_item_1`, `det
 ('grape', 'Grape', 'public/images/uploads/products/grape/avatar/grape.jpg', 'public/images/uploads/products/grape/details/detail-1-grape.jpg', 'public/images/uploads/products/grape/details/detail-2-grape.jpg', 'public/images/uploads/products/grape/details/detail-3-grape.jpg', 'Grapes', 2.09, 1, 1, 20, 1, 0, '2020-10-09 18:47:48', '2020-10-09 18:47:48', 'fresh-fruit'),
 ('hamburger', 'Hamburger', 'public/images/uploads/products/hamburger/avatar/hamburger.jpg', 'public/images/uploads/products/hamburger/details/detail-1-hamburger.jpg', 'public/images/uploads/products/hamburger/details/detail-2-hamburger.jpg', 'public/images/uploads/products/hamburger/details/detail-3-hamburger.jpg', 'Hamburgers', 6.99, 1, 1, 0, 0, 0, '2020-10-09 18:49:22', '2020-10-09 18:49:22', 'fastfood'),
 ('lettuce', 'Lettuce', 'public/images/uploads/products/lettuce/avatar/lettuce.jpg', 'public/images/uploads/products/lettuce/details/detail-1-lettuce.jpg', 'public/images/uploads/products/lettuce/details/detail-2-lettuce.jpg', 'public/images/uploads/products/lettuce/details/detail-3-lettuce.jpg', 'Lettuce', 0.35, 1, 1, 0, 0, 0, '2020-10-10 23:57:59', '2020-10-10 23:57:59', 'vegetables'),
+('lime', 'Lime', 'public/images/uploads/products/lime/avatar/lime.jpg', 'public/images/uploads/products/lime/details/detail-1-lime.jpg', 'public/images/uploads/products/lime/details/detail-2-lime.jpg', 'public/images/uploads/products/lime/details/detail-3-lime.jpg', 'Lime', 1.46, 1, 1, 0, 0, 0, '2020-11-08 19:14:19', '2020-11-08 19:14:19', 'fresh-fruit'),
 ('mango', 'Mango', 'public/images/uploads/products/mango/avatar/mango.jpg', 'public/images/uploads/products/mango/details/detail-1-mango.jpg', 'public/images/uploads/products/mango/details/detail-2-mango.jpg', 'public/images/uploads/products/mango/details/detail-3-mango.jpg', 'Mangoes', 7.39, 1, 1, 0, 1, 0, '2020-10-09 18:52:11', '2020-10-09 18:52:11', 'fresh-fruit'),
 ('orange-juice', 'Orange Juice', 'public/images/uploads/products/orange-juice/avatar/orange-juice.jpg', 'public/images/uploads/products/orange-juice/details/detail-1-orange-juice.jpg', 'public/images/uploads/products/orange-juice/details/detail-2-orange-juice.jpg', 'public/images/uploads/products/orange-juice/details/detail-3-orange-juice.jpg', 'Orange Juice', 2.62, 1, 1, 5, 0, 0, '2020-10-09 18:52:53', '2020-10-09 18:52:53', 'juice'),
 ('strawberry-juice', 'Strawberry Juice', 'public/images/uploads/products/strawberry-juice/avatar/strawberry-juice.jpg', 'public/images/uploads/products/strawberry-juice/details/detail-1-strawberry-juice.jpg', 'public/images/uploads/products/strawberry-juice/details/detail-2-strawberry-juice.jpg', 'public/images/uploads/products/strawberry-juice/details/detail-3-strawberry-juice.jpg', 'Strawberry Juice', 2.99, 1, 1, 0, 0, 0, '2020-10-09 18:54:09', '2020-10-09 18:54:09', 'juice'),
 ('watermelon', 'Watermelon', 'public/images/uploads/products/watermelon/avatar/watermelon.jpg', 'public/images/uploads/products/watermelon/details/detail-1-watermelon.jpg', 'public/images/uploads/products/watermelon/details/detail-2-watermelon.jpg', 'public/images/uploads/products/watermelon/details/detail-3-watermelon.jpg', 'Watermelon', 0.55, 1, 1, 0, 1, 0, '2020-10-09 18:56:33', '2020-10-09 18:56:33', 'fresh-fruit');
+
+--
+-- Bẫy `item`
+--
+DELIMITER $$
+CREATE TRIGGER `tg_insert_item` AFTER INSERT ON `item` FOR EACH ROW INSERT INTO top_item(id_item_top, average_rating, num_review) VALUES(NEW.id_item, '0', '0')
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -214,6 +226,7 @@ INSERT INTO `top_item` (`id_item_top`, `average_rating`, `num_review`) VALUES
 ('grape', 0, 0),
 ('hamburger', 3.5, 2),
 ('lettuce', 0, 0),
+('lime', 0, 0),
 ('mango', 4.5, 1),
 ('orange-juice', 0, 0),
 ('strawberry-juice', 0, 0),
@@ -233,6 +246,7 @@ CREATE TABLE `user` (
   `bday_user` date DEFAULT NULL,
   `avatar_user` varchar(500) DEFAULT NULL,
   `address_user` varchar(500) DEFAULT NULL,
+  `phone_user` varchar(100) NOT NULL,
   `email_user` varchar(500) DEFAULT NULL,
   `role_user` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -241,12 +255,12 @@ CREATE TABLE `user` (
 -- Đang đổ dữ liệu cho bảng `user`
 --
 
-INSERT INTO `user` (`username_user`, `password_user`, `fname_user`, `lname_user`, `bday_user`, `avatar_user`, `address_user`, `email_user`, `role_user`) VALUES
-('admin', '$2y$10$BrGCoW9ovXA9tym7pTlefeKyMMNPvkfq6/D4oNv85rBghI78Nd35C', 'Jacob', 'Browns', '1980-11-06', 'public/images/uploads/users/default-avatar.jpg', NULL, 'jacob1106browns@gmail.com', 1),
-('hoangduydangle', '$2y$10$2d9x5b1ruHgPh9.4OxDz0ebpixI590JLZMOQBwZFmKr7MdnhoOCky', 'Hoangduy', 'Dangle', '1997-09-30', 'public/images/uploads/users/hoangduydangle/avatar.jpg', NULL, NULL, 0),
-('johnsmith', '$2y$10$F1rYCKRdYGNlWlzfnhXivuiKMJVy6CvNdk1eri0k6d66ZpYoOozWS', 'John', 'Smith', '1964-10-31', 'public/images/uploads/users/default-avatar.jpg', NULL, 'johnsmith@gmail.com', 0),
-('johnwick', '$2y$10$SZ.c3c3Xje7vW9uXjgCuouKmVQ/FVJotzEW.TPFqgn3NLqKkGr0Tu', 'Johnathan', 'Wick', '1967-10-15', 'public/images/uploads/users/default-avatar.jpg', NULL, NULL, 0),
-('tonystark', '$2y$10$3eqWspe4pFNQsFqaJogBSern8YK1RVDNHdE6fQAso4GdnYJRl9BjS', 'Tony', 'Stark', '1970-05-29', 'public/images/uploads/users/default-avatar.jpg', NULL, NULL, 0);
+INSERT INTO `user` (`username_user`, `password_user`, `fname_user`, `lname_user`, `bday_user`, `avatar_user`, `address_user`, `phone_user`, `email_user`, `role_user`) VALUES
+('admin', '$2y$10$BrGCoW9ovXA9tym7pTlefeKyMMNPvkfq6/D4oNv85rBghI78Nd35C', 'Jacob', 'Browns', '1980-11-06', 'public/images/uploads/users/default-avatar.jpg', NULL, '0932490127', 'jacob1106browns@gmail.com', 1),
+('hoangduydangle', '$2y$10$2d9x5b1ruHgPh9.4OxDz0ebpixI590JLZMOQBwZFmKr7MdnhoOCky', 'Hoangduy', 'Dangle', '1997-09-30', 'public/images/uploads/users/hoangduydangle/avatar.jpg', NULL, '0988341765', 'duy.dang.bku_19@hcmut.edu.vn', 0),
+('johnsmith', '$2y$10$F1rYCKRdYGNlWlzfnhXivuiKMJVy6CvNdk1eri0k6d66ZpYoOozWS', 'John', 'Smith', '1964-10-31', 'public/images/uploads/users/default-avatar.jpg', NULL, '0903112223', 'johnsmith@gmail.com', 0),
+('johnwick', '$2y$10$SZ.c3c3Xje7vW9uXjgCuouKmVQ/FVJotzEW.TPFqgn3NLqKkGr0Tu', 'Johnathan', 'Wick', '1967-10-15', 'public/images/uploads/users/default-avatar.jpg', NULL, '0984123456', 'johnwick@gmail.com', 0),
+('tonystark', '$2y$10$3eqWspe4pFNQsFqaJogBSern8YK1RVDNHdE6fQAso4GdnYJRl9BjS', 'Tony', 'Stark', '1970-05-29', 'public/images/uploads/users/default-avatar.jpg', NULL, '0916654321', 'tonystark@gmail.com', 0);
 
 --
 -- Chỉ mục cho các bảng đã đổ

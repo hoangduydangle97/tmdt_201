@@ -4,10 +4,10 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="breadcrumb__text">
-                        <h2>Update</h2>
+                        <h2>Update Product</h2>
                         <div class="breadcrumb__option">
                             <a href="http://localhost/tmdt_201/product">Product</a>
-                            <span>Update</span>
+                            <span>Update Product</span>
                         </div>
                     </div>
                 </div>
@@ -16,13 +16,23 @@
     </section>
     <!-- Breadcrumb Section End -->
 
-    <?php $item_object = json_decode($data["item"]);?>
-    <form class="container py-5">
+    <?php if(isset($_SESSION['error'])){
+        if($_SESSION['error'] != false){?>
+    <div class="container <?php echo $_SESSION['error'][0] == false?'text-success':'text-danger';?> text-center mt-3 error-info">
+        <i class="fa fa-info-circle"></i> <?php echo $_SESSION['error'][1];?> <i class="fa fa-times category-btn" onclick="$('.error-info').attr('hidden', true)"></i>
+    </div>
+    <?php }
+    $_SESSION['error'] = false;
+    }
+    $item_object = json_decode($data["item"]);?>
+    <form class="container py-5" enctype="multipart/form-data" 
+        method="POST" action="http://localhost/tmdt_201/product/update_product">
         <div class="form-group row">
-            <label for="name" class="col-sm-2 col-form-label">Name</label>
+            <label for="name" class="col-sm-2 col-form-label">Name<span class="text-danger">*</span></label>
             <div class="col-sm-10">
                 <input type="text" name="name" class="form-control" id="name" 
-                    placeholder="Product name" value="<?php echo $item_object->name_item; ?>">
+                    placeholder="Product name" value="<?php echo $item_object->name_item; ?>" required>
+                <input type="hidden" name="current-id" value="<?php echo $item_object->id_item; ?>">
             </div>
         </div>
         <div class="form-group row">
@@ -36,7 +46,7 @@
         <div class="form-group row">
             <label for="category" class="col-sm-2 col-form-label">Category</label>
             <div class="col-sm-10">
-                <select name="category" id="category" onchange="changeOption(this.value)">
+                <select name="category" id="category">
                     <?php $category_list = json_decode($data["category_list"]);
                     for($row = 0; $row < count($category_list); $row++){
                         $name_category = $category_list[$row]->name_category;
@@ -45,14 +55,51 @@
                         <?php echo $name_category; ?>
                     </option>
                     <?php }?>
-                    <option value="new">New ...</option>
                 </select>
             </div>
         </div>
-        <div class="form-group row new-category" hidden>
-            <label for="new-category" class="col-sm-2 col-form-label">-> New Category</label>
+        <div class="form-group row">
+            <label for="avatar" class="col-sm-2 col-form-label">Avatar</label>
             <div class="col-sm-10">
-                <input type="text" name="new-category" class="form-control" id="new-category" placeholder="New category">
+                <input type="file" name="avatar" id="avatar" accept=".png, .jpg, .jpeg">
+                <input type='hidden' name="current-avatar" value="<?php echo $item_object->avatar_item; ?>">
+                <div class="d-sm-inline-block mt-2">
+                    <u>Current avatar:</u>
+                    <img src="/tmdt_201/<?php echo $item_object->avatar_item; ?>" style="width:100px; height:100px;">
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="detail-1" class="col-sm-2 col-form-label">Detail-1</label>
+            <div class="col-sm-10">
+                <input type="file" name="detail-1" id="detail-1" accept=".png, .jpg, .jpeg">
+                <div class="d-sm-inline-block mt-2">
+                    <u>Current detail-1:</u>
+                    <img src="/tmdt_201/<?php echo $item_object->detail_item_1; ?>" style="width:100px; height:100px;">
+                    <input type='hidden' name="current-detail-1" value="<?php echo $item_object->detail_item_1; ?>">
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="detail-2" class="col-sm-2 col-form-label">Detail-2</label>
+            <div class="col-sm-10">
+                <input type="file" name="detail-2" id="detail-2" accept=".png, .jpg, .jpeg">
+                <div class="d-sm-inline-block mt-2">
+                    <u>Current detail-2:</u>
+                    <img src="/tmdt_201/<?php echo $item_object->detail_item_2; ?>" style="width:100px; height:100px;">
+                    <input type='hidden' name="current-detail-2" value="<?php echo $item_object->detail_item_2; ?>">
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="detail-3" class="col-sm-2 col-form-label">Detail-3</label>
+            <div class="col-sm-10">
+                <input type="file" name="detail-3" id="detail-3" accept=".png, .jpg, .jpeg">
+                <div class="d-sm-inline-block mt-2">
+                    <u>Current detail-3:</u>
+                    <img src="/tmdt_201/<?php echo $item_object->detail_item_3; ?>" style="width:100px; height:100px;">
+                    <input type='hidden' name="current-detail-3" value="<?php echo $item_object->detail_item_3; ?>">
+                </div>
             </div>
         </div>
         <div class="form-group row">

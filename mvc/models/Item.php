@@ -254,5 +254,194 @@ class Item extends Database{
         }
         return json_encode($array_result);
     }
+
+    public function iu_product($params){
+        $current_id = '';
+        if(isset($_POST['current-id'])){
+            $current_id = $_POST['current-id'];
+        }
+
+        $name = trim($_POST['name']);
+        if($name == ''){
+            $_SESSION['error'] = [true, 'Name must be at least 1 character!'];
+            if($params == 'insert'){
+                header("location: http://localhost/tmdt_201/product/create");
+            }
+            else if($params == 'update'){
+                header("location: http://localhost/tmdt_201/product/update/".$current_id);
+            }
+        }
+        else{
+            $id_item = str_replace(' ', '-', strtolower($name));
+            $description = trim($_POST['description']);
+            $category = $_POST['category'];
+            $price = $_POST['price'];
+            $availability = $_POST['availability'];
+            $weight = $_POST['weight'];
+            $sale_off = $_POST['sale-off'];
+            $featured = $_POST['featured'];
+            $best_seller = $_POST['best-seller'];
+            $avatar = 'public/images/uploads/products/'.$id_item.'/avatar/';
+            $detail = 'public/images/uploads/products/'.$id_item.'/details/';
+            $default = 'public/images/uploads/products/';
+            $sql = '';
+            $detail_1 = '';
+            $detail_2 = '';
+            $detail_3 = '';
+            $current_avatar = '';
+            $current_detail_1 = '';
+            $current_detail_2 = '';
+            $current_detail_3 = '';
+
+            if(isset($_POST['current-avatar'])){
+                $current_avatar = $_POST['current-avatar'];
+            }
+
+            if(isset($_POST['current-detail-1'])){
+                $current_detail_1 = $_POST['current-detail-1'];
+            }
+
+            if(isset($_POST['current-detail-2'])){
+                $current_detail_2 = $_POST['current-detail-2'];
+            }
+
+            if(isset($_POST['current-detail-3'])){
+                $current_detail_3 = $_POST['current-detail-3'];
+            }
+
+            $avatar_name = $_FILES['avatar']['name'];
+            $avatar_tmp = $_FILES['avatar']['tmp_name'];
+
+            $detail_1_name = $_FILES['detail-1']['name'];
+            $detail_1_tmp = $_FILES['detail-1']['tmp_name'];
+
+            $detail_2_name = $_FILES['detail-2']['name'];
+            $detail_2_tmp = $_FILES['detail-2']['tmp_name'];
+
+            $detail_3_name = $_FILES['detail-3']['name'];
+            $detail_3_tmp = $_FILES['detail-3']['tmp_name'];
+
+            $target_dir = "./public/images/uploads/products/".$id_item;
+            if(!file_exists($target_dir)){
+                mkdir($target_dir, 0700, true);
+            }
+            $avatar_dir = "./public/images/uploads/products/".$id_item."/avatar";
+            if(!file_exists($avatar_dir)){
+                mkdir($avatar_dir, 0700, true);
+            }
+            $detail_dir = "./public/images/uploads/products/".$id_item."/details";
+            if(!file_exists($detail_dir)){
+                mkdir($detail_dir, 0700, true);
+            }
+
+            if($description != ''){
+                $description = "'".$description."'";
+            }
+            else{
+                $description = 'NULL';
+            }
+
+            if($avatar_name != ''){
+                move_uploaded_file($avatar_tmp, $avatar_dir."/".$avatar_name);
+                $avatar = "'".$avatar.$avatar_name."'";
+            }
+            else{
+                if($params == 'insert'){
+                    $avatar = "'".$default."default-item.jpg'";
+                }
+                else if($params == 'update'){
+                    $avatar = "'".$current_avatar."'";
+                }
+            }
+
+            if($detail_1_name != ''){
+                move_uploaded_file($detail_1_tmp, $detail_dir."/detail-1-".$detail_1_name);
+                $detail_1 = "'".$detail."detail-1-".$detail_1_name."'";
+            }
+            else{
+                if($params == 'insert'){
+                    $detail_1 = "'".$default."default-item.jpg'";
+                }
+                else if($params == 'update'){
+                    $detail_1 = "'".$current_detail_1."'";
+                }
+            }
+
+            if($detail_2_name != ''){
+                move_uploaded_file($detail_2_tmp, $detail_dir."/detail-2-".$detail_2_name);
+                $detail_2 = "'".$detail."detail-2-".$detail_2_name."'";
+            }
+            else{
+                if($params == 'insert'){
+                    $detail_2 = "'".$default."default-item.jpg'";
+                }
+                else if($params == 'update'){
+                    $detail_2 = "'".$current_detail_2."'";
+                }
+            }
+
+            if($detail_3_name != ''){
+                move_uploaded_file($detail_3_tmp, $detail_dir."/detail-3-".$detail_3_name);
+                $detail_3 = "'".$detail."detail-3-".$detail_3_name."'";
+            }
+            else{
+                if($params == 'insert'){
+                    $detail_3 = "'".$default."default-item.jpg'";
+                }
+                else if($params == 'update'){
+                    $detail_3 = "'".$current_detail_3."'";
+                }
+            }
+
+            if($params == 'insert'){
+                $sql = "INSERT INTO item(id_item, name_item, avatar_item, detail_item_1, detail_item_2,". 
+                " detail_item_3, description_item, price_item, availability_item, weight_item, sale_off_item,".
+                " featured, best_seller_item, date_created_item, latest_date_updated_item, category_item) VALUES".
+                " ('".$id_item."', '".$name."', ".$avatar.", ".$detail_1.", ".$detail_2.", ".$detail_3.", ".$description.",".
+                " '".$price."', '".$availability."', '".$weight."', '".$sale_off."', '".$featured."', '".$best_seller."',".
+                " CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), '".$category."');";
+            }
+            else if($params == 'update'){
+                $sql = "UPDATE item SET id_item='".$id_item."', name_item='".$name."', avatar_item='".$avatar."',".
+                " detail_item_1='".$detail_1."', detail_item_2='".$detail_2."', detail_item_3='".$detail_3."',".
+                " description_item='".$description."', price_item='".$price."', availability_item='".$availability."',".
+                " weight_item='".$weight."', sale_off_item='".$sale_off."', featured='".$featured."', best_seller_item='".
+                $best_seller."', latest_date_updated_item=CURRENT_TIMESTAMP(), category_item='".$category."' WHERE id_item='".$current_id."';";
+            }
+
+            $sql_result = mysqli_query($this->conn, $sql);
+            if($sql_result){
+                if($params == 'insert'){
+                    $_SESSION['error'] = [false, 'Create successfully!'];
+                }
+                else if($params == 'update'){
+                    $_SESSION['error'] = [false, 'Update successfully!'];
+                }
+                header("location: http://localhost/tmdt_201/product");
+            }
+            else{
+                $_SESSION['error'] = [true, 'Name may be duplicated or server error!'];
+                if($params == 'insert'){
+                    header("location: http://localhost/tmdt_201/product/create");
+                }
+                else if($params == 'update'){
+                    header("location: http://localhost/tmdt_201/product/update/".$current_id);
+                }
+            } 
+        }  
+    }
+
+    public function delete_product($item){
+        $sql = "DELETE FROM item WHERE id_item='".$item."';";
+        $sql_result = mysqli_query($this->conn, $sql);
+        if($sql_result){
+            $_SESSION['error'] = [false, 'Delete successfully!'];
+            header("location: http://localhost/tmdt_201/product");
+        }
+        else{
+            $_SESSION['error'] = [true, 'Server error!'];
+            header("location: http://localhost/tmdt_201/product");
+        }   
+    }
 }
 ?>

@@ -1,9 +1,10 @@
-<form class="login100-form validate-form" method="POST" action="http://localhost/tmdt_201/login/check_login">
-    <?php if(isset($_SESSION['error']) && $_SESSION['error'] == true){?>
-    <div class="container text-danger">
-        * Username or password is wrong!
+<form class="login100-form validate-form" method="POST" action="http://localhost/tmdt_201/login/login">
+    <?php if(isset($_SESSION['error'])){
+        if($_SESSION['error'] != false){?>
+    <div class="container <?php echo $_SESSION['error'][0] == false?'text-success':'text-danger';?> text-center mt-3 error-info">
+        <i class="fa fa-info-circle"></i> <?php echo $_SESSION['error'][1];?> <i class="fa fa-times category-btn" onclick="$('.error-info').attr('hidden', true)"></i>
     </div>
-    <?php 
+    <?php }
     $_SESSION['error'] = false;
     }?>
     <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">

@@ -4,10 +4,10 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="breadcrumb__text">
-                        <h2>Create</h2>
+                        <h2>Create Product</h2>
                         <div class="breadcrumb__option">
                             <a href="http://localhost/tmdt_201/product">Product</a>
-                            <span>Create</span>
+                            <span>Create Product</span>
                         </div>
                     </div>
                 </div>
@@ -16,11 +16,20 @@
     </section>
     <!-- Breadcrumb Section End -->
 
-    <form class="container py-5" enctype="multipart/form-data">
+    <?php if(isset($_SESSION['error'])){
+        if($_SESSION['error'] != false){?>
+    <div class="container <?php echo $_SESSION['error'][0] == false?'text-success':'text-danger';?> text-center mt-3 error-info">
+        <i class="fa fa-info-circle"></i> <?php echo $_SESSION['error'][1];?> <i class="fa fa-times category-btn" onclick="$('.error-info').attr('hidden', true)"></i>
+    </div>
+    <?php }
+    $_SESSION['error'] = false;
+    }?>
+    <form class="container py-5" enctype="multipart/form-data" 
+        method="POST" action="http://localhost/tmdt_201/product/insert_product">
         <div class="form-group row">
-            <label for="name" class="col-sm-2 col-form-label">Name</label>
+            <label for="name" class="col-sm-2 col-form-label">Name<span class="text-danger">*</span></label>
             <div class="col-sm-10">
-                <input type="text" name="name" class="form-control" id="name" placeholder="Product name">
+                <input type="text" name="name" class="form-control" id="name" placeholder="Product name" required>
             </div>
         </div>
         <div class="form-group row">
@@ -32,26 +41,37 @@
         <div class="form-group row">
             <label for="category" class="col-sm-2 col-form-label">Category</label>
             <div class="col-sm-10">
-                <select name="category" id="category" onchange="changeOption(this.value)">
+                <select name="category" id="category">
                     <?php $category_list = json_decode($data["category_list"]);
                     for($row = 0; $row < count($category_list); $row++){
                     ?>
                     <option value="<?php echo $category_list[$row]->id_category; ?>"><?php echo $category_list[$row]->name_category; ?></option>
                     <?php }?>
-                    <option value="new">New ...</option>
                 </select>
-            </div>
-        </div>
-        <div class="form-group row new-category" hidden>
-            <label for="new-category" class="col-sm-2 col-form-label">-> New Category</label>
-            <div class="col-sm-10">
-                <input type="text" name="new-category" class="form-control" id="new-category" placeholder="New category">
             </div>
         </div>
         <div class="form-group row">
             <label for="avatar" class="col-sm-2 col-form-label">Avatar</label>
             <div class="col-sm-10">
                 <input type="file" name="avatar" id="avatar" accept=".png, .jpg, .jpeg">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="detail-1" class="col-sm-2 col-form-label">Detail-1</label>
+            <div class="col-sm-10">
+                <input type="file" name="detail-1" id="detail-1" accept=".png, .jpg, .jpeg">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="detail-2" class="col-sm-2 col-form-label">Detail-2</label>
+            <div class="col-sm-10">
+                <input type="file" name="detail-2" id="detail-2" accept=".png, .jpg, .jpeg">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="detail-3" class="col-sm-2 col-form-label">Detail-3</label>
+            <div class="col-sm-10">
+                <input type="file" name="detail-3" id="detail-3" accept=".png, .jpg, .jpeg">
             </div>
         </div>
         <div class="form-group row">
@@ -65,11 +85,11 @@
                 <legend class="col-form-label col-sm-2 pt-0">Availability</legend>
                 <div class="col-sm-10">
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="availability" id="availability-yes" value="yes" checked>
+                        <input class="form-check-input" type="radio" name="availability" id="availability-yes" value="1" checked>
                         <label class="form-check-label" for="availability-yes">Yes</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="availability" id="availability-no" value="no">
+                        <input class="form-check-input" type="radio" name="availability" id="availability-no" value="0">
                         <label class="form-check-label" for="availability-no">No</label>
                     </div>
                 </div>
@@ -92,11 +112,11 @@
                 <legend class="col-form-label col-sm-2 pt-0">Featured</legend>
                 <div class="col-sm-10">
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="featured" id="featured-yes" value="yes">
+                        <input class="form-check-input" type="radio" name="featured" id="featured-yes" value="1">
                         <label class="form-check-label" for="featured-yes">Yes</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="featured" id="featured-no" value="no" checked>
+                        <input class="form-check-input" type="radio" name="featured" id="featured-no" value="0" checked>
                         <label class="form-check-label" for="featured-no">No</label>
                     </div>
                 </div>
@@ -107,11 +127,11 @@
                 <legend class="col-form-label col-sm-2 pt-0">Best Seller</legend>
                 <div class="col-sm-10">
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="best-seller" id="best-seller-yes" value="yes">
+                        <input class="form-check-input" type="radio" name="best-seller" id="best-seller-yes" value="1">
                         <label class="form-check-label" for="best-seller-yes">Yes</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="best-seller" id="best-seller-no" value="no" checked>
+                        <input class="form-check-input" type="radio" name="best-seller" id="best-seller-no" value="0" checked>
                         <label class="form-check-label" for="best-seller-no">No</label>
                     </div>
                 </div>

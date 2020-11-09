@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 09, 2020 lúc 11:29 AM
+-- Thời gian đã tạo: Th10 09, 2020 lúc 08:50 PM
 -- Phiên bản máy phục vụ: 10.4.14-MariaDB
 -- Phiên bản PHP: 7.4.10
 
@@ -115,7 +115,8 @@ DELIMITER ;
 
 CREATE TABLE `order_item` (
   `id_order` varchar(100) NOT NULL,
-  `id_item` varchar(100) NOT NULL,
+  `name_item` varchar(100) NOT NULL,
+  `quantity_item` int(11) NOT NULL,
   `total_item` float NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -123,9 +124,13 @@ CREATE TABLE `order_item` (
 -- Đang đổ dữ liệu cho bảng `order_item`
 --
 
-INSERT INTO `order_item` (`id_order`, `id_item`, `total_item`) VALUES
-('5cb26d59a868ea20f16bbe9d742faeab', 'apple', 1.49),
-('5cb26d59a868ea20f16bbe9d742faeab', 'mango', 7.39);
+INSERT INTO `order_item` (`id_order`, `name_item`, `quantity_item`, `total_item`) VALUES
+('486d3854983eec61b9242cb8e1e784a1', 'Banana', 5, 2.85),
+('486d3854983eec61b9242cb8e1e784a1', 'Bell pepper', 6, 27.54),
+('52f4b05e4c21a5f45891d5f3a49a033f', 'Banana', 4, 2.28),
+('52f4b05e4c21a5f45891d5f3a49a033f', 'Beef', 2, 4.98),
+('d272cb873fa24a231af3bac2415fb92a', 'Apple', 10, 14.9),
+('d272cb873fa24a231af3bac2415fb92a', 'Avocado', 10, 99.9);
 
 -- --------------------------------------------------------
 
@@ -142,15 +147,19 @@ CREATE TABLE `order_user` (
   `email_user_order` varchar(100) NOT NULL,
   `username_user_order` varchar(100) DEFAULT NULL,
   `note_order` varchar(500) DEFAULT NULL,
-  `date_order` datetime NOT NULL
+  `total_order` float NOT NULL,
+  `date_order` datetime NOT NULL,
+  `status_order` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Đang đổ dữ liệu cho bảng `order_user`
 --
 
-INSERT INTO `order_user` (`id_order`, `fname_user_order`, `lname_user_order`, `address_user_order`, `phone_user_order`, `email_user_order`, `username_user_order`, `note_order`, `date_order`) VALUES
-('5cb26d59a868ea20f16bbe9d742faeab', 'Donald', 'Trump', '456 Ly Thuong Kiet, Ward 14, District 10, HCMC', '0921456789', 'donaldjtrump@gmail.com', NULL, NULL, '2020-11-09 17:11:46');
+INSERT INTO `order_user` (`id_order`, `fname_user_order`, `lname_user_order`, `address_user_order`, `phone_user_order`, `email_user_order`, `username_user_order`, `note_order`, `total_order`, `date_order`, `status_order`) VALUES
+('486d3854983eec61b9242cb8e1e784a1', 'Johnathan', 'Wick', '123 Ly Thuong Kiet, Ward 14, District 10, HCMC', '0984123456', 'johnwick@gmail.com', 'johnwick', NULL, 30.39, '2020-11-10 01:24:07', 'Not confirmed'),
+('5cb26d59a868ea20f16bbe9d742faeab', 'Donald', 'Trump', '456 Ly Thuong Kiet, Ward 14, District 10, HCMC', '0921456789', 'donaldjtrump@gmail.com', NULL, NULL, 8.88, '2020-11-09 17:11:46', 'Not confirmed'),
+('d272cb873fa24a231af3bac2415fb92a', 'Johnathan', 'Wick', '123 Ly Thuong Kiet, Ward 14, District 10, HCMC', '0984123456', 'johnwick@gmail.com', 'johnwick', NULL, 114.8, '2020-11-10 01:23:14', 'Not confirmed');
 
 -- --------------------------------------------------------
 
@@ -267,7 +276,7 @@ INSERT INTO `user` (`username_user`, `password_user`, `fname_user`, `lname_user`
 ('admin', '$2y$10$BrGCoW9ovXA9tym7pTlefeKyMMNPvkfq6/D4oNv85rBghI78Nd35C', 'Jacob', 'Browns', '1980-11-06', 'public/images/uploads/users/default-avatar.jpg', NULL, '0932490127', 'jacob1106browns@gmail.com', 1),
 ('hoangduydangle', '$2y$10$2d9x5b1ruHgPh9.4OxDz0ebpixI590JLZMOQBwZFmKr7MdnhoOCky', 'Hoangduy', 'Dangle', '1997-09-30', 'public/images/uploads/users/hoangduydangle/avatar.jpg', NULL, '0988341765', 'duy.dang.bku_19@hcmut.edu.vn', 0),
 ('johnsmith', '$2y$10$F1rYCKRdYGNlWlzfnhXivuiKMJVy6CvNdk1eri0k6d66ZpYoOozWS', 'John', 'Smith', '1964-10-31', 'public/images/uploads/users/default-avatar.jpg', NULL, '0903112223', 'johnsmith@gmail.com', 0),
-('johnwick', '$2y$10$SZ.c3c3Xje7vW9uXjgCuouKmVQ/FVJotzEW.TPFqgn3NLqKkGr0Tu', 'Johnathan', 'Wick', '1967-10-15', 'public/images/uploads/users/default-avatar.jpg', NULL, '0984123456', 'johnwick@gmail.com', 0),
+('johnwick', '$2y$10$SZ.c3c3Xje7vW9uXjgCuouKmVQ/FVJotzEW.TPFqgn3NLqKkGr0Tu', 'Johnathan', 'Wick', '1967-10-15', 'public/images/uploads/users/default-avatar.jpg', '123 Ly Thuong Kiet, Ward 14, District 10, HCMC', '0984123456', 'johnwick@gmail.com', 0),
 ('tonystark', '$2y$10$3eqWspe4pFNQsFqaJogBSern8YK1RVDNHdE6fQAso4GdnYJRl9BjS', 'Tony', 'Stark', '1970-05-29', 'public/images/uploads/users/default-avatar.jpg', NULL, '0916654321', 'tonystark@gmail.com', 0);
 
 --
@@ -291,7 +300,7 @@ ALTER TABLE `item`
 -- Chỉ mục cho bảng `order_item`
 --
 ALTER TABLE `order_item`
-  ADD PRIMARY KEY (`id_order`,`id_item`);
+  ADD PRIMARY KEY (`id_order`,`name_item`);
 
 --
 -- Chỉ mục cho bảng `order_user`

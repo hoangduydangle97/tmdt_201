@@ -47,7 +47,7 @@
         }
 
         $.fn.dataTable.moment('HH:mm:ss - DD/MM/YYYY');
-        if(path != '/tmdt_201/product/categories'){
+        if(path == '/tmdt_201/product'){
             $('#dataTable').DataTable({
                 "aaSorting": [],
                 "columnDefs": [{
@@ -497,54 +497,49 @@ function checkCookie(cname) {
     }
 }
 
-function SetCart(id_item, username){
-    if(username == 'none'){
-        var cvalue = $('.pro-qty .text-input').filter('#'+id_item).val();
-        if(cvalue === undefined){
-            if(checkCookie('selected-' + id_item)){
-                cvalue = getCookie('selected-' + id_item);
-            }
-            else{
-                cvalue = 1;
-            }
+function SetCart(id_item){
+    var cvalue = $('.pro-qty .text-input').filter('#'+id_item).val();
+    if(cvalue === undefined){
+        if(checkCookie('selected-' + id_item)){
+            cvalue = getCookie('selected-' + id_item);
         }
-        if(checkCookie(id_item) == false){
-            var cname = "selected-" + id_item;
-            if(checkCookie('sum') == false){
-                var d = new Date();
-                var exdays = 1;
-                d.setTime(d.getTime() + (exdays*24*60*60*1000));
-                var expires = d.toUTCString();
-                setCookie('expires', expires, expires);
-                setCookie(cname, cvalue, expires);
-                var cookie = document.cookie;
-                var sum = (cookie.match(/selected-/g) || []).length;
-                setCookie('sum', sum, expires);
-            }
-            else{
-                setCookie(cname, cvalue, getCookie('expires'));
-                var cookie = document.cookie;
-                var sum = (cookie.match(/selected-/g) || []).length;
-                setCookie('sum', sum, getCookie('expires'));
-            }
+        else{
+            cvalue = 1;
         }
-        $('.selected-product').html(getCookie('sum'));
-        var total = 0;
-        var price_item = parseFloat($('.shoping__cart__price').filter('#' + id_item).text().trim().slice(1));
-        var total_items = $('.shoping__cart__total');
-        total_items.filter('#' + id_item).html('$' + (price_item * cvalue).toFixed(2));
-        var i = 0;
-        while(i < total_items.length){
-            total = total + parseFloat(total_items[i].textContent.trim().slice(1));
-            i++;
-        }
-        $('.sub-total').html('$' + total.toFixed(2));
-        $('.total').html('$' + total.toFixed(2));
-        $('.selected.' + id_item).removeAttr("hidden");
     }
-    else{
-
+    if(checkCookie(id_item) == false){
+        var cname = "selected-" + id_item;
+        if(checkCookie('sum') == false){
+            var d = new Date();
+            var exdays = 1;
+            d.setTime(d.getTime() + (exdays*24*60*60*1000));
+            var expires = d.toUTCString();
+            setCookie('expires', expires, expires);
+            setCookie(cname, cvalue, expires);
+            var cookie = document.cookie;
+            var sum = (cookie.match(/selected-/g) || []).length;
+            setCookie('sum', sum, expires);
+        }
+        else{
+            setCookie(cname, cvalue, getCookie('expires'));
+            var cookie = document.cookie;
+            var sum = (cookie.match(/selected-/g) || []).length;
+            setCookie('sum', sum, getCookie('expires'));
+        }
     }
+    $('.selected-product').html(getCookie('sum'));
+    var total = 0;
+    var price_item = parseFloat($('.shoping__cart__price').filter('#' + id_item).text().trim().slice(1));
+    var total_items = $('.shoping__cart__total');
+    total_items.filter('#' + id_item).html('$' + (price_item * cvalue).toFixed(2));
+    var i = 0;
+    while(i < total_items.length){
+        total = total + parseFloat(total_items[i].textContent.trim().slice(1));
+        i++;
+    }
+    $('.sub-total').html('$' + total.toFixed(2));
+    $('.total').html('$' + total.toFixed(2));
+    $('.selected.' + id_item).removeAttr("hidden");
 }
 
 function directToCreate(params){

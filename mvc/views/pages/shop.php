@@ -206,7 +206,7 @@
                                         }
                                         ?>
                                         <li>
-                                            <a onclick="SetCart('<?php echo $item_list[$row]->id_item;?>','<?php echo $username;?>')"> 
+                                            <a onclick="SetCart('<?php echo $item_list[$row]->id_item;?>')"> 
                                                 <i class="fa fa-shopping-cart"></i>
                                                 <i class="fa fa-check-circle selected <?php echo $item_list[$row]->id_item;?>" <?php echo $selected == true?'':'hidden'?>></i>
                                             </a>

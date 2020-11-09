@@ -4,21 +4,28 @@ class Shop extends Controller{
     protected $category_object;
     protected $user_object;
     protected $review_object;
+    protected $order_object;
 
     final public function __construct(){
         $this->item_object = $this->model("Item");
         $this->category_object = $this->model("Category");
         $this->user_object = $this->model("User");
         $this->review_object = $this->model("Review");
+        $this->order_object = $this->model("Order");
     }
 
     public function action($page_no = 0){
+        $num_orders = 0;
+        if(isset($_SESSION['username'])){
+            $num_orders = $this->order_object->get_num_orders($_SESSION['username']);
+        }
         if($page_no != 0){
             $this->item_object->set_page_no($page_no);
         }
         $this->view("Master1", array(
             "page"=>"shop",
             "total"=>$this->item_object->get_total(),
+            "num_orders"=>$num_orders,
             "category"=>"all",
             "sale_off_item_list"=>$this->item_object->get_sale_off_items(),
             "item_list"=>$this->item_object->get_all_items_per_page(),
@@ -37,13 +44,16 @@ class Shop extends Controller{
     }
 
     public function detail($params){
+        $num_orders = 0;
         $username = '';
         if(isset($_SESSION['username'])){
             $username = $_SESSION['username'];
+            $num_orders = $this->order_object->get_num_orders($username);
         }
         $this->view("Master1", array(
             "page"=>"detail",
             "total"=>$this->item_object->get_total(),
+            "num_orders"=>$num_orders,
             "item"=>$this->item_object->get_item($params),
             "category_list"=>$this->category_object->get_all_categories(),
             "user"=>$this->user_object->get_info_user($username),
@@ -54,12 +64,17 @@ class Shop extends Controller{
     }
 
     public function category($category, $page_no = 0){
+        $num_orders = 0;
+        if(isset($_SESSION['username'])){
+            $num_orders = $this->order_object->get_num_orders($_SESSION['username']);
+        }
         if($page_no != 0){
             $this->item_object->set_page_no($page_no);
         }
         $this->view("Master1", array(
             "page"=>"shop",
             "total"=>$this->item_object->get_total(),
+            "num_orders"=>$num_orders,
             "category"=>$category,
             "sale_off_item_list"=>$this->item_object->get_sale_off_items(),
             "name_category"=>$this->item_object->get_name_category($category),
@@ -96,12 +111,5 @@ class Shop extends Controller{
             $this->review_object->delete_review($username, $item, $date);
         }
     }
-
-    /*public function test(){
-        $a = json_decode($this->item_object->get_featured_items());
-        $b = json_decode($this->item_object->get_featured_categories());
-        var_dump($a);
-        var_dump($b);
-    }*/
 }
 ?>

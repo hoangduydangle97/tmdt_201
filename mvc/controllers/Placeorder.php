@@ -1,5 +1,5 @@
 <?php
-class Home extends Controller{
+class Placeorder extends Controller{
     protected $item_object;
     protected $category_object;
     protected $order_object;
@@ -25,6 +25,30 @@ class Home extends Controller{
             "featured_item_list"=>$this->item_object->get_featured_items(),
             "top_rated_item_list"=>$this->item_object->get_top_rated_items(),
             "top_review_item_list"=>$this->item_object->get_top_review_items()
+        ));
+    }
+
+    public function success(){
+        $num_orders = 0;
+        if(isset($_SESSION['username'])){
+            $num_orders = $this->order_object->get_num_orders($_SESSION['username']);
+        }
+        $this->view("Master1", array(
+            "page"=>"success",
+            "total"=>$this->item_object->get_total(),
+            "num_orders"=>$num_orders
+        ));
+    }
+
+    public function fail(){
+        $num_orders = 0;
+        if(isset($_SESSION['username'])){
+            $num_orders = $this->order_object->get_num_orders($_SESSION['username']);
+        }
+        $this->view("Master1", array(
+            "page"=>"fail",
+            "total"=>$this->item_object->get_total(),
+            "num_orders"=>$num_orders
         ));
     }
 }

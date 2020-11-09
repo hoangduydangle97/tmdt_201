@@ -1,3 +1,13 @@
+<?php
+if(isset($_SESSION['order_item_list'])){
+    $order_item_list = $_SESSION['order_item_list'];
+    for($row = 0; $row < count($order_item_list); $row++){
+        setcookie('selected-'.$order_item_list[$row], '', 'Thu, 01 Jan 1970 00:00:00 UTC', '/');
+    }
+    setcookie('sum', '', 'Thu, 01 Jan 1970 00:00:00 UTC', '/');
+    setcookie('expires', '', 'Thu, 01 Jan 1970 00:00:00 UTC', '/');
+}
+?>
 <!DOCTYPE html>
 <html lang="zxx">
     <head>
@@ -214,6 +224,11 @@
                             </a>
                         </li>
                         <li>
+                            <a href="#" class="language-option">
+                                <i class="fa fa-archive"></i> Order (<?php echo $data['num_orders'];?>)
+                            </a>
+                        </li>
+                        <li>
                             <a href="http://localhost/tmdt_201/logout" class="language-option">
                             <i class="fa fa-sign-out"></i> Logout
                             </a>
@@ -325,6 +340,11 @@
                                         <li>
                                             <a href="#" class="language-option">
                                                 <i class="fa fa-user"></i> Profile
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="language-option">
+                                                <i class="fa fa-archive"></i> Order (<?php echo $data['num_orders'];?>)
                                             </a>
                                         </li>
                                         <li>

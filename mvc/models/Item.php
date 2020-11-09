@@ -432,7 +432,7 @@ class Item extends Database{
     }
 
     public function delete_product($item){
-        $sql = "DELETE FROM item WHERE id_item='".$item."';";
+        $sql = "DELETE FROM item WHERE id_item='".$item->id_item."';";
         $sql_result = mysqli_query($this->conn, $sql);
         if($sql_result){
             $_SESSION['error'] = [false, 'Delete successfully!'];

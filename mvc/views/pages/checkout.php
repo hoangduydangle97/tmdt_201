@@ -30,10 +30,47 @@
                 <form action="#">
                     <div class="row">
                         <div class="col-lg-8 col-md-6">
+                            <?php if($data['user_info'] != null){
+                            $user_info = json_decode($data['user_info']);
+                            ?>
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="checkout__input">
-                                        <p>Fist Name<span>*</span></p>
+                                        <p>First Name: <b><?php echo $user_info->fname_user;?></b></p>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="checkout__input">
+                                        <p>Last Name: <b><?php echo $user_info->lname_user;?></b></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="checkout__input">
+                                <p>Address: <b><?php echo $user_info->address_user;?></b></p>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="checkout__input">
+                                        <p>Phone: <b><?php echo $user_info->phone_user;?></b></p>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="checkout__input">
+                                        <p>Email: <b><?php echo $user_info->email_user;?></b></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="checkout__input">
+                                <p>Order notes:</p>
+                                <input type="text"
+                                    placeholder="Notes about your order, e.g. special notes for delivery.">
+                            </div>
+                            <?php }
+                            else{?>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="checkout__input">
+                                        <p>First Name<span>*</span></p>
                                         <input type="text">
                                     </div>
                                 </div>
@@ -67,6 +104,7 @@
                                 <input type="text"
                                     placeholder="Notes about your order, e.g. special notes for delivery.">
                             </div>
+                            <?php }?>
                         </div>
                         <div class="col-lg-4 col-md-6">
                             <div class="checkout__order">

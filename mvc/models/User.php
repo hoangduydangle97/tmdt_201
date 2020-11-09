@@ -42,7 +42,7 @@ class User extends Database{
 
     public function get_info_user($username){
         $sql = "SELECT username_user, fname_user, lname_user, bday_user,".
-        " avatar_user, address_user, email_user, role_user".
+        " avatar_user, address_user, phone_user, email_user, role_user".
         " FROM user WHERE username_user='".$username."';";
         $sql_result = mysqli_query($this->conn, $sql);
         $result = false;

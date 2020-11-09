@@ -190,7 +190,7 @@
                     <li><a href="#"><i class="fa fa-gift"></i> <span>0</span></a></li>
                     <li><a href="http://localhost/tmdt_201/cart"><i class="fa fa-shopping-cart"></i> <span class="selected-product">0</span></a></li>
                 </ul>
-                <div class="header__cart__price">Total: <span>$150.00</span></div>
+                <div class="header__cart__price">Total: <span>$<?php echo json_decode($data['total']);?></span></div>
             </div>
             <div class="humberger__menu__widget">
                 <div class="header__top__right__language mb-2">
@@ -394,7 +394,7 @@
                                 <li><a href="#"><i class="fa fa-gift"></i> <span>0</span></a></li>
                                 <li><a href="http://localhost/tmdt_201/cart"><i class="fa fa-shopping-cart"></i> <span class="selected-product">0</span></a></li>
                             </ul>
-                            <div class="header__cart__price">Total: <span>$150.00</span></div>
+                            <div class="header__cart__price">Total: <span>$<?php echo json_decode($data['total']);?></span></div>
                             <?php }
                             else{?>
                             <ul>

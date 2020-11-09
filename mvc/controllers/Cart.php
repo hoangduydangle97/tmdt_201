@@ -2,10 +2,12 @@
 class Cart extends Controller{
     protected $item_object;
     protected $category_object;
+    protected $user_object;
 
     final public function __construct(){
         $this->item_object = $this->model("Item");
         $this->category_object = $this->model("Category");
+        $this->user_object = $this->model("User");
     }
 
     public function action(){
@@ -21,6 +23,7 @@ class Cart extends Controller{
         ksort($arr_cookie);
         $this->view("Master1", array(
             "page"=>"cart",
+            "total"=>$this->item_object->get_total(),
             "category_list"=>$this->category_object->get_all_categories(),
             "item_list"=>$this->item_object->get_item_list($arr_cookie)
         ));
@@ -28,6 +31,7 @@ class Cart extends Controller{
 
     public function checkout(){
         $arr_cookie = [];
+        $user_info = null;
         if(isset($_COOKIE)){
             foreach($_COOKIE as $key => $val){
                 $pos = strpos($key, 'selected-');
@@ -37,10 +41,15 @@ class Cart extends Controller{
             }
         }
         ksort($arr_cookie);
+        if(isset($_SESSION['username'])){
+            $user_info = $this->user_object->get_info_user($_SESSION['username']);
+        }
         $this->view("Master1", array(
             "page"=>"checkout",
+            "total"=>$this->item_object->get_total(),
             "category_list"=>$this->category_object->get_all_categories(),
-            "item_list"=>$this->item_object->get_item_list($arr_cookie)
+            "item_list"=>$this->item_object->get_item_list($arr_cookie),
+            "user_info"=>$user_info
         ));
     }
 }

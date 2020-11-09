@@ -11,6 +11,7 @@ class Home extends Controller{
     public function action(){
         $this->view("Master1", array(
             "page"=>"home",
+            "total"=>$this->item_object->get_total(),
             "category_list"=>$this->category_object->get_all_categories(),
             "latest_item_list"=>$this->item_object->get_latest_items(),
             "featured_category_list"=>$this->item_object->get_featured_categories(),

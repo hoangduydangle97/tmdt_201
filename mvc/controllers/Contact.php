@@ -9,6 +9,7 @@ class Contact extends Controller{
     public function action(){
         $this->view("Master1", array(
             "page"=>"contact",
+            "total"=>$this->item_object->get_total(),
             "category_list"=>$this->category_object->get_all_categories()
         ));
     }

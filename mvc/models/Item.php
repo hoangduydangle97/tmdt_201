@@ -443,5 +443,25 @@ class Item extends Database{
             header("location: http://localhost/tmdt_201/product");
         }   
     }
+
+    public function get_total(){
+        $arr_cookie = [];
+        if(isset($_COOKIE)){
+            foreach($_COOKIE as $key => $val){
+                $pos = strpos($key, 'selected-');
+                if($pos === 0){
+                    $arr_cookie[str_replace('selected-', '', $key)] = $val;
+                }
+            }
+        }
+        ksort($arr_cookie);
+        $item_list = json_decode($this->get_item_list($arr_cookie));
+        $sub_total = 0;
+        for($row = 0; $row < count($item_list); $row++){
+            $item_total = $item_list[$row]->price_item * $item_list[$row]->quantity;
+            $sub_total += $item_total;
+        }
+        return json_encode(number_format($sub_total, 2));
+    }
 }
 ?>

@@ -33,6 +33,7 @@
                             <?php if($data['user_info'] != null){
                             $user_info = json_decode($data['user_info']);
                             ?>
+                            <input type="hidden" name="fname" value="<?php echo $user_info->username_user;?>">
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="checkout__input">
@@ -62,8 +63,7 @@
                             </div>
                             <div class="checkout__input">
                                 <p>Order notes:</p>
-                                <input type="text"
-                                    placeholder="Notes about your order, e.g. special notes for delivery.">
+                                <input type="text" name="note" placeholder="Notes about your order, e.g. special notes for delivery. (limit 100 characters)" maxlength="100">
                             </div>
                             <?php }
                             else{?>
@@ -71,38 +71,37 @@
                                 <div class="col-lg-6">
                                     <div class="checkout__input">
                                         <p>First Name<span>*</span></p>
-                                        <input type="text">
+                                        <input type="text" name="fname" required>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="checkout__input">
                                         <p>Last Name<span>*</span></p>
-                                        <input type="text">
+                                        <input type="text" name="lname" required>
                                     </div>
                                 </div>
                             </div>
                             <div class="checkout__input">
                                 <p>Address<span>*</span></p>
-                                <input type="text" placeholder="Address" class="checkout__input__add">
+                                <input type="text" placeholder="Address" class="checkout__input__add" name="address" required>
                             </div>
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="checkout__input">
                                         <p>Phone<span>*</span></p>
-                                        <input type="text">
+                                        <input type="tel" name="phone" required>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="checkout__input">
                                         <p>Email<span>*</span></p>
-                                        <input type="text">
+                                        <input type="email" name="fname" required>
                                     </div>
                                 </div>
                             </div>
                             <div class="checkout__input">
                                 <p>Order notes</p>
-                                <input type="text"
-                                    placeholder="Notes about your order, e.g. special notes for delivery.">
+                                <input type="text" name="note" placeholder="Notes about your order, e.g. special notes for delivery. (limit 100 characters)" maxlength="100">
                             </div>
                             <?php }?>
                         </div>

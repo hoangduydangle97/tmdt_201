@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 09, 2020 lúc 12:06 AM
+-- Thời gian đã tạo: Th10 09, 2020 lúc 11:29 AM
 -- Phiên bản máy phục vụ: 10.4.14-MariaDB
 -- Phiên bản PHP: 7.4.10
 
@@ -110,16 +110,47 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `order_list`
+-- Cấu trúc bảng cho bảng `order_item`
 --
 
-CREATE TABLE `order_list` (
-  `id_order` int(11) NOT NULL,
+CREATE TABLE `order_item` (
+  `id_order` varchar(100) NOT NULL,
+  `id_item` varchar(100) NOT NULL,
+  `total_item` float NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Đang đổ dữ liệu cho bảng `order_item`
+--
+
+INSERT INTO `order_item` (`id_order`, `id_item`, `total_item`) VALUES
+('5cb26d59a868ea20f16bbe9d742faeab', 'apple', 1.49),
+('5cb26d59a868ea20f16bbe9d742faeab', 'mango', 7.39);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `order_user`
+--
+
+CREATE TABLE `order_user` (
+  `id_order` varchar(100) NOT NULL,
   `fname_user_order` varchar(100) NOT NULL,
   `lname_user_order` varchar(100) NOT NULL,
   `address_user_order` varchar(500) NOT NULL,
+  `phone_user_order` varchar(100) NOT NULL,
+  `email_user_order` varchar(100) NOT NULL,
+  `username_user_order` varchar(100) DEFAULT NULL,
+  `note_order` varchar(500) DEFAULT NULL,
   `date_order` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Đang đổ dữ liệu cho bảng `order_user`
+--
+
+INSERT INTO `order_user` (`id_order`, `fname_user_order`, `lname_user_order`, `address_user_order`, `phone_user_order`, `email_user_order`, `username_user_order`, `note_order`, `date_order`) VALUES
+('5cb26d59a868ea20f16bbe9d742faeab', 'Donald', 'Trump', '456 Ly Thuong Kiet, Ward 14, District 10, HCMC', '0921456789', 'donaldjtrump@gmail.com', NULL, NULL, '2020-11-09 17:11:46');
 
 -- --------------------------------------------------------
 
@@ -174,29 +205,6 @@ DELIMITER $$
 CREATE TRIGGER `tg_update_average_rating` AFTER UPDATE ON `rating_user_item` FOR EACH ROW UPDATE top_item SET average_rating=(SELECT AVG(rating) FROM `rating_user_item` WHERE id_item_rating=NEW.id_item_rating), num_review=(SELECT COUNT(*) AS num_review FROM rating_user_item WHERE id_item_rating=NEW.id_item_rating AND review IS NOT NULL) WHERE id_item_top=NEW.id_item_rating
 $$
 DELIMITER ;
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `role`
---
-
-CREATE TABLE `role` (
-  `id_role` int(11) NOT NULL,
-  `name_role` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `select_user_item`
---
-
-CREATE TABLE `select_user_item` (
-  `username_user_select` varchar(100) NOT NULL,
-  `id_item_select` varchar(100) NOT NULL,
-  `quantity_item` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -280,9 +288,15 @@ ALTER TABLE `item`
   ADD KEY `fk_categoty_item` (`category_item`);
 
 --
--- Chỉ mục cho bảng `order_list`
+-- Chỉ mục cho bảng `order_item`
 --
-ALTER TABLE `order_list`
+ALTER TABLE `order_item`
+  ADD PRIMARY KEY (`id_order`,`id_item`);
+
+--
+-- Chỉ mục cho bảng `order_user`
+--
+ALTER TABLE `order_user`
   ADD PRIMARY KEY (`id_order`);
 
 --
@@ -291,18 +305,6 @@ ALTER TABLE `order_list`
 ALTER TABLE `rating_user_item`
   ADD PRIMARY KEY (`username_user_rating`,`id_item_rating`,`date_rating`),
   ADD KEY `fk_item_rating` (`id_item_rating`);
-
---
--- Chỉ mục cho bảng `role`
---
-ALTER TABLE `role`
-  ADD PRIMARY KEY (`id_role`);
-
---
--- Chỉ mục cho bảng `select_user_item`
---
-ALTER TABLE `select_user_item`
-  ADD PRIMARY KEY (`username_user_select`,`id_item_select`);
 
 --
 -- Chỉ mục cho bảng `top_item`

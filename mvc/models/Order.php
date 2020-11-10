@@ -12,6 +12,18 @@ class Order extends Database{
         return json_encode($array_result);
     }
 
+    public function get_order_user_list(){
+        $sql = "SELECT * FROM order_user;";
+        $array_result = array();
+        $sql_result = mysqli_query($this->conn, $sql);
+        if($sql_result){
+            while($row = mysqli_fetch_assoc($sql_result)){
+                $array_result[] = $row;
+            }
+        }
+        return json_encode($array_result);
+    }
+
     public function get_order_item($id){
         $sql = "SELECT id_item, avatar_item, t1.name_item, price_item, quantity_item, total_item".
         " FROM (SELECT * FROM `order_item` WHERE id_order='".$id."') t1 LEFT JOIN item t2".

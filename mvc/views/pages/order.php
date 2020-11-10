@@ -15,3 +15,69 @@
         </div>
     </section>
     <!-- Breadcrumb Section End -->
+
+    <div class="card shadow my-4">
+        <div class="card-header py-3 text-center">
+            <h4 class="m-0 font-weight-bold text-primary">List of orders</h4>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped table-hover text-nowrap" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr class="text-center">
+                            <th>Action</th>
+                            <th>Id</th>
+                            <th>Firstname user</th>
+                            <th>Lastname user</th>
+                            <th>Address user</th>
+                            <th>Phone user</th>
+                            <th>Email user</th>
+                            <th>Username user</th>
+                            <th>Note</th>
+                            <th>Total ($)</th>
+                            <th>Date Created</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php $order_list = json_decode($data['order_list']); 
+                        $size_list = count($order_list);
+                        for($row = 0; $row < $size_list; $row++){
+                        ?>
+                        <tr>
+                            <td class="text-center">
+                                <button type="button" class="btn btn-danger">
+                                    <?php
+                                    if($order_list[$row]->status_order == 'Not confirmed'){
+                                        echo 'Confirm';
+                                    }
+                                    else{
+                                        echo 'Done';
+                                    }
+                                    ?>
+                                </button>
+                            </td>
+                            <td class="align-middle">
+                                <a class="item-cart" href="/tmdt_201/manageorder/detail/<?php echo $order_list[$row]->id_order;?>">
+                                    <?php echo $order_list[$row]->id_order;?>
+                                </a>
+                            </td>
+                            <td class="align-middle"><?php echo $order_list[$row]->fname_user_order;?></td>
+                            <td class="align-middle"><?php echo $order_list[$row]->lname_user_order;?></td>
+                            <td class="align-middle"><?php echo $order_list[$row]->address_user_order;?></td>
+                            <td class="align-middle"><?php echo $order_list[$row]->phone_user_order;?></td>
+                            <td class="align-middle"><?php echo $order_list[$row]->email_user_order;?></td>
+                            <td class="align-middle">
+                                <?php echo $order_list[$row]->username_user_order == null?'<i>NULL</i>':$order_list[$row]->username_user_order;?>
+                            </td>
+                            <td class="align-middle">
+                                <?php echo $order_list[$row]->note_order == null?'<i>NULL</i>':$order_list[$row]->note_order;?>
+                            </td>
+                            <td class="align-middle"><?php echo $order_list[$row]->total_order;?></td>
+                            <td class="align-middle"><?php echo date_format(date_create($order_list[$row]->date_order), 'H:i:s \- d/m/Y');?></td>
+                        </tr>
+                        <?php }?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>

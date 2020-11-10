@@ -1,3 +1,16 @@
+<?php
+if(isset($_SESSION['order_item_list'])){
+    if($_SESSION['order_item_list'] != false){
+        $order_item_list = $_SESSION['order_item_list'];
+        for($row = 0; $row < count($order_item_list); $row++){
+            setcookie('selected-'.$order_item_list[$row], '', 'Thu, 01 Jan 1970 00:00:00 UTC', '/');
+        }
+        setcookie('sum', '', 'Thu, 01 Jan 1970 00:00:00 UTC', '/');
+        setcookie('expires', '', 'Thu, 01 Jan 1970 00:00:00 UTC', '/');
+        $_SESSION['order_item_list'] = false;
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="zxx">
     <head>
@@ -155,7 +168,7 @@
 
         <!-- Cart Button -->
         <?php if(isset($data['cms'])){?>
-            <a href="http://localhost/tmdt_201/order" id="cart-btn" class="rounded-circle">
+            <a href="http://localhost/tmdt_201/orders" id="cart-btn" class="rounded-circle">
             <i class="fa fa-cart-arrow-down"></i>
             <span class="selected-product">0</span>
         </a>
@@ -187,8 +200,21 @@
             </div>
             <div class="humberger__menu__cart">
                 <ul>
-                    <li><a href="#"><i class="fa fa-gift"></i> <span>0</span></a></li>
-                    <li><a href="http://localhost/tmdt_201/cart"><i class="fa fa-shopping-cart"></i> <span class="selected-product">0</span></a></li>
+                    <?php if(!isset($data['cms'])){?>
+                        <ul>
+                            <li><a href="#"><i class="fa fa-gift"></i> <span>0</span></a></li>
+                            <li><a href="http://localhost/tmdt_201/cart"><i class="fa fa-shopping-cart"></i> <span class="selected-product">0</span></a></li>
+                        </ul>
+                        <div class="header__cart__price">Total: <span>$<?php echo json_decode($data['total']);?></span></div>
+                    <?php }
+                    else{?>
+                        <ul>
+                            <li><a href="#"><i class="fa fa-info-circle"></i> <span>0</span></a></li>
+                            <li><a href="http://localhost/tmdt_201/orders">
+                                <i class="fa fa-cart-arrow-down"></i> <span><?php echo count(json_decode($data['order_list']));?></span></a>
+                            </li>
+                        </ul>
+                    <?php }?>
                 </ul>
                 <div class="header__cart__price">Total: <span>$<?php echo json_decode($data['total']);?></span></div>
             </div>
@@ -211,6 +237,11 @@
                         <li>
                             <a href="#" class="language-option">
                                 <i class="fa fa-user"></i> Profile
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="language-option">
+                                <i class="fa fa-archive"></i> Order (<?php echo $data['num_orders'];?>)
                             </a>
                         </li>
                         <li>
@@ -256,7 +287,7 @@
                     <li <?php if($data["page"] == "product" || $data["page"] == "create" || $data["page"] == "update" || $data["page"] == "category"){ ?>class="active"<?php }?>>
                         <a href="http://localhost/tmdt_201/product">Product</a>
                     </li>
-                    <li <?php if($data["page"] == "order"){ ?>class="active"<?php }?>><a href="http://localhost/tmdt_201/order">Order</a></li>
+                    <li <?php if($data["page"] == "order"){ ?>class="active"<?php }?>><a href="http://localhost/tmdt_201/orders">Order</a></li>
                     <?php }?>
                 </ul>
             </nav>
@@ -328,6 +359,11 @@
                                             </a>
                                         </li>
                                         <li>
+                                            <a href="#" class="language-option">
+                                                <i class="fa fa-archive"></i> Order (<?php echo $data['num_orders'];?>)
+                                            </a>
+                                        </li>
+                                        <li>
                                             <a href="http://localhost/tmdt_201/logout" class="language-option">
                                                 <i class="fa fa-sign-out"></i> Logout
                                             </a>
@@ -382,7 +418,7 @@
                                 <li <?php if($data["page"] == "product" || $data["page"] == "create" || $data["page"] == "update" || $data["page"] == "category"){ ?>class="active"<?php }?>>
                                     <a href="http://localhost/tmdt_201/product">Product</a>
                                 </li>
-                                <li <?php if($data["page"] == "order"){ ?>class="active"<?php }?>><a href="http://localhost/tmdt_201/order">Order</a></li>
+                                <li <?php if($data["page"] == "order"){ ?>class="active"<?php }?>><a href="http://localhost/tmdt_201/orders">Order</a></li>
                                 <?php }?>
                             </ul>
                         </nav>
@@ -399,7 +435,9 @@
                             else{?>
                             <ul>
                                 <li><a href="#"><i class="fa fa-info-circle"></i> <span>0</span></a></li>
-                                <li><a href="http://localhost/tmdt_201/order"><i class="fa fa-cart-arrow-down"></i> <span>0</span></a></li>
+                                <li><a href="http://localhost/tmdt_201/orders">
+                                    <i class="fa fa-cart-arrow-down"></i> <span><?php echo count(json_decode($data['order_list']));?></span></a>
+                                </li>
                             </ul>
                             <?php }?>
                         </div>

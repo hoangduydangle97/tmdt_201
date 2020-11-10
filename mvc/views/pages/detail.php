@@ -59,7 +59,6 @@
                         <p>Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vestibulum ac diam sit amet quam
                             vehicula elementum sed sit amet dui. Sed porttitor lectus nibh. Vestibulum ac diam sit amet
                             quam vehicula elementum sed sit amet dui. Proin eget tortor risus.</p>
-                        <?php $username = isset($_SESSION['username'])?$_SESSION['username']:'none'; ?>
                         <div class="product__details__quantity">
                             <div class="quantity">
                                 <div class="pro-qty"> 
@@ -79,7 +78,7 @@
                             </div>
                         </div>
                         <button type="button" class="btn primary-btn text-light" id="add-to-card-btn" 
-                                onclick="SetCart(<?php echo "'".$item_object->id_item."', '".$username."'"; ?>)"
+                                onclick="SetCart('<?php echo $item_object->id_item; ?>')"
                                 data-toggle="modal" data-target="#info-modal">
                             ADD TO CARD
                         </button>
@@ -345,7 +344,7 @@
                     <div class="product__item">
                         <div class="product__item__pic set-bg" data-setbg="/tmdt_201/<?php echo $related_item_list[$row]->avatar_item; ?>">
                             <ul class="product__item__pic__hover">
-                                <?php $username = isset($_SESSION['username'])?$_SESSION['username']:'none'; 
+                                <?php  
                                 $selected = false;
                                 if(isset($_COOKIE)){
                                     foreach($_COOKIE as $key => $val){
@@ -356,9 +355,9 @@
                                 }
                                 ?>
                                 <li>
-                                    <a onclick="SetCart('<?php echo $related_item_list[$row]->id_item;?>','<?php echo $username;?>', this)"> 
+                                    <a onclick="SetCart('<?php echo $related_item_list[$row]->id_item;?>')"> 
                                         <i class="fa fa-shopping-cart"></i>
-                                        <i class="fa fa-check-circle selected" <?php echo $selected == true?'':'hidden'?>></i>
+                                        <i class="fa fa-check-circle selected <?php echo $related_item_list[$row]->id_item;?>" <?php echo $selected == true?'':'hidden'?>></i>
                                     </a>
                                 </li>
                             </ul>

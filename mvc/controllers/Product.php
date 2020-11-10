@@ -53,7 +53,8 @@ class Product extends Controller{
     }
 
     public function delete($item){
-        $this->item_object->delete_product($item);
+        $item_delete = json_decode($this->item_object->get_item($item));
+        $this->item_object->delete_product($item_delete);
     }
 
     public function insert_product(){

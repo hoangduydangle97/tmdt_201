@@ -26,6 +26,9 @@
         }
         else{
         ?>
+            <div class="container mb-5 text-center" style="font-size: 1.2em;">
+                Order: <b><?php echo $data['id_order'];?></b>
+            </div>
             <div class="row">
                 <div class="col-lg-12">
                     <div class="shoping__cart__table">

@@ -280,7 +280,6 @@ class Item extends Database{
             $weight = $_POST['weight'];
             $sale_off = $_POST['sale-off'];
             $featured = $_POST['featured'];
-            $best_seller = $_POST['best-seller'];
             $avatar = 'public/images/uploads/products/'.$id_item.'/avatar/';
             $detail = 'public/images/uploads/products/'.$id_item.'/details/';
             $default = 'public/images/uploads/products/';
@@ -396,17 +395,17 @@ class Item extends Database{
             if($params == 'insert'){
                 $sql = "INSERT INTO item(id_item, name_item, avatar_item, detail_item_1, detail_item_2,". 
                 " detail_item_3, description_item, price_item, availability_item, weight_item, sale_off_item,".
-                " featured, best_seller_item, date_created_item, latest_date_updated_item, category_item) VALUES".
+                " featured, date_created_item, latest_date_updated_item, category_item) VALUES".
                 " ('".$id_item."', '".$name."', ".$avatar.", ".$detail_1.", ".$detail_2.", ".$detail_3.", ".$description.",".
-                " '".$price."', '".$availability."', '".$weight."', '".$sale_off."', '".$featured."', '".$best_seller."',".
+                " '".$price."', '".$availability."', '".$weight."', '".$sale_off."', '".$featured."',".
                 " CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), '".$category."');";
             }
             else if($params == 'update'){
                 $sql = "UPDATE item SET id_item='".$id_item."', name_item='".$name."', avatar_item='".$avatar."',".
                 " detail_item_1='".$detail_1."', detail_item_2='".$detail_2."', detail_item_3='".$detail_3."',".
                 " description_item='".$description."', price_item='".$price."', availability_item='".$availability."',".
-                " weight_item='".$weight."', sale_off_item='".$sale_off."', featured='".$featured."', best_seller_item='".
-                $best_seller."', latest_date_updated_item=CURRENT_TIMESTAMP(), category_item='".$category."' WHERE id_item='".$current_id."';";
+                " weight_item='".$weight."', sale_off_item='".$sale_off."', featured='".$featured."',".
+                " latest_date_updated_item=CURRENT_TIMESTAMP(), category_item='".$category."' WHERE id_item='".$current_id."';";
             }
 
             $sql_result = mysqli_query($this->conn, $sql);

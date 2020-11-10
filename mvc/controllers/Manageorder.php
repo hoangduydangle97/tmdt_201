@@ -35,6 +35,7 @@ class Manageorder extends Controller{
             "page"=>"detailorder",
             "total"=>$this->item_object->get_total(),
             "num_orders"=>$num_orders,
+            "id_order"=>$id,
             "category_list"=>$this->category_object->get_all_categories(),
             "order_list"=>$this->order_object->get_order_item($id),
             "total_order"=>$this->order_object->get_total_order($id)

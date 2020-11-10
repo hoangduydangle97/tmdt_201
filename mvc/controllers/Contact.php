@@ -1,9 +1,11 @@
 <?php
 class Contact extends Controller{
+    protected $item_object;
     protected $category_object;
     protected $order_object;
 
     final public function __construct(){
+        $this->item_object = $this->model("Item");
         $this->category_object = $this->model("Category");
         $this->order_object = $this->model("Order");
     }

@@ -159,24 +159,6 @@
                 </div>
             </div>
         </fieldset>
-        <?php $best_seller = intval($item_object->best_seller_item); ?>
-        <fieldset class="form-group">
-            <div class="row">
-                <legend class="col-form-label col-sm-2 pt-0">Best Seller</legend>
-                <div class="col-sm-10">
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="best-seller" id="best-seller-yes" value="yes"
-                            <?php echo $best_seller == 1?'checked':''?>>
-                        <label class="form-check-label" for="best-seller-yes">Yes</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="best-seller" id="best-seller-no" value="no" 
-                            <?php echo $best_seller == 0?'checked':''?>>
-                        <label class="form-check-label" for="best-seller-no">No</label>
-                    </div>
-                </div>
-            </div>
-        </fieldset>
         <div class="form-group row">
             <div class="col-sm-10">
                 <input type="submit" class="btn btn-primary mr-4" value="Update product">

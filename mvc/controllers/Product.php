@@ -2,17 +2,20 @@
 class Product extends Controller{
     protected $item_object;
     protected $category_object;
+    protected $order_object;
 
     final public function __construct(){
         $this->item_object = $this->model("Item");
         $this->category_object = $this->model("Category");
+        $this->order_object = $this->model("Order");
     }
 
     public function action(){
         $this->view("Master1", array(
             "cms"=>true,
             "page"=>"product",
-            "item_list"=>$this->item_object->get_all_items()
+            "item_list"=>$this->item_object->get_all_items(),
+            "order_list"=>$this->order_object->get_order_user_list()
         ));
     }
 
@@ -21,7 +24,8 @@ class Product extends Controller{
             $this->view("Master1", array(
                 "cms"=>true,
                 "page"=>"categories",
-                "category_list"=>$this->category_object->get_all_categories()
+                "category_list"=>$this->category_object->get_all_categories(),
+                "order_list"=>$this->order_object->get_order_user_list()
             ));
         }
         else if($option == 'create'){
@@ -39,7 +43,8 @@ class Product extends Controller{
         $this->view("Master1", array(
             "cms"=>true,
             "page"=>"create",
-            "category_list"=>$this->category_object->get_all_categories()
+            "category_list"=>$this->category_object->get_all_categories(),
+            "order_list"=>$this->order_object->get_order_user_list()
         ));
     }
 
@@ -48,7 +53,8 @@ class Product extends Controller{
             "cms"=>true,
             "page"=>"update",
             "category_list"=>$this->category_object->get_all_categories(),
-            "item"=>$this->item_object->get_item($item)
+            "item"=>$this->item_object->get_item($item),
+            "order_list"=>$this->order_object->get_order_user_list()
         ));
     }
 

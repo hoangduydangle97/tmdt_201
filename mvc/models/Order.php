@@ -25,9 +25,9 @@ class Order extends Database{
     }
 
     public function get_order_item($id){
-        $sql = "SELECT id_item, avatar_item, t1.name_item, price_item, quantity_item, total_item".
-        " FROM (SELECT * FROM `order_item` WHERE id_order='".$id."') t1 LEFT JOIN item t2".
-        " ON t1.name_item=t2.name_item;";
+        $sql = "SELECT id_item, avatar_item, t1.name_item, price_item,".
+        " quantity_item, total_item FROM (SELECT * FROM `order_item` WHERE id_order='".$id."')".
+        " t1 LEFT JOIN item t2 ON t1.name_item=t2.name_item;";
         $array_result = array();
         $sql_result = mysqli_query($this->conn, $sql);
         if($sql_result){
@@ -39,7 +39,7 @@ class Order extends Database{
     }
 
     public function get_num_orders($username){
-        $sql = "SELECT id_order FROM order_user WHERE username_user_order='".$username."';";
+        $sql = "SELECT id_order FROM order_user WHERE username_user_order='".$username."' AND status_order='Not Confirmed';";
         $sql_result = mysqli_query($this->conn, $sql);
         $num_orders = 0;
         if($sql_result){

@@ -240,7 +240,7 @@ if(isset($_SESSION['order_item_list'])){
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="language-option">
+                            <a href="http://localhost/tmdt_201/manageorder" class="language-option">
                                 <i class="fa fa-archive"></i> Order (<?php echo $data['num_orders'];?>)
                             </a>
                         </li>
@@ -359,7 +359,7 @@ if(isset($_SESSION['order_item_list'])){
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#" class="language-option">
+                                            <a href="http://localhost/tmdt_201/manageorder" class="language-option">
                                                 <i class="fa fa-archive"></i> Order (<?php echo $data['num_orders'];?>)
                                             </a>
                                         </li>
@@ -473,12 +473,12 @@ if(isset($_SESSION['order_item_list'])){
                     <div class="col-lg-9">
                         <div class="hero__search">
                             <div class="hero__search__form">
-                                <form action="#">
+                                <form action="/tmdt_201/search" method="POST">
                                     <div class="hero__search__categories">
                                         Filter
                                         <span class="arrow_carrot-down"></span>
                                     </div>
-                                    <input type="text" placeholder="What do you need?">
+                                    <input type="text" placeholder="What do you need?" name="id_order">
                                     <button type="submit" class="site-btn">SEARCH</button>
                                 </form>
                             </div>

@@ -1,5 +1,5 @@
 <?php
-class Admin extends Controller{
+class Search extends Controller{
     protected $item_object;
     protected $category_object;
     protected $order_object;
@@ -11,11 +11,8 @@ class Admin extends Controller{
     }
 
     public function action(){
-        $this->view("Master1", array(
-            "cms"=>true,
-            "page"=>"admin",
-            "order_list"=>$this->order_object->get_order_user_list()
-        ));
+        $id = trim($_POST['id_order']);
+        header("location: http://localhost/tmdt_201/manageorder/detail/".$id);
     }
 }
 ?>

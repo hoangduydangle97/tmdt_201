@@ -54,7 +54,7 @@
                             <th>Weight (lb)</th>
                             <th>Sale off (%)</th>
                             <th>Featured</th>
-                            <th>Best seller</th>
+                            <th>Number purchased</th>
                             <th>Date created</th>
                             <th>Lastest updated</th>
                             <th>Category</th>
@@ -110,7 +110,7 @@
                             <td class="align-middle"><?php echo $item_list[$row]->weight_item;?></td>
                             <td class="align-middle"><?php echo $item_list[$row]->sale_off_item;?></td>
                             <td class="align-middle"><?php echo $item_list[$row]->featured;?></td>
-                            <td class="align-middle"><?php echo $item_list[$row]->best_seller_item;?></td>
+                            <td class="align-middle"><?php echo $item_list[$row]->num_purchased;?></td>
                             <td class="align-middle"><?php echo date_format(date_create($item_list[$row]->date_created_item), 'H:i:s \- d/m/Y');?></td>
                             <td class="align-middle"><?php echo date_format(date_create($item_list[$row]->latest_date_updated_item), 'H:i:s \- d/m/Y');?></td>
                             <td class="align-middle"><?php echo $item_list[$row]->name_category;?></td>

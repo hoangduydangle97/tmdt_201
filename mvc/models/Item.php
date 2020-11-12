@@ -401,9 +401,9 @@ class Item extends Database{
                 " CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), '".$category."');";
             }
             else if($params == 'update'){
-                $sql = "UPDATE item SET id_item='".$id_item."', name_item='".$name."', avatar_item='".$avatar."',".
-                " detail_item_1='".$detail_1."', detail_item_2='".$detail_2."', detail_item_3='".$detail_3."',".
-                " description_item='".$description."', price_item='".$price."', availability_item='".$availability."',".
+                $sql = "UPDATE item SET id_item='".$id_item."', name_item='".$name."', avatar_item=".$avatar.",".
+                " detail_item_1=".$detail_1.", detail_item_2=".$detail_2.", detail_item_3=".$detail_3.",".
+                " description_item=".$description.", price_item='".$price."', availability_item='".$availability."',".
                 " weight_item='".$weight."', sale_off_item='".$sale_off."', featured='".$featured."',".
                 " latest_date_updated_item=CURRENT_TIMESTAMP(), category_item='".$category."' WHERE id_item='".$current_id."';";
             }
@@ -426,7 +426,7 @@ class Item extends Database{
                 else if($params == 'update'){
                     header("location: http://localhost/tmdt_201/product/update/".$current_id);
                 }
-            } 
+            }
         }  
     }
 

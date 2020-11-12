@@ -39,7 +39,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php $order_list = json_decode($data['order_list']); 
+                        <?php $order_list = json_decode($data['order_user_list']); 
                         $size_list = count($order_list);
                         for($row = 0; $row < $size_list; $row++){
                         ?>

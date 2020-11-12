@@ -15,7 +15,7 @@ class Product extends Controller{
             "cms"=>true,
             "page"=>"product",
             "item_list"=>$this->item_object->get_all_items(),
-            "order_list"=>$this->order_object->get_order_user_list()
+            "order_list"=>$this->order_object->get_not_confirmed_order_list()
         ));
     }
 
@@ -25,7 +25,7 @@ class Product extends Controller{
                 "cms"=>true,
                 "page"=>"categories",
                 "category_list"=>$this->category_object->get_all_categories(),
-                "order_list"=>$this->order_object->get_order_user_list()
+                "order_list"=>$this->order_object->get_not_confirmed_order_list()
             ));
         }
         else if($option == 'create'){
@@ -44,7 +44,7 @@ class Product extends Controller{
             "cms"=>true,
             "page"=>"create",
             "category_list"=>$this->category_object->get_all_categories(),
-            "order_list"=>$this->order_object->get_order_user_list()
+            "order_list"=>$this->order_object->get_not_confirmed_order_list()
         ));
     }
 
@@ -54,7 +54,7 @@ class Product extends Controller{
             "page"=>"update",
             "category_list"=>$this->category_object->get_all_categories(),
             "item"=>$this->item_object->get_item($item),
-            "order_list"=>$this->order_object->get_order_user_list()
+            "order_list"=>$this->order_object->get_not_confirmed_order_list()
         ));
     }
 

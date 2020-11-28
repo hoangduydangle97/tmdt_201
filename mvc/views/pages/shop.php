@@ -40,7 +40,7 @@
                                             </div>
                                             <div class="latest-product__item__text">
                                                 <h6><?php echo $latest_item_list[$row]->name_item;?></h6>
-                                                <span>$<?php echo number_format($latest_item_list[$row]->price_item, 2);?></span>
+                                                <span><?php echo number_format($latest_item_list[$row]->price_item, 0);?> <u style="font-weight: 400;">đ</u></span>
                                                 <span style="font-weight: normal;"><?php echo date_format(date_create($latest_item_list[$row]->date_created_item), '\(d/m/Y\)');?></span>
                                             </div>
                                         </a>
@@ -68,7 +68,7 @@
                                             </div>
                                             <div class="latest-product__item__text">
                                                 <h6><?php echo $top_rated_item_list[$row]->name_item;?></h6>
-                                                <span>$<?php echo number_format($top_rated_item_list[$row]->price_item, 2);?></span>
+                                                <span><?php echo number_format($top_rated_item_list[$row]->price_item, 0);?> <u style="font-weight: 400;">đ</u></span>
                                                 <?php $average_rating = $top_rated_item_list[$row]->average_rating;?>
                                                 <i style="color: #EDBB0E;" class="fa <?php echo (($average_rating > 0 && $average_rating < 0.3) || $average_rating == 0)?'fa-star-o':(($average_rating >= 0.3 && $average_rating < 0.7)?'fa-star-half-o':'fa-star');?>"></i>
                                                 <i style="color: #EDBB0E;" class="fa <?php echo (($average_rating > 1 && $average_rating < 1.3) || $average_rating <= 1)?'fa-star-o':(($average_rating >= 1.3 && $average_rating < 1.7)?'fa-star-half-o':'fa-star');?>"></i>
@@ -101,7 +101,7 @@
                                             </div>
                                             <div class="latest-product__item__text">
                                                 <h6><?php echo $top_review_item_list[$row]->name_item;?></h6>
-                                                <span>$<?php echo number_format($top_review_item_list[$row]->price_item, 2);?></span>
+                                                <span><?php echo number_format($top_review_item_list[$row]->price_item, 0);?> <u style="font-weight: 400;">đ</u></span>
                                                 <span style="font-weight: normal;">(<?php echo $top_review_item_list[$row]->num_review;?> reviews)</span>
                                             </div>
                                         </a>
@@ -125,7 +125,7 @@
                                 for($row = 0; $row < $size_list; $row++){
                                     $off = $sale_off_item_list[$row]->sale_off_item;
                                     $price = $sale_off_item_list[$row]->price_item;
-                                    $price_off = number_format((1 - $off / 100) * $price, 2);
+                                    $price_off = number_format((1 - $off / 100) * $price, 0);
                                 ?>
                                 <div class="col-lg-4">
                                     <div class="product__discount__item">
@@ -158,7 +158,7 @@
                                                     <?php echo $sale_off_item_list[$row]->name_item;?>
                                                 </a>
                                             </h5>
-                                            <div class="product__item__price">$<?php echo $price_off;?> <span>$<?php echo number_format($price, 2);?></span></div>
+                                            <div class="product__item__price"><?php echo $price_off;?> <u style="font-weight: 400;">đ</u> <span><?php echo number_format($price, 0);?> <u style="font-weight: 400;">đ</u></span></div>
                                         </div>
                                     </div>
                                 </div>
@@ -219,7 +219,7 @@
                                             <?php echo $item_list[$row]->name_item;?>
                                         </a>
                                     </h6>
-                                    <h5>$<?php echo number_format($item_list[$row]->price_item, 2);?></h5>
+                                    <h5><?php echo number_format($item_list[$row]->price_item, 0);?> <u style="font-weight: 400;">đ</u></h5>
                                     <div>
                                         <?php $average_rating = $item_list[$row]->average_rating;?>
                                         <i style="color: #EDBB0E;" class="fa <?php echo (($average_rating > 0 && $average_rating < 0.3) || $average_rating == 0)?'fa-star-o':(($average_rating >= 0.3 && $average_rating < 0.7)?'fa-star-half-o':'fa-star');?>"></i>

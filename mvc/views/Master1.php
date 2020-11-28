@@ -170,7 +170,7 @@ if(isset($_SESSION['order_item_list'])){
         <?php if(isset($data['cms'])){?>
             <a href="http://localhost/tmdt_201/orders" id="cart-btn" class="rounded-circle">
             <i class="fa fa-cart-arrow-down"></i>
-            <span class="selected-product">0</span>
+            <span><?php echo count(json_decode($data['order_list']));?></span>
         </a>
         <?php }
         else{?>
@@ -205,7 +205,7 @@ if(isset($_SESSION['order_item_list'])){
                             <li><a href="#"><i class="fa fa-gift"></i> <span>0</span></a></li>
                             <li><a href="http://localhost/tmdt_201/cart"><i class="fa fa-shopping-cart"></i> <span class="selected-product">0</span></a></li>
                         </ul>
-                        <div class="header__cart__price">Total: <span>$<?php echo json_decode($data['total']);?></span></div>
+                        <div class="header__cart__price">Total: <span><?php echo json_decode($data['total']);?> <u style="font-weight: 400;">đ</u></span></div>
                     <?php }
                     else{?>
                         <ul>
@@ -216,7 +216,6 @@ if(isset($_SESSION['order_item_list'])){
                         </ul>
                     <?php }?>
                 </ul>
-                <div class="header__cart__price">Total: <span>$<?php echo json_decode($data['total']);?></span></div>
             </div>
             <div class="humberger__menu__widget">
                 <div class="header__top__right__language mb-2">
@@ -299,9 +298,9 @@ if(isset($_SESSION['order_item_list'])){
             </div>
             <div class="humberger__menu__contact">
                 <ul>
-                    <li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
+                    <li><i class="fa fa-envelope"></i> organishop201@gmail.com</li>
                     <?php if(!isset($data['cms'])){?>
-                    <li>Free Shipping for all Order of $99</li>
+                    <li>Free Shipping from 299,000 <u>đ</u></li>
                     <?php }
                     else{
                     ?>
@@ -320,9 +319,9 @@ if(isset($_SESSION['order_item_list'])){
                         <div class="col-lg-6">
                             <div class="header__top__left">
                                 <ul>
-                                    <li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
+                                    <li><i class="fa fa-envelope"></i> organishop201@gmail.com</li>
                                     <?php if(!isset($data['cms'])){?>
-                                    <li>Free Shipping for all Order of $99</li>
+                                    <li>Free Shipping from 299,000 <u>đ</u></li>
                                     <?php }
                                     else{
                                     ?>
@@ -430,7 +429,7 @@ if(isset($_SESSION['order_item_list'])){
                                 <li><a href="#"><i class="fa fa-gift"></i> <span>0</span></a></li>
                                 <li><a href="http://localhost/tmdt_201/cart"><i class="fa fa-shopping-cart"></i> <span class="selected-product">0</span></a></li>
                             </ul>
-                            <div class="header__cart__price">Total: <span>$<?php echo json_decode($data['total']);?></span></div>
+                            <div class="header__cart__price">Total: <span><?php echo json_decode($data['total']);?> <u style="font-weight: 400;">đ</u></span></div>
                             <?php }
                             else{?>
                             <ul>

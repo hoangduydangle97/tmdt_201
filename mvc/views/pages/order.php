@@ -35,23 +35,30 @@
                             <th>Username user</th>
                             <th>Note</th>
                             <th>Total ($)</th>
-                            <th>Date Created</th>
+                            <th>Time Created</th>
+                            <th>Time Confirmed</th>
+                            <th>Time Process Done</th>
+                            <th>Time Deliveried</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php $order_list = json_decode($data['order_user_list']); 
                         $size_list = count($order_list);
                         for($row = 0; $row < $size_list; $row++){
+                            $status = $order_list[$row]->status_order;
                         ?>
                         <tr>
                             <td class="text-center">
-                                <button type="button" class="btn btn-danger">
+                                <button type="button" class="btn <?php echo $status == 'Not confirmed'?'btn-danger':($status == 'Confirmed'?'btn-warning':'btn-success'); ?>">
                                     <?php
-                                    if($order_list[$row]->status_order == 'Not confirmed'){
+                                    if($status == 'Not confirmed'){
                                         echo 'Confirm';
                                     }
-                                    else{
+                                    else if($status == 'Confirmed'){
                                         echo 'Done';
+                                    }
+                                    else if($status == 'Done'){
+                                        echo 'Deliveried';
                                     }
                                     ?>
                                 </button>
@@ -74,6 +81,36 @@
                             </td>
                             <td class="align-middle"><?php echo $order_list[$row]->total_order;?></td>
                             <td class="align-middle"><?php echo date_format(date_create($order_list[$row]->date_order), 'H:i:s \- d/m/Y');?></td>
+                            <td class="align-middle">
+                                <?php 
+                                if($order_list[$row]->date_confirmed == null){
+                                    echo '<i>NULL</i>';
+                                }
+                                else{
+                                    echo date_format(date_create($order_list[$row]->date_confirmed), 'H:i:s \- d/m/Y');
+                                }
+                                ?>
+                            </td>
+                            <td class="align-middle">
+                                <?php 
+                                if($order_list[$row]->date_done == null){
+                                    echo '<i>NULL</i>';
+                                }
+                                else{
+                                    echo date_format(date_create($order_list[$row]->date_done), 'H:i:s \- d/m/Y');
+                                }
+                                ?>
+                            </td>
+                            <td class="align-middle">
+                                <?php 
+                                if($order_list[$row]->date_deliveried == null){
+                                    echo '<i>NULL</i>';
+                                }
+                                else{
+                                    echo date_format(date_create($order_list[$row]->date_deliveried), 'H:i:s \- d/m/Y');
+                                }
+                                ?>
+                            </td>
                         </tr>
                         <?php }?>
                     </tbody>

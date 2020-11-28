@@ -460,7 +460,7 @@ class Item extends Database{
             $item_total = $item_list[$row]->price_item * $item_list[$row]->quantity;
             $sub_total += $item_total;
         }
-        return json_encode(number_format($sub_total, 2));
+        return json_encode(number_format($sub_total, 0));
     }
 }
 ?>

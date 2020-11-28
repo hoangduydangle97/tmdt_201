@@ -84,31 +84,51 @@
                                 <div class="col-lg-6">
                                     <div class="checkout__input">
                                         <p>First Name<span>*</span></p>
-                                        <input type="text" name="fname" required>
+                                        <input type="text" placeholder="Your first name" name="fname" required>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="checkout__input">
                                         <p>Last Name<span>*</span></p>
-                                        <input type="text" name="lname" required>
+                                        <input type="text" placeholder="Your last name" name="lname" required>
                                     </div>
                                 </div>
                             </div>
                             <div class="checkout__input">
                                 <p>Address<span>*</span></p>
-                                <input type="text" placeholder="Address" class="checkout__input__add" name="address" required>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <input type="text" placeholder="House number and Street" name="address" required>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <select name="district">
+                                            <option>District 1</option>
+                                            <option>District 2</option>
+                                            <option>District 3</option>
+                                            <option>District 4</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <select name="ward">
+                                            <option>Ward 1</option>
+                                            <option>Ward 2</option>
+                                            <option>Ward 3</option>
+                                            <option>Ward 4</option>
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="checkout__input">
                                         <p>Phone<span>*</span></p>
-                                        <input type="tel" name="phone" pattern="[0-9]{10}" required>
+                                        <input type="tel" placeholder="Your phone number" name="phone" pattern="[0-9]{10}" required>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="checkout__input">
                                         <p>Email<span>*</span></p>
-                                        <input type="email" name="email" required>
+                                        <input type="email" placeholder="Your email" name="email" required>
                                     </div>
                                 </div>
                             </div>
@@ -135,22 +155,25 @@
                                                                 'quantity'=>$item_list[$row]->quantity, 
                                                                 'total_item'=>$item_total];
                                     ?>
-                                    <li><?php echo $item_list[$row]->name_item; ?> <span>$<?php echo number_format($item_total, 2);?></span></li>
+                                    <li><?php echo $item_list[$row]->name_item; ?> <span><?php echo number_format($item_total, 0);?> <u style="font-weight: 400;">đ</u></span></li>
                                     <?php }
                                     $_SESSION['order-item-list'] = json_encode($order_item_list);
                                     ?>
                                 </ul>
-                                <div class="checkout__order__subtotal">Subtotal <span>$<?php echo number_format($sub_total, 2);?></span></div>
-                                <div class="checkout__order__total">Total <span>$<?php echo number_format($sub_total, 2);?></span></div>
-                                <input type="hidden" name="total-order" value="<?php echo number_format($sub_total, 2);?>">
-                                <div class="">
+                                <div class="checkout__order__subtotal">Subtotal <span><?php echo number_format($sub_total, 0);?> <u style="font-weight: 400;">đ</u></span></div>
+                                <div class="checkout__order__total">Shipping <span class="text-success">+<?php echo number_format(20000, 0);?> <u style="font-weight: 400;">đ</u></span></div>
+                                <input type="hidden" name="shipping-order" value="<?php echo number_format(20000, 0);?>">
+                                <div class="checkout__order__total">Total <span><?php echo number_format($sub_total, 0);?> <u style="font-weight: 400;">đ</u></span></div>
+                                <input type="hidden" name="total-order" value="<?php echo number_format($sub_total, 0);?>">
+                                <div class="checkout__order__products">Payment</div>
+                                <div>
                                     <label for="cod">
-                                        <input type="radio" id="cod" value="cod" name="payment" checked> Cash on delivery (COD)
+                                        <input type="radio" id="cod" value="cod" name="payment" checked> COD (Cash on delivery)
                                     </label>
                                 </div>
-                                <div class="">
+                                <div>
                                     <label for="momo">
-                                        <input type="radio" id="momo" value="momo" name="payment"> Momo Payment
+                                        <input type="radio" id="vnpay" value="vnpay" name="payment"> VNPay
                                     </label>
                                 </div>
                                 <button type="submit" class="site-btn">PLACE ORDER</button>

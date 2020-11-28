@@ -55,7 +55,7 @@
                                         </h5>
                                     </td>
                                     <td class="shoping__cart__price" id="<?php echo $item_list[$row]->id_item; ?>">
-                                        $<?php echo $item_list[$row]->price_item; ?>
+                                        <?php echo number_format($item_list[$row]->price_item, 0); ?> <u style="font-weight: 400;">đ</u>
                                     </td>
                                     <td class="shoping__cart__quantity">
                                         <div class="quantity">
@@ -70,8 +70,9 @@
                                     <td class="shoping__cart__total" id="<?php echo $item_list[$row]->id_item; ?>">
                                         $<?php $item_total = $item_list[$row]->price_item * $item_list[$row]->quantity;
                                         $sub_total += $item_total;
-                                        echo $item_total;
+                                        echo number_format($item_total, 0);
                                         ?>
+                                        <u style="font-weight: 400;">đ</u>
                                     </td>
                                     <td class="shoping__cart__item__close">
                                         <span class="icon_close" onclick="deleteCookie('<?php echo $item_list[$row]->id_item; ?>', '<?php echo $username; ?>')"></span>
@@ -106,8 +107,8 @@
                     <div class="shoping__checkout">
                         <h5>Cart Total</h5>
                         <ul>
-                            <li>Subtotal <span class="sub-total">$<?php echo $sub_total;?></span></li>
-                            <li>Total <span class="total">$<?php echo $sub_total;?></span></li>
+                            <li>Subtotal <span class="sub-total"><?php echo number_format($sub_total, 0);?> <u style="font-weight: 400;">đ</u></span></li>
+                            <li>Total <span class="total"><?php echo number_format($sub_total, 0);?> <u style="font-weight: 400;">đ</u></span></li>
                         </ul>
                         <a href="/tmdt_201/cart/checkout" class="primary-btn">PROCEED TO CHECKOUT</a>
                     </div>

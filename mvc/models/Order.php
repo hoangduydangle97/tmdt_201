@@ -13,7 +13,7 @@ class Order extends Database{
     }
 
     public function get_order_user_list(){
-        $sql = "SELECT * FROM order_user;";
+        $sql = "SELECT * FROM order_user WHERE NOT status_order='Deliveried';";
         $array_result = array();
         $sql_result = mysqli_query($this->conn, $sql);
         if($sql_result){

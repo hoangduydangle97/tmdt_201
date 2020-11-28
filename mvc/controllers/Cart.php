@@ -71,7 +71,7 @@ class Cart extends Controller{
         if($payment == 'cod'){
             $this->order_object->insert();
         }
-        else if($payment == 'momo'){
+        else if($payment == 'vnpay'){
             echo 'Proccessing ...';
         }
     }

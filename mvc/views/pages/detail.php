@@ -55,7 +55,7 @@
                             <i class="fa <?php echo (($average_rating > 4 && $average_rating < 4.3) || $average_rating <= 4)?'fa-star-o':(($average_rating >= 4.3 && $average_rating < 4.7)?'fa-star-half-o':'fa-star');?>"></i>
                             <span>(<?php echo $size_list; ?> reviews)</span>
                         </div>
-                        <div class="product__details__price">$<?php echo number_format($item_object->price_item, 2);?></div>
+                        <div class="product__details__price"><?php echo number_format($item_object->price_item, 0);?> <u style="font-weight: 400;">đ</u></div>
                         <p>Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vestibulum ac diam sit amet quam
                             vehicula elementum sed sit amet dui. Sed porttitor lectus nibh. Vestibulum ac diam sit amet
                             quam vehicula elementum sed sit amet dui. Proin eget tortor risus.</p>
@@ -89,7 +89,7 @@
                                 </span>
                             </li>
                             <li><b>Shipping</b> <span>01 day shipping. <samp>Free pickup today</samp></span></li>
-                            <li><b>Weight</b> <span><?php echo $item_object->weight_item; ?> lb</span></li>
+                            <li><b>Weight</b> <span><?php echo $item_object->weight_item; ?> <?php echo $item_object->unit_item; ?></span></li>
                             <li><b>Share on</b>
                                 <div class="share">
                                     <a href="#"><i class="fa fa-facebook"></i></a>
@@ -368,7 +368,7 @@
                                     <?php echo $related_item_list[$row]->name_item;?>
                                 </a>
                             </h6>
-                            <h5>$<?php echo $related_item_list[$row]->price_item;?></h5>
+                            <h5><?php echo number_format($related_item_list[$row]->price_item, 0);?> <u style="font-weight: 400;">đ</u></h5>
                             <div>
                                 <?php $average_rating = $related_item_list[$row]->average_rating;?>
                                 <i style="color: #EDBB0E;" class="fa <?php echo (($average_rating > 0 && $average_rating < 0.3) || $average_rating == 0)?'fa-star-o':(($average_rating >= 0.3 && $average_rating < 0.7)?'fa-star-half-o':'fa-star');?>"></i>

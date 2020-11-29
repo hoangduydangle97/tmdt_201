@@ -68,7 +68,7 @@
                                         </div>
                                     </td>
                                     <td class="shoping__cart__total" id="<?php echo $item_list[$row]->id_item; ?>">
-                                        $<?php $item_total = $item_list[$row]->price_item * $item_list[$row]->quantity;
+                                        <?php $item_total = $item_list[$row]->price_item * $item_list[$row]->quantity;
                                         $sub_total += $item_total;
                                         echo number_format($item_total, 0);
                                         ?>

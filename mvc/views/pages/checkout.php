@@ -96,11 +96,16 @@
                             </div>
                             <div class="checkout__input">
                                 <p>Address<span>*</span></p>
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <input type="text" placeholder="House number and Street" name="address" required>
+                                <div class="row mb-4">
+                                    <div class="col-lg-4">
+                                        <select name="district">
+                                            <option>Province 1</option>
+                                            <option>Province 2</option>
+                                            <option>Province 3</option>
+                                            <option>Province 4</option>
+                                        </select>
                                     </div>
-                                    <div class="col-lg-3">
+                                    <div class="col-lg-4">
                                         <select name="district">
                                             <option>District 1</option>
                                             <option>District 2</option>
@@ -108,7 +113,7 @@
                                             <option>District 4</option>
                                         </select>
                                     </div>
-                                    <div class="col-lg-3">
+                                    <div class="col-lg-4">
                                         <select name="ward">
                                             <option>Ward 1</option>
                                             <option>Ward 2</option>
@@ -117,6 +122,7 @@
                                         </select>
                                     </div>
                                 </div>
+                                <input type="text" placeholder="Your house number and street" name="address" required>
                             </div>
                             <div class="row">
                                 <div class="col-lg-6">

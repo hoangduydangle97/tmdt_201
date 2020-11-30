@@ -58,7 +58,8 @@ if(isset($_SESSION['order_item_list'])){
                 font-size:1.25em;
             }
 
-            .star-rating .fa-star:hover, .star-rating-modify .fa-star:hover, .popover-hover, .category-btn:hover {
+            .star-rating .fa-star:hover, .star-rating-modify .fa-star:hover, 
+            .popover-hover, .category-btn:hover, .total-btn:hover {
                 cursor: pointer;
             }
 
@@ -196,7 +197,7 @@ if(isset($_SESSION['order_item_list'])){
         <div class="humberger__menu__overlay"></div>
         <div class="humberger__menu__wrapper">
             <div class="humberger__menu__logo">
-                <a href="#"><img src="/tmdt_201/public/master1/images/logo.png" alt="logo"></a>
+                <a href="http://localhost/tmdt_201/home"><img src="/tmdt_201/public/master1/images/logo.png" alt="logo"></a>
             </div>
             <div class="humberger__menu__cart">
                 <ul>
@@ -205,7 +206,7 @@ if(isset($_SESSION['order_item_list'])){
                             <li><a href="#"><i class="fa fa-gift"></i> <span>0</span></a></li>
                             <li><a href="http://localhost/tmdt_201/cart"><i class="fa fa-shopping-cart"></i> <span class="selected-product">0</span></a></li>
                         </ul>
-                        <div class="header__cart__price">Total: <span><?php echo json_decode($data['total']);?> <u style="font-weight: 400;">đ</u></span></div>
+                        <div class="header__cart__price">Total: <span class="total"><?php echo json_decode($data['total']);?> <u style="font-weight: 400;">đ</u></span></div>
                     <?php }
                     else{?>
                         <ul>
@@ -427,9 +428,85 @@ if(isset($_SESSION['order_item_list'])){
                             <?php if(!isset($data['cms'])){?>
                             <ul>
                                 <li><a href="#"><i class="fa fa-gift"></i> <span>0</span></a></li>
+                                <?php if($data['page'] == 'cart' || $data['page'] == 'checkout'){?>
                                 <li><a href="http://localhost/tmdt_201/cart"><i class="fa fa-shopping-cart"></i> <span class="selected-product">0</span></a></li>
+                                <?php }
+                                else{
+                                    $item_list = json_decode($data['item_cart_list']);
+                                    $size_list = count($item_list);
+                                ?>
+                                    <li class="dropdown">
+                                        <a class="total-btn" data-toggle="dropdown">
+                                            <i class="fa fa-shopping-cart"></i>
+                                            <span class="selected-product">0</span>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right" style="width: 500px;">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col-3">
+                                                        <a class="dropdown-item disabled" style="color: black;"><b>Product</b></a>
+                                                    </div>
+                                                    <div class="col-3">
+                                                        <a class="dropdown-item disabled" style="color: black;"><b>Price</b></a>
+                                                    </div>
+                                                    <div class="col-3">
+                                                        <a class="dropdown-item disabled" style="color: black;"><b>Quantity</b></a>
+                                                    </div>
+                                                    <div class="col-3">
+                                                        <a class="dropdown-item disabled" style="color: black;"><b>Total</b></a>
+                                                    </div>
+                                                </div>
+                                                <?php
+                                                if($size_list == 0){
+                                                ?>
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <a class="dropdown-item disabled text-center" style="color: black;"><i>There isn't any products in your cart</i></a>
+                                                    </div>
+                                                </div>
+                                                <?php }
+                                                else{
+                                                    for($row = 0; $row < $size_list; $row++){?>
+                                                <div class="row">
+                                                    <input type="hidden" class="hidden-input id_item" value="<?php echo $item_list[$row]->id_item; ?>">
+                                                    <div class="col-3">
+                                                        <a class="dropdown-item" href="http://localhost/tmdt_201/shop/detail/<?php echo $item_list[$row]->id_item;?>">
+                                                            <?php echo $item_list[$row]->name_item; ?>
+                                                        </a>
+                                                    </div>
+                                                    <div class="col-3">
+                                                        <a class="dropdown-item disabled price-item" id="<?php echo $item_list[$row]->id_item; ?>" style="color: black;">
+                                                            <?php echo number_format($item_list[$row]->price_item, 0); ?> <u>đ</u>
+                                                        </a>
+                                                    </div>
+                                                    <div class="col-3">
+                                                        <a class="dropdown-item disabled quantity-item" style="color: black;" id="<?php echo $item_list[$row]->id_item; ?>">
+                                                            <?php echo $item_list[$row]->quantity; ?>
+                                                        </a>
+                                                    </div>
+                                                    <div class="col-3">
+                                                        <a class="dropdown-item disabled total-item" style="color: black;" id="<?php echo $item_list[$row]->id_item; ?>">
+                                                        <?php $item_total = $item_list[$row]->price_item * $item_list[$row]->quantity;
+                                                            echo number_format($item_total, 0);
+                                                        ?>
+                                                            <u>đ</u>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <?php }}?>
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <a class="dropdown-item text-center" href="http://localhost/tmdt_201/cart">
+                                                            Go to your cart
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                <?php }?>
                             </ul>
-                            <div class="header__cart__price">Total: <span><?php echo json_decode($data['total']);?> <u style="font-weight: 400;">đ</u></span></div>
+                            <div class="header__cart__price">Total: <span class="total"><?php echo json_decode($data['total']);?> <u style="font-weight: 400;">đ</u></span></div>
                             <?php }
                             else{?>
                             <ul>

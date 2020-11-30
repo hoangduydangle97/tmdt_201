@@ -15,10 +15,21 @@ class Contact extends Controller{
         if(isset($_SESSION['username'])){
             $num_orders = $this->order_object->get_num_orders($_SESSION['username']);
         }
+        $arr_cookie = [];
+        if(isset($_COOKIE)){
+            foreach($_COOKIE as $key => $val){
+                $pos = strpos($key, 'selected-');
+                if($pos === 0){
+                    $arr_cookie[str_replace('selected-', '', $key)] = $val;
+                }
+            }
+        }
+        ksort($arr_cookie);
         $this->view("Master1", array(
             "page"=>"contact",
             "total"=>$this->item_object->get_total(),
             "num_orders"=>$num_orders,
+            "item_cart_list"=>$this->item_object->get_item_list($arr_cookie),
             "category_list"=>$this->category_object->get_all_categories()
         ));
     }

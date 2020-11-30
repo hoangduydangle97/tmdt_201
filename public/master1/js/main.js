@@ -276,7 +276,7 @@
             }
         }
         $button.parent().find('.text-input').val(newVal);
-        SetCart($input.filter(".id_item").val(), $input.filter(".username").val());
+        SetCart($input.filter(".id_item").val());
     });
 
     /*-------------------
@@ -529,8 +529,10 @@ function SetCart(id_item){
     }
     $('.selected-product').html(getCookie('sum'));
     var total = 0;
-    var price_item = parseInt($('.shoping__cart__price').filter('#' + id_item).text().trim().slice(0, -2).replace(',',''));
-    var total_items = $('.shoping__cart__total');
+    var price_item = parseInt($('.price-item').filter('#' + id_item).text().trim().slice(0, -2).replace(',',''));
+    var quantity_item = $('.quantity-item').filter('#' + id_item);
+    var total_items = $('.total-item');
+    quantity_item.html(cvalue.toString());
     total_items.filter('#' + id_item).html((price_item * cvalue).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' <u style="font-weight: 400;">đ</u>');
     var i = 0;
     while(i < total_items.length){
@@ -538,7 +540,9 @@ function SetCart(id_item){
         i++;
     }
     $('.sub-total').html(total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' <u style="font-weight: 400;">đ</u>');
-    $('.total').html(total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' <u style="font-weight: 400;">đ</u>');
+    $('.total').each(function(){
+        $(this).html(total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' <u style="font-weight: 400;">đ</u>');
+    });
     $('.selected.' + id_item).removeAttr("hidden");
 }
 

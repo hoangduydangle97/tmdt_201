@@ -54,7 +54,7 @@
                                             </a>
                                         </h5>
                                     </td>
-                                    <td class="shoping__cart__price" id="<?php echo $item_list[$row]->id_item; ?>">
+                                    <td class="shoping__cart__price price-item" id="<?php echo $item_list[$row]->id_item; ?>">
                                         <?php echo number_format($item_list[$row]->price_item, 0); ?> <u style="font-weight: 400;">đ</u>
                                     </td>
                                     <td class="shoping__cart__quantity">
@@ -67,7 +67,7 @@
                                             </div>
                                         </div>
                                     </td>
-                                    <td class="shoping__cart__total" id="<?php echo $item_list[$row]->id_item; ?>">
+                                    <td class="shoping__cart__total total-item" id="<?php echo $item_list[$row]->id_item; ?>">
                                         <?php $item_total = $item_list[$row]->price_item * $item_list[$row]->quantity;
                                         $sub_total += $item_total;
                                         echo number_format($item_total, 0);

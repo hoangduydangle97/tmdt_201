@@ -239,7 +239,7 @@
     /*--------------------------
         Select
     ----------------------------*/
-    $("select").niceSelect();
+    //$("select").niceSelect();
 
     /*------------------
 		Single Product
@@ -266,13 +266,13 @@
         var $input = $button.parent().find('.hidden-input');
         var oldValue = $button.parent().find('.text-input').val();
         if ($button.hasClass('inc')) {
-            var newVal = parseFloat(oldValue) + 1;
+            var newVal = (parseFloat(oldValue) + 0.05).toFixed(2);
         } else {
             // Don't allow decrementing below one
-            if (oldValue > 1) {
-                var newVal = parseFloat(oldValue) - 1;
+            if (oldValue > 0.1) {
+                var newVal = (parseFloat(oldValue) - 0.05).toFixed(2);
             } else {
-                newVal = 1;
+                newVal = 0.1.toFixed(2);
             }
         }
         $button.parent().find('.text-input').val(newVal);
@@ -533,15 +533,15 @@ function SetCart(id_item){
     var quantity_item = $('.quantity-item').filter('#' + id_item);
     var total_items = $('.total-item');
     quantity_item.html(cvalue.toString());
-    total_items.filter('#' + id_item).html((price_item * cvalue).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' <u style="font-weight: 400;">đ</u>');
+    total_items.filter('#' + id_item).html((price_item * cvalue).toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' <u style="font-weight: 400;">đ</u>');
     var i = 0;
     while(i < total_items.length){
         total = total + parseInt(total_items[i].textContent.trim().slice(0, -2).replace(',',''));
         i++;
     }
-    $('.sub-total').html(total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' <u style="font-weight: 400;">đ</u>');
+    $('.sub-total').html(total.toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' <u style="font-weight: 400;">đ</u>');
     $('.total').each(function(){
-        $(this).html(total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' <u style="font-weight: 400;">đ</u>');
+        $(this).html(total.toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' <u style="font-weight: 400;">đ</u>');
     });
     $('.selected.' + id_item).removeAttr("hidden");
 }
@@ -570,4 +570,111 @@ function changeClick(val, id = null, name = null){
         $('#name').removeAttr('disabled').val(name).after('<input type="hidden" name="current-id" value="' + id + '">');
         $('#submit').val('Update category');
     }
+}
+
+function provinceChange(){
+    $('.loading-ajax').removeClass('d-none');
+    var province_id = $('#province').val();
+    var weight_total = parseInt($('#weight-total').text().replace(',',''));
+    $.post(
+        'http://localhost/tmdt_201/ajax/province',
+        {
+            id: province_id,
+            weight: weight_total
+        },
+        function(result, status){
+            if(status == 'success'){
+                result = JSON.parse(result);
+                var district_list = result[0];
+                var district_html_list = '';
+                var ward_list = result[1];
+                var ward_html_list = '';
+                var shipping_fee = parseInt(result[2]);
+                var sub_total = parseInt($('.sub-total').text().replace(',',''));
+                $.each(district_list, function(index, value){
+                    var district_id = value['DistrictID'];
+                    var district_name = value['DistrictName'];
+                    district_html_list += '<option value="' + district_id + '">' + district_name +'</option>'
+                });
+                $.each(ward_list, function(index, value){
+                    var ward_code = value['WardCode'];
+                    var ward_name = value['WardName'];
+                    ward_html_list += '<option value="' + ward_code + '">' + ward_name +'</option>'
+                });
+                $('#district').html(district_html_list);
+                $('#ward').html(ward_html_list);
+                $('.shipping-fee').html('+ ' + shipping_fee.toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' <u style="font-weight: 400;">đ</u>');
+                if(sub_total >= 290000){
+                    shipping_fee = 0;
+                }
+                $('.total').html((sub_total + shipping_fee).toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' <u style="font-weight: 400;">đ</u>');
+                $('.loading-ajax').addClass('d-none');
+            }
+        },
+        'html'
+    );
+}
+
+function districtChange(){
+    $('.loading-ajax').removeClass('d-none');
+    var district_id = $('#district').val();
+    var weight_total = parseInt($('#weight-total').text().replace(',',''));
+    $.post(
+        'http://localhost/tmdt_201/ajax/district',
+        {
+            id: district_id,
+            weight: weight_total
+        },
+        function(result, status){
+            if(status == 'success'){
+                result = JSON.parse(result);
+                var ward_list = result[0];
+                var ward_html_list = '';
+                var shipping_fee = parseInt(result[1]);
+                var sub_total = parseInt($('.sub-total').text().replace(',',''));
+                $.each(ward_list, function(index, value){
+                    var ward_code = value['WardCode'];
+                    var ward_name = value['WardName'];
+                    ward_html_list += '<option value="' + ward_code + '">' + ward_name +'</option>'
+                });
+                $('#ward').html(ward_html_list);
+                $('.shipping-fee').html('+ ' + shipping_fee.toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' <u style="font-weight: 400;">đ</u>');
+                if(sub_total >= 290000){
+                    shipping_fee = 0;
+                }
+                $('.total').html((sub_total + shipping_fee).toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' <u style="font-weight: 400;">đ</u>');
+                $('.loading-ajax').addClass('d-none');
+            }
+        },
+        'html'
+    );
+}
+
+function wardChange(){
+    $('.loading-ajax').removeClass('d-none');
+    var district_id = $('#district').val();
+    var ward_id = $('#ward').val();
+    var weight_total = parseInt($('#weight-total').text().replace(',',''));
+    $.post(
+        'http://localhost/tmdt_201/ajax/ward',
+        {
+            district_id: district_id,
+            ward_id: ward_id,
+            weight: weight_total
+        },
+        function(result, status){
+            if(status == 'success'){
+                result = JSON.parse(result);
+                var shipping_fee = parseInt(result);
+                var sub_total = parseInt($('.sub-total').text().replace(',',''));
+                $('.shipping-fee').html('+ ' + shipping_fee.toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' <u style="font-weight: 400;">đ</u>');
+                if(sub_total >= 290000){
+                    shipping_fee = 0;
+                }
+                $('.total').html((sub_total + shipping_fee).toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' <u style="font-weight: 400;">đ</u>');
+                $('.loading-ajax').addClass('d-none');
+            }
+        },
+        'html'
+    );
 }

@@ -95,30 +95,43 @@
                                 </div>
                             </div>
                             <div class="checkout__input">
-                                <p>Address<span>*</span></p>
+                                <p>
+                                    Address<span>*</span>
+                                    <span class="spinner-border text-primary loading-ajax d-none"></span>
+                                </p>
                                 <div class="row mb-4">
                                     <div class="col-lg-4">
-                                        <select name="district">
-                                            <option>Province 1</option>
-                                            <option>Province 2</option>
-                                            <option>Province 3</option>
-                                            <option>Province 4</option>
+                                        <select class="form-control select-checkout" id="province" onchange="provinceChange()">
+                                            <?php $province_list = json_decode($data['province_list']);
+                                            $size_list = count($province_list);
+                                            for($row = 0; $row < $size_list; $row++){
+                                            ?>
+                                            <option value="<?php echo $province_list[$row]->id; ?>">
+                                                <?php echo $province_list[$row]->name; ?>
+                                            </option>
+                                            <?php }?>
                                         </select>
                                     </div>
                                     <div class="col-lg-4">
-                                        <select name="district">
-                                            <option>District 1</option>
-                                            <option>District 2</option>
-                                            <option>District 3</option>
-                                            <option>District 4</option>
+                                        <select class="form-control select-checkout" id="district" onchange="districtChange()">
+                                            <?php $district_list = json_decode($data['district_list']);
+                                            foreach($district_list as $value){
+                                            ?>
+                                            <option value="<?php echo $value->DistrictID; ?>">
+                                                <?php echo $value->DistrictName; ?>
+                                            </option>
+                                            <?php }?>
                                         </select>
                                     </div>
                                     <div class="col-lg-4">
-                                        <select name="ward">
-                                            <option>Ward 1</option>
-                                            <option>Ward 2</option>
-                                            <option>Ward 3</option>
-                                            <option>Ward 4</option>
+                                        <select class="form-control select-checkout" id="ward" onchange="wardChange()">
+                                            <?php $ward_list = json_decode($data['ward_list']);
+                                            foreach($ward_list as $value){
+                                            ?>
+                                            <option value="<?php echo $value->WardCode; ?>">
+                                                <?php echo $value->WardName; ?>
+                                            </option>
+                                            <?php }?>
                                         </select>
                                     </div>
                                 </div>
@@ -166,11 +179,21 @@
                                     $_SESSION['order-item-list'] = json_encode($order_item_list);
                                     ?>
                                 </ul>
-                                <div class="checkout__order__subtotal">Subtotal <span><?php echo number_format($sub_total, 0);?> <u style="font-weight: 400;">đ</u></span></div>
-                                <div class="checkout__order__total">Shipping <span class="text-success">+<?php echo number_format(20000, 0);?> <u style="font-weight: 400;">đ</u></span></div>
-                                <input type="hidden" name="shipping-order" value="<?php echo number_format(20000, 0);?>">
-                                <div class="checkout__order__total">Total <span><?php echo number_format($sub_total, 0);?> <u style="font-weight: 400;">đ</u></span></div>
-                                <input type="hidden" name="total-order" value="<?php echo number_format($sub_total, 0);?>">
+                                <?php $shipping_fee = $data['shipping_fee']; 
+                                $free_shipping = 0;
+                                ?>
+                                <div class="d-none" id="weight-total"><?php echo number_format($data['weight_total'], 0) ;?></div>
+                                <div class="checkout__order__subtotal">Subtotal <span class="sub-total"><?php echo number_format($sub_total, 0);?> <u style="font-weight: 400;">đ</u></span></div>
+                                <div class="checkout__order__total">Shipping <span class="text-success shipping-fee">+ <?php echo number_format($data['shipping_fee'], 0) ;?> <u style="font-weight: 400;">đ</u></span></div>
+                                <input type="hidden" name="shipping-order" value="<?php echo number_format($shipping_fee, 0) ;?>">
+                                <?php if($sub_total >= 299000){
+                                    $shipping_fee = 0;
+                                    $free_shipping = 1;
+                                }?>
+                                <div class="checkout__order__total">Free Shipping <span class="text-primary"><?php echo $free_shipping == 0?'Not Apply':'Apply';?></span></div>
+                                <input type="hidden" name="free-shipping-order" value="<?php echo $free_shipping;?>">
+                                <div class="checkout__order__total">Total <span class="total"><?php echo number_format($sub_total + $shipping_fee, 0);?> <u style="font-weight: 400;">đ</u></span></div>
+                                <input type="hidden" name="total-order" value="<?php echo number_format($sub_total + $shipping_fee, 0);?>">
                                 <div class="checkout__order__products">Payment</div>
                                 <div>
                                     <label for="cod">

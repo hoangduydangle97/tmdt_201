@@ -43,6 +43,10 @@ if(isset($_SESSION['order_item_list'])){
                 color: #252525;
             }
 
+            .select-checkout {
+                font-family: Arial, Helvetica, sans-serif;
+            }
+
             .language-option:hover, .item-cart:hover {
                 color: #7fad39;
                 text-decoration: underline;

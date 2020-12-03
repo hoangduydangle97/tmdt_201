@@ -581,6 +581,8 @@ function convertDate(date){
 
 function provinceChange(){
     $('.loading-ajax').removeClass('d-none');
+    var value_option = $('#province option:selected').text().trim();
+    $('#province-input').val(value_option);
     var province_id = $('#province').val();
     var weight_total = parseInt($('#weight-total').text().replace(',',''));
     $.post(
@@ -611,6 +613,10 @@ function provinceChange(){
                 });
                 $('#district').html(district_html_list);
                 $('#ward').html(ward_html_list);
+                value_option = $('#district option:selected').text().trim();
+                $('#district-input').val(value_option);
+                value_option = $('#ward option:selected').text().trim();
+                $('#ward-input').val(value_option);
                 $('.shipping-fee').html('+ ' + shipping_fee.toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' <u style="font-weight: 400;">đ</u>');
                 if(sub_total >= 290000){
                     shipping_fee = 0;
@@ -626,6 +632,8 @@ function provinceChange(){
 
 function districtChange(){
     $('.loading-ajax').removeClass('d-none');
+    var value_option = $('#district option:selected').text().trim();
+    $('#district-input').val(value_option);
     var district_id = $('#district').val();
     var weight_total = parseInt($('#weight-total').text().replace(',',''));
     $.post(
@@ -648,6 +656,8 @@ function districtChange(){
                     ward_html_list += '<option value="' + ward_code + '">' + ward_name +'</option>'
                 });
                 $('#ward').html(ward_html_list);
+                value_option = $('#ward option:selected').text().trim();
+                $('#ward-input').val(value_option);
                 $('.shipping-fee').html('+ ' + shipping_fee.toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' <u style="font-weight: 400;">đ</u>');
                 if(sub_total >= 290000){
                     shipping_fee = 0;
@@ -663,6 +673,8 @@ function districtChange(){
 
 function wardChange(){
     $('.loading-ajax').removeClass('d-none');
+    var value_option = $('#ward option:selected').text().trim();
+    $('#ward-input').val(value_option);
     var district_id = $('#district').val();
     var ward_id = $('#ward').val();
     var weight_total = parseInt($('#weight-total').text().replace(',',''));

@@ -113,14 +113,14 @@
                                     <div class="col-lg-4">
                                         <select class="form-control select-checkout" id="province" onchange="provinceChange()">
                                             <?php $province_list = json_decode($data['province_list']);
-                                            $size_list = count($province_list);
-                                            for($row = 0; $row < $size_list; $row++){
+                                            foreach($province_list as $value){
                                             ?>
-                                            <option value="<?php echo $province_list[$row]->id; ?>">
-                                                <?php echo $province_list[$row]->name; ?>
+                                            <option value="<?php echo $value->id; ?>">
+                                                <?php echo $value->name; ?>
                                             </option>
                                             <?php }?>
                                         </select>
+                                        <input type="hidden" id="province-input" name="province" value="<?php echo $province_list[0]->name;?>">
                                     </div>
                                     <div class="col-lg-4">
                                         <select class="form-control select-checkout" id="district" onchange="districtChange()">
@@ -132,6 +132,7 @@
                                             </option>
                                             <?php }?>
                                         </select>
+                                        <input type="hidden" id="district-input" name="district" value="<?php echo $district_list[0]->DistrictName;?>">
                                     </div>
                                     <div class="col-lg-4">
                                         <select class="form-control select-checkout" id="ward" onchange="wardChange()">
@@ -143,6 +144,7 @@
                                             </option>
                                             <?php }?>
                                         </select>
+                                        <input type="hidden" id="ward-input" name="ward" value="<?php echo $ward_list[0]->WardName;?>">
                                     </div>
                                 </div>
                                 <input type="text" placeholder="Your house number and street" name="address" required>

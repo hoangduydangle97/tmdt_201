@@ -95,10 +95,20 @@
                                 </div>
                             </div>
                             <div class="checkout__input">
-                                <p>
-                                    Address<span>*</span>
-                                    <span class="spinner-border text-primary loading-ajax d-none"></span>
-                                </p>
+                                <div class="row mb-4">
+                                    <div class="col-6">
+                                        Address<span>*</span>
+                                        <span class="spinner-border text-primary loading-ajax d-none"></span>
+                                    </div>
+                                    <div class="col-6 text-right">
+                                        Expected Delivery Time:
+                                        <b class="expected-time">
+                                        <?php $expected_time = json_decode($data['expected-time']);
+                                        echo date_format(date_create($expected_time), 'd/m/Y');
+                                        ?>
+                                        </b>
+                                    </div>
+                                </div>
                                 <div class="row mb-4">
                                     <div class="col-lg-4">
                                         <select class="form-control select-checkout" id="province" onchange="provinceChange()">

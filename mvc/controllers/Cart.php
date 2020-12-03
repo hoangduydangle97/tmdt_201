@@ -64,6 +64,7 @@ class Cart extends Controller{
         $district_list = $this->service_object->get_district(json_decode($province_list)[0]->id);
         $ward_list = $this->service_object->get_ward(json_decode($district_list)[0]->DistrictID);
         $shipping_fee = $this->service_object->get_shipping_fee(json_decode($district_list)[0]->DistrictID, json_decode($ward_list)[0]->WardCode, $weight_total);
+        $expected_time = $this->service_object->get_expected_time(json_decode($district_list)[0]->DistrictID, json_decode($ward_list)[0]->WardCode);
         $this->view("Master1", array(
             "page"=>"checkout",
             "total"=>$this->item_object->get_total(),
@@ -72,6 +73,7 @@ class Cart extends Controller{
             "district_list"=>$district_list,
             "ward_list"=>$ward_list,
             "shipping_fee"=>$shipping_fee,
+            "expected-time"=>$expected_time,
             "weight_total"=>$weight_total,
             "category_list"=>$this->category_object->get_all_categories(),
             "item_list"=>$this->item_object->get_item_list($arr_cookie),

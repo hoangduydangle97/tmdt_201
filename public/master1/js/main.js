@@ -572,6 +572,13 @@ function changeClick(val, id = null, name = null){
     }
 }
 
+function convertDate(date){
+    var year = date.substr(0, 4);
+    var month = date.substr(5, 2);
+    var day = date.substr(8, 2);
+    return day + '/' + month + '/' + year;
+}
+
 function provinceChange(){
     $('.loading-ajax').removeClass('d-none');
     var province_id = $('#province').val();
@@ -590,6 +597,7 @@ function provinceChange(){
                 var ward_list = result[1];
                 var ward_html_list = '';
                 var shipping_fee = parseInt(result[2]);
+                var expected_time = convertDate(result[3]);
                 var sub_total = parseInt($('.sub-total').text().replace(',',''));
                 $.each(district_list, function(index, value){
                     var district_id = value['DistrictID'];
@@ -608,6 +616,7 @@ function provinceChange(){
                     shipping_fee = 0;
                 }
                 $('.total').html((sub_total + shipping_fee).toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' <u style="font-weight: 400;">đ</u>');
+                $('.expected-time').html(expected_time);
                 $('.loading-ajax').addClass('d-none');
             }
         },
@@ -631,6 +640,7 @@ function districtChange(){
                 var ward_list = result[0];
                 var ward_html_list = '';
                 var shipping_fee = parseInt(result[1]);
+                var expected_time = convertDate(result[2]);
                 var sub_total = parseInt($('.sub-total').text().replace(',',''));
                 $.each(ward_list, function(index, value){
                     var ward_code = value['WardCode'];
@@ -643,6 +653,7 @@ function districtChange(){
                     shipping_fee = 0;
                 }
                 $('.total').html((sub_total + shipping_fee).toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' <u style="font-weight: 400;">đ</u>');
+                $('.expected-time').html(expected_time);
                 $('.loading-ajax').addClass('d-none');
             }
         },
@@ -665,13 +676,15 @@ function wardChange(){
         function(result, status){
             if(status == 'success'){
                 result = JSON.parse(result);
-                var shipping_fee = parseInt(result);
+                var shipping_fee = parseInt(result[0]);
+                var expected_time = convertDate(result[1]);
                 var sub_total = parseInt($('.sub-total').text().replace(',',''));
                 $('.shipping-fee').html('+ ' + shipping_fee.toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' <u style="font-weight: 400;">đ</u>');
                 if(sub_total >= 290000){
                     shipping_fee = 0;
                 }
                 $('.total').html((sub_total + shipping_fee).toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' <u style="font-weight: 400;">đ</u>');
+                $('.expected-time').html(expected_time);
                 $('.loading-ajax').addClass('d-none');
             }
         },

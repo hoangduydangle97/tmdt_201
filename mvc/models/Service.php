@@ -97,6 +97,48 @@ class Service extends Database{
         if($result->code == 200){
             return json_encode($result->data->total);
         }
+        else{
+            return json_encode('Error');
+        }
+    }
+
+    public function get_expected_time($to_district_id, $to_ward_code){
+        $header = array(
+            'Content-Type: application/json',
+            'Token: 637d1bc6-2c00-11eb-a18f-227f832b612c',
+            'ShopId: 76253'
+        );
+        
+        $data = array(
+            "service_id" => 53320,
+            "from_district_id" => 1452,
+            "from_ward_code" => "21014",
+            "to_district_id" => intval($to_district_id),
+            "to_ward_code" => strval($to_ward_code)
+        );
+        $data = json_encode($data, JSON_UNESCAPED_UNICODE);
+        $curl = curl_init();
+        $option = array(
+            CURLOPT_RETURNTRANSFER => 1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_URL => 'https://dev-online-gateway.ghn.vn/shiip/public-api/v2/shipping-order/leadtime',
+            CURLOPT_HTTPHEADER => $header,
+            CURLOPT_POSTFIELDS => $data
+        );
+        curl_setopt_array($curl, $option);
+        $res = curl_exec($curl);
+        curl_close($curl);
+        $result = json_decode($res);
+        if($result->code == 200){
+            $data = $result->data;
+            $second = $data->leadtime - $data->order_date;
+            $start_time = date("Y-m-d H:i:s");
+            $expected_time = date('Y-m-d',strtotime('+'.$second.' seconds',strtotime($start_time)));
+            return json_encode($expected_time);
+        }
+        else{
+            return json_encode('Error');
+        }
     }
 }
 ?>

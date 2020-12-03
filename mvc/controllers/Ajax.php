@@ -12,7 +12,8 @@ class Ajax extends Controller{
         $district_list = json_decode($this->service_object->get_district($province_id));
         $ward_list = json_decode($this->service_object->get_ward($district_list[0]->DistrictID));
         $shipping_fee = $this->service_object->get_shipping_fee($district_list[0]->DistrictID, $ward_list[0]->WardCode, $weight_total);
-        echo json_encode(array($district_list, $ward_list, $shipping_fee), JSON_UNESCAPED_UNICODE);
+        $expected_time = json_decode($this->service_object->get_expected_time($district_list[0]->DistrictID, $ward_list[0]->WardCode));
+        echo json_encode(array($district_list, $ward_list, $shipping_fee, $expected_time), JSON_UNESCAPED_UNICODE);
     }
 
     public function district(){
@@ -20,7 +21,8 @@ class Ajax extends Controller{
         $weight_total = $_POST['weight'];
         $ward_list = json_decode($this->service_object->get_ward($district_id));
         $shipping_fee = $this->service_object->get_shipping_fee($district_id, $ward_list[0]->WardCode, $weight_total);
-        echo json_encode(array($ward_list, $shipping_fee), JSON_UNESCAPED_UNICODE);
+        $expected_time = json_decode($this->service_object->get_expected_time($district_id, $ward_list[0]->WardCode));
+        echo json_encode(array($ward_list, $shipping_fee, $expected_time), JSON_UNESCAPED_UNICODE);
     }
 
     public function ward(){
@@ -28,7 +30,8 @@ class Ajax extends Controller{
         $ward_id = $_POST['ward_id'];
         $weight_total = $_POST['weight'];
         $shipping_fee = $this->service_object->get_shipping_fee($district_id, $ward_id, $weight_total);
-        echo json_encode($shipping_fee);
+        $expected_time = json_decode($this->service_object->get_expected_time($district_id, $ward_id));
+        echo json_encode(array($shipping_fee, $expected_time));
     }
 }
 ?>

@@ -623,6 +623,7 @@ function provinceChange(){
                 }
                 $('.total').html((sub_total + shipping_fee).toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' <u style="font-weight: 400;">đ</u>');
                 $('.expected-time').html(expected_time);
+                $('#expected-input').val(expected_time);
                 $('.loading-ajax').addClass('d-none');
             }
         },
@@ -664,6 +665,7 @@ function districtChange(){
                 }
                 $('.total').html((sub_total + shipping_fee).toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' <u style="font-weight: 400;">đ</u>');
                 $('.expected-time').html(expected_time);
+                $('#expected-input').val(expected_time);
                 $('.loading-ajax').addClass('d-none');
             }
         },
@@ -697,6 +699,7 @@ function wardChange(){
                 }
                 $('.total').html((sub_total + shipping_fee).toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' <u style="font-weight: 400;">đ</u>');
                 $('.expected-time').html(expected_time);
+                $('#expected-input').val(expected_time);
                 $('.loading-ajax').addClass('d-none');
             }
         },

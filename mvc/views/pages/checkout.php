@@ -107,6 +107,7 @@
                                         echo date_format(date_create($expected_time), 'd/m/Y');
                                         ?>
                                         </b>
+                                        <input type="hidden" id="expected-input" name="expected-time" value="<?php echo date_format(date_create($expected_time), 'd/m/Y');?>">
                                     </div>
                                 </div>
                                 <div class="row mb-4">

@@ -44,12 +44,13 @@
                             <th>Free Shipping</th>
                             <th>Total (đ)</th>
                             <th>Payment</th>
-                            <th>Time Created</th>
-                            <th>Time Confirmed</th>
-                            <th>Time Confirm Prepared</th>
-                            <th>Time Confirm Delivered</th>
-                            <th>Time Confirm Request Return</th>
-                            <th>Time Confirm Returned</th>
+                            <th>Date Created</th>
+                            <th>Date Confirmed</th>
+                            <th>Date Confirm Prepared</th>
+                            <th>Date Confirm Delivered</th>
+                            <th>Date Request Return</th>
+                            <th>Date Confirm Request Return</th>
+                            <th>Date Confirm Returned</th>
                             <th>Tracking Code</th>
                         </tr>
                     </thead>
@@ -126,6 +127,16 @@
                                 }
                                 else{
                                     echo date_format(date_create($value->date_request), 'H:i:s \- d/m/Y');
+                                }
+                                ?>
+                            </td>
+                            <td class="align-middle">
+                                <?php 
+                                if($value->date_confirm_request == null){
+                                    echo '<i>NULL</i>';
+                                }
+                                else{
+                                    echo date_format(date_create($value->date_confirm_request), 'H:i:s \- d/m/Y');
                                 }
                                 ?>
                             </td>

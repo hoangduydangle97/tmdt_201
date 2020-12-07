@@ -34,9 +34,11 @@
         var last_path = path.charAt(path.length - 1);
         var check_path = path.indexOf('category');
         if((last_path != '' && !isNaN(Number(last_path))) || check_path != -1){
-            $('html, body').animate({
-                scrollTop: $('#scroll-pos').offset().top
-            }, 'slow');
+            if(path.indexOf('manageorder') == -1){
+                $('html, body').animate({
+                    scrollTop: $('#scroll-pos').offset().top
+                }, 'slow');
+            }
         }
 
         var scroll_pos = document.getElementById('scroll-pos-review');

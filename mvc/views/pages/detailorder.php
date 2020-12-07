@@ -27,8 +27,20 @@
         }
         else{
         ?>
-            <div class="container mb-5 text-center" style="font-size: 1.2em;">
-                Order: <b><?php echo $order_info->id_order;?></b>
+            <div class="container mb-2" style="font-size: 1.2em;">
+                ID Order: <b><?php echo $order_info->id_order; ?></b>
+            </div>
+            <div class="container mb-2" style="font-size: 1.2em;">
+                Date Created: <?php echo date_format(date_create($order_info->date_order), 'H:i:s \- d/m/Y'); ?>
+            </div>
+            <div class="container mb-2" style="font-size: 1.2em;">
+                Payment: <?php echo $order_info->payment_order == 'cod'?'COD':'VNPay'; ?>
+            </div>
+            <div class="container mb-2" style="font-size: 1.2em;">
+                Status: <b><?php echo $order_info->status_order; ?></b>
+            </div>
+            <div class="container mb-5" style="font-size: 1.2em;">
+                Tracking: <?php echo $order_info->tracking_order == null?'<i>No Info</i>':$order_info->tracking_order; ?>
             </div>
             <div class="row">
                 <div class="col-lg-12">
@@ -104,6 +116,87 @@
                             <li>Email <span style="font-size: 16px;"><?php echo $order_info->email_user_order; ?></span></li>
                         </ul>
                     </div>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-12 mb-2"> 
+                    <b>Other info</b>
+                </div>       
+                <div class="col-12 table-responsive-lg">
+                    <table class="table table-bordered text-nowrap">
+                        <thead class="thead-light">
+                            <tr>
+                                <th class="text-center">Date Confirmed</th>
+                                <th class="text-center">Date Confirm Prepared</th>
+                                <th class="text-center">Date Confirm Delivered</th>
+                                <th class="text-center">Date Request Return</th>
+                                <th class="text-center">Date Confirm Request Return</th>
+                                <th class="text-center">Date Confirm Returned</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <td class="align-middle text-center">
+                                <?php 
+                                if($order_info->date_confirmed == null){
+                                    echo '<i>No Info</i>';
+                                }
+                                else{
+                                    echo date_format(date_create($order_info->date_confirmed), 'H:i:s \- d/m/Y');
+                                }
+                                ?>
+                            </td>
+                            <td class="align-middle text-center">
+                                <?php 
+                                if($order_info->date_prepared == null){
+                                    echo '<i>No Info</i>';
+                                }
+                                else{
+                                    echo date_format(date_create($order_info->date_prepared), 'H:i:s \- d/m/Y');
+                                }
+                                ?>
+                            </td>
+                            <td class="align-middle text-center">
+                                <?php 
+                                if($order_info->date_delivered == null){
+                                    echo '<i>No Info</i>';
+                                }
+                                else{
+                                    echo date_format(date_create($order_info->date_delivered), 'H:i:s \- d/m/Y');
+                                }
+                                ?>
+                            </td>
+                            <td class="align-middle text-center">
+                                <?php 
+                                if($order_info->date_request == null){
+                                    echo '<i>No Info</i>';
+                                }
+                                else{
+                                    echo date_format(date_create($order_info->date_request), 'H:i:s \- d/m/Y');
+                                }
+                                ?>
+                            </td>
+                            <td class="align-middle text-center">
+                                <?php 
+                                if($order_info->date_confirm_request == null){
+                                    echo '<i>No Info</i>';
+                                }
+                                else{
+                                    echo date_format(date_create($order_info->date_confirm_request), 'H:i:s \- d/m/Y');
+                                }
+                                ?>
+                            </td>
+                            <td class="align-middle text-center">
+                                <?php 
+                                if($order_info->date_returned == null){
+                                    echo '<i>No Info</i>';
+                                }
+                                else{
+                                    echo date_format(date_create($order_info->date_returned), 'H:i:s \- d/m/Y');
+                                }
+                                ?>
+                            </td>
+                        </tbody>
+                    </table>
                 </div>
             </div>
             <?php }?>

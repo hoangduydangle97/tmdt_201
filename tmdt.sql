@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 07, 2020 lúc 08:17 PM
+-- Thời gian đã tạo: Th12 07, 2020 lúc 09:49 PM
 -- Phiên bản máy phục vụ: 10.4.14-MariaDB
 -- Phiên bản PHP: 7.4.10
 
@@ -128,8 +128,8 @@ CREATE TABLE `order_item` (
 INSERT INTO `order_item` (`id_order`, `name_item`, `quantity_item`, `total_item`, `update_status`) VALUES
 ('03223284805f5150e8bc508c38ededb8', 'Apple', 1, 35000, '2020-12-08 02:08:42'),
 ('03223284805f5150e8bc508c38ededb8', 'Avocado', 1, 23000, '2020-12-08 02:08:42'),
-('2d441677b4f897b64e70e107fa7c7138', 'Beef', 1, 219000, '2020-12-08 02:08:39'),
-('2d441677b4f897b64e70e107fa7c7138', 'Dragon fruit', 1, 23000, '2020-12-08 02:08:39'),
+('2d441677b4f897b64e70e107fa7c7138', 'Beef', 1, 219000, '2020-12-08 03:47:37'),
+('2d441677b4f897b64e70e107fa7c7138', 'Dragon fruit', 1, 23000, '2020-12-08 03:47:37'),
 ('461dac001cefe4642be0c4266982655b', 'Apple', 1, 35000, '2020-12-08 00:39:29'),
 ('461dac001cefe4642be0c4266982655b', 'Avocado', 1, 99000, '2020-12-08 00:39:29');
 
@@ -173,6 +173,7 @@ CREATE TABLE `order_user` (
   `date_prepared` datetime DEFAULT NULL,
   `date_delivered` datetime DEFAULT NULL,
   `date_request` datetime DEFAULT NULL,
+  `date_confirm_request` datetime DEFAULT NULL,
   `date_returned` datetime DEFAULT NULL,
   `payment_order` varchar(10) DEFAULT NULL,
   `paid_order` tinyint(1) NOT NULL,
@@ -184,10 +185,10 @@ CREATE TABLE `order_user` (
 -- Đang đổ dữ liệu cho bảng `order_user`
 --
 
-INSERT INTO `order_user` (`id_order`, `fname_user_order`, `lname_user_order`, `address_user_order`, `phone_user_order`, `email_user_order`, `username_user_order`, `note_order`, `shipping_order`, `free_shipping`, `coupon_order`, `total_order`, `date_order`, `date_confirmed`, `date_prepared`, `date_delivered`, `date_request`, `date_returned`, `payment_order`, `paid_order`, `status_order`, `tracking_order`) VALUES
-('03223284805f5150e8bc508c38ededb8', 'Hoangduy', 'Dangle', '789 Ly Thuong Kiet, Ward 14, District 10, HCMC', '0988341765', 'duy.dang.bku_19@hcmut.edu.vn', 'hoangduydangle', NULL, 29700, '0', NULL, 87700, '2020-11-10 14:11:31', NULL, NULL, NULL, NULL, NULL, 'cod', 0, 'Not Confirmed', NULL),
-('2d441677b4f897b64e70e107fa7c7138', 'Johnathan', 'Wick', '123 Ly Thuong Kiet, Ward 14, District 10, HCMC', '0984123456', 'johnwick@gmail.com', 'johnwick', NULL, 29700, '0', NULL, 217700, '2020-11-10 12:32:41', '2020-12-08 01:49:25', '2020-12-08 01:49:26', '2020-12-08 01:49:27', NULL, NULL, 'cod', 0, 'Delivered', NULL),
-('461dac001cefe4642be0c4266982655b', 'Hoangduy', 'Dangle', '123 Ly Thuong Kiet, Phường Tân Định, Quận 1, Hồ Chí Minh', '0123456789', 'duy.dang.bku_19@hcmut.edu.vn', NULL, 'Delivery before this Sunday', 29700, '0', NULL, 163700, '2020-12-07 18:07:45', NULL, NULL, NULL, NULL, NULL, 'cod', 0, 'Not Confirmed', NULL);
+INSERT INTO `order_user` (`id_order`, `fname_user_order`, `lname_user_order`, `address_user_order`, `phone_user_order`, `email_user_order`, `username_user_order`, `note_order`, `shipping_order`, `free_shipping`, `coupon_order`, `total_order`, `date_order`, `date_confirmed`, `date_prepared`, `date_delivered`, `date_request`, `date_confirm_request`, `date_returned`, `payment_order`, `paid_order`, `status_order`, `tracking_order`) VALUES
+('03223284805f5150e8bc508c38ededb8', 'Hoangduy', 'Dangle', '789 Ly Thuong Kiet, Ward 14, District 10, HCMC', '0988341765', 'duy.dang.bku_19@hcmut.edu.vn', 'hoangduydangle', NULL, 29700, '0', NULL, 87700, '2020-11-10 14:11:31', NULL, NULL, NULL, NULL, NULL, NULL, 'cod', 0, 'Not Confirmed', NULL),
+('2d441677b4f897b64e70e107fa7c7138', 'Johnathan', 'Wick', '123 Ly Thuong Kiet, Ward 14, District 10, HCMC', '0984123456', 'johnwick@gmail.com', 'johnwick', NULL, 29700, '0', NULL, 271700, '2020-11-10 12:32:41', '2020-12-08 01:49:25', '2020-12-08 01:49:26', '2020-12-08 01:49:27', NULL, NULL, NULL, 'cod', 0, 'Delivered', NULL),
+('461dac001cefe4642be0c4266982655b', 'Hoangduy', 'Dangle', '123 Ly Thuong Kiet, Phường Tân Định, Quận 1, Hồ Chí Minh', '0123456789', 'duy.dang.bku_19@hcmut.edu.vn', NULL, 'Delivery before this Sunday', 29700, '0', NULL, 163700, '2020-12-07 18:07:45', NULL, NULL, NULL, NULL, NULL, NULL, 'cod', 0, 'Not Confirmed', NULL);
 
 --
 -- Bẫy `order_user`

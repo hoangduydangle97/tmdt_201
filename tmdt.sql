@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 07, 2020 lúc 03:38 PM
+-- Thời gian đã tạo: Th12 07, 2020 lúc 08:17 PM
 -- Phiên bản máy phục vụ: 10.4.14-MariaDB
 -- Phiên bản PHP: 7.4.10
 
@@ -82,14 +82,14 @@ CREATE TABLE `item` (
 --
 
 INSERT INTO `item` (`id_item`, `name_item`, `avatar_item`, `detail_item_1`, `detail_item_2`, `detail_item_3`, `description_item`, `price_item`, `unit_item`, `availability_item`, `weight_item`, `sale_off_item`, `featured`, `num_purchased`, `date_created_item`, `latest_date_updated_item`, `category_item`) VALUES
-('apple', 'Apple', 'public/images/uploads/products/apple/avatar/apple.jpg', 'public/images/uploads/products/apple/details/detail-1-apple.jpg', 'public/images/uploads/products/apple/details/detail-2-apple.jpg', 'public/images/uploads/products/apple/details/detail-3-apple.jpg', 'Apples', 35000, 'kg', 1, 1, 20, 1, 1, '2020-10-09 18:42:10', '2020-10-09 18:42:10', 'fresh-fruit'),
-('avocado', 'Avocado', 'public/images/uploads/products/avocado/avatar/avocado.jpg', 'public/images/uploads/products/avocado/details/detail-1-avocado.jpg', 'public/images/uploads/products/avocado/details/detail-2-avocado.jpg', 'public/images/uploads/products/avocado/details/detail-3-avocado.jpg', 'Avocado', 99000, 'kg', 1, 1, 0, 1, 1, '2020-10-09 18:45:25', '2020-10-09 18:45:25', 'fresh-fruit'),
+('apple', 'Apple', 'public/images/uploads/products/apple/avatar/apple.jpg', 'public/images/uploads/products/apple/details/detail-1-apple.jpg', 'public/images/uploads/products/apple/details/detail-2-apple.jpg', 'public/images/uploads/products/apple/details/detail-3-apple.jpg', 'Apples', 35000, 'kg', 1, 1, 20, 1, 0, '2020-10-09 18:42:10', '2020-10-09 18:42:10', 'fresh-fruit'),
+('avocado', 'Avocado', 'public/images/uploads/products/avocado/avatar/avocado.jpg', 'public/images/uploads/products/avocado/details/detail-1-avocado.jpg', 'public/images/uploads/products/avocado/details/detail-2-avocado.jpg', 'public/images/uploads/products/avocado/details/detail-3-avocado.jpg', 'Avocado', 99000, 'kg', 1, 1, 0, 1, 0, '2020-10-09 18:45:25', '2020-10-09 18:45:25', 'fresh-fruit'),
 ('banana', 'Banana', 'public/images/uploads/products/banana/avatar/banana.jpg', 'public/images/uploads/products/banana/details/detail-1-banana.jpg', 'public/images/uploads/products/banana/details/detail-2-banana.jpg', 'public/images/uploads/products/banana/details/detail-3-banana.jpg', 'Bananas', 23000, 'kg', 1, 1, 15, 0, 0, '2020-10-09 18:43:11', '2020-10-09 18:43:11', 'fresh-fruit'),
-('beef', 'Beef', 'public/images/uploads/products/beef/avatar/beef.jpg', 'public/images/uploads/products/beef/details/detail-1-beef.jpg', 'public/images/uploads/products/beef/details/detail-2-beef.jpg', 'public/images/uploads/products/beef/details/detail-3-beef.jpg', 'Beef', 219000, 'kg', 1, 1, 25, 1, 0, '2020-10-09 18:44:13', '2020-10-09 18:44:13', 'fresh-meat'),
+('beef', 'Beef', 'public/images/uploads/products/beef/avatar/beef.jpg', 'public/images/uploads/products/beef/details/detail-1-beef.jpg', 'public/images/uploads/products/beef/details/detail-2-beef.jpg', 'public/images/uploads/products/beef/details/detail-3-beef.jpg', 'Beef', 219000, 'kg', 1, 1, 25, 1, 1, '2020-10-09 18:44:13', '2020-10-09 18:44:13', 'fresh-meat'),
 ('bell-pepper', 'Bell pepper', 'public/images/uploads/products/bell-pepper/avatar/bell-peppers.jpg', 'public/images/uploads/products/bell-pepper/details/detail-1-bell-pepper.jpg', 'public/images/uploads/products/bell-pepper/details/detail-2-bell-pepper.jpg', 'public/images/uploads/products/bell-pepper/details/detail-3-bell-pepper.jpg', 'Bell peppers', 62000, 'kg', 1, 1, 0, 0, 0, '2020-10-10 23:20:14', '2020-10-10 23:20:14', 'vegetables'),
 ('carrot', 'Carrot', 'public/images/uploads/products/carrot/avatar/carrot.jpg', 'public/images/uploads/products/carrot/details/detail-1-carrot.jpg', 'public/images/uploads/products/carrot/details/detail-2-carrot.jpg', 'public/images/uploads/products/carrot/details/detail-3-carrot.jpg', 'Carrot', 17000, 'kg', 1, 1, 0, 1, 0, '2020-10-11 00:02:18', '2020-10-11 00:02:18', 'vegetables'),
 ('chicken', 'Chicken', 'public/images/uploads/products/chicken/avatar/chicken.jpg', 'public/images/uploads/products/chicken/details/detail-1-chicken.jpg', 'public/images/uploads/products/chicken/details/detail-2-chicken.jpg', 'public/images/uploads/products/chicken/details/detail-3-chicken.jpg', 'Chicken', 229000, 'kg', 1, 1, 0, 0, 0, '2020-10-09 18:44:37', '2020-10-09 18:44:37', 'fastfood'),
-('dragon-fruit', 'Dragon fruit', 'public/images/uploads/products/dragon-fruit/avatar/dragon-fruit.jpg', 'public/images/uploads/products/dragon-fruit/details/detail-1-dragon-fruit.jpg', 'public/images/uploads/products/dragon-fruit/details/detail-2-dragon-fruit.jpg', 'public/images/uploads/products/dragon-fruit/details/detail-3-dragon-fruit.jpg', 'Dragon fruit', 23000, 'kg', 1, 1, 0, 0, 0, '2020-10-09 18:46:04', '2020-10-09 18:46:04', 'fresh-fruit'),
+('dragon-fruit', 'Dragon fruit', 'public/images/uploads/products/dragon-fruit/avatar/dragon-fruit.jpg', 'public/images/uploads/products/dragon-fruit/details/detail-1-dragon-fruit.jpg', 'public/images/uploads/products/dragon-fruit/details/detail-2-dragon-fruit.jpg', 'public/images/uploads/products/dragon-fruit/details/detail-3-dragon-fruit.jpg', 'Dragon fruit', 23000, 'kg', 1, 1, 0, 0, 1, '2020-10-09 18:46:04', '2020-10-09 18:46:04', 'fresh-fruit'),
 ('grape', 'Grape', 'public/images/uploads/products/grape/avatar/grape.jpg', 'public/images/uploads/products/grape/details/detail-1-grape.jpg', 'public/images/uploads/products/grape/details/detail-2-grape.jpg', 'public/images/uploads/products/grape/details/detail-3-grape.jpg', 'Grapes', 59000, 'kg', 1, 1, 20, 1, 0, '2020-10-09 18:47:48', '2020-10-09 18:47:48', 'fresh-fruit'),
 ('hamburger', 'Hamburger', 'public/images/uploads/products/hamburger/avatar/hamburger.jpg', 'public/images/uploads/products/hamburger/details/detail-1-hamburger.jpg', 'public/images/uploads/products/hamburger/details/detail-2-hamburger.jpg', 'public/images/uploads/products/hamburger/details/detail-3-hamburger.jpg', 'Hamburgers', 35000, 'item', 1, 1, 0, 0, 0, '2020-10-09 18:49:22', '2020-10-09 18:49:22', 'fastfood'),
 ('lettuce', 'Lettuce', 'public/images/uploads/products/lettuce/avatar/lettuce.jpg', 'public/images/uploads/products/lettuce/details/detail-1-lettuce.jpg', 'public/images/uploads/products/lettuce/details/detail-2-lettuce.jpg', 'public/images/uploads/products/lettuce/details/detail-3-lettuce.jpg', 'Lettuce', 25000, 'kg', 1, 1, 0, 0, 0, '2020-10-10 23:57:59', '2020-10-10 23:57:59', 'vegetables'),
@@ -126,12 +126,12 @@ CREATE TABLE `order_item` (
 --
 
 INSERT INTO `order_item` (`id_order`, `name_item`, `quantity_item`, `total_item`, `update_status`) VALUES
-('03223284805f5150e8bc508c38ededb8', 'Apple', 1, 35000, '2020-12-06 17:29:16'),
-('03223284805f5150e8bc508c38ededb8', 'Avocado', 1, 23000, '2020-12-06 17:29:16'),
-('2d441677b4f897b64e70e107fa7c7138', 'Beef', 1, 219000, '2020-12-06 17:29:23'),
-('2d441677b4f897b64e70e107fa7c7138', 'Dragon fruit', 1, 23000, '2020-12-06 17:29:23'),
-('461dac001cefe4642be0c4266982655b', 'Apple', 1, 35000, NULL),
-('461dac001cefe4642be0c4266982655b', 'Avocado', 1, 99000, NULL);
+('03223284805f5150e8bc508c38ededb8', 'Apple', 1, 35000, '2020-12-08 02:08:42'),
+('03223284805f5150e8bc508c38ededb8', 'Avocado', 1, 23000, '2020-12-08 02:08:42'),
+('2d441677b4f897b64e70e107fa7c7138', 'Beef', 1, 219000, '2020-12-08 02:08:39'),
+('2d441677b4f897b64e70e107fa7c7138', 'Dragon fruit', 1, 23000, '2020-12-08 02:08:39'),
+('461dac001cefe4642be0c4266982655b', 'Apple', 1, 35000, '2020-12-08 00:39:29'),
+('461dac001cefe4642be0c4266982655b', 'Avocado', 1, 99000, '2020-12-08 00:39:29');
 
 --
 -- Bẫy `order_item`
@@ -166,14 +166,17 @@ CREATE TABLE `order_user` (
   `note_order` varchar(500) DEFAULT NULL,
   `shipping_order` int(10) NOT NULL,
   `free_shipping` varchar(50) NOT NULL,
+  `coupon_order` int(10) DEFAULT NULL,
   `total_order` int(10) NOT NULL,
   `date_order` datetime NOT NULL,
   `date_confirmed` datetime DEFAULT NULL,
   `date_prepared` datetime DEFAULT NULL,
   `date_delivered` datetime DEFAULT NULL,
+  `date_request` datetime DEFAULT NULL,
+  `date_returned` datetime DEFAULT NULL,
   `payment_order` varchar(10) DEFAULT NULL,
   `paid_order` tinyint(1) NOT NULL,
-  `status_order` varchar(100) NOT NULL DEFAULT 'Not confirmed',
+  `status_order` varchar(100) NOT NULL DEFAULT 'Not Confirmed',
   `tracking_order` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -181,10 +184,10 @@ CREATE TABLE `order_user` (
 -- Đang đổ dữ liệu cho bảng `order_user`
 --
 
-INSERT INTO `order_user` (`id_order`, `fname_user_order`, `lname_user_order`, `address_user_order`, `phone_user_order`, `email_user_order`, `username_user_order`, `note_order`, `shipping_order`, `free_shipping`, `total_order`, `date_order`, `date_confirmed`, `date_prepared`, `date_delivered`, `payment_order`, `paid_order`, `status_order`, `tracking_order`) VALUES
-('03223284805f5150e8bc508c38ededb8', 'Hoangduy', 'Dangle', '789 Ly Thuong Kiet, Ward 14, District 10, HCMC', '0988341765', 'duy.dang.bku_19@hcmut.edu.vn', 'hoangduydangle', NULL, 29700, 'Not Apply', 87700, '2020-11-10 14:11:31', '2020-12-05 19:43:02', NULL, '2020-12-05 19:46:25', NULL, 0, 'Delivered', NULL),
-('2d441677b4f897b64e70e107fa7c7138', 'Johnathan', 'Wick', '123 Ly Thuong Kiet, Ward 14, District 10, HCMC', '0984123456', 'johnwick@gmail.com', 'johnwick', NULL, 29700, 'Not Apply', 217700, '2020-11-10 12:32:41', NULL, NULL, NULL, NULL, 0, 'Not confirmed', NULL),
-('461dac001cefe4642be0c4266982655b', 'Hoangduy', 'Dangle', '123 Ly Thuong Kiet, Phường Tân Định, Quận 1, Hồ Chí Minh', '0123456789', 'duy.dang.bku_19@hcmut.edu.vn', NULL, 'Delivery before this Sunday', 29700, '0', 163700, '2020-12-07 18:07:45', NULL, NULL, NULL, 'cod', 0, 'Not confirmed', NULL);
+INSERT INTO `order_user` (`id_order`, `fname_user_order`, `lname_user_order`, `address_user_order`, `phone_user_order`, `email_user_order`, `username_user_order`, `note_order`, `shipping_order`, `free_shipping`, `coupon_order`, `total_order`, `date_order`, `date_confirmed`, `date_prepared`, `date_delivered`, `date_request`, `date_returned`, `payment_order`, `paid_order`, `status_order`, `tracking_order`) VALUES
+('03223284805f5150e8bc508c38ededb8', 'Hoangduy', 'Dangle', '789 Ly Thuong Kiet, Ward 14, District 10, HCMC', '0988341765', 'duy.dang.bku_19@hcmut.edu.vn', 'hoangduydangle', NULL, 29700, '0', NULL, 87700, '2020-11-10 14:11:31', NULL, NULL, NULL, NULL, NULL, 'cod', 0, 'Not Confirmed', NULL),
+('2d441677b4f897b64e70e107fa7c7138', 'Johnathan', 'Wick', '123 Ly Thuong Kiet, Ward 14, District 10, HCMC', '0984123456', 'johnwick@gmail.com', 'johnwick', NULL, 29700, '0', NULL, 217700, '2020-11-10 12:32:41', '2020-12-08 01:49:25', '2020-12-08 01:49:26', '2020-12-08 01:49:27', NULL, NULL, 'cod', 0, 'Delivered', NULL),
+('461dac001cefe4642be0c4266982655b', 'Hoangduy', 'Dangle', '123 Ly Thuong Kiet, Phường Tân Định, Quận 1, Hồ Chí Minh', '0123456789', 'duy.dang.bku_19@hcmut.edu.vn', NULL, 'Delivery before this Sunday', 29700, '0', NULL, 163700, '2020-12-07 18:07:45', NULL, NULL, NULL, NULL, NULL, 'cod', 0, 'Not Confirmed', NULL);
 
 --
 -- Bẫy `order_user`

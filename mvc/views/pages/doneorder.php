@@ -18,12 +18,12 @@
 
     <div class="card shadow my-4">
         <div class="card-header py-3 text-center">
-            <h4 class="m-0 font-weight-bold text-primary">List of orders</h4>
+            <h4 class="m-0 font-weight-bold text-primary">List of the done orders</h4>
         </div>
         <div class="card-body">
             <div class="text-right">
-                <button type="button" class="btn btn-primary mb-3" onclick="directToLookUp()">
-                    <i class="fa fa-eye"></i> See the done orders
+                <button type="button" class="btn btn-primary mb-3" onclick="directToOrders()">
+                    <i class="fa fa-arrow-left"></i> Back to List of orders
                 </button>
             </div>
             <div class="table-responsive">
@@ -56,16 +56,10 @@
                     <tbody>
                         <?php $order_list = json_decode($data['order_list']); 
                         foreach($order_list as $value){
-                            $status = $value->status_order;
                         ?>
-                        <tr id="tr-<?php echo $value->id_order;?>">
+                        <tr>
                             <td class="text-center">
-                                <?php $btn = json_decode($this->order_object->get_status_btn($status)); ?>
-                                <button type="button" id="<?php echo $value->id_order; ?>" class="btn <?php echo $btn->style; ?>" 
-                                    onclick="changeStatusOrder(<?php echo "'".$status."'"; ?>, <?php echo "'".$value->id_order."'"; ?>, <?php echo "'".$btn->style."'"; ?>)">
-                                    <?php echo $btn->content; ?>
-                                </button>
-                                <div class="spinner-border text-primary d-none" id="spinner-<?php echo $value->id_order; ?>"></div>
+                                <?php echo $value->status_order;?>
                             </td>
                             <td class="align-middle">
                                 <a class="item-cart" href="/tmdt_201/manageorder/detail/<?php echo $value->id_order; ?>">

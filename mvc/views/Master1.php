@@ -288,7 +288,7 @@ if(isset($_SESSION['order_item_list'])){
                     else{
                     ?>
                     <li <?php if($data["page"] == "admin"){ ?>class="active"<?php }?>><a href="http://localhost/tmdt_201/admin">Admin</a></li>
-                    <li <?php if($data["page"] == "product" || $data["page"] == "create" || $data["page"] == "update" || $data["page"] == "category"){ ?>class="active"<?php }?>>
+                    <li <?php if($data["page"] == "product" || $data["page"] == "create" || $data["page"] == "update" || $data["page"] == "categories"){ ?>class="active"<?php }?>>
                         <a href="http://localhost/tmdt_201/product">Product</a>
                     </li>
                     <li <?php if($data["page"] == "order"){ ?>class="active"<?php }?>><a href="http://localhost/tmdt_201/orders">Order</a></li>
@@ -419,7 +419,7 @@ if(isset($_SESSION['order_item_list'])){
                                 else{
                                 ?>
                                 <li <?php if($data["page"] == "admin"){ ?>class="active"<?php }?>><a href="http://localhost/tmdt_201/admin">Admin</a></li>
-                                <li <?php if($data["page"] == "product" || $data["page"] == "create" || $data["page"] == "update" || $data["page"] == "category"){ ?>class="active"<?php }?>>
+                                <li <?php if($data["page"] == "product" || $data["page"] == "create" || $data["page"] == "update" || $data["page"] == "categories"){ ?>class="active"<?php }?>>
                                     <a href="http://localhost/tmdt_201/product">Product</a>
                                 </li>
                                 <li <?php if($data["page"] == "order"){ ?>class="active"<?php }?>><a href="http://localhost/tmdt_201/orders">Order</a></li>

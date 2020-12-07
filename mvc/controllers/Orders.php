@@ -14,8 +14,19 @@ class Orders extends Controller{
         $this->view("Master1", array(
             "cms"=>true,
             "page"=>"order",
-            "order_list"=>$this->order_object->get_not_confirmed_order_list(),
-            "order_user_list"=>$this->order_object->get_order_user_list()
+            "order_list"=>$this->order_object->get_undone_order_list()
+        ));
+    }
+
+    public function change_status_order(){
+        $this->order_object->change_status();
+    }
+
+    public function done(){
+        $this->view("Master1", array(
+            "cms"=>true,
+            "page"=>"doneorder",
+            "order_list"=>$this->order_object->get_done_order_list()
         ));
     }
 }

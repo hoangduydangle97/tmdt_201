@@ -18,13 +18,13 @@ class Order extends Database{
         return $this->query_return_row($sql);
     }
 
-    public function get_order_user_list(){
-        $sql = "SELECT * FROM order_user WHERE NOT status_order='Delivered';";
+    public function get_undone_order_list(){
+        $sql = "SELECT * FROM order_user WHERE NOT status_order='Delivered' AND NOT status_order='Returned';";
         return $this->query_return_arr($sql);
     }
 
-    public function get_not_confirmed_order_list(){
-        $sql = "SELECT * FROM order_user WHERE status_order='Not Confirmed';";
+    public function get_done_order_list(){
+        $sql = "SELECT * FROM order_user WHERE status_order='Delivered' OR status_order='Returned';";
         return $this->query_return_arr($sql);
     }
 
@@ -48,6 +48,71 @@ class Order extends Database{
             $result = true;
         }
         return $result;
+    }
+
+    public function get_status_btn($status){
+        $content = '';
+        $style = '';
+        switch($status){
+            case 'Not Confirmed':
+                $content = 'Confirm Order';
+                $style = 'btn-danger';
+                break;
+            case 'Processing':
+                $content = 'Confirm Prepared';
+                $style = 'btn-warning';
+                break;
+            case 'Delivering':
+                $content = 'Confirm Delivered';
+                $style = 'btn-success';
+                break;
+            case 'Requesting Return':
+                $content = 'Confirm Return';
+                $style = 'btn-secondary';
+                break;
+            case 'Returning':
+                $content = 'Confirm Returned';
+                $style = 'btn-primary';
+                break;
+            default:
+                $content = 'delivered';
+                $style = 'none';
+        }
+        $btn = array(
+            "content" => $content,
+            "style" => $style
+        );
+        return json_encode($btn);
+    }
+
+    public function change_status(){
+        $id = $_POST['id'];
+        $expected_status = $_POST['expected_status'];
+        $date = '';
+        switch($expected_status){
+            case 'Processing':
+                $date = 'confirmed';
+                break;
+            case 'Delivering':
+                $date = 'prepared';
+                break;
+            case 'Delivered':
+                $date = 'delivered';
+                break;
+            case 'Returning':
+                $date = 'request';
+                break;
+            default:
+                $date = 'returned';
+                break;
+        }
+        $btn = array();
+        $sql = "UPDATE order_user SET status_order='".$expected_status."',".
+        " date_".$date."=CURRENT_TIMESTAMP() WHERE id_order='".$id."';";
+        $sql_result = mysqli_query($this->conn, $sql);
+        if($sql_result){
+            echo $this->get_status_btn($expected_status);
+        }
     }
 
     public function insert(){

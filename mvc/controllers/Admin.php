@@ -14,7 +14,7 @@ class Admin extends Controller{
         $this->view("Master1", array(
             "cms"=>true,
             "page"=>"admin",
-            "order_list"=>$this->order_object->get_not_confirmed_order_list()
+            "order_list"=>$this->order_object->get_undone_order_list()
         ));
     }
 }

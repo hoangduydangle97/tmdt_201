@@ -66,6 +66,17 @@
                 "scrollY": 400
             });
         }
+        else if(path == '/tmdt_201/orders'){
+            $('#dataTable').DataTable({
+                "aaSorting": [],
+                "order": [[ 14, "asc" ]],
+                "columnDefs": [{
+                    targets: 0
+                }],
+                "scrollX": true,
+                "scrollY": 400
+            });
+        }
         else{
             $('#dataTable').DataTable({
                 "aaSorting": [],
@@ -555,6 +566,14 @@ function directToCreate(params){
     }
 }
 
+function directToLookUp(){
+    location.href = '/tmdt_201/orders/done';
+}
+
+function directToOrders(){
+    location.href = '/tmdt_201/orders';
+}
+
 function changeClick(val, id = null, name = null){
     if(val == 'create-category'){
         $('.form-category').removeAttr('hidden').attr('action', 'http://localhost/tmdt_201/product/categories/create'); 
@@ -716,3 +735,49 @@ $('input:radio[name="payment"]').change(
             $('.payment-vnpay').addClass('d-none');
         }
 });
+
+function changeStatusOrder(status, id, style){
+    var btn = $('#' + id);
+    var spinner = $('#spinner-' + id).removeClass('d-none');
+    btn.addClass('d-none')
+    spinner.removeClass('d-none');
+    var expected_status = '';
+    switch(status){
+        case 'Not Confirmed':
+            expected_status = 'Processing';
+            break;
+        case 'Processing':
+            expected_status = 'Delivering';
+            break;
+        case 'Delivering':
+            expected_status = 'Delivered';
+            break;
+        case 'Requesting Return':
+            expected_status = 'Returning';
+            break;
+        default:
+            expected_status = 'Returned';
+            break;
+    }
+    $.post(
+        'http://localhost/tmdt_201/orders/change_status_order',
+        {
+            id: id,
+            expected_status: expected_status
+        },
+        function(result, status){
+            if(status == 'success'){
+                if(result.content == 'delivered'){
+                    $('#tr-' + id).remove();
+                }
+                else{
+                    spinner.addClass('d-none');
+                    var func = "changeStatusOrder('" + expected_status + "', '" + id + "', '" + result.style + "')";
+                    btn.removeClass('d-none').attr('onclick', func);
+                    btn.html(result.content).removeClass(style).addClass(result.style);
+                }
+            }
+        },
+        'json'
+    );
+}

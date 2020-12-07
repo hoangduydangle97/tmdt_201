@@ -8,14 +8,7 @@ class Item extends Database{
         $sql = "SELECT id_item, name_item, avatar_item, price_item, average_rating, num_review".
         " FROM item t1 LEFT JOIN top_item t2 ON t1.id_item=t2.id_item_top".
         " LIMIT ".$from.", ".$this->num_per_page.";";
-        $array_result = array();
-        $sql_result = mysqli_query($this->conn, $sql);
-        if($sql_result){
-            while($row = mysqli_fetch_assoc($sql_result)){
-                $array_result[] = $row;
-            }
-        }
-        return json_encode($array_result);
+        return $this->query_return_arr($sql);
     }
 
     public function get_all_items(){
@@ -24,14 +17,7 @@ class Item extends Database{
         " FROM (SELECT t1.*, t2.name_category FROM item t1 LEFT".
         " JOIN category t2 ON t1.category_item=t2.id_category) t3".
         " LEFT JOIN top_item t4 ON t3.id_item=t4.id_item_top;";
-        $array_result = array();
-        $sql_result = mysqli_query($this->conn, $sql);
-        if($sql_result){
-            while($row = mysqli_fetch_assoc($sql_result)){
-                $array_result[] = $row;
-            }
-        }
-        return json_encode($array_result);
+        return $this->query_return_arr($sql);
     }
 
     public function set_page_no($page_no){
@@ -44,12 +30,7 @@ class Item extends Database{
 
     public function get_num_all_items(){
         $sql = "SELECT id_item FROM item;";
-        $sql_result = mysqli_query($this->conn, $sql);
-        $num_items = 0;
-        if($sql_result){
-            $num_items = mysqli_num_rows($sql_result);
-        }
-        return json_encode($num_items);
+        return $this->query_return_num_rows($sql);
     }
 
     public function get_num_all_pages(){
@@ -68,12 +49,7 @@ class Item extends Database{
         $sql = "SELECT item.*, category.name_category".
         " FROM item LEFT JOIN category ON item.category_item=category.id_category".
         " WHERE id_item='".$item."';";
-        $sql_result = mysqli_query($this->conn, $sql);
-        $result = false;
-        if($sql_result){
-            $result = mysqli_fetch_assoc($sql_result);
-        }
-        return json_encode($result);
+        return $this->query_return_row($sql);
     }
 
     public function get_item_list($arr){
@@ -90,27 +66,13 @@ class Item extends Database{
         $sql = "SELECT item.*, category.name_category".
         " FROM item LEFT JOIN category ON item.category_item=category.id_category".
         " ORDER BY date_created_item DESC LIMIT 6;";
-        $array_result = array();
-        $sql_result = mysqli_query($this->conn, $sql);
-        if($sql_result){
-            while($row = mysqli_fetch_assoc($sql_result)){
-                $array_result[] = $row;
-            }
-        }
-        return json_encode($array_result);
+        return $this->query_return_arr($sql);
     }
 
     public function get_sale_off_items(){
         $sql = "SELECT t1.*, t2.name_category FROM (SELECT * FROM `item` HAVING".
         " sale_off_item > 0) t1 LEFT JOIN category t2 ON t1.category_item=t2.id_category;";
-        $array_result = array();
-        $sql_result = mysqli_query($this->conn, $sql);
-        if($sql_result){
-            while($row = mysqli_fetch_assoc($sql_result)){
-                $array_result[] = $row;
-            }
-        }
-        return json_encode($array_result);
+        return $this->query_return_arr($sql);
     }
 
     public function get_items_from_category_per_page($category){
@@ -119,24 +81,12 @@ class Item extends Database{
         " FROM (SELECT * FROM item t1 LEFT JOIN category t2 ON t1.category_item=t2.id_category".
         " WHERE category_item='".$category."') t3 LEFT JOIN top_item t4 ON t3.id_item=t4.id_item_top".
         " LIMIT ".$from.", ".$this->num_per_page.";";
-        $array_result = array();
-        $sql_result = mysqli_query($this->conn, $sql);
-        if($sql_result){
-            while($row = mysqli_fetch_assoc($sql_result)){
-                $array_result[] = $row;
-            }
-        }
-        return json_encode($array_result);
+        return $this->query_return_arr($sql);
     }
 
     public function get_num_category_items($category){
         $sql = "SELECT id_item FROM item WHERE category_item='".$category."';";
-        $sql_result = mysqli_query($this->conn, $sql);
-        $num_items = 0;
-        if($sql_result){
-            $num_items = mysqli_num_rows($sql_result);
-        }
-        return json_encode($num_items);
+        return $this->query_return_num_rows($sql);
     }
 
     public function get_num_category_pages($category){
@@ -176,14 +126,7 @@ class Item extends Database{
         " FROM (SELECT * FROM top_item t1 LEFT JOIN".
         " item t2 ON t1.id_item_top=t2.id_item HAVING".
         " average_rating > 0 ORDER BY average_rating DESC LIMIT 6) t3";
-        $array_result = array();
-        $sql_result = mysqli_query($this->conn, $sql);
-        if($sql_result){
-            while($row = mysqli_fetch_assoc($sql_result)){
-                $array_result[] = $row;
-            }
-        }
-        return json_encode($array_result);
+        return $this->query_return_arr($sql);
     }
 
     public function get_top_review_items(){
@@ -191,15 +134,7 @@ class Item extends Database{
         " FROM (SELECT * FROM top_item t1 LEFT JOIN".
         " item t2 ON t1.id_item_top=t2.id_item HAVING".
         " num_review > 0 ORDER BY num_review DESC LIMIT 6) t3";
-        $array_result = array();
-        $sql_result = mysqli_query($this->conn, $sql);
-        if($sql_result){
-            while($row = mysqli_fetch_assoc($sql_result)){
-                $array_result[] = $row;
-            }
-        }
-        return json_encode($array_result);
-        
+        return $this->query_return_arr($sql);
     }
 
     public function get_category_item($item){
@@ -218,41 +153,20 @@ class Item extends Database{
         " num_review FROM item t1 LEFT JOIN top_item t2 on t1.id_item=t2.id_item_top".
         " WHERE category_item='".$category."' AND NOT id_item='".$item."' ORDER BY".
         " average_rating DESC LIMIT 4";
-        $array_result = array();
-        $sql_result = mysqli_query($this->conn, $sql);
-        if($sql_result){
-            while($row = mysqli_fetch_assoc($sql_result)){
-                $array_result[] = $row;
-            }
-        }
-        return json_encode($array_result);
+        return $this->query_return_arr($sql);
     }
 
     public function get_featured_items(){
         $sql = "SELECT id_item, name_item, avatar_item, price_item,".
         " average_rating, num_review, category_item FROM item t1".
         " LEFT JOIN top_item t2 ON t1.id_item=t2.id_item_top WHERE featured='1';";
-        $array_result = array();
-        $sql_result = mysqli_query($this->conn, $sql);
-        if($sql_result){
-            while($row = mysqli_fetch_assoc($sql_result)){
-                $array_result[] = $row;
-            }
-        }
-        return json_encode($array_result);
+        return $this->query_return_arr($sql);
     }
 
     public function get_featured_categories(){
         $sql = "SELECT DISTINCT category_item, name_category FROM item t1".
         " LEFT JOIN category t2 ON t1.category_item=t2.id_category WHERE featured='1';";
-        $array_result = array();
-        $sql_result = mysqli_query($this->conn, $sql);
-        if($sql_result){
-            while($row = mysqli_fetch_assoc($sql_result)){
-                $array_result[] = $row;
-            }
-        }
-        return json_encode($array_result);
+        return $this->query_return_arr($sql);
     }
 
     public function iu_product($params){
@@ -430,10 +344,34 @@ class Item extends Database{
         }  
     }
 
+    public function delete_folder($str){
+        // Check for files 
+        if (is_file($str)) { 
+            // If it is file then remove by using unlink function 
+            return unlink($str); 
+        } 
+        // If it is a directory
+        elseif (is_dir($str)) { 
+            // Get the list of the files in this directory 
+            $scan = glob(rtrim($str, '/').'/*'); 
+            // Loop through the list of files 
+            foreach($scan as $index=>$path) { 
+                // Call recursive function 
+                $this->delete_folder($path); 
+            }  
+            // Remove the directory itself 
+            return @rmdir($str); 
+        } 
+    }
+
     public function delete_product($item){
-        $sql = "DELETE FROM item WHERE id_item='".$item->id_item."';";
+        $id_item = $item->id_item;
+        $sql = "DELETE FROM item WHERE id_item='".$id_item."';";
         $sql_result = mysqli_query($this->conn, $sql);
         if($sql_result){
+            $path = './public/images/uploads/products/'.$id_item;
+            echo $path;
+            $this->delete_folder($path);
             $_SESSION['error'] = [false, 'Delete successfully!'];
             header("location: http://localhost/tmdt_201/product");
         }

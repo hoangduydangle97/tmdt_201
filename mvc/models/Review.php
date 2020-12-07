@@ -6,14 +6,7 @@ class Review extends Database{
         " FROM rating_user_item LEFT JOIN user". 
         " ON rating_user_item.username_user_rating=user.username_user". 
         " WHERE id_item_rating='".$id_item."';";
-        $array_result = array();
-        $sql_result = mysqli_query($this->conn, $sql);
-        if($sql_result){
-            while($row = mysqli_fetch_assoc($sql_result)){
-                $array_result[] = $row;
-            }
-        }
-        return json_encode($array_result);
+        return $this->query_return_arr($sql);
     }
 
     public function insert_review($username, $item, $rating, $comment){

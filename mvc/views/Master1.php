@@ -603,9 +603,9 @@ if(isset($_SESSION['order_item_list'])){
                                 <a href="http://localhost/tmdt_201/home"><img src="/tmdt_201/public/master1/images/logo.png" alt="logo"></a>
                             </div>
                             <ul>
-                                <li>Address: 123 Ly Thuong Kiet, Ward 14, District 10, TPHCM</li>
+                                <li>Address: 268 Ly Thuong Kiet, Ward 14, District 10, TPHCM</li>
                                 <li>Phone: +84 123.456.78</li>
-                                <li>Email: hello@colorlib.com</li>
+                                <li>Email: organishop201@gmail.com</li>
                             </ul>
                         </div>
                     </div>

@@ -82,14 +82,64 @@ class Cart extends Controller{
     }
 
     public function create_order(){
-        echo $_POST['payment'];
-        $payment = $_POST['payment'];
-        if($payment == 'cod'){
-            $this->order_object->insert();
+        $this->order_object->insert();
+    }
+
+    public function email(){
+        $this->view("Invoice", array(
+            "page" => "email"
+        ));
+    }
+
+    public function vnpay_return(){
+        $result = json_decode($this->order_object->vnpay_return());
+        if($result->RspCode == '00'){
+            header('location: http://localhost/tmdt_201/placeorder/success/'.$result->TxnRef);
+            $order_info = $this->order_object->get_order_by_id($result->TxnRef);
+            $item_order_list = $this->order_object->get_order_item($result->TxnRef);
+            $vnpay_info = $this->order_object->get_vnpay_info($result->TxnRef);
+            if($order_info->note_order == 'NULL'){
+                $order_info->note_order = "There isn't any note";
+            }
+            $data_email = array(
+                "user" => array(
+                    "fname" => $order_info->fname_user_order,
+                    "lname" => $order_info->lname_user_order,
+                    "address" => $order_info->address_user_order,
+                    "phone" => $order_info->phone_user_order,
+                    "email" => $order_info->email_user_order
+                ),
+                "order" => array(
+                    "id" => $order_info->id_order,
+                    "date" => $order_info->date_order,
+                    "payment" => $order_info->payment_order,
+                    "item_list" => $item_order_list,
+                    "note" => $order_info->note_order,
+                    "shipping" => $order_info->shipping_order,
+                    "free_shipping" => $order_info->free_shipping,
+                    "total" => $order_info->total_order
+                ),
+                "vnpay" => array(
+                    "vnp_TxnRef" => $vnpay_info->vnp_TxnRef,
+                    "vnp_ResponseCode" => $vnpay_info->vnp_ResponseCode,
+                    "vnp_TransactionNo" => $vnpay_info->vnp_TransactionNo,
+                    "vnp_PayDate" => $vnpay_info->vnp_PayDate,
+                    "vnp_BankTranNo" => $vnpay_info->vnp_BankTranNo,
+                    "vnp_BankCode" => $vnpay_info->vnp_BankCode,
+                    "vnp_Amount" => $vnpay_info->vnp_Amount,
+                    "vnp_SecureHash" => $vnpay_info->vnp_SecureHash
+                )
+            );
+            $this->order_object->send_mail($data_email);
         }
-        else if($payment == 'vnpay'){
-            echo 'Proccessing ...';
+        else{
+            echo $result->RspCode.', '.$result->Message;
         }
+    }
+
+    public function test($id){
+        $a = json_decode($this->order_object->get_date_create_order($id));
+        var_dump($a);
     }
 }
 ?>

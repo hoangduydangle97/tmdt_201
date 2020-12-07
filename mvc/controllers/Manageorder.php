@@ -17,12 +17,23 @@ class Manageorder extends Controller{
             $username = $_SESSION['username'];
             $num_orders = $this->order_object->get_num_orders($username);
         }
+        $arr_cookie = [];
+        if(isset($_COOKIE)){
+            foreach($_COOKIE as $key => $val){
+                $pos = strpos($key, 'selected-');
+                if($pos === 0){
+                    $arr_cookie[str_replace('selected-', '', $key)] = $val;
+                }
+            }
+        }
+        ksort($arr_cookie);
         $this->view("Master1", array(
             "page"=>"manageorder",
             "total"=>$this->item_object->get_total(),
             "num_orders"=>$num_orders,
             "category_list"=>$this->category_object->get_all_categories(),
-            "order_list"=>$this->order_object->get_order_user($username)
+            "order_list"=>$this->order_object->get_order_user($username),
+            "item_cart_list"=>$this->item_object->get_item_list($arr_cookie)
         ));
     }
 
@@ -31,14 +42,24 @@ class Manageorder extends Controller{
         if(isset($_SESSION['username'])){
             $num_orders = $this->order_object->get_num_orders($_SESSION['username']);
         }
+        $arr_cookie = [];
+        if(isset($_COOKIE)){
+            foreach($_COOKIE as $key => $val){
+                $pos = strpos($key, 'selected-');
+                if($pos === 0){
+                    $arr_cookie[str_replace('selected-', '', $key)] = $val;
+                }
+            }
+        }
+        ksort($arr_cookie);
         $this->view("Master1", array(
             "page"=>"detailorder",
             "total"=>$this->item_object->get_total(),
             "num_orders"=>$num_orders,
-            "id_order"=>$id,
+            "order_info"=>$this->order_object->get_order_by_id($id),
             "category_list"=>$this->category_object->get_all_categories(),
             "order_list"=>$this->order_object->get_order_item($id),
-            "total_order"=>$this->order_object->get_total_order($id)
+            "item_cart_list"=>$this->item_object->get_item_list($arr_cookie)
         ));
     }
 }

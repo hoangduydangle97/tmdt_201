@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 28, 2020 lúc 06:36 PM
+-- Thời gian đã tạo: Th12 07, 2020 lúc 03:38 PM
 -- Phiên bản máy phục vụ: 10.4.14-MariaDB
 -- Phiên bản PHP: 7.4.10
 
@@ -83,8 +83,8 @@ CREATE TABLE `item` (
 
 INSERT INTO `item` (`id_item`, `name_item`, `avatar_item`, `detail_item_1`, `detail_item_2`, `detail_item_3`, `description_item`, `price_item`, `unit_item`, `availability_item`, `weight_item`, `sale_off_item`, `featured`, `num_purchased`, `date_created_item`, `latest_date_updated_item`, `category_item`) VALUES
 ('apple', 'Apple', 'public/images/uploads/products/apple/avatar/apple.jpg', 'public/images/uploads/products/apple/details/detail-1-apple.jpg', 'public/images/uploads/products/apple/details/detail-2-apple.jpg', 'public/images/uploads/products/apple/details/detail-3-apple.jpg', 'Apples', 35000, 'kg', 1, 1, 20, 1, 1, '2020-10-09 18:42:10', '2020-10-09 18:42:10', 'fresh-fruit'),
-('avocado', 'Avocado', 'public/images/uploads/products/avocado/avatar/avocado.jpg', 'public/images/uploads/products/avocado/details/detail-1-avocado.jpg', 'public/images/uploads/products/avocado/details/detail-2-avocado.jpg', 'public/images/uploads/products/avocado/details/detail-3-avocado.jpg', 'Avocado', 99000, 'kg', 1, 1, 0, 1, 0, '2020-10-09 18:45:25', '2020-10-09 18:45:25', 'fresh-fruit'),
-('banana', 'Banana', 'public/images/uploads/products/banana/avatar/banana.jpg', 'public/images/uploads/products/banana/details/detail-1-banana.jpg', 'public/images/uploads/products/banana/details/detail-2-banana.jpg', 'public/images/uploads/products/banana/details/detail-3-banana.jpg', 'Bananas', 7000, 'kg', 1, 1, 15, 0, 0, '2020-10-09 18:43:11', '2020-10-09 18:43:11', 'fresh-fruit'),
+('avocado', 'Avocado', 'public/images/uploads/products/avocado/avatar/avocado.jpg', 'public/images/uploads/products/avocado/details/detail-1-avocado.jpg', 'public/images/uploads/products/avocado/details/detail-2-avocado.jpg', 'public/images/uploads/products/avocado/details/detail-3-avocado.jpg', 'Avocado', 99000, 'kg', 1, 1, 0, 1, 1, '2020-10-09 18:45:25', '2020-10-09 18:45:25', 'fresh-fruit'),
+('banana', 'Banana', 'public/images/uploads/products/banana/avatar/banana.jpg', 'public/images/uploads/products/banana/details/detail-1-banana.jpg', 'public/images/uploads/products/banana/details/detail-2-banana.jpg', 'public/images/uploads/products/banana/details/detail-3-banana.jpg', 'Bananas', 23000, 'kg', 1, 1, 15, 0, 0, '2020-10-09 18:43:11', '2020-10-09 18:43:11', 'fresh-fruit'),
 ('beef', 'Beef', 'public/images/uploads/products/beef/avatar/beef.jpg', 'public/images/uploads/products/beef/details/detail-1-beef.jpg', 'public/images/uploads/products/beef/details/detail-2-beef.jpg', 'public/images/uploads/products/beef/details/detail-3-beef.jpg', 'Beef', 219000, 'kg', 1, 1, 25, 1, 0, '2020-10-09 18:44:13', '2020-10-09 18:44:13', 'fresh-meat'),
 ('bell-pepper', 'Bell pepper', 'public/images/uploads/products/bell-pepper/avatar/bell-peppers.jpg', 'public/images/uploads/products/bell-pepper/details/detail-1-bell-pepper.jpg', 'public/images/uploads/products/bell-pepper/details/detail-2-bell-pepper.jpg', 'public/images/uploads/products/bell-pepper/details/detail-3-bell-pepper.jpg', 'Bell peppers', 62000, 'kg', 1, 1, 0, 0, 0, '2020-10-10 23:20:14', '2020-10-10 23:20:14', 'vegetables'),
 ('carrot', 'Carrot', 'public/images/uploads/products/carrot/avatar/carrot.jpg', 'public/images/uploads/products/carrot/details/detail-1-carrot.jpg', 'public/images/uploads/products/carrot/details/detail-2-carrot.jpg', 'public/images/uploads/products/carrot/details/detail-3-carrot.jpg', 'Carrot', 17000, 'kg', 1, 1, 0, 1, 0, '2020-10-11 00:02:18', '2020-10-11 00:02:18', 'vegetables'),
@@ -97,7 +97,6 @@ INSERT INTO `item` (`id_item`, `name_item`, `avatar_item`, `detail_item_1`, `det
 ('mango', 'Mango', 'public/images/uploads/products/mango/avatar/mango.jpg', 'public/images/uploads/products/mango/details/detail-1-mango.jpg', 'public/images/uploads/products/mango/details/detail-2-mango.jpg', 'public/images/uploads/products/mango/details/detail-3-mango.jpg', 'Mangoes', 25000, 'kg', 1, 1, 0, 1, 0, '2020-10-09 18:52:11', '2020-10-09 18:52:11', 'fresh-fruit'),
 ('orange-juice', 'Orange Juice', 'public/images/uploads/products/orange-juice/avatar/orange-juice.jpg', 'public/images/uploads/products/orange-juice/details/detail-1-orange-juice.jpg', 'public/images/uploads/products/orange-juice/details/detail-2-orange-juice.jpg', 'public/images/uploads/products/orange-juice/details/detail-3-orange-juice.jpg', 'Orange Juice', 29000, 'item', 1, 1, 5, 0, 0, '2020-10-09 18:52:53', '2020-10-09 18:52:53', 'juice'),
 ('strawberry-juice', 'Strawberry Juice', 'public/images/uploads/products/strawberry-juice/avatar/strawberry-juice.jpg', 'public/images/uploads/products/strawberry-juice/details/detail-1-strawberry-juice.jpg', 'public/images/uploads/products/strawberry-juice/details/detail-2-strawberry-juice.jpg', 'public/images/uploads/products/strawberry-juice/details/detail-3-strawberry-juice.jpg', 'Strawberry Juice', 34000, 'item', 1, 1, 0, 0, 0, '2020-10-09 18:54:09', '2020-10-09 18:54:09', 'juice'),
-('tuna', 'Tuna', 'public/images/uploads/products/default-item.jpg', 'public/images/uploads/products/default-item.jpg', 'public/images/uploads/products/default-item.jpg', 'public/images/uploads/products/default-item.jpg', 'Tuna', 69000, 'kg', 0, 1, 50, 0, 0, '2020-11-12 23:43:15', '2020-11-12 23:48:53', 'ocean-foods'),
 ('watermelon', 'Watermelon', 'public/images/uploads/products/watermelon/avatar/watermelon.jpg', 'public/images/uploads/products/watermelon/details/detail-1-watermelon.jpg', 'public/images/uploads/products/watermelon/details/detail-2-watermelon.jpg', 'public/images/uploads/products/watermelon/details/detail-3-watermelon.jpg', 'Watermelon', 17000, 'kg', 1, 1, 0, 1, 0, '2020-10-09 18:56:33', '2020-10-09 18:56:33', 'fresh-fruit');
 
 --
@@ -118,40 +117,35 @@ CREATE TABLE `order_item` (
   `id_order` varchar(100) NOT NULL,
   `name_item` varchar(100) NOT NULL,
   `quantity_item` int(11) NOT NULL,
-  `total_item` float NOT NULL DEFAULT 0
+  `total_item` float NOT NULL DEFAULT 0,
+  `update_status` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Đang đổ dữ liệu cho bảng `order_item`
 --
 
-INSERT INTO `order_item` (`id_order`, `name_item`, `quantity_item`, `total_item`) VALUES
-('03223284805f5150e8bc508c38ededb8', 'Apple', 6, 8.94),
-('03223284805f5150e8bc508c38ededb8', 'Avocado', 7, 69.93),
-('2d441677b4f897b64e70e107fa7c7138', 'Beef', 10, 24.9),
-('2d441677b4f897b64e70e107fa7c7138', 'Dragon fruit', 15, 52.35),
-('486d3854983eec61b9242cb8e1e784a1', 'Banana', 5, 2.85),
-('486d3854983eec61b9242cb8e1e784a1', 'Bell pepper', 6, 27.54),
-('52f4b05e4c21a5f45891d5f3a49a033f', 'Banana', 4, 2.28),
-('52f4b05e4c21a5f45891d5f3a49a033f', 'Beef', 2, 4.98),
-('74c4489bfcf3d5a6492fda7b925a876b', 'Avocado', 5, 49.95),
-('74c4489bfcf3d5a6492fda7b925a876b', 'Watermelon', 10, 5.5),
-('d272cb873fa24a231af3bac2415fb92a', 'Apple', 10, 14.9),
-('d272cb873fa24a231af3bac2415fb92a', 'Avocado', 10, 99.9);
+INSERT INTO `order_item` (`id_order`, `name_item`, `quantity_item`, `total_item`, `update_status`) VALUES
+('03223284805f5150e8bc508c38ededb8', 'Apple', 1, 35000, '2020-12-06 17:29:16'),
+('03223284805f5150e8bc508c38ededb8', 'Avocado', 1, 23000, '2020-12-06 17:29:16'),
+('2d441677b4f897b64e70e107fa7c7138', 'Beef', 1, 219000, '2020-12-06 17:29:23'),
+('2d441677b4f897b64e70e107fa7c7138', 'Dragon fruit', 1, 23000, '2020-12-06 17:29:23'),
+('461dac001cefe4642be0c4266982655b', 'Apple', 1, 35000, NULL),
+('461dac001cefe4642be0c4266982655b', 'Avocado', 1, 99000, NULL);
 
 --
 -- Bẫy `order_item`
 --
 DELIMITER $$
-CREATE TRIGGER `tg_delete_order_item` AFTER DELETE ON `order_item` FOR EACH ROW UPDATE item SET num_purchased=(SELECT COUNT(*) FROM (SELECT * FROM `order_item` WHERE name_item=OLD.name_item) t1 LEFT JOIN order_user t2 ON t1.id_order=t2.id_order WHERE t2.status_order='Confirmed') WHERE name_item=OLD.name_item
+CREATE TRIGGER `tg_delete_order_item` AFTER DELETE ON `order_item` FOR EACH ROW UPDATE item SET num_purchased=(SELECT COUNT(*) FROM (SELECT * FROM `order_item` WHERE name_item=OLD.name_item) t1 LEFT JOIN order_user t2 ON t1.id_order=t2.id_order WHERE t2.status_order='Delivered') WHERE name_item=OLD.name_item
 $$
 DELIMITER ;
 DELIMITER $$
-CREATE TRIGGER `tg_insert_order_item` AFTER INSERT ON `order_item` FOR EACH ROW UPDATE item SET num_purchased=(SELECT COUNT(*) FROM (SELECT * FROM `order_item` WHERE name_item=NEW.name_item) t1 LEFT JOIN order_user t2 ON t1.id_order=t2.id_order WHERE t2.status_order='Confirmed') WHERE name_item=NEW.name_item
+CREATE TRIGGER `tg_insert_order_item` AFTER INSERT ON `order_item` FOR EACH ROW UPDATE item SET num_purchased=(SELECT COUNT(*) FROM (SELECT * FROM `order_item` WHERE name_item=NEW.name_item) t1 LEFT JOIN order_user t2 ON t1.id_order=t2.id_order WHERE t2.status_order='Delivered') WHERE name_item=NEW.name_item
 $$
 DELIMITER ;
 DELIMITER $$
-CREATE TRIGGER `tg_update_order_item` AFTER UPDATE ON `order_item` FOR EACH ROW UPDATE item SET num_purchased=(SELECT COUNT(*) FROM (SELECT * FROM `order_item` WHERE name_item=NEW.name_item) t1 LEFT JOIN order_user t2 ON t1.id_order=t2.id_order WHERE t2.status_order='Confirmed') WHERE name_item=NEW.name_item
+CREATE TRIGGER `tg_update_order_item` AFTER UPDATE ON `order_item` FOR EACH ROW UPDATE item SET num_purchased=(SELECT COUNT(*) FROM (SELECT * FROM `order_item` WHERE name_item=NEW.name_item) t1 LEFT JOIN order_user t2 ON t1.id_order=t2.id_order WHERE t2.status_order='Delivered') WHERE name_item=NEW.name_item
 $$
 DELIMITER ;
 
@@ -170,26 +164,57 @@ CREATE TABLE `order_user` (
   `email_user_order` varchar(100) NOT NULL,
   `username_user_order` varchar(100) DEFAULT NULL,
   `note_order` varchar(500) DEFAULT NULL,
-  `total_order` float NOT NULL,
+  `shipping_order` int(10) NOT NULL,
+  `free_shipping` varchar(50) NOT NULL,
+  `total_order` int(10) NOT NULL,
   `date_order` datetime NOT NULL,
   `date_confirmed` datetime DEFAULT NULL,
-  `date_done` datetime DEFAULT NULL,
-  `date_deliveried` datetime DEFAULT NULL,
+  `date_prepared` datetime DEFAULT NULL,
+  `date_delivered` datetime DEFAULT NULL,
+  `payment_order` varchar(10) DEFAULT NULL,
   `paid_order` tinyint(1) NOT NULL,
-  `status_order` varchar(100) NOT NULL DEFAULT 'Not confirmed'
+  `status_order` varchar(100) NOT NULL DEFAULT 'Not confirmed',
+  `tracking_order` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Đang đổ dữ liệu cho bảng `order_user`
 --
 
-INSERT INTO `order_user` (`id_order`, `fname_user_order`, `lname_user_order`, `address_user_order`, `phone_user_order`, `email_user_order`, `username_user_order`, `note_order`, `total_order`, `date_order`, `date_confirmed`, `date_done`, `date_deliveried`, `paid_order`, `status_order`) VALUES
-('03223284805f5150e8bc508c38ededb8', 'Hoangduy', 'Dangle', '789 Ly Thuong Kiet, Ward 14, District 10, HCMC', '0988341765', 'duy.dang.bku_19@hcmut.edu.vn', 'hoangduydangle', NULL, 78.87, '2020-11-10 14:11:31', NULL, NULL, NULL, 0, 'Not confirmed'),
-('2d441677b4f897b64e70e107fa7c7138', 'Johnathan', 'Wick', '123 Ly Thuong Kiet, Ward 14, District 10, HCMC', '0984123456', 'johnwick@gmail.com', 'johnwick', NULL, 77.25, '2020-11-10 12:32:41', NULL, NULL, NULL, 0, 'Not confirmed'),
-('486d3854983eec61b9242cb8e1e784a1', 'Johnathan', 'Wick', '123 Ly Thuong Kiet, Ward 14, District 10, HCMC', '0984123456', 'johnwick@gmail.com', 'johnwick', NULL, 30.39, '2020-11-10 01:24:07', '2020-11-10 01:30:15', NULL, NULL, 0, 'Confirmed'),
-('5cb26d59a868ea20f16bbe9d742faeab', 'Donald', 'Trump', '456 Ly Thuong Kiet, Ward 14, District 10, HCMC', '0921456789', 'donaldjtrump@gmail.com', NULL, NULL, 8.88, '2020-11-09 17:11:46', '2020-11-09 17:20:03', '2020-11-09 18:30:55', NULL, 0, 'Done'),
-('74c4489bfcf3d5a6492fda7b925a876b', 'Hoangduy', 'Dangle', '789 Ly Thuong Kiet, Ward 14, District 10, HCMC', '0988341765', 'duy.dang.bku_19@hcmut.edu.vn', 'hoangduydangle', NULL, 55.45, '2020-11-10 13:27:45', NULL, NULL, NULL, 0, 'Not confirmed'),
-('d272cb873fa24a231af3bac2415fb92a', 'Johnathan', 'Wick', '123 Ly Thuong Kiet, Ward 14, District 10, HCMC', '0984123456', 'johnwick@gmail.com', 'johnwick', NULL, 114.8, '2020-11-10 01:23:14', NULL, NULL, NULL, 0, 'Confirmed');
+INSERT INTO `order_user` (`id_order`, `fname_user_order`, `lname_user_order`, `address_user_order`, `phone_user_order`, `email_user_order`, `username_user_order`, `note_order`, `shipping_order`, `free_shipping`, `total_order`, `date_order`, `date_confirmed`, `date_prepared`, `date_delivered`, `payment_order`, `paid_order`, `status_order`, `tracking_order`) VALUES
+('03223284805f5150e8bc508c38ededb8', 'Hoangduy', 'Dangle', '789 Ly Thuong Kiet, Ward 14, District 10, HCMC', '0988341765', 'duy.dang.bku_19@hcmut.edu.vn', 'hoangduydangle', NULL, 29700, 'Not Apply', 87700, '2020-11-10 14:11:31', '2020-12-05 19:43:02', NULL, '2020-12-05 19:46:25', NULL, 0, 'Delivered', NULL),
+('2d441677b4f897b64e70e107fa7c7138', 'Johnathan', 'Wick', '123 Ly Thuong Kiet, Ward 14, District 10, HCMC', '0984123456', 'johnwick@gmail.com', 'johnwick', NULL, 29700, 'Not Apply', 217700, '2020-11-10 12:32:41', NULL, NULL, NULL, NULL, 0, 'Not confirmed', NULL),
+('461dac001cefe4642be0c4266982655b', 'Hoangduy', 'Dangle', '123 Ly Thuong Kiet, Phường Tân Định, Quận 1, Hồ Chí Minh', '0123456789', 'duy.dang.bku_19@hcmut.edu.vn', NULL, 'Delivery before this Sunday', 29700, '0', 163700, '2020-12-07 18:07:45', NULL, NULL, NULL, 'cod', 0, 'Not confirmed', NULL);
+
+--
+-- Bẫy `order_user`
+--
+DELIMITER $$
+CREATE TRIGGER `tg_delete_order_user` AFTER DELETE ON `order_user` FOR EACH ROW DELETE FROM order_item WHERE id_order=OLD.id_order
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `tg_update_order_user` AFTER UPDATE ON `order_user` FOR EACH ROW UPDATE order_item SET update_status=CURRENT_TIMESTAMP WHERE id_order=NEW.id_order
+$$
+DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `order_vnpay`
+--
+
+CREATE TABLE `order_vnpay` (
+  `vnp_TxnRef` varchar(100) NOT NULL,
+  `vnp_ResponseCode` int(2) NOT NULL,
+  `vnp_TransactionNo` int(15) NOT NULL,
+  `vnp_PayDate` int(14) NOT NULL,
+  `vnp_OrderInfo` varchar(255) NOT NULL,
+  `vnp_BankTranNo` varchar(255) NOT NULL,
+  `vnp_BankCode` varchar(20) NOT NULL,
+  `vnp_Amount` int(12) NOT NULL,
+  `vnp_SecureHash` varchar(256) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -277,7 +302,6 @@ INSERT INTO `top_item` (`id_item_top`, `average_rating`, `num_review`) VALUES
 ('mango', 4.5, 1),
 ('orange-juice', 0, 0),
 ('strawberry-juice', 0, 0),
-('tuna', 0, 0),
 ('watermelon', 5, 2);
 
 -- --------------------------------------------------------
@@ -338,6 +362,12 @@ ALTER TABLE `order_item`
 --
 ALTER TABLE `order_user`
   ADD PRIMARY KEY (`id_order`);
+
+--
+-- Chỉ mục cho bảng `order_vnpay`
+--
+ALTER TABLE `order_vnpay`
+  ADD PRIMARY KEY (`vnp_TxnRef`);
 
 --
 -- Chỉ mục cho bảng `rating_user_item`

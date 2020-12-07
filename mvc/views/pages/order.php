@@ -38,7 +38,7 @@
                             <th>Time Created</th>
                             <th>Time Confirmed</th>
                             <th>Time Process Done</th>
-                            <th>Time Deliveried</th>
+                            <th>Time Delivered</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -93,21 +93,21 @@
                             </td>
                             <td class="align-middle">
                                 <?php 
-                                if($order_list[$row]->date_done == null){
+                                if($order_list[$row]->date_prepared == null){
                                     echo '<i>NULL</i>';
                                 }
                                 else{
-                                    echo date_format(date_create($order_list[$row]->date_done), 'H:i:s \- d/m/Y');
+                                    echo date_format(date_create($order_list[$row]->date_prepared), 'H:i:s \- d/m/Y');
                                 }
                                 ?>
                             </td>
                             <td class="align-middle">
                                 <?php 
-                                if($order_list[$row]->date_deliveried == null){
+                                if($order_list[$row]->date_delivered == null){
                                     echo '<i>NULL</i>';
                                 }
                                 else{
-                                    echo date_format(date_create($order_list[$row]->date_deliveried), 'H:i:s \- d/m/Y');
+                                    echo date_format(date_create($order_list[$row]->date_delivered), 'H:i:s \- d/m/Y');
                                 }
                                 ?>
                             </td>

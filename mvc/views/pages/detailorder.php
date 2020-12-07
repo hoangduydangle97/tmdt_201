@@ -19,15 +19,16 @@
     <!-- Shoping Cart Section Begin -->
     <section class="shoping-cart spad">
         <div class="container">
-        <?php $order_list = json_decode($data['order_list']);
+        <?php $order_info = json_decode($data['order_info']);
+        $order_list = json_decode($data['order_list']);
         $size_list = count($order_list);
         if($size_list == 0){
-            echo '<h4 class="font-italic text-center">There is no any products in your order.</h4>';
+            echo '<h4 class="font-italic text-center">It is not found your order.</h4>';
         }
         else{
         ?>
             <div class="container mb-5 text-center" style="font-size: 1.2em;">
-                Order: <b><?php echo $data['id_order'];?></b>
+                Order: <b><?php echo $order_info->id_order;?></b>
             </div>
             <div class="row">
                 <div class="col-lg-12">
@@ -35,11 +36,11 @@
                         <table>
                             <thead>
                                 <tr>
-                                    <th class="shoping__product">Products</th>
+                                    <th class="shoping__product">Products Detail</th>
                                     <th>Price</th>
                                     <th>Quantity</th>
+                                    <th>Unit</th>
                                     <th>Total</th>
-                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -58,13 +59,14 @@
                                         </h5>
                                     </td>
                                     <td class="shoping__cart__price">
-                                        $<?php echo $order_list[$row]->price_item; ?>
+                                        <?php echo number_format($order_list[$row]->price_item, 0); ?> <u style="font-weight: 400;">đ</u>
                                     </td>
                                     <td class="shoping__cart__quantity">
                                         <b><?php echo $order_list[$row]->quantity_item; ?></b>
                                     </td>
+                                    <td class="shoping__cart__price">kg</td>
                                     <td class="shoping__cart__total">
-                                        <?php echo $order_list[$row]->total_item; ?>
+                                        <?php echo number_format($order_list[$row]->total_item, 0); ?> <u style="font-weight: 400;">đ</u>
                                     </td>
                                 </tr>
                                 <?php }?>
@@ -83,9 +85,23 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="shoping__checkout">
-                        <h5>Order Total</h5>
+                        <h5>Order Detail</h5>
                         <ul>
-                            <li>Total <span class="total">$<?php echo json_decode($data['total_order']);?></span></li>
+                            <li>Shipping <span style="font-size: 16px;"><?php echo number_format($order_info->shipping_order, 0);?> <u style="font-weight: 400;">đ</u></span></li>
+                            <li>Free Shipping <span style="font-size: 16px;"><?php echo $order_info->free_shipping == 0?'Not Apply':'Apply';?></span></li>
+                            <li>Coupon <span style="font-size: 16px;">Not Apply</span></li>
+                            <li>Total <span style="font-size: 16px;"><?php echo number_format($order_info->total_order, 0);?> <u style="font-weight: 400;">đ</u></span></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="shoping__checkout">
+                        <h5>User Detail</h5>
+                        <ul>
+                            <li>Name <span style="font-size: 16px;"><?php echo $order_info->fname_user_order.' '.$order_info->lname_user_order; ?></span></li>
+                            <li>Address <span style="font-size: 16px;"><?php echo $order_info->address_user_order; ?></span></li>
+                            <li>Phone <span style="font-size: 16px;"><?php echo $order_info->phone_user_order; ?></span></li>
+                            <li>Email <span style="font-size: 16px;"><?php echo $order_info->email_user_order; ?></span></li>
                         </ul>
                     </div>
                 </div>

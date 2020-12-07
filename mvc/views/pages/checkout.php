@@ -169,6 +169,47 @@
                                 <input type="text" name="note" placeholder="Notes about your order, e.g. special notes for delivery. (limit 100 characters)" maxlength="100">
                             </div>
                             <?php }?>
+                            <h4 class="payment-vnpay d-none">Payment via VNPay</h4>
+                            <div class="row payment-vnpay d-none">
+                                <div class="col-lg-6">
+                                    <div class="checkout__input">
+                                        <p>Bank/Credit/Wallet<span>*</span></p>
+                                        <select name="bank_code" id="bank_code" class="form-control select-checkout">
+                                            <option value="NCB">Ngân hàng NCB</option>
+                                            <option value="AGRIBANK">Ngân hàng Agribank</option>
+                                            <option value="SCB">Ngân hàng SCB</option>
+                                            <option value="SACOMBANK">Ngân hàng SacomBank</option>
+                                            <option value="EXIMBANK">Ngân hàng EximBank</option>
+                                            <option value="MSBANK">Ngân hàng MSBANK</option>
+                                            <option value="NAMABANK">Ngân hàng NamABank</option>
+                                            <option value="VNMART">Ví điện tử VnMart</option>
+                                            <option value="VIETINBANK">Ngân hàng Vietinbank</option>
+                                            <option value="VIETCOMBANK">Ngân hàng VCB</option>
+                                            <option value="HDBANK">Ngân hàng HDBank</option>
+                                            <option value="DONGABANK">Ngân hàng Dong A</option>
+                                            <option value="TPBANK">Ngân hàng TPBank</option>
+                                            <option value="OJB">Ngân hàng OceanBank</option>
+                                            <option value="BIDV">Ngân hàng BIDV</option>
+                                            <option value="TECHCOMBANK">Ngân hàng Techcombank</option>
+                                            <option value="VPBANK">Ngân hàng VPBank</option>
+                                            <option value="MBBANK">Ngân hàng MBBank</option>
+                                            <option value="ACB">Ngân hàng ACB</option>
+                                            <option value="OCB">Ngân hàng OCB</option>
+                                            <option value="IVB">Ngân hàng IVB</option>
+                                            <option value="VISA"> Thanh toan qua VISA/MASTER</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="checkout__input">
+                                        <p>Language<span>*</span></p>
+                                        <select name="language" id="language" class="form-control select-checkout">
+                                            <option value="vn">Tiếng Việt</option>
+                                            <option value="en">English</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="col-lg-4 col-md-6">
                             <div class="checkout__order">
@@ -198,7 +239,7 @@
                                 <div class="d-none" id="weight-total"><?php echo number_format($data['weight_total'], 0) ;?></div>
                                 <div class="checkout__order__subtotal">Subtotal <span class="sub-total"><?php echo number_format($sub_total, 0);?> <u style="font-weight: 400;">đ</u></span></div>
                                 <div class="checkout__order__total">Shipping <span class="text-success shipping-fee">+ <?php echo number_format($data['shipping_fee'], 0) ;?> <u style="font-weight: 400;">đ</u></span></div>
-                                <input type="hidden" name="shipping-order" value="<?php echo number_format($shipping_fee, 0) ;?>">
+                                <input type="hidden" name="shipping-order" value="<?php echo $shipping_fee;?>">
                                 <?php if($sub_total >= 299000){
                                     $shipping_fee = 0;
                                     $free_shipping = 1;
@@ -206,7 +247,7 @@
                                 <div class="checkout__order__total">Free Shipping <span class="text-primary"><?php echo $free_shipping == 0?'Not Apply':'Apply';?></span></div>
                                 <input type="hidden" name="free-shipping-order" value="<?php echo $free_shipping;?>">
                                 <div class="checkout__order__total">Total <span class="total"><?php echo number_format($sub_total + $shipping_fee, 0);?> <u style="font-weight: 400;">đ</u></span></div>
-                                <input type="hidden" name="total-order" value="<?php echo number_format($sub_total + $shipping_fee, 0);?>">
+                                <input type="hidden" name="total-order" value="<?php echo $sub_total + $shipping_fee;?>">
                                 <div class="checkout__order__products">Payment</div>
                                 <div>
                                     <label for="cod">
@@ -214,7 +255,7 @@
                                     </label>
                                 </div>
                                 <div>
-                                    <label for="momo">
+                                    <label for="vnpay">
                                         <input type="radio" id="vnpay" value="vnpay" name="payment"> VNPay
                                     </label>
                                 </div>

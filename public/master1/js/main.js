@@ -706,3 +706,13 @@ function wardChange(){
         'html'
     );
 }
+
+$('input:radio[name="payment"]').change(
+    function(){
+        if ($(this).is(':checked') && $(this).val() == 'vnpay') {
+            $('.payment-vnpay').removeClass('d-none');
+        }
+        else{
+            $('.payment-vnpay').addClass('d-none');
+        }
+});

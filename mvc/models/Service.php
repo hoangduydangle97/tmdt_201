@@ -18,6 +18,31 @@ class Service extends Database{
         return json_encode($province);
     }
 
+    public function get_province_id($province_name){
+        $curl = curl_init();
+        $header = array(
+            'Content-Type: application/json',
+            'Token: 637d1bc6-2c00-11eb-a18f-227f832b612c'
+        );
+        $option = array(
+            CURLOPT_RETURNTRANSFER => 1,
+            CURLOPT_URL => 'https://dev-online-gateway.ghn.vn/shiip/public-api/master-data/province',
+            CURLOPT_HTTPHEADER => $header
+        );
+        curl_setopt_array($curl, $option);
+        $res = curl_exec($curl);
+        curl_close($curl);
+        $result = json_decode($res); 
+        if($result->code == 200){
+            foreach($result->data as $value){
+                if($value->ProvinceName == $province_name){
+                    return $value->ProvinceID;
+                }
+            }
+            return 'Error';
+        }
+    }
+
     public function get_district($province_id){
         $province = strval($province_id);
         $curl = curl_init();
@@ -37,6 +62,16 @@ class Service extends Database{
         if($result->code == 200){
             return json_encode($result->data);
         }
+    }
+
+    public function get_district_id($district_name, $province_id){
+        $district_list = json_decode($this->get_district($province_id));
+        foreach($district_list as $value){
+            if($value->DistrictName == $district_name){
+                return $value->DistrictID;
+            }
+        }
+        return 'Error';
     }
 
     public function get_ward($district_id){
@@ -61,6 +96,16 @@ class Service extends Database{
         else{
             return json_encode('Error');
         }
+    }
+
+    public function get_ward_code($ward_name, $district_id){
+        $ward_list = json_decode($this->get_ward($district_id));
+        foreach($ward_list as $value){
+            if($value->WardName == $ward_name){
+                return $value->WardCode;
+            }
+        }
+        return 'Error';
     }
 
     public function get_shipping_fee($to_district_id, $to_ward_code, $weight){
@@ -139,6 +184,23 @@ class Service extends Database{
         else{
             return json_encode('Error');
         }
+    }
+
+    public function get_code_address($address){
+        $address= explode(', ', $address);
+        array_splice($address, 0, 1);
+        $province_name = $address[2];
+        $district_name = $address[1];
+        $ward_name = $address[0];
+        $province_id = $this->get_province_id($province_name);
+        $district_id = $this->get_district_id($district_name, $province_id);
+        $ward_code = $this->get_ward_code($ward_name, $district_id);
+        $arr = array(
+            "ProvinceID" => $province_id,
+            "DistrictID" => $district_id,
+            "WardCode" => $ward_code
+        );
+        return json_encode($arr);
     }
 }
 ?>

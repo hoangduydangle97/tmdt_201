@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 07, 2020 lúc 09:49 PM
+-- Thời gian đã tạo: Th12 08, 2020 lúc 10:30 AM
 -- Phiên bản máy phục vụ: 10.4.14-MariaDB
 -- Phiên bản PHP: 7.4.10
 
@@ -116,7 +116,7 @@ DELIMITER ;
 CREATE TABLE `order_item` (
   `id_order` varchar(100) NOT NULL,
   `name_item` varchar(100) NOT NULL,
-  `quantity_item` int(11) NOT NULL,
+  `quantity_item` float NOT NULL,
   `total_item` float NOT NULL DEFAULT 0,
   `update_status` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -128,10 +128,22 @@ CREATE TABLE `order_item` (
 INSERT INTO `order_item` (`id_order`, `name_item`, `quantity_item`, `total_item`, `update_status`) VALUES
 ('03223284805f5150e8bc508c38ededb8', 'Apple', 1, 35000, '2020-12-08 02:08:42'),
 ('03223284805f5150e8bc508c38ededb8', 'Avocado', 1, 23000, '2020-12-08 02:08:42'),
+('113f88954c3be1d17fdc52162dd21ceb', 'Apple', 2, 52500, '2020-12-08 16:25:32'),
+('113f88954c3be1d17fdc52162dd21ceb', 'Banana', 2, 34500, '2020-12-08 16:25:32'),
 ('2d441677b4f897b64e70e107fa7c7138', 'Beef', 1, 219000, '2020-12-08 03:47:37'),
 ('2d441677b4f897b64e70e107fa7c7138', 'Dragon fruit', 1, 23000, '2020-12-08 03:47:37'),
+('3f514731d4410f737f6613a2de7b478b', 'Avocado', 1, 99000, NULL),
+('3f514731d4410f737f6613a2de7b478b', 'Bell pepper', 1, 62000, NULL),
 ('461dac001cefe4642be0c4266982655b', 'Apple', 1, 35000, '2020-12-08 00:39:29'),
-('461dac001cefe4642be0c4266982655b', 'Avocado', 1, 99000, '2020-12-08 00:39:29');
+('461dac001cefe4642be0c4266982655b', 'Avocado', 1, 99000, '2020-12-08 00:39:29'),
+('5ebf1f404d4218923d6adbb2ce349e40', 'Beef', 1, 219000, NULL),
+('5ebf1f404d4218923d6adbb2ce349e40', 'Watermelon', 1, 17000, NULL),
+('706b7f24fab5679b6a53b0f05d3a9c58', 'Bell pepper', 1, 62000, NULL),
+('706b7f24fab5679b6a53b0f05d3a9c58', 'Carrot', 1, 17000, NULL),
+('d864250c50b80453320d98358f4e2ddd', 'Beef', 1, 219000, NULL),
+('d864250c50b80453320d98358f4e2ddd', 'Chicken', 1, 229000, NULL),
+('e600d3c0fb0b941c5a285f663051bc2c', 'Avocado', 1, 99000, NULL),
+('e600d3c0fb0b941c5a285f663051bc2c', 'Bell pepper', 1, 62000, NULL);
 
 --
 -- Bẫy `order_item`
@@ -187,8 +199,14 @@ CREATE TABLE `order_user` (
 
 INSERT INTO `order_user` (`id_order`, `fname_user_order`, `lname_user_order`, `address_user_order`, `phone_user_order`, `email_user_order`, `username_user_order`, `note_order`, `shipping_order`, `free_shipping`, `coupon_order`, `total_order`, `date_order`, `date_confirmed`, `date_prepared`, `date_delivered`, `date_request`, `date_confirm_request`, `date_returned`, `payment_order`, `paid_order`, `status_order`, `tracking_order`) VALUES
 ('03223284805f5150e8bc508c38ededb8', 'Hoangduy', 'Dangle', '789 Ly Thuong Kiet, Ward 14, District 10, HCMC', '0988341765', 'duy.dang.bku_19@hcmut.edu.vn', 'hoangduydangle', NULL, 29700, '0', NULL, 87700, '2020-11-10 14:11:31', NULL, NULL, NULL, NULL, NULL, NULL, 'cod', 0, 'Not Confirmed', NULL),
+('113f88954c3be1d17fdc52162dd21ceb', 'Hoangduy', 'Dangle', '79 Lý Thường Kiệt, Phường 8, Quận Tân Bình, Hồ Chí Minh', '0123456789', 'duy.dang.bku_19@hcmut.edu.vn', NULL, 'Delivery before this Sunday', 29700, '0', NULL, 116700, '2020-12-08 15:41:22', NULL, NULL, NULL, NULL, NULL, NULL, 'vnpay', 1, 'Not Confirmed', NULL),
 ('2d441677b4f897b64e70e107fa7c7138', 'Johnathan', 'Wick', '123 Ly Thuong Kiet, Ward 14, District 10, HCMC', '0984123456', 'johnwick@gmail.com', 'johnwick', NULL, 29700, '0', NULL, 271700, '2020-11-10 12:32:41', '2020-12-08 01:49:25', '2020-12-08 01:49:26', '2020-12-08 01:49:27', NULL, NULL, NULL, 'cod', 0, 'Delivered', NULL),
-('461dac001cefe4642be0c4266982655b', 'Hoangduy', 'Dangle', '123 Ly Thuong Kiet, Phường Tân Định, Quận 1, Hồ Chí Minh', '0123456789', 'duy.dang.bku_19@hcmut.edu.vn', NULL, 'Delivery before this Sunday', 29700, '0', NULL, 163700, '2020-12-07 18:07:45', NULL, NULL, NULL, NULL, NULL, NULL, 'cod', 0, 'Not Confirmed', NULL);
+('3f514731d4410f737f6613a2de7b478b', 'Hoangduy', 'Dangle', '79 Lý Thường Kiệt, Phường 8, Quận Tân Bình, Hồ Chí Minh', '0123456789', 'duy.dang.bku_19@hcmut.edu.vn', NULL, 'Delivery before this Sunday', 29700, '0', NULL, 190700, '2020-12-08 15:34:12', NULL, NULL, NULL, NULL, NULL, NULL, 'cod', 0, 'Not Confirmed', NULL),
+('461dac001cefe4642be0c4266982655b', 'Hoangduy', 'Dangle', '123 Ly Thuong Kiet, Phường Tân Định, Quận 1, Hồ Chí Minh', '0123456789', 'duy.dang.bku_19@hcmut.edu.vn', NULL, 'Delivery before this Sunday', 29700, '0', NULL, 163700, '2020-12-07 18:07:45', NULL, NULL, NULL, NULL, NULL, NULL, 'cod', 0, 'Not Confirmed', NULL),
+('5ebf1f404d4218923d6adbb2ce349e40', 'Hoangduy', 'Dangle', '123 Lý Thường Kiệt, Phường Tân Định, Quận 1, Hồ Chí Minh', '0123456789', 'duy.dang.bku_19@hcmut.edu.vn', NULL, 'Delivery before this Sunday', 29700, '0', NULL, 265700, '2020-12-08 14:25:44', NULL, NULL, NULL, NULL, NULL, NULL, 'cod', 0, 'Not Confirmed', NULL),
+('706b7f24fab5679b6a53b0f05d3a9c58', 'Hoangduy', 'Dangle', '123 Lý Thường Kiệt, Phường Tân Định, Quận 1, Hồ Chí Minh', '0123456789', 'duy.dang.bku_19@hcmut.edu.vn', NULL, 'Delivery before this Sunday', 29700, '0', NULL, 108700, '2020-12-08 14:32:38', NULL, NULL, NULL, NULL, NULL, NULL, 'cod', 0, 'Not Confirmed', NULL),
+('d864250c50b80453320d98358f4e2ddd', 'Hoangduy', 'Dangle', '79 Lý Thường Kiệt, Phường 8, Quận Tân Bình, Hồ Chí Minh', '0123456789', 'duy.dang.bku_19@hcmut.edu.vn', NULL, 'Delivery before this Sunday', 29700, '1', NULL, 448000, '2020-12-08 15:02:37', NULL, NULL, NULL, NULL, NULL, NULL, 'cod', 0, 'Not Confirmed', NULL),
+('e600d3c0fb0b941c5a285f663051bc2c', 'Hoangduy', 'Dangle', '79 Lý Thường Kiệt, Phường 8, Quận Tân Bình, Hồ Chí Minh', '0123456789', 'duy.dang.bku_19@hcmut.edu.vn', NULL, 'Delivery before this Sunday', 29700, '0', NULL, 190700, '2020-12-08 15:30:06', NULL, NULL, NULL, NULL, NULL, NULL, 'cod', 0, 'Not Confirmed', NULL);
 
 --
 -- Bẫy `order_user`
@@ -219,6 +237,13 @@ CREATE TABLE `order_vnpay` (
   `vnp_Amount` int(12) NOT NULL,
   `vnp_SecureHash` varchar(256) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Đang đổ dữ liệu cho bảng `order_vnpay`
+--
+
+INSERT INTO `order_vnpay` (`vnp_TxnRef`, `vnp_ResponseCode`, `vnp_TransactionNo`, `vnp_PayDate`, `vnp_OrderInfo`, `vnp_BankTranNo`, `vnp_BankCode`, `vnp_Amount`, `vnp_SecureHash`) VALUES
+('113f88954c3be1d17fdc52162dd21ceb', 0, 13431847, 2147483647, 'Thanh toan don hang', '20201208154318', 'NCB', 11670000, 'b1a47bdee62e0d95ed4d399d2236f47b8bf630a19635fb81dcc3df7b9a70e8fc');
 
 -- --------------------------------------------------------
 

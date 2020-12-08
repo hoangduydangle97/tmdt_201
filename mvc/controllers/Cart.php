@@ -139,9 +139,9 @@ class Cart extends Controller{
         }
     }
 
-    public function test($id){
-        $a = json_decode($this->order_object->get_date_create_order($id));
-        var_dump($a);
+    public function test(){
+        $address = '123 Lý Thường Kiệt, Phường 14, Quận 10, Hồ Chí Minh';
+        var_dump(json_decode($this->service_object->get_code_address($address)));
     }
 }
 ?>

@@ -56,7 +56,7 @@
                             So tien:
                         </div>
                         <div class="col-8 text-right">
-                            <?php echo $vnpay_info->vnp_Amount; ?>
+                            <?php echo $vnpay_info->vnp_Amount/100; ?>
                         </div>
                     </div>
                     <hr>

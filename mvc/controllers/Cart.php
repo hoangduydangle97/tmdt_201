@@ -94,10 +94,9 @@ class Cart extends Controller{
     public function vnpay_return(){
         $result = json_decode($this->order_object->vnpay_return());
         if($result->RspCode == '00'){
-            header('location: http://localhost/tmdt_201/placeorder/success/'.$result->TxnRef);
-            $order_info = $this->order_object->get_order_by_id($result->TxnRef);
-            $item_order_list = $this->order_object->get_order_item($result->TxnRef);
-            $vnpay_info = $this->order_object->get_vnpay_info($result->TxnRef);
+            $order_info = json_decode($this->order_object->get_order_by_id($result->TxnRef));
+            $item_order_list = json_decode($this->order_object->get_order_item($result->TxnRef));
+            $vnpay_info = json_decode($this->order_object->get_vnpay_info($result->TxnRef));
             if($order_info->note_order == 'NULL'){
                 $order_info->note_order = "There isn't any note";
             }
@@ -124,13 +123,16 @@ class Cart extends Controller{
                     "vnp_ResponseCode" => $vnpay_info->vnp_ResponseCode,
                     "vnp_TransactionNo" => $vnpay_info->vnp_TransactionNo,
                     "vnp_PayDate" => $vnpay_info->vnp_PayDate,
+                    "vnp_OrderInfo" => $vnpay_info->vnp_OrderInfo,
                     "vnp_BankTranNo" => $vnpay_info->vnp_BankTranNo,
                     "vnp_BankCode" => $vnpay_info->vnp_BankCode,
-                    "vnp_Amount" => $vnpay_info->vnp_Amount,
+                    "vnp_Amount" => $vnpay_info->vnp_Amount/100,
                     "vnp_SecureHash" => $vnpay_info->vnp_SecureHash
                 )
             );
-            $this->order_object->send_mail($data_email);
+            if($this->order_object->send_mail($data_email)){
+                header('location: http://localhost/tmdt_201/placeorder/success/'.$result->TxnRef);
+            }
         }
         else{
             echo $result->RspCode.', '.$result->Message;

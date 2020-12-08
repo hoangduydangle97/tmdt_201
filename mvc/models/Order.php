@@ -221,17 +221,18 @@ class Order extends Database{
                             ),
                             "order" => array(
                                 "id" => $id,
-                                "date" => json_decode($this->get_date_create_order($id)),
+                                "date" => json_decode($this->get_date_create_order($id))->date_order,
                                 "payment" => $payment,
-                                "item_list" => $order_item_list,
+                                "item_list" => json_decode($this->get_order_item($id), true),
                                 "note" => $note,
                                 "shipping" => $shipping,
                                 "free_shipping" => $free_shipping,
                                 "total" => $total_order
                             )
                         );
-                        header("location: http://localhost/tmdt_201/placeorder/success/".$id);
-                        //$this->send_mail($data_email);
+                        if($this->send_mail($data_email)){
+                            header("location: http://localhost/tmdt_201/placeorder/success/".$id);
+                        }
                     }
                     elseif($_POST['payment'] == 'vnpay'){
                         $data_vnp = array(
@@ -281,32 +282,32 @@ class Order extends Database{
         require_once("./mvc/models/ConfigEmail.php");
         $mail = new PHPMailer(true);
 
-        try {
-            //Server settings
-            $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      // Enable verbose debug output
-            $mail->isSMTP();                                            // Send using SMTP
-            $mail->Host       = 'smtp.gmail.com';                       // Set the SMTP server to send through
-            $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
-            $mail->Username   = $organi_email;                          // SMTP username
-            $mail->Password   = $organi_password;                       // SMTP password
-            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
-            $mail->Port       = 587;                                    // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
+        //Server settings
+        $mail->SMTPDebug = 0;                      // Enable verbose debug output
+        $mail->isSMTP();                                            // Send using SMTP
+        $mail->Host       = 'smtp.gmail.com';                       // Set the SMTP server to send through
+        $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
+        $mail->Username   = $organi_email;                          // SMTP username
+        $mail->Password   = $organi_password;                       // SMTP password
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
+        $mail->Port       = 587;                                    // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
 
-            //Recipients
-            $mail->setFrom($organi_email, 'OrganiShop');
-            $mail->addAddress($data['user']['email'], 'User');          // Add a recipient
+        //Recipients
+        $mail->setFrom($organi_email, 'OrganiShop');
+        $mail->addAddress($data['user']['email'], 'User');          // Add a recipient
 
-            // Content
-            $mail->isHTML(true);                                        // Set email format to HTML
-            $mail->Subject = $organi_subject;
-            $mail->msgHTML($this->get_content_email($data), './public/images/email');
-            $mail->AltBody = $organi_alt;
+        // Content
+        $mail->isHTML(true);                                        // Set email format to HTML
+        $mail->Subject = $organi_subject;
+        $mail->msgHTML($this->get_content_email($data), './public/images/email');
+        $mail->AltBody = $organi_alt;
 
-            $mail->send();
-            echo 'Message has been sent';
-        } catch (Exception $e) {
-            echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+        if($mail->send()){
+            return true;
         }
+        else{
+            return false;
+        } 
     }
 
     public function vnpay_create($data){
@@ -362,6 +363,8 @@ class Order extends Database{
     }
 
     public function vnpay_return(){
+        require_once("./mvc/models/ConfigVNPay.php");
+
         $inputData = array();
         $returnData = array();
         $data = $_GET;
@@ -408,6 +411,7 @@ class Order extends Database{
                                     "vnp_ResponseCode" => $inputData['vnp_ResponseCode'],
                                     "vnp_TransactionNo" => $inputData['vnp_TransactionNo'],
                                     "vnp_PayDate" => $inputData['vnp_PayDate'],
+                                    "vnp_OrderInfo" => $inputData['vnp_OrderInfo'],
                                     "vnp_BankTranNo" => $inputData['vnp_BankTranNo'],
                                     "vnp_BankCode" => $inputData['vnp_BankCode'],
                                     "vnp_Amount" => $inputData['vnp_Amount'],
@@ -453,14 +457,17 @@ class Order extends Database{
         $res_code = $data['vnp_ResponseCode'];
         $trans_no = $data['vnp_TransactionNo'];
         $pay_date = $data['vnp_PayDate'];
+        $order_info = $data['vnp_OrderInfo'];
         $bank_trans_no = $data['vnp_BankTranNo'];
         $bank_code = $data['vnp_BankCode'];
         $amount = $data['vnp_Amount'];
         $secure_hash = $data['vnp_SecureHash'];
         $sql = "INSERT INTO order_vnpay(vnp_TxnRef, vnp_ResponseCode, vnp_TransactionNo,".
-        " vnp_PayDate, vnp_BankTranNo, vnp_BankCode, vnp_Amount, vnp_SecureHash) VALUES".
-        " ('".$txn_ref."', '".$res_code."', '".$trans_no."', '".$pay_date."', '".$bank_trans_no.
-        "', '".$bank_code."', '".$amount."', '".$secure_hash."');";
+        " vnp_PayDate, vnp_OrderInfo, vnp_BankTranNo, vnp_BankCode, vnp_Amount, vnp_SecureHash)".
+        " VALUES ('".$txn_ref."', '".$res_code."', '".$trans_no."', '".$pay_date."', '".$order_info.
+        "','".$bank_trans_no."', '".$bank_code."', '".$amount."', '".$secure_hash."');";
+
+        $sql_result = mysqli_query($this->conn, $sql);
         $result = false;
         if($sql_result){
             $result = true;

@@ -8,6 +8,6 @@
 $vnp_TmnCode = "5S1Q41FR"; //Mã website tại VNPAY 
 $vnp_HashSecret = "JQXYONRIYANMWUWVSYFNZNENGLLMCKLN"; //Chuỗi bí mật
 $vnp_Url = "http://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
-$vnp_Returnurl = "http://localhost/cart/vnpay_return";
+$vnp_Returnurl = "http://localhost/tmdt_201/cart/vnpay_return";
 
 ?>

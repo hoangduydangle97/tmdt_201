@@ -294,7 +294,6 @@ $data = json_decode(file_get_contents('php://input'));
                                 <td><?php echo number_format($value->price_item, 0);?></td>
                                 <td><?php echo $value->quantity_item;?></td>
                                 <td>kg</td>
-                                <td><?php echo $value->name_item;?></td>
                                 <td><?php echo number_format($value->total_item, 0);?></td>
                             </tr>
                             <?php 
@@ -356,7 +355,7 @@ $data = json_decode(file_get_contents('php://input'));
                 </div>
                 <br>
                 <?php
-                if($data->vnpay){
+                if(isset($data->vnpay)){
                 ?>
                 <div class="container text-center py-2">
                     <img src="/vnpay-logo.jpg" alt="vnpay-logo" style="width: 210px; height: 120px;">

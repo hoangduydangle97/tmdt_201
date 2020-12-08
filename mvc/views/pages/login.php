@@ -1,4 +1,4 @@
-<form class="login100-form validate-form" method="POST" action="http://localhost/tmdt_201/login/login">
+<form class="login100-form validate-form" method="POST" action="http://localhost/tmdt_201/login/check_login">
     <?php if(isset($_SESSION['error'])){
         if($_SESSION['error'] != false){?>
     <div class="container <?php echo $_SESSION['error'][0] == false?'text-success':'text-danger';?> text-center mt-3 error-info">

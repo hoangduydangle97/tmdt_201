@@ -46,6 +46,7 @@ class Cart extends Controller{
         $arr_cookie = [];
         $weight_total = 0;
         $user_info = null;
+        $user_expected_time = null;
         if(isset($_COOKIE)){
             foreach($_COOKIE as $key => $val){
                 $pos = strpos($key, 'selected-');
@@ -59,6 +60,8 @@ class Cart extends Controller{
         $weight_total = number_format($weight_total, 2) * 1000;
         if(isset($_SESSION['username'])){
             $user_info = $this->user_object->get_info_user($_SESSION['username']);
+            $user_code_address = json_decode($this->service_object->get_code_address(json_decode($user_info)->address_user));
+            $user_expected_time = $this->service_object->get_expected_time($user_code_address->DistrictID, $user_code_address->WardCode);
         }
         $province_list = $this->service_object->get_province();
         $district_list = $this->service_object->get_district(json_decode($province_list)[0]->id);
@@ -73,11 +76,12 @@ class Cart extends Controller{
             "district_list"=>$district_list,
             "ward_list"=>$ward_list,
             "shipping_fee"=>$shipping_fee,
-            "expected-time"=>$expected_time,
+            "expected_time"=>$expected_time,
             "weight_total"=>$weight_total,
             "category_list"=>$this->category_object->get_all_categories(),
             "item_list"=>$this->item_object->get_item_list($arr_cookie),
-            "user_info"=>$user_info
+            "user_info"=>$user_info,
+            "user_expected_time"=>$user_expected_time
         ));
     }
 

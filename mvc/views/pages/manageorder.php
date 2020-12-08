@@ -27,7 +27,7 @@
                         <tr class="text-center">
                             <th>Status</th>
                             <th>Id</th>
-                            <th>Total ($)</th>
+                            <th>Total (<u>đ</u>)</th>
                             <th>Date Created</th>
                         </tr>
                     </thead>
@@ -43,7 +43,7 @@
                                     <?php echo $order_list[$row]->id_order;?>
                                 </a>
                             </td>
-                            <td class="align-middle"><?php echo $order_list[$row]->total_order;?></td>
+                            <td class="align-middle"><?php echo number_format($order_list[$row]->total_order, 0);?></td>
                             <td class="align-middle"><?php echo date_format(date_create($order_list[$row]->date_order), 'H:i:s \- d/m/Y');?></td>
                         </tr>
                         <?php }?>

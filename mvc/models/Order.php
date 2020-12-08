@@ -36,7 +36,8 @@ class Order extends Database{
     }
 
     public function get_num_orders($username){
-        $sql = "SELECT id_order FROM order_user WHERE username_user_order='".$username."' AND status_order='Not Confirmed';";
+        $sql = "SELECT id_order FROM order_user WHERE username_user_order='".$username."' AND".
+        " (NOT status_order='Delivered' AND NOT status_order='Returned');";
         return $this->query_return_num_rows($sql);
     }
 

@@ -75,7 +75,7 @@
                                         <u style="font-weight: 400;">đ</u>
                                     </td>
                                     <td class="shoping__cart__item__close">
-                                        <span class="icon_close" onclick="deleteCookie('<?php echo $item_list[$row]->id_item; ?>', '<?php echo $username; ?>')"></span>
+                                        <span class="icon_close" onclick="deleteCookie('<?php echo $item_list[$row]->id_item; ?>')"></span>
                                     </td>
                                 </tr>
                                 <?php }?>

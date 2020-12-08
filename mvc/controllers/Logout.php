@@ -5,7 +5,12 @@ class Logout extends Controller{
             $url = '/tmdt_201/home';
         }
         else{
-            $url = $_SESSION['path'];
+            if($_SESSION['path'] == ''){
+                $url = '/tmdt_201';
+            }
+            else{
+                $url = $_SESSION['path'];
+            }
         }
         session_unset();
         header("location: http://localhost".$url);

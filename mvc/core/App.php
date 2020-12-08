@@ -45,7 +45,6 @@ class App{
         else{
             $_SESSION['path'] = $_SESSION['temp_path'];
         }
-
         call_user_func_array([$this->controller, $this->action], $this->params);
     }
 

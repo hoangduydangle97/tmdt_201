@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 08, 2020 lúc 10:30 AM
+-- Thời gian đã tạo: Th12 08, 2020 lúc 10:14 PM
 -- Phiên bản máy phục vụ: 10.4.14-MariaDB
 -- Phiên bản PHP: 7.4.10
 
@@ -126,8 +126,8 @@ CREATE TABLE `order_item` (
 --
 
 INSERT INTO `order_item` (`id_order`, `name_item`, `quantity_item`, `total_item`, `update_status`) VALUES
-('03223284805f5150e8bc508c38ededb8', 'Apple', 1, 35000, '2020-12-08 02:08:42'),
-('03223284805f5150e8bc508c38ededb8', 'Avocado', 1, 23000, '2020-12-08 02:08:42'),
+('03223284805f5150e8bc508c38ededb8', 'Apple', 1, 35000, '2020-12-09 04:12:34'),
+('03223284805f5150e8bc508c38ededb8', 'Avocado', 1, 23000, '2020-12-09 04:12:34'),
 ('113f88954c3be1d17fdc52162dd21ceb', 'Apple', 2, 52500, '2020-12-08 16:25:32'),
 ('113f88954c3be1d17fdc52162dd21ceb', 'Banana', 2, 34500, '2020-12-08 16:25:32'),
 ('2d441677b4f897b64e70e107fa7c7138', 'Beef', 1, 219000, '2020-12-08 03:47:37'),
@@ -198,7 +198,7 @@ CREATE TABLE `order_user` (
 --
 
 INSERT INTO `order_user` (`id_order`, `fname_user_order`, `lname_user_order`, `address_user_order`, `phone_user_order`, `email_user_order`, `username_user_order`, `note_order`, `shipping_order`, `free_shipping`, `coupon_order`, `total_order`, `date_order`, `date_confirmed`, `date_prepared`, `date_delivered`, `date_request`, `date_confirm_request`, `date_returned`, `payment_order`, `paid_order`, `status_order`, `tracking_order`) VALUES
-('03223284805f5150e8bc508c38ededb8', 'Hoangduy', 'Dangle', '789 Ly Thuong Kiet, Ward 14, District 10, HCMC', '0988341765', 'duy.dang.bku_19@hcmut.edu.vn', 'hoangduydangle', NULL, 29700, '0', NULL, 87700, '2020-11-10 14:11:31', NULL, NULL, NULL, NULL, NULL, NULL, 'cod', 0, 'Not Confirmed', NULL),
+('03223284805f5150e8bc508c38ededb8', 'Hoangduy', 'Dangle', '789 Lý Thường Kiệt, Phường 8, Quận Tân Bình, Hồ Chí Minh', '0988341765', 'duy.dang.bku_19@hcmut.edu.vn', 'hoangduydangle', NULL, 29700, '0', NULL, 87700, '2020-11-10 14:11:31', '2020-12-09 04:12:34', NULL, NULL, NULL, NULL, NULL, 'cod', 0, 'Processing', NULL),
 ('113f88954c3be1d17fdc52162dd21ceb', 'Hoangduy', 'Dangle', '79 Lý Thường Kiệt, Phường 8, Quận Tân Bình, Hồ Chí Minh', '0123456789', 'duy.dang.bku_19@hcmut.edu.vn', NULL, 'Delivery before this Sunday', 29700, '0', NULL, 116700, '2020-12-08 15:41:22', NULL, NULL, NULL, NULL, NULL, NULL, 'vnpay', 1, 'Not Confirmed', NULL),
 ('2d441677b4f897b64e70e107fa7c7138', 'Johnathan', 'Wick', '123 Ly Thuong Kiet, Ward 14, District 10, HCMC', '0984123456', 'johnwick@gmail.com', 'johnwick', NULL, 29700, '0', NULL, 271700, '2020-11-10 12:32:41', '2020-12-08 01:49:25', '2020-12-08 01:49:26', '2020-12-08 01:49:27', NULL, NULL, NULL, 'cod', 0, 'Delivered', NULL),
 ('3f514731d4410f737f6613a2de7b478b', 'Hoangduy', 'Dangle', '79 Lý Thường Kiệt, Phường 8, Quận Tân Bình, Hồ Chí Minh', '0123456789', 'duy.dang.bku_19@hcmut.edu.vn', NULL, 'Delivery before this Sunday', 29700, '0', NULL, 190700, '2020-12-08 15:34:12', NULL, NULL, NULL, NULL, NULL, NULL, 'cod', 0, 'Not Confirmed', NULL),
@@ -358,7 +358,7 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`username_user`, `password_user`, `fname_user`, `lname_user`, `bday_user`, `avatar_user`, `address_user`, `phone_user`, `email_user`, `role_user`) VALUES
 ('admin', '$2y$10$BrGCoW9ovXA9tym7pTlefeKyMMNPvkfq6/D4oNv85rBghI78Nd35C', 'Jacob', 'Browns', '1980-11-06', 'public/images/uploads/users/default-avatar.jpg', NULL, '0932490127', 'jacob1106browns@gmail.com', 1),
-('hoangduydangle', '$2y$10$2d9x5b1ruHgPh9.4OxDz0ebpixI590JLZMOQBwZFmKr7MdnhoOCky', 'Hoangduy', 'Dangle', '1997-09-30', 'public/images/uploads/users/hoangduydangle/avatar.jpg', '789 Ly Thuong Kiet, Ward 14, District 10, HCMC', '0988341765', 'duy.dang.bku_19@hcmut.edu.vn', 0),
+('hoangduydangle', '$2y$10$2d9x5b1ruHgPh9.4OxDz0ebpixI590JLZMOQBwZFmKr7MdnhoOCky', 'Hoangduy', 'Dangle', '1997-09-30', 'public/images/uploads/users/hoangduydangle/avatar.jpg', '789 Lý Thường Kiệt, Phường 8, Quận Tân Bình, Hồ Chí Minh', '0988341765', 'duy.dang.bku_19@hcmut.edu.vn', 0),
 ('johnsmith', '$2y$10$F1rYCKRdYGNlWlzfnhXivuiKMJVy6CvNdk1eri0k6d66ZpYoOozWS', 'John', 'Smith', '1964-10-31', 'public/images/uploads/users/default-avatar.jpg', NULL, '0903112223', 'johnsmith@gmail.com', 0),
 ('johnwick', '$2y$10$SZ.c3c3Xje7vW9uXjgCuouKmVQ/FVJotzEW.TPFqgn3NLqKkGr0Tu', 'Johnathan', 'Wick', '1967-10-15', 'public/images/uploads/users/default-avatar.jpg', '123 Ly Thuong Kiet, Ward 14, District 10, HCMC', '0984123456', 'johnwick@gmail.com', 0),
 ('tonystark', '$2y$10$3eqWspe4pFNQsFqaJogBSern8YK1RVDNHdE6fQAso4GdnYJRl9BjS', 'Tony', 'Stark', '1970-05-29', 'public/images/uploads/users/default-avatar.jpg', NULL, '0916654321', 'tonystark@gmail.com', 0);

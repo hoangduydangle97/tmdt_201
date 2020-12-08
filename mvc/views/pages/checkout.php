@@ -57,8 +57,21 @@
                                 </div>
                             </div>
                             <div class="checkout__input">
-                                <p>Address: <b><?php echo $user_info->address_user;?></b></p>
-                                <input type="hidden" name="address" value="<?php echo $user_info->address_user;?>">
+                                <div class="row mb-4">
+                                    <div class="col-6">
+                                        <p>Address: <b><?php echo $user_info->address_user;?></b></p>
+                                        <input type="hidden" name="address" value="<?php echo $user_info->address_user;?>">
+                                    </div>
+                                    <div class="col-6 text-right">
+                                        Expected Delivery Time:
+                                        <b class="expected-time">
+                                        <?php $expected_time = json_decode($data['user_expected_time']);
+                                        echo date_format(date_create($expected_time), 'd/m/Y');
+                                        ?>
+                                        </b>
+                                        <input type="hidden" id="expected-input" name="expected-time" value="<?php echo date_format(date_create($expected_time), 'd/m/Y');?>">
+                                    </div>
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="col-lg-6">
@@ -103,7 +116,7 @@
                                     <div class="col-6 text-right">
                                         Expected Delivery Time:
                                         <b class="expected-time">
-                                        <?php $expected_time = json_decode($data['expected-time']);
+                                        <?php $expected_time = json_decode($data['expected_time']);
                                         echo date_format(date_create($expected_time), 'd/m/Y');
                                         ?>
                                         </b>

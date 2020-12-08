@@ -474,14 +474,12 @@ function setCookie(cname, cvalue, exdays) {
 }
 
 function deleteCookie(id_item, username) {
-    if(username == 'none'){
-        var cname = "selected-" + id_item;
-        document.cookie = cname + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
-        var cookie = document.cookie;
-        var sum = (cookie.match(/selected-/g) || []).length;
-        setCookie('sum', sum, getCookie('expires'));
-        location.reload();
-    }
+    var cname = "selected-" + id_item;
+    document.cookie = cname + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+    var cookie = document.cookie;
+    var sum = (cookie.match(/selected-/g) || []).length;
+    setCookie('sum', sum, getCookie('expires'));
+    location.reload();
 }
 
 function getCookie(cname) {
@@ -777,6 +775,7 @@ function changeStatusOrder(status, id, style){
                     var func = "changeStatusOrder('" + expected_status + "', '" + id + "', '" + result.style + "')";
                     btn.removeClass('d-none').attr('onclick', func);
                     btn.html(result.content).removeClass(style).addClass(result.style);
+                    $('#dataTable').DataTable().draw();
                 }
             }
         },

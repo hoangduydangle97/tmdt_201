@@ -37,11 +37,25 @@
                 Payment: <?php echo $order_info->payment_order == 'cod'?'COD':'VNPay'; ?>
             </div>
             <div class="container mb-2" style="font-size: 1.2em;">
-                Status: <b><?php echo $order_info->status_order; ?></b>
+                Status: <b><span id="status-order"><?php echo $order_info->status_order; ?></span></b>
             </div>
             <div class="container mb-5" style="font-size: 1.2em;">
                 Tracking: <?php echo $order_info->tracking_order == null?'<i>No Info</i>':$order_info->tracking_order; ?>
             </div>
+            <?php if($order_info->status_order == 'Delivered'){?>
+            <div class="container mb-5" id="ajax-return" style="font-size: 1.2em;">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#return-modal">
+                    Request Return
+                </button>
+            </div>
+            <?php }
+            elseif($order_info->status_order == 'Requesting Return'){
+            ?>
+            <div class="container mb-5 text-danger" style="font-size: 1.2em;">
+                <i class="fa fa-info-circle"></i>
+                You requested to return this order. We'll contact you soon.
+            </div>
+            <?php }?>
             <div class="row">
                 <div class="col-lg-12">
                     <div class="shoping__cart__table">
@@ -165,7 +179,7 @@
                                 }
                                 ?>
                             </td>
-                            <td class="align-middle text-center">
+                            <td class="align-middle text-center" id="date-request">
                                 <?php 
                                 if($order_info->date_request == null){
                                     echo '<i>No Info</i>';
@@ -203,3 +217,63 @@
         </div>
     </section>
     <!-- Shoping Cart Section End -->
+
+    <?php if($order_info->status_order == 'Delivered'){?>
+    <!-- Return Modal -->
+    <div class="modal fade" id="return-modal" data-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title text-info">
+                        <i class="fa fa-info-circle"></i>
+                        Request Return
+                    </h4>
+                </div>
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div>
+                        You've just requested to return your order <b>'<?php echo $order_info->id_order; ?>'</b>
+                    </div>
+                    <br>
+                    <div>
+                        Please let us know your reason
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" name="reason" value="not-described" checked>The product is not described correctly
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" name="reason" value="damaged-product">Damaged product
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" name="reason" value="packing-torned">The packaging is torn
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" name="reason" value="other-reason">Other
+                        </label>
+                    </div>
+                    <div class="form-group d-none" id="other-reason">
+                        <textarea class="form-control" rows="3" id="other-reason-content" name="other-reason" maxlength="100" placeholder="Your reason"></textarea>
+                    </div>
+                </div>                                                                  
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" id="confirm-btn" class="btn btn-primary" onclick="changeToRequesting('<?php echo $order_info->id_order; ?>')">
+                        <i class="fa fa-check-circle"></i> Confirm
+                    </button>
+                    <div class="spinner-border text-primary d-none mr-5" id="spinner"></div>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">
+                        <i class="fa fa-close"></i> Cancel
+                    </button>
+                </div>                                                                  
+            </div>
+        </div>
+    </div>
+    <?php }?>

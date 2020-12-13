@@ -22,6 +22,10 @@ class Orders extends Controller{
         $this->order_object->change_status();
     }
 
+    public function change_requesting_order(){
+        $this->order_object->change_requesting();
+    }
+
     public function done(){
         $this->view("Master1", array(
             "cms"=>true,

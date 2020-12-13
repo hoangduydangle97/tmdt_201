@@ -144,8 +144,8 @@ class Cart extends Controller{
     }
 
     public function test(){
-        $address = '123 Lý Thường Kiệt, Phường 14, Quận 10, Hồ Chí Minh';
-        var_dump(json_decode($this->service_object->get_code_address($address)));
+        $id = '03223284805f5150e8bc508c38ededb8';
+        var_dump($this->order_object->get_date_request($id));
     }
 }
 ?>

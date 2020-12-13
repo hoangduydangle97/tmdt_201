@@ -782,3 +782,39 @@ function changeStatusOrder(status, id, style){
         'json'
     );
 }
+
+$('input:radio[name="reason"]').change(
+    function(){
+        if ($(this).is(':checked') && $(this).val() == 'other-reason') {
+            $('#other-reason').removeClass('d-none');
+        }
+        else{
+            $('#other-reason').addClass('d-none');
+        }
+});
+
+function changeToRequesting(id){
+    $('#confirm-btn').addClass('d-none');
+    $('#spinner').removeClass('d-none');
+    var reason = $('input:radio[name="reason"]:checked').val();
+    if(reason == 'other-reason'){
+        reason = $('#other-reason-content').val().trim();
+    }
+
+    $.post(
+        'http://localhost/tmdt_201/orders/change_requesting_order',
+        {
+            id: id,
+            reason: reason
+        },
+        function(result, status){
+            if(status == 'success'){
+                $('#status-order').html(result.status);
+                $('#ajax-return').html('<i class="fa fa-info-circle"></i> ' + result.res).addClass('text-danger');
+                $('#date-request').html(result.date);
+                $('#return-modal').modal('toggle');
+            }
+        },
+        'json'
+    );
+}

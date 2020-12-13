@@ -400,7 +400,7 @@
                 </div>
                 <!-- Modal body -->
                 <div class="modal-body">
-                    You just add '<?php echo $item_object->name_item; ?>' into your cart
+                    You've just added '<?php echo $item_object->name_item; ?>' into your cart
                 </div>                                                                  
                 <!-- Modal footer -->
                 <div class="modal-footer">

@@ -101,7 +101,7 @@ class Order extends Database{
                 $date = 'delivered';
                 break;
             case 'Returning':
-                $date = 'request';
+                $date = 'confirm_request';
                 break;
             default:
                 $date = 'returned';
@@ -113,6 +113,28 @@ class Order extends Database{
         $sql_result = mysqli_query($this->conn, $sql);
         if($sql_result){
             echo $this->get_status_btn($expected_status);
+        }
+    }
+
+    public function get_date_request($id){
+        $sql = "SELECT date_request FROM order_user WHERE id_order='".$id."';";
+        $result = json_decode($this->query_return_row($sql))->date_request;
+        return date_format(date_create($result), 'H:i:s \- d/m/Y');
+    }
+
+    public function change_requesting(){
+        $id = $_POST['id'];
+        $reason = $_POST['reason'];
+        $sql = "UPDATE order_user SET status_order='Requesting Return', return_reason='".$reason."',".
+        " date_request=CURRENT_TIMESTAMP() WHERE id_order='".$id."';";
+        $sql_result = mysqli_query($this->conn, $sql);
+        if($sql_result){
+            $result = array(
+                'res' => "You requested to return this order. We'll contact you soon.",
+                'status' => 'Requesting Return',
+                'date' => $this->get_date_request($id)
+            );
+            echo json_encode($result);
         }
     }
 

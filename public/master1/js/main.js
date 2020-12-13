@@ -818,3 +818,19 @@ function changeToRequesting(id){
         'json'
     );
 }
+
+function showPreview(instance, container, image){
+    const file = instance.files[0]; 
+    if (file) { 
+        let reader = new FileReader(); 
+        reader.onload = function (event) { 
+            $("#" + image).attr("src", event.target.result); 
+            $('#' + container).removeClass('d-none');
+        }; 
+        reader.readAsDataURL(file); 
+    }
+    else{
+        $('#' + container).addClass('d-none');
+        $("#" + image).attr("src", "#");
+    }
+}

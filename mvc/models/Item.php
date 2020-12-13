@@ -62,6 +62,12 @@ class Item extends Database{
         return json_encode($item_list);
     }
 
+    public function get_best_seller(){
+        $sql = "SELECT id_item, name_item, avatar_item, num_purchased".
+        " FROM item WHERE num_purchased > 0 ORDER BY num_purchased DESC LIMIT 6";
+        return $this->query_return_arr($sql);
+    }
+
     public function get_latest_items(){
         $sql = "SELECT item.*, category.name_category".
         " FROM item LEFT JOIN category ON item.category_item=category.id_category".

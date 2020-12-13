@@ -61,52 +61,72 @@
         <div class="form-group row">
             <label for="avatar" class="col-sm-2 col-form-label">Avatar</label>
             <div class="col-sm-10">
-                <input type="file" name="avatar" id="avatar" accept=".png, .jpg, .jpeg">
+                <input type="file" name="avatar" id="avatar" accept=".png, .jpg, .jpeg" 
+                    onchange="showPreview(this, 'avatar-preview-container', 'avatar-preview')">
                 <input type='hidden' name="current-avatar" value="<?php echo $item_object->avatar_item; ?>">
                 <div class="d-sm-inline-block mt-2">
                     <u>Current avatar:</u>
                     <img src="/tmdt_201/<?php echo $item_object->avatar_item; ?>" style="width:100px; height:100px;">
                 </div>
+                <span class="d-none" id="avatar-preview-container">
+                    <i>Selected Avatar:</i>
+                    <img scr="#" id="avatar-preview" style="width:100px; height:100px;">
+                </span>
             </div>
         </div>
         <div class="form-group row">
             <label for="detail-1" class="col-sm-2 col-form-label">Detail-1</label>
             <div class="col-sm-10">
-                <input type="file" name="detail-1" id="detail-1" accept=".png, .jpg, .jpeg">
+                <input type="file" name="detail-1" id="detail-1" accept=".png, .jpg, .jpeg" 
+                    onchange="showPreview(this, 'detail-1-preview-container', 'detail-1-preview')">
                 <div class="d-sm-inline-block mt-2">
                     <u>Current detail-1:</u>
                     <img src="/tmdt_201/<?php echo $item_object->detail_item_1; ?>" style="width:100px; height:100px;">
                     <input type='hidden' name="current-detail-1" value="<?php echo $item_object->detail_item_1; ?>">
                 </div>
+                <span class="d-none" id="detail-1-preview-container">
+                    <i>Selected Detail-1:</i> 
+                    <img scr="#" id="detail-1-preview" style="width:100px; height:100px;">
+                </span>
             </div>
         </div>
         <div class="form-group row">
             <label for="detail-2" class="col-sm-2 col-form-label">Detail-2</label>
             <div class="col-sm-10">
-                <input type="file" name="detail-2" id="detail-2" accept=".png, .jpg, .jpeg">
+                <input type="file" name="detail-2" id="detail-2" accept=".png, .jpg, .jpeg" 
+                    onchange="showPreview(this, 'detail-2-preview-container', 'detail-2-preview')">
                 <div class="d-sm-inline-block mt-2">
                     <u>Current detail-2:</u>
                     <img src="/tmdt_201/<?php echo $item_object->detail_item_2; ?>" style="width:100px; height:100px;">
                     <input type='hidden' name="current-detail-2" value="<?php echo $item_object->detail_item_2; ?>">
                 </div>
+                <span class="d-none" id="detail-2-preview-container">
+                    <i>Selected Detail-2:</i> 
+                    <img scr="#" id="detail-2-preview" style="width:100px; height:100px;">
+                </span>
             </div>
         </div>
         <div class="form-group row">
             <label for="detail-3" class="col-sm-2 col-form-label">Detail-3</label>
             <div class="col-sm-10">
-                <input type="file" name="detail-3" id="detail-3" accept=".png, .jpg, .jpeg">
+                <input type="file" name="detail-3" id="detail-3" accept=".png, .jpg, .jpeg" 
+                    onchange="showPreview(this, 'detail-3-preview-container', 'detail-3-preview')">
                 <div class="d-sm-inline-block mt-2">
                     <u>Current detail-3:</u>
                     <img src="/tmdt_201/<?php echo $item_object->detail_item_3; ?>" style="width:100px; height:100px;">
                     <input type='hidden' name="current-detail-3" value="<?php echo $item_object->detail_item_3; ?>">
                 </div>
+                <span class="d-none" id="detail-3-preview-container">
+                    <i>Selected Detail-3:</i>
+                    <img scr="#" id="detail-3-preview" style="width:100px; height:100px;">
+                </span>
             </div>
         </div>
         <div class="form-group row">
-            <label for="price" class="col-sm-2 col-form-label">Price ($)</label>
+            <label for="price" class="col-sm-2 col-form-label">Price (đ)</label>
             <div class="col-sm-10">
-                <input type="number" name="price" id="price" min="0" max="100" 
-                    step="0.01" value="<?php echo $item_object->price_item; ?>">
+                <input type="number" name="price" id="price" min="0" max="500000" 
+                    step="500" value="<?php echo $item_object->price_item; ?>">
             </div>
         </div>
         <?php $availability = intval($item_object->availability_item); ?>
@@ -128,7 +148,7 @@
             </div>
         </fieldset>
         <div class="form-group row">
-            <label for="weight" class="col-sm-2 col-form-label">Weight (lb)</label>
+            <label for="weight" class="col-sm-2 col-form-label">Weight (kg)</label>
             <div class="col-sm-10">
                 <input type="number" name="weight" id="weight" min="0" max="50" 
                     step="0.01" value="<?php echo $item_object->weight_item; ?>">

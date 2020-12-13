@@ -31,6 +31,7 @@ class Home extends Controller{
             "num_orders"=>$num_orders,
             "item_cart_list"=>$this->item_object->get_item_list($arr_cookie),
             "category_list"=>$this->category_object->get_all_categories(),
+            "best_seller_item_list"=>$this->item_object->get_best_seller(),
             "latest_item_list"=>$this->item_object->get_latest_items(),
             "featured_category_list"=>$this->item_object->get_featured_categories(),
             "featured_item_list"=>$this->item_object->get_featured_items(),

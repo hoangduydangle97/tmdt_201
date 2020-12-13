@@ -6,46 +6,20 @@
             </div>
             <div class="row">
                 <div class="categories__slider owl-carousel">
+                    <?php $best_seller_item_list = json_decode($data['best_seller_item_list']); 
+                    foreach($best_seller_item_list as $value){
+                    ?>
                     <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="/tmdt_201/public/master1/images/categories/cat-1.jpg">
+                        <div class="categories__item set-bg" data-setbg="/tmdt_201/<?php echo $value->avatar_item; ?>">
                             <h5>
-                                <a href="#">Fresh Fruit</a>
-                                (2 purchased)
+                                <a href="http://localhost/tmdt_201/shop/detail/<?php echo $value->id_item; ?>">
+                                    <?php echo $value->name_item; ?>
+                                    <span>(<?php echo $value->num_purchased; ?> purchased)</span>
+                                </a>
                             </h5>
                         </div>
                     </div>
-                    <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="/tmdt_201/public/master1/images/categories/cat-2.jpg">
-                            <h5>
-                                <a href="#">Dried Fruit</a>
-                                (2 purchased)
-                            </h5>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="/tmdt_201/public/master1/images/categories/cat-3.jpg">
-                            <h5>
-                                <a href="#">Vegetables</a>
-                                (2 purchased)
-                            </h5>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="/tmdt_201/public/master1/images/categories/cat-4.jpg">
-                            <h5>
-                                <a href="#">Fruit Juice</a>
-                                (2 purchased)
-                            </h5>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="/tmdt_201/public/master1/images/categories/cat-5.jpg">
-                            <h5>
-                                <a href="#">Fresh Meat</a>
-                                (2 purchased)
-                            </h5>
-                        </div>
-                    </div>
+                    <?php }?>
                 </div>
             </div>
         </div>

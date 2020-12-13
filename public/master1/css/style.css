@@ -783,7 +783,16 @@ ol {
 	text-transform: uppercase;
 	letter-spacing: 2px;
 	padding: 12px 0 10px;
-	background: #ffffff;
+	background: lightgreen;
+	display: block;
+}
+
+.categories__item h5 a span {
+	font-size: 16px;
+	color: #1c1c1c;
+	font-weight: 600;
+	text-transform: lowercase;
+	letter-spacing: 2px;
 	display: block;
 }
 

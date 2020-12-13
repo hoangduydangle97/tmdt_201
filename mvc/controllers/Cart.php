@@ -144,8 +144,7 @@ class Cart extends Controller{
     }
 
     public function test(){
-        $id = '03223284805f5150e8bc508c38ededb8';
-        var_dump($this->order_object->get_date_request($id));
+        var_dump(json_decode($this->item_object->get_best_seller()));
     }
 }
 ?>

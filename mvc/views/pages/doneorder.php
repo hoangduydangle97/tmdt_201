@@ -51,6 +51,7 @@
                             <th>Time Confirm Request Return</th>
                             <th>Time Confirm Returned</th>
                             <th>Tracking Code</th>
+                            <th>Return Reason</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -140,6 +141,16 @@
                                 }
                                 else{
                                     echo $value->tracking_order;
+                                }
+                                ?>
+                            </td>
+                            <td class="align-middle">
+                                <?php 
+                                if($value->return_reason == null){
+                                    echo '<i>NULL</i>';
+                                }
+                                else{
+                                    echo $value->return_reason;
                                 }
                                 ?>
                             </td>

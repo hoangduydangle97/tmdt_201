@@ -144,7 +144,7 @@ class Cart extends Controller{
     }
 
     public function test(){
-        var_dump(json_decode($this->item_object->get_best_seller()));
+        
     }
 }
 ?>

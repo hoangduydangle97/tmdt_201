@@ -97,7 +97,7 @@
         <div class="form-group row">
             <label for="price" class="col-sm-2 col-form-label">Price (đ)</label>
             <div class="col-sm-10">
-                <input type="number" name="price" id="price" min="0" max="100" step="0.01" value="10.00">
+                <input type="number" name="price" id="price" min="0" max="500000" step="500" value="10000">
             </div>
         </div>
         <fieldset class="form-group">
@@ -118,13 +118,13 @@
         <div class="form-group row">
             <label for="weight" class="col-sm-2 col-form-label">Weight (kg)</label>
             <div class="col-sm-10">
-                <input type="number" name="weight" id="weight" min="0" max="50" step="0.01" value="1.00">
+                <input type="number" name="weight" id="weight" min="0" max="50" step="0.05" value="1.00">
             </div>
         </div>
         <div class="form-group row">
             <label for="sale-off" class="col-sm-2 col-form-label">Sale off (%)</label>
             <div class="col-sm-10">
-                <input type="number" name="sale-off" id="sale-off" min="0" max="100" step="0.1" value="50.0">
+                <input type="number" name="sale-off" id="sale-off" min="0" max="100" step="0.1" value="0.0">
             </div>
         </div>
         <fieldset class="form-group">

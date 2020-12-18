@@ -151,7 +151,7 @@
             <label for="weight" class="col-sm-2 col-form-label">Weight (kg)</label>
             <div class="col-sm-10">
                 <input type="number" name="weight" id="weight" min="0" max="50" 
-                    step="0.01" value="<?php echo $item_object->weight_item; ?>">
+                    step="0.05" value="<?php echo $item_object->weight_item; ?>">
             </div>
         </div>
         <div class="form-group row">

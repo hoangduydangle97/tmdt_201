@@ -31,7 +31,7 @@
                     <div class="contact__widget">
                         <span class="icon_pin_alt"></span>
                         <h4>Address</h4>
-                        <p>123 Ly Thuong Kiet, Ward 14, District 10, TPHCM</p>
+                        <p>268 Ly Thuong Kiet, Ward 14, District 10, TPHCM</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-6 text-center">

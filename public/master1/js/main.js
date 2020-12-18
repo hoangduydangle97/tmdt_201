@@ -433,7 +433,7 @@ function SetContentModify(username, fname, lname, lvcontent, lvcolor, rating, av
     $('#username').html(username);
     $('#fname').html(fname);
     $('#lname').html(lname);
-    $('#avatar').attr('src', avatar);
+    $('#avatar').attr('src', '/tmdt_201/' + avatar);
     $('#modify-comment').val(content);
     $('.star-rating-modify input.username-value-modify').val(username);
     $('.star-rating-modify input.rating-value-modify').val(rating);

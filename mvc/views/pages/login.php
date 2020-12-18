@@ -22,7 +22,7 @@
     <div class="flex-sb-m w-full p-b-30">
         <div class="contact100-form-checkbox">
             <span class="txt1">Create an account? </span>
-                <a href="#" class="txt1">
+                <a href="http://localhost/tmdt_201/signup" class="txt1">
                     <span class="sign-up">Sign up</span>
                 </a>
         </div>

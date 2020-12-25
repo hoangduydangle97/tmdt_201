@@ -38,6 +38,10 @@ class ListOrder extends Controller{
         $this->order_object->change_requesting();
     }
 
+    public function change_canceled_order(){
+        $this->order_object->change_canceled();
+    }
+
     public function done(){
         if(isset($_SESSION['role'])){
             if($_SESSION['role'] == 0){

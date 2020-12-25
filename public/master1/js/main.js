@@ -34,7 +34,7 @@
         var last_path = path.charAt(path.length - 1);
         var check_path = path.indexOf('category');
         if((last_path != '' && !isNaN(Number(last_path))) || check_path != -1){
-            if(path.indexOf('manageorder') == -1){
+            if(path.indexOf('manage-order') == -1){
                 $('html, body').animate({
                     scrollTop: $('#scroll-pos').offset().top
                 }, 'slow');
@@ -819,10 +819,51 @@ function changeToRequesting(id){
         },
         function(result, status){
             if(status == 'success'){
+                switch(reason){
+                    case 'not-described':
+                        reason = 'The product is not described correctly';
+                        break;
+                    case 'damaged-product':
+                        reason = 'Damaged product';
+                        break;
+                    case 'packing-torned':
+                        reason = 'The packaging is torn';
+                        break;
+                }
+                var res_html = '<div><i class="fa fa-info-circle"></i> ' + result.res + ' </div>';
+                res_html += '<div>Reason: ' + reason + '</div>';
                 $('#status-order').html(result.status);
-                $('#ajax-return').html('<i class="fa fa-info-circle"></i> ' + result.res).addClass('text-danger');
+                $('#ajax-return').html(res_html).addClass('text-danger');
                 $('#date-request').html(result.date);
                 $('#return-modal').modal('toggle');
+            }
+        },
+        'json'
+    );
+}
+
+function changeToCanceled(id, role){
+    $('#confirm-btn').addClass('d-none');
+    $('#spinner').removeClass('d-none');
+    var reason = $('#cancel-reason-content').val().trim();
+    if(reason == ''){
+        reason = 'No Reason';
+    }
+
+    $.post(
+        'http://localhost/tmdt_201/list-order/change_canceled_order',
+        {
+            id: id,
+            reason: reason,
+            role: role
+        },
+        function(result, status){
+            if(status == 'success'){
+                var res_html = '<div><i class="fa fa-info-circle"></i> ' + result.res + ' </div>';
+                res_html += '<div>Reason: <i>' + reason + '</i></div><div>Date Canceled: ' + result.date + '</div>'; 
+                $('#status-order').html(result.status);
+                $('#ajax-return').html(res_html).addClass('text-danger');
+                $('#cancel-modal').modal('toggle');
             }
         },
         'json'

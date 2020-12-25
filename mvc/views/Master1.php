@@ -244,7 +244,7 @@ if(isset($_SESSION['order_item_list'])){
                             </a>
                         </li>
                         <li>
-                            <a href="http://localhost/tmdt_201/manageorder" class="language-option">
+                            <a href="http://localhost/tmdt_201/manage-order" class="language-option">
                                 <i class="fa fa-archive"></i> Order (<?php echo $data['num_orders'];?>)
                             </a>
                         </li>
@@ -363,7 +363,7 @@ if(isset($_SESSION['order_item_list'])){
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="http://localhost/tmdt_201/manageorder" class="language-option">
+                                            <a href="http://localhost/tmdt_201/manage-order" class="language-option">
                                                 <i class="fa fa-archive"></i> Order (<?php echo $data['num_orders'];?>)
                                             </a>
                                         </li>

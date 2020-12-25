@@ -47,31 +47,56 @@
             <div class="container mb-5" style="font-size: 1.2em;">
                 Tracking: <?php echo $order_info->tracking_order == null?'<i>No Info</i>':$order_info->tracking_order; ?>
             </div>
-            <?php if($order_info->status_order == 'Delivered'){?>
+            <?php $status = $order_info->status_order;
+            if($status == 'Canceled'){?>
+            <div class="container mb-5 text-danger" style="font-size: 1.2em;">
+                <div>
+                    <i class="fa fa-info-circle"></i>
+                    <?php echo $order_info->cancel_role == 0?'You canceled this order.':'This order was canceled.' ;?>
+                </div>
+                <div>
+                    Reason: <i><?php echo $order_info->cancel_reason ;?></i>
+                </div>
+                <div>
+                    Date Canceled: <?php echo date_format(date_create($order_info->date_canceled), 'H:i:s \- d/m/Y') ;?>
+                </div>
+            </div>
+            <?php } 
+            elseif(isset($_SESSION['role']) && $_SESSION['role'] == 1){
+            $btn = json_decode($this->order_object->get_status_btn($status)); ?>
+            <div class="container mb-5" id="ajax-return" style="font-size: 1.2em;">
+                <button type="button" id="<?php echo $order_info->id_order; ?>" class="btn <?php echo $btn->style; ?>" 
+                    onclick="changeStatusOrder(<?php echo "'".$status."'"; ?>, <?php echo "'".$order_info->id_order."'"; ?>, <?php echo "'".$btn->style."'"; ?>)">
+                    <?php echo $btn->content; ?>
+                </button>
+                <button type="button" class="btn btn-dark ml-5" data-toggle="modal" data-target="#cancel-modal">
+                    <i class="fa fa-times-circle"></i> Cancel
+                </button>
+                <div class="spinner-border text-primary d-none" id="spinner-<?php echo $order_info->id_order; ?>"></div>
+            </div>
+            <?php }
+            else{
+                if($status == 'Not Confirmed'){?>
+            <div class="container mb-5" id="ajax-return" style="font-size: 1.2em;">
+                <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#cancel-modal">
+                    <i class="fa fa-times-circle"></i> Cancel
+                </button>
+            </div>
+            <?php }
+                elseif($status == 'Delivered'){?>
             <div class="container mb-5" id="ajax-return" style="font-size: 1.2em;">
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#return-modal">
                     Request Return
                 </button>
             </div>
             <?php }
-            elseif($order_info->status_order == 'Requesting Return'){
+                elseif($status == 'Requesting Return'){
             ?>
             <div class="container mb-5 text-danger" style="font-size: 1.2em;">
                 <i class="fa fa-info-circle"></i>
                 You requested to return this order. We'll contact you soon.
             </div>
-            <?php }
-            elseif(isset($_SESSION['role']) && $_SESSION['role'] == 1){?>
-            <?php $status = $order_info->status_order;
-            $btn = json_decode($this->order_object->get_status_btn($status)); ?>
-            <div class="container mb-5" id="done-return" style="font-size: 1.2em;">
-                <button type="button" id="<?php echo $order_info->id_order; ?>" class="btn <?php echo $btn->style; ?>" 
-                    onclick="changeStatusOrder(<?php echo "'".$status."'"; ?>, <?php echo "'".$order_info->id_order."'"; ?>, <?php echo "'".$btn->style."'"; ?>)">
-                    <?php echo $btn->content; ?>
-                </button>
-                <div class="spinner-border text-primary d-none" id="spinner-<?php echo $order_info->id_order; ?>"></div>
-            </div>
-            <?php }?>
+            <?php }}?>
             <div class="row">
                 <div class="col-lg-12">
                     <div class="shoping__cart__table">
@@ -234,7 +259,47 @@
     </section>
     <!-- Shoping Cart Section End -->
 
-    <?php if($order_info->status_order == 'Delivered'){?>
+    <?php if($order_info->status_order == 'Not Confirmed' || (isset($_SESSION['role']) && $_SESSION['role'] == 1)){?>
+    <!-- Cancel Modal -->
+    <div class="modal fade" id="cancel-modal" data-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title text-info">
+                        <i class="fa fa-times-circle"></i>
+                        Cancel Order
+                    </h4>
+                </div>
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div>
+                        You've just selected to cancel your order <b>'<?php echo $order_info->id_order; ?>'</b>
+                    </div>
+                    <br>
+                    <div>
+                        Please let us know your reason
+                    </div>
+                    <div class="form-group" id="cancel-reason">
+                        <textarea class="form-control" rows="3" id="cancel-reason-content" name="cancel-reason" maxlength="100" placeholder="Your reason"></textarea>
+                    </div>
+                </div>                                                                  
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" id="confirm-btn" class="btn btn-primary" 
+                        onclick="changeToCanceled('<?php echo $order_info->id_order; ?>', <?php echo $_SESSION['role'] == 1?1:0; ?>)">
+                        <i class="fa fa-check-circle"></i> Confirm
+                    </button>
+                    <div class="spinner-border text-primary d-none mr-5" id="spinner"></div>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">
+                        <i class="fa fa-close"></i> Cancel
+                    </button>
+                </div>                                                                  
+            </div>
+        </div>
+    </div>
+    <?php }
+    elseif($order_info->status_order == 'Delivered'){?>
     <!-- Return Modal -->
     <div class="modal fade" id="return-modal" data-backdrop="static">
         <div class="modal-dialog">

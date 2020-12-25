@@ -24,7 +24,7 @@ class Order extends Database{
     }
 
     public function get_done_order_list(){
-        $sql = "SELECT * FROM order_user WHERE status_order='Delivered' OR status_order='Returned';";
+        $sql = "SELECT * FROM order_user WHERE status_order='Delivered' OR status_order='Returned' OR status_order='Canceled';";
         return $this->query_return_arr($sql);
     }
 
@@ -146,6 +146,24 @@ class Order extends Database{
                 'res' => "You requested to return this order. We'll contact you soon.",
                 'status' => 'Requesting Return',
                 'date' => $this->get_date_order($id, 'request')
+            );
+            echo json_encode($result);
+        }
+    }
+
+    public function change_canceled(){
+        $id = $_POST['id'];
+        $reason = $_POST['reason'];
+        $role = $_POST['role'];
+        $sql = "UPDATE order_user SET status_order='Canceled', cancel_reason='".$reason."',".
+        " date_canceled=CURRENT_TIMESTAMP(), cancel_role='".$role."' WHERE id_order='".$id."';";
+        $sql_result = mysqli_query($this->conn, $sql);
+        if($sql_result){
+            $res = $role == 0?'You canceled this order.':'This order was canceled.';
+            $result = array(
+                'res' => $res,
+                'status' => 'Canceled',
+                'date' => $this->get_date_order($id, 'canceled')
             );
             echo json_encode($result);
         }

@@ -12,7 +12,7 @@ class Search extends Controller{
 
     public function action(){
         $id = trim($_POST['id_order']);
-        header("location: http://localhost/tmdt_201/manageorder/detail/".$id);
+        header("location: http://localhost/tmdt_201/manage-order/detail/".$id);
     }
 }
 ?>

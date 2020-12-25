@@ -39,12 +39,12 @@
                         <tr>
                             <td class="align-middle"><?php echo $order_list[$row]->status_order;?></td>
                             <td class="align-middle">
-                                <a class="item-cart" href="/tmdt_201/manageorder/detail/<?php echo $order_list[$row]->id_order;?>">
+                                <a class="item-cart" href="/tmdt_201/manage-order/detail/<?php echo $order_list[$row]->id_order;?>">
                                     <?php echo $order_list[$row]->id_order;?>
                                 </a>
                             </td>
                             <td class="align-middle"><?php echo number_format($order_list[$row]->total_order, 0);?></td>
-                            <td class="align-middle"><?php echo date_format(date_create($order_list[$row]->date_order), 'H:i:s \- d/m/Y');?></td>
+                            <td class="align-middle"><?php echo date_format(date_create($order_list[$row]->date_created), 'H:i:s \- d/m/Y');?></td>
                         </tr>
                         <?php }?>
                     </tbody>

@@ -49,7 +49,7 @@
         }
 
         $.fn.dataTable.moment('HH:mm:ss - DD/MM/YYYY');
-        if(path == '/tmdt_201/product'){
+        if(path == '/tmdt_201/list-product'){
             $('#dataTable').DataTable({
                 "aaSorting": [],
                 "columnDefs": [{
@@ -68,7 +68,7 @@
                 "scrollY": 400
             });
         }
-        else if(path == '/tmdt_201/orders'){
+        else if(path == '/tmdt_201/list-order'){
             $('#dataTable').DataTable({
                 "aaSorting": [],
                 "order": [[ 14, "asc" ]],
@@ -559,24 +559,24 @@ function SetCart(id_item){
 
 function directToCreate(params){
     if(params == 'create'){
-        location.href = '/tmdt_201/product/create';
+        location.href = '/tmdt_201/list-product/create';
     }
     else if(params == 'categories'){
-        location.href = '/tmdt_201/product/categories';
+        location.href = '/tmdt_201/list-product/categories';
     }
 }
 
 function directToLookUp(){
-    location.href = '/tmdt_201/orders/done';
+    location.href = '/tmdt_201/list-order/done';
 }
 
 function directToOrders(){
-    location.href = '/tmdt_201/orders';
+    location.href = '/tmdt_201/list-order';
 }
 
 function changeClick(val, id = null, name = null){
     if(val == 'create-category'){
-        $('.form-category').removeAttr('hidden').attr('action', 'http://localhost/tmdt_201/product/categories/create'); 
+        $('.form-category').removeAttr('hidden').attr('action', 'http://localhost/tmdt_201/list-product/categories/create'); 
         $('#name').removeAttr('disabled');
         $('#submit').val('Create category');
     }
@@ -585,7 +585,7 @@ function changeClick(val, id = null, name = null){
         $('#name').attr('disabled', true);
     }
     else if(val == 'update-category'){
-        $('.form-category').removeAttr('hidden').attr('action', 'http://localhost/tmdt_201/product/categories/update/' + id); 
+        $('.form-category').removeAttr('hidden').attr('action', 'http://localhost/tmdt_201/list-product/categories/update/' + id); 
         $('#name').removeAttr('disabled').val(name).after('<input type="hidden" name="current-id" value="' + id + '">');
         $('#submit').val('Update category');
     }
@@ -742,25 +742,31 @@ function changeStatusOrder(status, id, style){
     btn.addClass('d-none')
     spinner.removeClass('d-none');
     var expected_status = '';
+    var date = 'date-';
     switch(status){
         case 'Not Confirmed':
             expected_status = 'Processing';
+            date += 'confirmed';
             break;
         case 'Processing':
             expected_status = 'Delivering';
+            date += 'prepared';
             break;
         case 'Delivering':
             expected_status = 'Delivered';
+            date += 'delivered';
             break;
         case 'Requesting Return':
             expected_status = 'Returning';
+            date += 'confirm_request';
             break;
         default:
             expected_status = 'Returned';
+            date += 'returned';
             break;
     }
     $.post(
-        'http://localhost/tmdt_201/orders/change_status_order',
+        'http://localhost/tmdt_201/list-order/change_status_order',
         {
             id: id,
             expected_status: expected_status
@@ -769,12 +775,16 @@ function changeStatusOrder(status, id, style){
             if(status == 'success'){
                 if(result.content == 'delivered'){
                     $('#tr-' + id).remove();
+                    $('#done-return').remove();
+                    $('#' + date).html(result.date);
                 }
                 else{
                     spinner.addClass('d-none');
                     var func = "changeStatusOrder('" + expected_status + "', '" + id + "', '" + result.style + "')";
                     btn.removeClass('d-none').attr('onclick', func);
                     btn.html(result.content).removeClass(style).addClass(result.style);
+                    $('#' + id + '-' + date).html(result.date);
+                    $('#' + date).html(result.date);
                     $('#dataTable').DataTable().draw();
                 }
             }
@@ -802,7 +812,7 @@ function changeToRequesting(id){
     }
 
     $.post(
-        'http://localhost/tmdt_201/orders/change_requesting_order',
+        'http://localhost/tmdt_201/list-order/change_requesting_order',
         {
             id: id,
             reason: reason

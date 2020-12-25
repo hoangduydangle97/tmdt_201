@@ -51,9 +51,12 @@ class Order extends Database{
         return $result;
     }
 
-    public function get_status_btn($status){
+    public function get_status_btn($status, $id = null, $param = null){
         $content = '';
         $style = '';
+        if($id != null && $param != null){
+            $date = $this->get_date_order($id, $param);
+        }
         switch($status){
             case 'Not Confirmed':
                 $content = 'Confirm Order';
@@ -79,10 +82,19 @@ class Order extends Database{
                 $content = 'delivered';
                 $style = 'none';
         }
-        $btn = array(
-            "content" => $content,
-            "style" => $style
-        );
+        if($id != null && $param != null){
+            $btn = array(
+                "content" => $content,
+                "style" => $style,
+                "date" => $date
+            );
+        }
+        else{
+            $btn = array(
+                "content" => $content,
+                "style" => $style
+            );
+        }
         return json_encode($btn);
     }
 
@@ -112,13 +124,14 @@ class Order extends Database{
         " date_".$date."=CURRENT_TIMESTAMP() WHERE id_order='".$id."';";
         $sql_result = mysqli_query($this->conn, $sql);
         if($sql_result){
-            echo $this->get_status_btn($expected_status);
+            echo $this->get_status_btn($expected_status, $id, $date);
         }
     }
 
-    public function get_date_request($id){
-        $sql = "SELECT date_request FROM order_user WHERE id_order='".$id."';";
-        $result = json_decode($this->query_return_row($sql))->date_request;
+    public function get_date_order($id, $param){
+        $date = 'date_'.$param;
+        $sql = "SELECT ".$date." FROM order_user WHERE id_order='".$id."';";
+        $result = json_decode($this->query_return_row($sql))->$date;
         return date_format(date_create($result), 'H:i:s \- d/m/Y');
     }
 
@@ -132,7 +145,7 @@ class Order extends Database{
             $result = array(
                 'res' => "You requested to return this order. We'll contact you soon.",
                 'status' => 'Requesting Return',
-                'date' => $this->get_date_request($id)
+                'date' => $this->get_date_order($id, 'request')
             );
             echo json_encode($result);
         }
@@ -201,7 +214,7 @@ class Order extends Database{
 
             $sql = "INSERT INTO order_user(id_order, fname_user_order, lname_user_order,".
             " address_user_order, phone_user_order, email_user_order, username_user_order,".
-            " note_order, shipping_order, free_shipping, total_order, date_order, payment_order)".
+            " note_order, shipping_order, free_shipping, total_order, date_created, payment_order)".
             " VALUES ('".$id."', '".$fname."', '".$lname."', '".$address."', '".$phone."', '".$email.
             "', ".$username.", ".$note.", '".$shipping."', '".$free_shipping."', '".$total_order."',".
             " CURRENT_TIMESTAMP(), '".$payment."');";
@@ -244,7 +257,7 @@ class Order extends Database{
                             ),
                             "order" => array(
                                 "id" => $id,
-                                "date" => json_decode($this->get_date_create_order($id))->date_order,
+                                "date" => $this->get_date_order($id, 'created'),
                                 "payment" => $payment,
                                 "item_list" => json_decode($this->get_order_item($id), true),
                                 "note" => $note,
@@ -254,7 +267,7 @@ class Order extends Database{
                             )
                         );
                         if($this->send_mail($data_email)){
-                            header("location: http://localhost/tmdt_201/placeorder/success/".$id);
+                            header("location: http://localhost/tmdt_201/place-order/success/".$id);
                         }
                     }
                     elseif($_POST['payment'] == 'vnpay'){
@@ -268,19 +281,19 @@ class Order extends Database{
                     }
                 }
                 else{
-                    header("location: http://localhost/tmdt_201/placeorder/fail");
+                    header("location: http://localhost/tmdt_201/place-order/fail");
                 } 
             }
             else{
-                header("location: http://localhost/tmdt_201/placeorder/fail");
+                header("location: http://localhost/tmdt_201/place-order/fail");
             }
         }
     }
 
-    public function get_date_create_order($id){
-        $sql = "SELECT date_order FROM order_user WHERE id_order='".$id."';";
+   /*public function get_date_create_order($id){
+        $sql = "SELECT date_created FROM order_user WHERE id_order='".$id."';";
         return $this->query_return_row($sql);
-    }
+    }*/
 
     public function get_content_email($data){
         $header = array(
@@ -306,7 +319,7 @@ class Order extends Database{
         $mail = new PHPMailer(true);
 
         //Server settings
-        $mail->SMTPDebug = 0;                      // Enable verbose debug output
+        $mail->SMTPDebug = 0;                                       // Unable verbose debug output
         $mail->isSMTP();                                            // Send using SMTP
         $mail->Host       = 'smtp.gmail.com';                       // Set the SMTP server to send through
         $mail->SMTPAuth   = true;                                   // Enable SMTP authentication

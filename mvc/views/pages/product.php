@@ -72,11 +72,11 @@
                                         Action
                                     </button>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="/tmdt_201/product/update/<?php echo $item_list[$row]->id_item;?>">
+                                        <a class="dropdown-item" href="/tmdt_201/list-product/update/<?php echo $item_list[$row]->id_item;?>">
                                             <i class="fa fa-edit"></i> Modify
                                         </a>
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="/tmdt_201/product/delete/<?php echo $item_list[$row]->id_item;?>">
+                                        <a class="dropdown-item" href="/tmdt_201/list-product/delete/<?php echo $item_list[$row]->id_item;?>">
                                             <i class="fa fa-trash"></i> Delete
                                         </a>
                                     </div>

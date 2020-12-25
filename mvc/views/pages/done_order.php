@@ -44,12 +44,12 @@
                             <th>Free Shipping</th>
                             <th>Total (đ)</th>
                             <th>Payment</th>
-                            <th>Time Created</th>
-                            <th>Time Confirmed</th>
-                            <th>Time Confirm Prepared</th>
-                            <th>Time Confirm Delivered</th>
-                            <th>Time Confirm Request Return</th>
-                            <th>Time Confirm Returned</th>
+                            <th>Date Created</th>
+                            <th>Date Confirmed</th>
+                            <th>Date Confirm Prepared</th>
+                            <th>Date Confirm Delivered</th>
+                            <th>Date Confirm Request Return</th>
+                            <th>Date Confirm Returned</th>
                             <th>Tracking Code</th>
                             <th>Return Reason</th>
                         </tr>
@@ -63,7 +63,7 @@
                                 <?php echo $value->status_order;?>
                             </td>
                             <td class="align-middle">
-                                <a class="item-cart" href="/tmdt_201/manageorder/detail/<?php echo $value->id_order; ?>">
+                                <a class="item-cart" href="/tmdt_201/manage-order/detail/<?php echo $value->id_order; ?>">
                                     <?php echo $value->id_order;?>
                                 </a>
                             </td>
@@ -83,7 +83,7 @@
                             <td class="align-middle"><?php echo $value->free_shipping == 0?'Not Apply':'Apply';?></td>
                             <td class="align-middle"><?php echo number_format($value->total_order, 0);?></td>
                             <td class="align-middle"><?php echo $value->payment_order == 'cod'?'COD':'VNPay';?></td>
-                            <td class="align-middle"><?php echo date_format(date_create($value->date_order), 'H:i:s \- d/m/Y');?></td>
+                            <td class="align-middle"><?php echo date_format(date_create($value->date_created), 'H:i:s \- d/m/Y');?></td>
                             <td class="align-middle">
                                 <?php 
                                 if($value->date_confirmed == null){

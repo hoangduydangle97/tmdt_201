@@ -70,7 +70,7 @@
                                 <div class="spinner-border text-primary d-none" id="spinner-<?php echo $value->id_order; ?>"></div>
                             </td>
                             <td class="align-middle">
-                                <a class="item-cart" href="/tmdt_201/manageorder/detail/<?php echo $value->id_order; ?>">
+                                <a class="item-cart" href="/tmdt_201/manage-order/detail/<?php echo $value->id_order; ?>">
                                     <?php echo $value->id_order;?>
                                 </a>
                             </td>
@@ -90,8 +90,8 @@
                             <td class="align-middle"><?php echo $value->free_shipping == 0?'Not Apply':'Apply';?></td>
                             <td class="align-middle"><?php echo number_format($value->total_order, 0);?></td>
                             <td class="align-middle"><?php echo $value->payment_order == 'cod'?'COD':'VNPay';?></td>
-                            <td class="align-middle"><?php echo date_format(date_create($value->date_order), 'H:i:s \- d/m/Y');?></td>
-                            <td class="align-middle">
+                            <td class="align-middle"><?php echo date_format(date_create($value->date_created), 'H:i:s \- d/m/Y');?></td>
+                            <td class="align-middle" id="<?php echo $value->id_order; ?>-date-confirmed">
                                 <?php 
                                 if($value->date_confirmed == null){
                                     echo '<i>NULL</i>';
@@ -101,7 +101,7 @@
                                 }
                                 ?>
                             </td>
-                            <td class="align-middle">
+                            <td class="align-middle" id="<?php echo $value->id_order; ?>-date-prepared">
                                 <?php 
                                 if($value->date_prepared == null){
                                     echo '<i>NULL</i>';
@@ -111,7 +111,7 @@
                                 }
                                 ?>
                             </td>
-                            <td class="align-middle">
+                            <td class="align-middle" id="<?php echo $value->id_order; ?>-date-delivered">
                                 <?php 
                                 if($value->date_delivered == null){
                                     echo '<i>NULL</i>';
@@ -121,7 +121,7 @@
                                 }
                                 ?>
                             </td>
-                            <td class="align-middle">
+                            <td class="align-middle" id="<?php echo $value->id_order; ?>-date-request">
                                 <?php 
                                 if($value->date_request == null){
                                     echo '<i>NULL</i>';
@@ -131,7 +131,7 @@
                                 }
                                 ?>
                             </td>
-                            <td class="align-middle">
+                            <td class="align-middle" id="<?php echo $value->id_order; ?>-date-confirm-request">
                                 <?php 
                                 if($value->date_confirm_request == null){
                                     echo '<i>NULL</i>';
@@ -141,7 +141,7 @@
                                 }
                                 ?>
                             </td>
-                            <td class="align-middle">
+                            <td class="align-middle" id="<?php echo $value->id_order; ?>-date-return">
                                 <?php 
                                 if($value->date_returned == null){
                                     echo '<i>NULL</i>';

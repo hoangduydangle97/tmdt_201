@@ -6,7 +6,12 @@
                     <div class="breadcrumb__text">
                         <h2>Detail Order</h2>
                         <div class="breadcrumb__option">
-                            <a href="http://localhost/tmdt_201/manageorder">Manage Order</a>
+                            <?php if(isset($_SESSION['role']) && $_SESSION['role'] == 1){?>
+                                <a href="http://localhost/tmdt_201/list-order">Order</a>
+                            <?php }
+                            else{?>
+                                <a href="http://localhost/tmdt_201/manage-order">Manage Order</a>
+                            <?php }?>
                             <span>Detail Order</span>
                         </div>
                     </div>
@@ -31,7 +36,7 @@
                 ID Order: <b><?php echo $order_info->id_order; ?></b>
             </div>
             <div class="container mb-2" style="font-size: 1.2em;">
-                Date Created: <?php echo date_format(date_create($order_info->date_order), 'H:i:s \- d/m/Y'); ?>
+                Date Created: <?php echo date_format(date_create($order_info->date_created), 'H:i:s \- d/m/Y'); ?>
             </div>
             <div class="container mb-2" style="font-size: 1.2em;">
                 Payment: <?php echo $order_info->payment_order == 'cod'?'COD':'VNPay'; ?>
@@ -54,6 +59,17 @@
             <div class="container mb-5 text-danger" style="font-size: 1.2em;">
                 <i class="fa fa-info-circle"></i>
                 You requested to return this order. We'll contact you soon.
+            </div>
+            <?php }
+            elseif(isset($_SESSION['role']) && $_SESSION['role'] == 1){?>
+            <?php $status = $order_info->status_order;
+            $btn = json_decode($this->order_object->get_status_btn($status)); ?>
+            <div class="container mb-5" id="done-return" style="font-size: 1.2em;">
+                <button type="button" id="<?php echo $order_info->id_order; ?>" class="btn <?php echo $btn->style; ?>" 
+                    onclick="changeStatusOrder(<?php echo "'".$status."'"; ?>, <?php echo "'".$order_info->id_order."'"; ?>, <?php echo "'".$btn->style."'"; ?>)">
+                    <?php echo $btn->content; ?>
+                </button>
+                <div class="spinner-border text-primary d-none" id="spinner-<?php echo $order_info->id_order; ?>"></div>
             </div>
             <?php }?>
             <div class="row">
@@ -105,7 +121,7 @@
                 <div class="col-lg-12">
                     <div class="shoping__cart__btns">
                         <a href="/tmdt_201/shop" class="primary-btn cart-btn text-primary">CONTINUE SHOPPING</a>
-                        <a href="/tmdt_201/manageorder" class="primary-btn cart-btn cart-btn-right text-success"><span class="icon_loading"></span>
+                        <a href="/tmdt_201/manage-order" class="primary-btn cart-btn cart-btn-right text-success"><span class="icon_loading"></span>
                             Back to Manage Order</a>
                     </div>
                 </div>
@@ -149,7 +165,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <td class="align-middle text-center">
+                            <td class="align-middle text-center" id="date-confirmed">
                                 <?php 
                                 if($order_info->date_confirmed == null){
                                     echo '<i>No Info</i>';
@@ -159,7 +175,7 @@
                                 }
                                 ?>
                             </td>
-                            <td class="align-middle text-center">
+                            <td class="align-middle text-center" id="date-prepared">
                                 <?php 
                                 if($order_info->date_prepared == null){
                                     echo '<i>No Info</i>';
@@ -169,7 +185,7 @@
                                 }
                                 ?>
                             </td>
-                            <td class="align-middle text-center">
+                            <td class="align-middle text-center" id="date-delivered">
                                 <?php 
                                 if($order_info->date_delivered == null){
                                     echo '<i>No Info</i>';
@@ -189,7 +205,7 @@
                                 }
                                 ?>
                             </td>
-                            <td class="align-middle text-center">
+                            <td class="align-middle text-center" id="date-confirm-request">
                                 <?php 
                                 if($order_info->date_confirm_request == null){
                                     echo '<i>No Info</i>';
@@ -199,7 +215,7 @@
                                 }
                                 ?>
                             </td>
-                            <td class="align-middle text-center">
+                            <td class="align-middle text-center" id="date-return">
                                 <?php 
                                 if($order_info->date_returned == null){
                                     echo '<i>No Info</i>';

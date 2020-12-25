@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 14, 2020 lúc 02:16 PM
+-- Thời gian đã tạo: Th12 25, 2020 lúc 09:45 PM
 -- Phiên bản máy phục vụ: 10.4.14-MariaDB
 -- Phiên bản PHP: 7.4.10
 
@@ -82,8 +82,8 @@ CREATE TABLE `item` (
 --
 
 INSERT INTO `item` (`id_item`, `name_item`, `avatar_item`, `detail_item_1`, `detail_item_2`, `detail_item_3`, `description_item`, `price_item`, `unit_item`, `availability_item`, `weight_item`, `sale_off_item`, `featured`, `num_purchased`, `date_created_item`, `latest_date_updated_item`, `category_item`) VALUES
-('apple', 'Apple', 'public/images/uploads/products/apple/avatar/apple.jpg', 'public/images/uploads/products/apple/details/detail-1-apple.jpg', 'public/images/uploads/products/apple/details/detail-2-apple.jpg', 'public/images/uploads/products/apple/details/detail-3-apple.jpg', 'Apples', 35000, 'kg', 1, 1, 20, 1, 0, '2020-10-09 18:42:10', '2020-10-09 18:42:10', 'fresh-fruit'),
-('avocado', 'Avocado', 'public/images/uploads/products/avocado/avatar/avocado.jpg', 'public/images/uploads/products/avocado/details/detail-1-avocado.jpg', 'public/images/uploads/products/avocado/details/detail-2-avocado.jpg', 'public/images/uploads/products/avocado/details/detail-3-avocado.jpg', 'Avocado', 99000, 'kg', 1, 1, 0, 1, 0, '2020-10-09 18:45:25', '2020-10-09 18:45:25', 'fresh-fruit'),
+('apple', 'Apple', 'public/images/uploads/products/apple/avatar/apple.jpg', 'public/images/uploads/products/apple/details/detail-1-apple.jpg', 'public/images/uploads/products/apple/details/detail-2-apple.jpg', 'public/images/uploads/products/apple/details/detail-3-apple.jpg', 'Apples', 35000, 'kg', 1, 1, 20, 1, 1, '2020-10-09 18:42:10', '2020-10-09 18:42:10', 'fresh-fruit'),
+('avocado', 'Avocado', 'public/images/uploads/products/avocado/avatar/avocado.jpg', 'public/images/uploads/products/avocado/details/detail-1-avocado.jpg', 'public/images/uploads/products/avocado/details/detail-2-avocado.jpg', 'public/images/uploads/products/avocado/details/detail-3-avocado.jpg', 'Avocado', 99000, 'kg', 1, 1, 0, 1, 1, '2020-10-09 18:45:25', '2020-10-09 18:45:25', 'fresh-fruit'),
 ('banana', 'Banana', 'public/images/uploads/products/banana/avatar/banana.jpg', 'public/images/uploads/products/banana/details/detail-1-banana.jpg', 'public/images/uploads/products/banana/details/detail-2-banana.jpg', 'public/images/uploads/products/banana/details/detail-3-banana.jpg', 'Bananas', 23000, 'kg', 1, 1, 15, 0, 0, '2020-10-09 18:43:11', '2020-10-09 18:43:11', 'fresh-fruit'),
 ('beef', 'Beef', 'public/images/uploads/products/beef/avatar/beef.jpg', 'public/images/uploads/products/beef/details/detail-1-beef.jpg', 'public/images/uploads/products/beef/details/detail-2-beef.jpg', 'public/images/uploads/products/beef/details/detail-3-beef.jpg', 'Beef', 219000, 'kg', 1, 1, 25, 1, 1, '2020-10-09 18:44:13', '2020-10-09 18:44:13', 'fresh-meat'),
 ('bell-pepper', 'Bell pepper', 'public/images/uploads/products/bell-pepper/avatar/bell-peppers.jpg', 'public/images/uploads/products/bell-pepper/details/detail-1-bell-pepper.jpg', 'public/images/uploads/products/bell-pepper/details/detail-2-bell-pepper.jpg', 'public/images/uploads/products/bell-pepper/details/detail-3-bell-pepper.jpg', 'Bell peppers', 62000, 'kg', 1, 1, 0, 0, 0, '2020-10-10 23:20:14', '2020-10-10 23:20:14', 'vegetables'),
@@ -134,8 +134,8 @@ INSERT INTO `order_item` (`id_order`, `name_item`, `quantity_item`, `total_item`
 ('2d441677b4f897b64e70e107fa7c7138', 'Dragon fruit', 1, 23000, '2020-12-08 03:47:37'),
 ('3f514731d4410f737f6613a2de7b478b', 'Avocado', 1, 99000, NULL),
 ('3f514731d4410f737f6613a2de7b478b', 'Bell pepper', 1, 62000, NULL),
-('461dac001cefe4642be0c4266982655b', 'Apple', 1, 35000, '2020-12-08 00:39:29'),
-('461dac001cefe4642be0c4266982655b', 'Avocado', 1, 99000, '2020-12-08 00:39:29'),
+('461dac001cefe4642be0c4266982655b', 'Apple', 1, 35000, '2020-12-26 03:35:37'),
+('461dac001cefe4642be0c4266982655b', 'Avocado', 1, 99000, '2020-12-26 03:35:37'),
 ('5ebf1f404d4218923d6adbb2ce349e40', 'Beef', 1, 219000, NULL),
 ('5ebf1f404d4218923d6adbb2ce349e40', 'Watermelon', 1, 17000, NULL),
 ('706b7f24fab5679b6a53b0f05d3a9c58', 'Bell pepper', 1, 62000, NULL),
@@ -180,7 +180,7 @@ CREATE TABLE `order_user` (
   `free_shipping` varchar(50) NOT NULL,
   `coupon_order` int(10) DEFAULT NULL,
   `total_order` int(10) NOT NULL,
-  `date_order` datetime NOT NULL,
+  `date_created` datetime NOT NULL,
   `date_confirmed` datetime DEFAULT NULL,
   `date_prepared` datetime DEFAULT NULL,
   `date_delivered` datetime DEFAULT NULL,
@@ -198,12 +198,12 @@ CREATE TABLE `order_user` (
 -- Đang đổ dữ liệu cho bảng `order_user`
 --
 
-INSERT INTO `order_user` (`id_order`, `fname_user_order`, `lname_user_order`, `address_user_order`, `phone_user_order`, `email_user_order`, `username_user_order`, `note_order`, `shipping_order`, `free_shipping`, `coupon_order`, `total_order`, `date_order`, `date_confirmed`, `date_prepared`, `date_delivered`, `date_request`, `date_confirm_request`, `date_returned`, `payment_order`, `paid_order`, `status_order`, `tracking_order`, `return_reason`) VALUES
+INSERT INTO `order_user` (`id_order`, `fname_user_order`, `lname_user_order`, `address_user_order`, `phone_user_order`, `email_user_order`, `username_user_order`, `note_order`, `shipping_order`, `free_shipping`, `coupon_order`, `total_order`, `date_created`, `date_confirmed`, `date_prepared`, `date_delivered`, `date_request`, `date_confirm_request`, `date_returned`, `payment_order`, `paid_order`, `status_order`, `tracking_order`, `return_reason`) VALUES
 ('03223284805f5150e8bc508c38ededb8', 'Hoangduy', 'Dangle', '789 Lý Thường Kiệt, Phường 8, Quận Tân Bình, Hồ Chí Minh', '0988341765', 'duy.dang.bku_19@hcmut.edu.vn', 'hoangduydangle', NULL, 29700, '0', NULL, 87700, '2020-11-10 14:11:31', '2020-12-09 04:12:34', '2020-12-13 21:39:02', '2020-12-13 21:39:45', '2020-12-14 00:20:06', '2020-12-14 00:21:24', '2020-12-14 00:21:51', 'cod', 0, 'Returned', NULL, 'not-described'),
 ('113f88954c3be1d17fdc52162dd21ceb', 'Hoangduy', 'Dangle', '79 Lý Thường Kiệt, Phường 8, Quận Tân Bình, Hồ Chí Minh', '0123456789', 'duy.dang.bku_19@hcmut.edu.vn', NULL, 'Delivery before this Sunday', 29700, '0', NULL, 116700, '2020-12-08 15:41:22', NULL, NULL, NULL, NULL, NULL, NULL, 'vnpay', 1, 'Not Confirmed', NULL, NULL),
 ('2d441677b4f897b64e70e107fa7c7138', 'Johnathan', 'Wick', '123 Ly Thuong Kiet, Ward 14, District 10, HCMC', '0984123456', 'johnwick@gmail.com', 'johnwick', NULL, 29700, '0', NULL, 271700, '2020-11-10 12:32:41', '2020-12-08 01:49:25', '2020-12-08 01:49:26', '2020-12-08 01:49:27', NULL, NULL, NULL, 'cod', 0, 'Delivered', NULL, NULL),
 ('3f514731d4410f737f6613a2de7b478b', 'Hoangduy', 'Dangle', '79 Lý Thường Kiệt, Phường 8, Quận Tân Bình, Hồ Chí Minh', '0123456789', 'duy.dang.bku_19@hcmut.edu.vn', NULL, 'Delivery before this Sunday', 29700, '0', NULL, 190700, '2020-12-08 15:34:12', NULL, NULL, NULL, NULL, NULL, NULL, 'cod', 0, 'Not Confirmed', NULL, NULL),
-('461dac001cefe4642be0c4266982655b', 'Hoangduy', 'Dangle', '123 Ly Thuong Kiet, Phường Tân Định, Quận 1, Hồ Chí Minh', '0123456789', 'duy.dang.bku_19@hcmut.edu.vn', NULL, 'Delivery before this Sunday', 29700, '0', NULL, 163700, '2020-12-07 18:07:45', NULL, NULL, NULL, NULL, NULL, NULL, 'cod', 0, 'Not Confirmed', NULL, NULL),
+('461dac001cefe4642be0c4266982655b', 'Hoangduy', 'Dangle', '123 Ly Thuong Kiet, Phường Tân Định, Quận 1, Hồ Chí Minh', '0123456789', 'duy.dang.bku_19@hcmut.edu.vn', NULL, 'Delivery before this Sunday', 29700, '0', NULL, 163700, '2020-12-07 18:07:45', '2020-12-26 03:35:17', '2020-12-26 03:35:32', '2020-12-26 03:35:37', NULL, NULL, NULL, 'cod', 0, 'Delivered', NULL, NULL),
 ('5ebf1f404d4218923d6adbb2ce349e40', 'Hoangduy', 'Dangle', '123 Lý Thường Kiệt, Phường Tân Định, Quận 1, Hồ Chí Minh', '0123456789', 'duy.dang.bku_19@hcmut.edu.vn', NULL, 'Delivery before this Sunday', 29700, '0', NULL, 265700, '2020-12-08 14:25:44', NULL, NULL, NULL, NULL, NULL, NULL, 'cod', 0, 'Not Confirmed', NULL, NULL),
 ('706b7f24fab5679b6a53b0f05d3a9c58', 'Hoangduy', 'Dangle', '123 Lý Thường Kiệt, Phường Tân Định, Quận 1, Hồ Chí Minh', '0123456789', 'duy.dang.bku_19@hcmut.edu.vn', NULL, 'Delivery before this Sunday', 29700, '0', NULL, 108700, '2020-12-08 14:32:38', NULL, NULL, NULL, NULL, NULL, NULL, 'cod', 0, 'Not Confirmed', NULL, NULL),
 ('d864250c50b80453320d98358f4e2ddd', 'Hoangduy', 'Dangle', '79 Lý Thường Kiệt, Phường 8, Quận Tân Bình, Hồ Chí Minh', '0123456789', 'duy.dang.bku_19@hcmut.edu.vn', NULL, 'Delivery before this Sunday', 29700, '1', NULL, 448000, '2020-12-08 15:02:37', NULL, NULL, NULL, NULL, NULL, NULL, 'cod', 0, 'Not Confirmed', NULL, NULL),

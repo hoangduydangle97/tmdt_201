@@ -10,7 +10,7 @@ class Category extends Database{
 
         if($name == ''){
             $_SESSION['error'] = [true, 'Name must be at least 1 character!'];
-            header("location: http://localhost/tmdt_201/product/categories");
+            header("location: http://localhost/tmdt_201/list-product/categories");
         }
         else{
             $id = str_replace(' ', '-', strtolower($name));
@@ -38,11 +38,11 @@ class Category extends Database{
                 else if($params == 'update'){
                     $_SESSION['error'] = [false, 'Update successfully!'];
                 }
-                header("location: http://localhost/tmdt_201/product/categories");
+                header("location: http://localhost/tmdt_201/list-product/categories");
             }
             else{
                 $_SESSION['error'] = [true, 'Name may be duplicated or server error!'];
-                header("location: http://localhost/tmdt_201/product/categories");
+                header("location: http://localhost/tmdt_201/list-product/categories");
             }
         }
     }
@@ -52,11 +52,11 @@ class Category extends Database{
         $sql_result = mysqli_query($this->conn, $sql);
         if($sql_result){
             $_SESSION['error'] = [false, 'Delete successfully!'];
-            header("location: http://localhost/tmdt_201/product/categories");
+            header("location: http://localhost/tmdt_201/list-product/categories");
         }
         else{
             $_SESSION['error'] = [true, 'Server error!'];
-            header("location: http://localhost/tmdt_201/product/categories");
+            header("location: http://localhost/tmdt_201/list-product/categories");
         } 
     }
 }

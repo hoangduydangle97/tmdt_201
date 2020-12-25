@@ -10,12 +10,14 @@ class App{
         $_SESSION['temp_path'] = '';
         if(isset($arr[0])){
             $url[] = $arr[0];
+            $arr[0] = str_replace('-', '_', $arr[0]);
             if(file_exists("./mvc/controllers/".$arr[0].".php")){
                 $this->controller = $arr[0];
                 unset($arr[0]);
             }
         }
         require_once "./mvc/controllers/".$this->controller.".php";
+        $this->controller = str_replace('_', '', $this->controller);
         $this->controller = new $this->controller();
         if(isset($arr[1])){
             $url[] = $arr[1];

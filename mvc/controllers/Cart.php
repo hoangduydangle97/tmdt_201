@@ -114,7 +114,7 @@ class Cart extends Controller{
                 ),
                 "order" => array(
                     "id" => $order_info->id_order,
-                    "date" => $order_info->date_order,
+                    "date" => $order_info->date_created,
                     "payment" => $order_info->payment_order,
                     "item_list" => $item_order_list,
                     "note" => $order_info->note_order,
@@ -144,7 +144,9 @@ class Cart extends Controller{
     }
 
     public function test(){
-        
+        $id = '461dac001cefe4642be0c4266982655b';
+        $param = 'created';
+        echo $this->order_object->get_date_order($id, $param);
     }
 }
 ?>

@@ -72,7 +72,7 @@ class Shop extends Controller{
         }
         ksort($arr_cookie);
         $this->view("Master1", array(
-            "page"=>"detail",
+            "page"=>"detail_item",
             "total"=>$this->item_object->get_total(),
             "num_orders"=>$num_orders,
             "item_cart_list"=>$this->item_object->get_item_list($arr_cookie),

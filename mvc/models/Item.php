@@ -185,10 +185,10 @@ class Item extends Database{
         if($name == ''){
             $_SESSION['error'] = [true, 'Name must be at least 1 character!'];
             if($params == 'insert'){
-                header("location: http://localhost/tmdt_201/product/create");
+                header("location: http://localhost/tmdt_201/list-product/create-item");
             }
             else if($params == 'update'){
-                header("location: http://localhost/tmdt_201/product/update/".$current_id);
+                header("location: http://localhost/tmdt_201/list-product/update/".$current_id);
             }
         }
         else{
@@ -341,10 +341,10 @@ class Item extends Database{
             else{
                 $_SESSION['error'] = [true, 'Name may be duplicated or server error!'];
                 if($params == 'insert'){
-                    header("location: http://localhost/tmdt_201/product/create");
+                    header("location: http://localhost/tmdt_201/list-product/create-item");
                 }
                 else if($params == 'update'){
-                    header("location: http://localhost/tmdt_201/product/update/".$current_id);
+                    header("location: http://localhost/tmdt_201/list-product/update/".$current_id);
                 }
             }
         }  

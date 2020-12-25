@@ -123,7 +123,7 @@
                 <h4 class="text-center">Your Order</h4>
                 <div class="text-secondary text-center">
                     <div>ID: <b><?php echo $order_info->id_order; ?></b></div>
-                    <div>Date created: <?php echo $order_info->date_order; ?></div>
+                    <div>Date created: <?php echo date_format(date_create($order_info->date_created), 'H:i:s \- d/m/Y'); ?></div>
                     <div>Payment method: <b><?php echo $order_info->payment_order == 'cod'?'Cash on delivery (COD)':'VNPay'; ?></b></div>
                     <div>Note: * <b><i><?php echo $order_info->note_order;?></i></b> *</div>
                 </div>

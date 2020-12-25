@@ -19,7 +19,7 @@ if(isset($_SESSION['order_item_list'])){
         <meta name="keywords" content="Ogani, unica, creative, html">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Ogani | <?php echo ucfirst($data['page']);?></title>
+        <title>Ogani | <?php echo ucwords(str_replace('_', ' ',$data['page']));?></title>
 
         <!-- Google Font -->
         <link rel="stylesheet" href="/tmdt_201/public/master1/css/google-font.css" type="text/css">
@@ -173,9 +173,9 @@ if(isset($_SESSION['order_item_list'])){
 
         <!-- Cart Button -->
         <?php if(isset($data['cms'])){?>
-            <a href="http://localhost/tmdt_201/orders" id="cart-btn" class="rounded-circle">
+            <a href="http://localhost/tmdt_201/list-order" id="cart-btn" class="rounded-circle">
             <i class="fa fa-cart-arrow-down"></i>
-            <span><?php echo count(json_decode($data['order_list']));?></span>
+            <span><?php echo $data['num_orders'];?></span>
         </a>
         <?php }
         else{?>
@@ -215,8 +215,8 @@ if(isset($_SESSION['order_item_list'])){
                     else{?>
                         <ul>
                             <li><a href="#"><i class="fa fa-info-circle"></i> <span>0</span></a></li>
-                            <li><a href="http://localhost/tmdt_201/orders">
-                                <i class="fa fa-cart-arrow-down"></i> <span><?php echo count(json_decode($data['order_list']));?></span></a>
+                            <li><a href="http://localhost/tmdt_201/list-order">
+                                <i class="fa fa-cart-arrow-down"></i> <span><?php echo $data['num_orders'];?></span></a>
                             </li>
                         </ul>
                     <?php }?>
@@ -267,7 +267,7 @@ if(isset($_SESSION['order_item_list'])){
                                 </a>
                             </li>
                             <li>
-                                <a href="http://localhost/tmdt_201/signup" class="language-option">
+                                <a href="http://localhost/tmdt_201/sign-up" class="language-option">
                                     <i class="fa fa-user-plus"></i> Sign up
                                 </a>
                             </li>
@@ -288,10 +288,10 @@ if(isset($_SESSION['order_item_list'])){
                     else{
                     ?>
                     <li <?php if($data["page"] == "admin"){ ?>class="active"<?php }?>><a href="http://localhost/tmdt_201/admin">Admin</a></li>
-                    <li <?php if($data["page"] == "product" || $data["page"] == "create" || $data["page"] == "update" || $data["page"] == "categories"){ ?>class="active"<?php }?>>
-                        <a href="http://localhost/tmdt_201/product">Product</a>
+                    <li <?php if($data["page"] == "product" || $data["page"] == "create_item" || $data["page"] == "update_item" || $data["page"] == "categories"){ ?>class="active"<?php }?>>
+                        <a href="http://localhost/tmdt_201/list-product">Product</a>
                     </li>
-                    <li <?php if($data["page"] == "order"){ ?>class="active"<?php }?>><a href="http://localhost/tmdt_201/orders">Order</a></li>
+                    <li <?php if($data["page"] == "order" || $data["page"] == "detail_order"){ ?>class="active"<?php }?>><a href="http://localhost/tmdt_201/list-order">Order</a></li>
                     <?php }?>
                 </ul>
             </nav>
@@ -386,7 +386,7 @@ if(isset($_SESSION['order_item_list'])){
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="http://localhost/tmdt_201/signup" class="language-option">
+                                            <a href="http://localhost/tmdt_201/sign-up" class="language-option">
                                                 <i class="fa fa-user-plus"></i> Sign up
                                             </a>
                                         </li>
@@ -419,10 +419,10 @@ if(isset($_SESSION['order_item_list'])){
                                 else{
                                 ?>
                                 <li <?php if($data["page"] == "admin"){ ?>class="active"<?php }?>><a href="http://localhost/tmdt_201/admin">Admin</a></li>
-                                <li <?php if($data["page"] == "product" || $data["page"] == "create" || $data["page"] == "update" || $data["page"] == "categories"){ ?>class="active"<?php }?>>
-                                    <a href="http://localhost/tmdt_201/product">Product</a>
+                                <li <?php if($data["page"] == "product" || $data["page"] == "create_item" || $data["page"] == "update_item" || $data["page"] == "categories"){ ?>class="active"<?php }?>>
+                                    <a href="http://localhost/tmdt_201/list-product">Product</a>
                                 </li>
-                                <li <?php if($data["page"] == "order"){ ?>class="active"<?php }?>><a href="http://localhost/tmdt_201/orders">Order</a></li>
+                                <li <?php if($data["page"] == "order" || $data["page"] == "detail_order"){ ?>class="active"<?php }?>><a href="http://localhost/tmdt_201/list-order">Order</a></li>
                                 <?php }?>
                             </ul>
                         </nav>
@@ -515,8 +515,8 @@ if(isset($_SESSION['order_item_list'])){
                             else{?>
                             <ul>
                                 <li><a href="#"><i class="fa fa-info-circle"></i> <span>0</span></a></li>
-                                <li><a href="http://localhost/tmdt_201/orders">
-                                    <i class="fa fa-cart-arrow-down"></i> <span><?php echo count(json_decode($data['order_list']));?></span></a>
+                                <li><a href="http://localhost/tmdt_201/list-order">
+                                    <i class="fa fa-cart-arrow-down"></i> <span><?php echo $data['num_orders'];?></span></a>
                                 </li>
                             </ul>
                             <?php }?>

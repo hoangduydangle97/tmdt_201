@@ -11,11 +11,21 @@ class Admin extends Controller{
     }
 
     public function action(){
-        $this->view("Master1", array(
-            "cms"=>true,
-            "page"=>"admin",
-            "order_list"=>$this->order_object->get_undone_order_list()
-        ));
+        if(isset($_SESSION['role'])){
+            if($_SESSION['role'] == 0){
+                header('location: http://localhost/tmdt_201/not-allowed');
+            }
+            else{
+                $this->view("Master1", array(
+                    "cms"=>true,
+                    "page"=>"admin",
+                    "num_orders"=>count(json_decode($this->order_object->get_undone_order_list()))
+                ));
+            }
+        }
+        else{
+            header('location: http://localhost/tmdt_201/login');
+        }
     }
 }
 ?>

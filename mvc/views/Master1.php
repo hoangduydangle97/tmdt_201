@@ -39,6 +39,10 @@ if(isset($_SESSION['order_item_list'])){
                 transition: 0.3s;
             }
 
+            .user-info {
+                font-size: 24px;
+            }
+
             .item-cart {
                 color: #252525;
             }
@@ -239,7 +243,7 @@ if(isset($_SESSION['order_item_list'])){
                     <span class="arrow_carrot-down"></span>
                     <ul>
                         <li>
-                            <a href="#" class="language-option">
+                            <a href="http://localhost/tmdt_201/profile" class="language-option">
                                 <i class="fa fa-user"></i> Profile
                             </a>
                         </li>
@@ -358,7 +362,7 @@ if(isset($_SESSION['order_item_list'])){
                                     <span class="arrow_carrot-down"></span>
                                     <ul>
                                         <li>
-                                            <a href="#" class="language-option">
+                                            <a href="http://localhost/tmdt_201/profile" class="language-option">
                                                 <i class="fa fa-user"></i> Profile
                                             </a>
                                         </li>
@@ -432,7 +436,7 @@ if(isset($_SESSION['order_item_list'])){
                             <?php if(!isset($data['cms'])){?>
                             <ul>
                                 <li><a href="#"><i class="fa fa-gift"></i> <span>0</span></a></li>
-                                <?php if($data['page'] == 'cart' || $data['page'] == 'checkout'){?>
+                                <?php if($data['page'] == 'cart' || $data['page'] == 'check_out'){?>
                                 <li><a href="http://localhost/tmdt_201/cart"><i class="fa fa-shopping-cart"></i> <span class="selected-product">0</span></a></li>
                                 <?php }
                                 else{

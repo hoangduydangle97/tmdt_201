@@ -69,7 +69,7 @@ class Cart extends Controller{
         $shipping_fee = $this->service_object->get_shipping_fee(json_decode($district_list)[0]->DistrictID, json_decode($ward_list)[0]->WardCode, $weight_total);
         $expected_time = $this->service_object->get_expected_time(json_decode($district_list)[0]->DistrictID, json_decode($ward_list)[0]->WardCode);
         $this->view("Master1", array(
-            "page"=>"checkout",
+            "page"=>"check_out",
             "total"=>$this->item_object->get_total(),
             "num_orders"=>$num_orders,
             "province_list"=>$province_list,

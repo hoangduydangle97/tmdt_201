@@ -110,7 +110,7 @@
                             <li>Subtotal <span class="sub-total"><?php echo number_format($sub_total, 0);?> <u style="font-weight: 400;">đ</u></span></li>
                             <li>Total <span class="total"><?php echo number_format($sub_total, 0);?> <u style="font-weight: 400;">đ</u></span></li>
                         </ul>
-                        <a href="/tmdt_201/cart/checkout" class="primary-btn">PROCEED TO CHECKOUT</a>
+                        <a href="/tmdt_201/cart/check_out" class="primary-btn">PROCEED TO CHECKOUT</a>
                     </div>
                 </div>
             </div>

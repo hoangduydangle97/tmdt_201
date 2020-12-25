@@ -885,3 +885,7 @@ function showPreview(instance, container, image){
         $("#" + image).attr("src", "#");
     }
 }
+
+function goToManageOrders(){
+    location.href = "http://localhost/tmdt_201/manage-order";
+}

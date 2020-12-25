@@ -196,7 +196,7 @@ class Order extends Database{
 
         if($check_empty){
             $_SESSION['error'] = [true, '(*) fields must be at least 1 character!'];
-            header("location: http://localhost/tmdt_201/cart/checkout");
+            header("location: http://localhost/tmdt_201/cart/check_out");
         }
         else{
             $id = md5(time() . mt_rand(1, 1000000));

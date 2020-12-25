@@ -83,13 +83,18 @@
                 </button>
             </div>
             <?php }
-                elseif($status == 'Delivered'){?>
+                elseif($status == 'Delivered'){
+                $date_current = new DateTime();
+                $date_delivered = date_create($order_info->date_delivered);
+                $interval = $date_current->diff($date_delivered);
+                if($interval->d < 2 || ($interval->d == 2 && $interval->s == 0)){
+            ?>
             <div class="container mb-5" id="ajax-return" style="font-size: 1.2em;">
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#return-modal">
                     Request Return
                 </button>
             </div>
-            <?php }
+            <?php }}
                 elseif($status == 'Requesting Return'){
             ?>
             <div class="container mb-5 text-danger" style="font-size: 1.2em;">

@@ -12,7 +12,8 @@ class ManageOrder extends Controller{
 
     public function action(){
         if(isset($_SESSION['username'])){
-            $num_orders = $this->order_object->get_num_orders($_SESSION['username']);
+            $username = $_SESSION['username'];
+            $num_orders = $this->order_object->get_num_orders($username);
             $arr_cookie = [];
             if(isset($_COOKIE)){
                 foreach($_COOKIE as $key => $val){

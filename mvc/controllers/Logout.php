@@ -1,7 +1,7 @@
 <?php
 class Logout extends Controller{
     public function action(){
-        if($_SESSION['role'] == 1 && isset($_SESSION['cms'])){
+        if($_SESSION['role'] == 1){
             $url = '/tmdt_201/home';
         }
         else{

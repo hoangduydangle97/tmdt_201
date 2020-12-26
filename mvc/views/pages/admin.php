@@ -15,3 +15,9 @@
         </div>
     </section>
     <!-- Breadcrumb Section End -->
+
+    <div class="container my-5">
+        <h4 class="text-center">
+            Welcome to Content Management System Page
+        </h4>
+    </div>

@@ -785,6 +785,8 @@ function changeStatusOrder(status, id, style){
                     btn.html(result.content).removeClass(style).addClass(result.style);
                     $('#' + id + '-' + date).html(result.date);
                     $('#' + date).html(result.date);
+                    $('#' + id + '-status-order').html(result.status);
+                    $('#status-order').html(result.status);
                     $('#dataTable').DataTable().draw();
                 }
             }

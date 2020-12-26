@@ -27,6 +27,9 @@ class Login extends Controller{
         if($check){
             $_SESSION['username'] = $username;
             $_SESSION['role'] = intval(json_decode($this->user_object->get_role_user($username))->role_user);
+            if($_SESSION['role'] == 1){
+                $_SESSION['path'] = '/tmdt_201/admin';
+            }
             if($_SESSION['path'] == ''){
                 header("location: http://localhost/tmdt_201/".$_SESSION['path']);
             }

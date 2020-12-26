@@ -74,7 +74,7 @@
                                     <?php echo $value->id_order;?>
                                 </a>
                             </td>
-                            <td class="align-middle"><?php echo $value->status_order;?></td>
+                            <td class="align-middle" id="<?php echo $value->id_order; ?>-status-order"><?php echo $value->status_order;?></td>
                             <td class="align-middle"><?php echo $value->fname_user_order;?></td>
                             <td class="align-middle"><?php echo $value->lname_user_order;?></td>
                             <td class="align-middle"><?php echo $value->address_user_order;?></td>

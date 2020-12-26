@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 26, 2020 lúc 12:26 AM
+-- Thời gian đã tạo: Th12 26, 2020 lúc 02:23 AM
 -- Phiên bản máy phục vụ: 10.4.14-MariaDB
 -- Phiên bản PHP: 7.4.10
 
@@ -85,11 +85,11 @@ INSERT INTO `item` (`id_item`, `name_item`, `avatar_item`, `detail_item_1`, `det
 ('apple', 'Apple', 'public/images/uploads/products/apple/avatar/apple.jpg', 'public/images/uploads/products/apple/details/detail-1-apple.jpg', 'public/images/uploads/products/apple/details/detail-2-apple.jpg', 'public/images/uploads/products/apple/details/detail-3-apple.jpg', 'Apples', 35000, 'kg', 1, 1, 20, 1, 1, '2020-10-09 18:42:10', '2020-10-09 18:42:10', 'fresh-fruit'),
 ('avocado', 'Avocado', 'public/images/uploads/products/avocado/avatar/avocado.jpg', 'public/images/uploads/products/avocado/details/detail-1-avocado.jpg', 'public/images/uploads/products/avocado/details/detail-2-avocado.jpg', 'public/images/uploads/products/avocado/details/detail-3-avocado.jpg', 'Avocado', 99000, 'kg', 1, 1, 0, 1, 1, '2020-10-09 18:45:25', '2020-10-09 18:45:25', 'fresh-fruit'),
 ('banana', 'Banana', 'public/images/uploads/products/banana/avatar/banana.jpg', 'public/images/uploads/products/banana/details/detail-1-banana.jpg', 'public/images/uploads/products/banana/details/detail-2-banana.jpg', 'public/images/uploads/products/banana/details/detail-3-banana.jpg', 'Bananas', 23000, 'kg', 1, 1, 15, 0, 0, '2020-10-09 18:43:11', '2020-10-09 18:43:11', 'fresh-fruit'),
-('beef', 'Beef', 'public/images/uploads/products/beef/avatar/beef.jpg', 'public/images/uploads/products/beef/details/detail-1-beef.jpg', 'public/images/uploads/products/beef/details/detail-2-beef.jpg', 'public/images/uploads/products/beef/details/detail-3-beef.jpg', 'Beef', 219000, 'kg', 1, 1, 25, 1, 0, '2020-10-09 18:44:13', '2020-10-09 18:44:13', 'fresh-meat'),
+('beef', 'Beef', 'public/images/uploads/products/beef/avatar/beef.jpg', 'public/images/uploads/products/beef/details/detail-1-beef.jpg', 'public/images/uploads/products/beef/details/detail-2-beef.jpg', 'public/images/uploads/products/beef/details/detail-3-beef.jpg', 'Beef', 219000, 'kg', 1, 1, 25, 1, 1, '2020-10-09 18:44:13', '2020-10-09 18:44:13', 'fresh-meat'),
 ('bell-pepper', 'Bell pepper', 'public/images/uploads/products/bell-pepper/avatar/bell-peppers.jpg', 'public/images/uploads/products/bell-pepper/details/detail-1-bell-pepper.jpg', 'public/images/uploads/products/bell-pepper/details/detail-2-bell-pepper.jpg', 'public/images/uploads/products/bell-pepper/details/detail-3-bell-pepper.jpg', 'Bell peppers', 62000, 'kg', 1, 1, 0, 0, 0, '2020-10-10 23:20:14', '2020-10-10 23:20:14', 'vegetables'),
 ('carrot', 'Carrot', 'public/images/uploads/products/carrot/avatar/carrot.jpg', 'public/images/uploads/products/carrot/details/detail-1-carrot.jpg', 'public/images/uploads/products/carrot/details/detail-2-carrot.jpg', 'public/images/uploads/products/carrot/details/detail-3-carrot.jpg', 'Carrot', 17000, 'kg', 1, 1, 0, 1, 0, '2020-10-11 00:02:18', '2020-10-11 00:02:18', 'vegetables'),
 ('chicken', 'Chicken', 'public/images/uploads/products/chicken/avatar/chicken.jpg', 'public/images/uploads/products/chicken/details/detail-1-chicken.jpg', 'public/images/uploads/products/chicken/details/detail-2-chicken.jpg', 'public/images/uploads/products/chicken/details/detail-3-chicken.jpg', 'Chicken', 229000, 'kg', 0, 1, 0, 0, 0, '2020-10-09 18:44:37', '2020-12-14 03:22:35', 'fresh-meat'),
-('dragon-fruit', 'Dragon fruit', 'public/images/uploads/products/dragon-fruit/avatar/dragon-fruit.jpg', 'public/images/uploads/products/dragon-fruit/details/detail-1-dragon-fruit.jpg', 'public/images/uploads/products/dragon-fruit/details/detail-2-dragon-fruit.jpg', 'public/images/uploads/products/dragon-fruit/details/detail-3-dragon-fruit.jpg', 'Dragon fruit', 23000, 'kg', 1, 1, 0, 0, 0, '2020-10-09 18:46:04', '2020-10-09 18:46:04', 'fresh-fruit'),
+('dragon-fruit', 'Dragon fruit', 'public/images/uploads/products/dragon-fruit/avatar/dragon-fruit.jpg', 'public/images/uploads/products/dragon-fruit/details/detail-1-dragon-fruit.jpg', 'public/images/uploads/products/dragon-fruit/details/detail-2-dragon-fruit.jpg', 'public/images/uploads/products/dragon-fruit/details/detail-3-dragon-fruit.jpg', 'Dragon fruit', 23000, 'kg', 1, 1, 0, 0, 1, '2020-10-09 18:46:04', '2020-10-09 18:46:04', 'fresh-fruit'),
 ('grape', 'Grape', 'public/images/uploads/products/grape/avatar/grape.jpg', 'public/images/uploads/products/grape/details/detail-1-grape.jpg', 'public/images/uploads/products/grape/details/detail-2-grape.jpg', 'public/images/uploads/products/grape/details/detail-3-grape.jpg', 'Grapes', 59000, 'kg', 1, 1, 20, 1, 0, '2020-10-09 18:47:48', '2020-10-09 18:47:48', 'fresh-fruit'),
 ('hamburger', 'Hamburger', 'public/images/uploads/products/hamburger/avatar/hamburger.jpg', 'public/images/uploads/products/hamburger/details/detail-1-hamburger.jpg', 'public/images/uploads/products/hamburger/details/detail-2-hamburger.jpg', 'public/images/uploads/products/hamburger/details/detail-3-hamburger.jpg', 'Hamburgers', 35000, 'item', 1, 1, 0, 0, 0, '2020-10-09 18:49:22', '2020-10-09 18:49:22', 'fastfood'),
 ('lettuce', 'Lettuce', 'public/images/uploads/products/lettuce/avatar/lettuce.jpg', 'public/images/uploads/products/lettuce/details/detail-1-lettuce.jpg', 'public/images/uploads/products/lettuce/details/detail-2-lettuce.jpg', 'public/images/uploads/products/lettuce/details/detail-3-lettuce.jpg', 'Lettuce', 25000, 'kg', 1, 1, 0, 0, 0, '2020-10-10 23:57:59', '2020-10-10 23:57:59', 'vegetables'),
@@ -130,8 +130,8 @@ INSERT INTO `order_item` (`id_order`, `name_item`, `quantity_item`, `total_item`
 ('03223284805f5150e8bc508c38ededb8', 'Avocado', 1, 23000, '2020-12-14 00:21:51'),
 ('113f88954c3be1d17fdc52162dd21ceb', 'Apple', 2, 52500, '2020-12-08 16:25:32'),
 ('113f88954c3be1d17fdc52162dd21ceb', 'Banana', 2, 34500, '2020-12-08 16:25:32'),
-('2d441677b4f897b64e70e107fa7c7138', 'Beef', 1, 219000, '2020-12-26 05:27:31'),
-('2d441677b4f897b64e70e107fa7c7138', 'Dragon fruit', 1, 23000, '2020-12-26 05:27:31'),
+('2d441677b4f897b64e70e107fa7c7138', 'Beef', 1, 219000, '2020-12-26 06:57:32'),
+('2d441677b4f897b64e70e107fa7c7138', 'Dragon fruit', 1, 23000, '2020-12-26 06:57:32'),
 ('3f514731d4410f737f6613a2de7b478b', 'Avocado', 1, 99000, NULL),
 ('3f514731d4410f737f6613a2de7b478b', 'Bell pepper', 1, 62000, NULL),
 ('461dac001cefe4642be0c4266982655b', 'Apple', 1, 35000, '2020-12-26 03:35:37'),
@@ -140,6 +140,8 @@ INSERT INTO `order_item` (`id_order`, `name_item`, `quantity_item`, `total_item`
 ('5ebf1f404d4218923d6adbb2ce349e40', 'Watermelon', 1, 17000, NULL),
 ('706b7f24fab5679b6a53b0f05d3a9c58', 'Bell pepper', 1, 62000, NULL),
 ('706b7f24fab5679b6a53b0f05d3a9c58', 'Carrot', 1, 17000, NULL),
+('d4c9ddd8c209a2944f516abcc7a0262e', 'Apple', 1.5, 52500, '2020-12-26 07:59:50'),
+('d4c9ddd8c209a2944f516abcc7a0262e', 'Avocado', 1.5, 148500, '2020-12-26 07:59:50'),
 ('d864250c50b80453320d98358f4e2ddd', 'Beef', 1, 219000, NULL),
 ('d864250c50b80453320d98358f4e2ddd', 'Chicken', 1, 229000, NULL),
 ('e600d3c0fb0b941c5a285f663051bc2c', 'Avocado', 1, 99000, NULL),
@@ -204,11 +206,12 @@ CREATE TABLE `order_user` (
 INSERT INTO `order_user` (`id_order`, `fname_user_order`, `lname_user_order`, `address_user_order`, `phone_user_order`, `email_user_order`, `username_user_order`, `note_order`, `shipping_order`, `free_shipping`, `coupon_order`, `total_order`, `date_created`, `date_canceled`, `date_confirmed`, `date_prepared`, `date_delivered`, `date_request`, `date_confirm_request`, `date_returned`, `payment_order`, `paid_order`, `status_order`, `tracking_order`, `return_reason`, `cancel_reason`, `cancel_role`) VALUES
 ('03223284805f5150e8bc508c38ededb8', 'Hoangduy', 'Dangle', '789 Lý Thường Kiệt, Phường 8, Quận Tân Bình, Hồ Chí Minh', '0988341765', 'duy.dang.bku_19@hcmut.edu.vn', 'hoangduydangle', NULL, 29700, '0', NULL, 87700, '2020-11-10 14:11:31', NULL, '2020-12-09 04:12:34', '2020-12-13 21:39:02', '2020-12-13 21:39:45', '2020-12-14 00:20:06', '2020-12-14 00:21:24', '2020-12-14 00:21:51', 'cod', 0, 'Returned', NULL, 'not-described', NULL, NULL),
 ('113f88954c3be1d17fdc52162dd21ceb', 'Hoangduy', 'Dangle', '79 Lý Thường Kiệt, Phường 8, Quận Tân Bình, Hồ Chí Minh', '0123456789', 'duy.dang.bku_19@hcmut.edu.vn', NULL, 'Delivery before this Sunday', 29700, '0', NULL, 116700, '2020-12-08 15:41:22', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'vnpay', 1, 'Not Confirmed', NULL, NULL, NULL, NULL),
-('2d441677b4f897b64e70e107fa7c7138', 'Johnathan', 'Wick', '123 Lý Thường Kiệt, Phường 14, Quận 10, Hồ Chí Minh', '0984123456', 'johnwick@gmail.com', 'johnwick', NULL, 29700, '0', NULL, 271700, '2020-11-10 12:32:41', '2020-12-26 05:27:31', '2020-12-26 05:27:04', NULL, NULL, NULL, NULL, NULL, 'cod', 0, 'Canceled', NULL, NULL, 'No Reason', 1),
+('2d441677b4f897b64e70e107fa7c7138', 'Johnathan', 'Wick', '123 Lý Thường Kiệt, Phường 14, Quận 10, Hồ Chí Minh', '0984123456', 'johnwick@gmail.com', 'johnwick', NULL, 29700, '0', NULL, 271700, '2020-11-10 12:32:41', NULL, '2020-11-11 08:27:04', '2020-11-11 09:03:04', '2020-11-12 13:24:55', NULL, NULL, NULL, 'cod', 0, 'Delivered', NULL, NULL, NULL, NULL),
 ('3f514731d4410f737f6613a2de7b478b', 'Hoangduy', 'Dangle', '79 Lý Thường Kiệt, Phường 8, Quận Tân Bình, Hồ Chí Minh', '0123456789', 'duy.dang.bku_19@hcmut.edu.vn', NULL, 'Delivery before this Sunday', 29700, '0', NULL, 190700, '2020-12-08 15:34:12', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'cod', 0, 'Not Confirmed', NULL, NULL, NULL, NULL),
 ('461dac001cefe4642be0c4266982655b', 'Hoangduy', 'Dangle', '123 Ly Thuong Kiet, Phường Tân Định, Quận 1, Hồ Chí Minh', '0123456789', 'duy.dang.bku_19@hcmut.edu.vn', NULL, 'Delivery before this Sunday', 29700, '0', NULL, 163700, '2020-12-07 18:07:45', NULL, '2020-12-26 03:35:17', '2020-12-26 03:35:32', '2020-12-26 03:35:37', NULL, NULL, NULL, 'cod', 0, 'Delivered', NULL, NULL, NULL, NULL),
 ('5ebf1f404d4218923d6adbb2ce349e40', 'Hoangduy', 'Dangle', '123 Lý Thường Kiệt, Phường Tân Định, Quận 1, Hồ Chí Minh', '0123456789', 'duy.dang.bku_19@hcmut.edu.vn', NULL, 'Delivery before this Sunday', 29700, '0', NULL, 265700, '2020-12-08 14:25:44', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'cod', 0, 'Not Confirmed', NULL, NULL, NULL, NULL),
 ('706b7f24fab5679b6a53b0f05d3a9c58', 'Hoangduy', 'Dangle', '123 Lý Thường Kiệt, Phường Tân Định, Quận 1, Hồ Chí Minh', '0123456789', 'duy.dang.bku_19@hcmut.edu.vn', NULL, 'Delivery before this Sunday', 29700, '0', NULL, 108700, '2020-12-08 14:32:38', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'cod', 0, 'Not Confirmed', NULL, NULL, NULL, NULL),
+('d4c9ddd8c209a2944f516abcc7a0262e', 'Hoangduy', 'Dangle', '123 Lý Thường Kiệt, Phường Tân Định, Quận 1, Hồ Chí Minh', '0123456789', 'duy.dang.bku_19@hcmut.edu.vn', NULL, 'Delivery before this Sunday', 29700, '0', NULL, 230700, '2020-12-26 07:24:22', NULL, '2020-12-26 07:59:50', NULL, NULL, NULL, NULL, NULL, 'vnpay', 1, 'Processing', NULL, NULL, NULL, NULL),
 ('d864250c50b80453320d98358f4e2ddd', 'Hoangduy', 'Dangle', '79 Lý Thường Kiệt, Phường 8, Quận Tân Bình, Hồ Chí Minh', '0123456789', 'duy.dang.bku_19@hcmut.edu.vn', NULL, 'Delivery before this Sunday', 29700, '1', NULL, 448000, '2020-12-08 15:02:37', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'cod', 0, 'Not Confirmed', NULL, NULL, NULL, NULL),
 ('e600d3c0fb0b941c5a285f663051bc2c', 'Hoangduy', 'Dangle', '79 Lý Thường Kiệt, Phường 8, Quận Tân Bình, Hồ Chí Minh', '0123456789', 'duy.dang.bku_19@hcmut.edu.vn', NULL, 'Delivery before this Sunday', 29700, '0', NULL, 190700, '2020-12-08 15:30:06', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'cod', 0, 'Not Confirmed', NULL, NULL, NULL, NULL);
 
@@ -247,7 +250,8 @@ CREATE TABLE `order_vnpay` (
 --
 
 INSERT INTO `order_vnpay` (`vnp_TxnRef`, `vnp_ResponseCode`, `vnp_TransactionNo`, `vnp_PayDate`, `vnp_OrderInfo`, `vnp_BankTranNo`, `vnp_BankCode`, `vnp_Amount`, `vnp_SecureHash`) VALUES
-('113f88954c3be1d17fdc52162dd21ceb', 0, 13431847, 2147483647, 'Thanh toan don hang', '20201208154318', 'NCB', 11670000, 'b1a47bdee62e0d95ed4d399d2236f47b8bf630a19635fb81dcc3df7b9a70e8fc');
+('113f88954c3be1d17fdc52162dd21ceb', 0, 13431847, 2147483647, 'Thanh toan don hang', '20201208154318', 'NCB', 11670000, 'b1a47bdee62e0d95ed4d399d2236f47b8bf630a19635fb81dcc3df7b9a70e8fc'),
+('d4c9ddd8c209a2944f516abcc7a0262e', 0, 13441230, 2147483647, 'Thanh toan don hang', '20201226072522', 'NCB', 23070000, '10e8315083034c4c1ffc8c64a1ab27fb2c60ff5423f8a167e5b8e2e5453d5123');
 
 -- --------------------------------------------------------
 

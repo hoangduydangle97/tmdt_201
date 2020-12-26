@@ -248,7 +248,7 @@ if(isset($_SESSION['order_item_list'])){
                             </a>
                         </li>
                         <li>
-                            <a href="http://localhost/tmdt_201/manage-order" class="language-option">
+                            <a href="http://localhost/tmdt_201/<?php echo $_SESSION['role'] == 1?'list-order':'manage-order'?>" class="language-option">
                                 <i class="fa fa-archive"></i> Order (<?php echo $data['num_orders'];?>)
                             </a>
                         </li>
@@ -367,7 +367,7 @@ if(isset($_SESSION['order_item_list'])){
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="http://localhost/tmdt_201/manage-order" class="language-option">
+                                            <a href="http://localhost/tmdt_201/<?php echo $_SESSION['role'] == 1?'list-order':'manage-order'?>" class="language-option">
                                                 <i class="fa fa-archive"></i> Order (<?php echo $data['num_orders'];?>)
                                             </a>
                                         </li>
@@ -436,7 +436,7 @@ if(isset($_SESSION['order_item_list'])){
                             <?php if(!isset($data['cms'])){?>
                             <ul>
                                 <li><a href="#"><i class="fa fa-gift"></i> <span>0</span></a></li>
-                                <?php if($data['page'] == 'cart' || $data['page'] == 'check_out'){?>
+                                <?php if($data['page'] == 'cart' || $data['page'] == 'checkout'){?>
                                 <li><a href="http://localhost/tmdt_201/cart"><i class="fa fa-shopping-cart"></i> <span class="selected-product">0</span></a></li>
                                 <?php }
                                 else{

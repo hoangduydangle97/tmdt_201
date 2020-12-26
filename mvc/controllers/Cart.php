@@ -16,7 +16,10 @@ class Cart extends Controller{
 
     public function action(){
         $num_orders = 0;
-        if(isset($_SESSION['username'])){
+        if(isset($_SESSION['role']) && $_SESSION['role'] == 1){
+            $num_orders = count(json_decode($this->order_object->get_undone_order_list()));
+        }
+        else{
             $num_orders = $this->order_object->get_num_orders($_SESSION['username']);
         }
         $arr_cookie = [];
@@ -40,7 +43,10 @@ class Cart extends Controller{
 
     public function checkout(){
         $num_orders = 0;
-        if(isset($_SESSION['username'])){
+        if(isset($_SESSION['role']) && $_SESSION['role'] == 1){
+            $num_orders = count(json_decode($this->order_object->get_undone_order_list()));
+        }
+        else{
             $num_orders = $this->order_object->get_num_orders($_SESSION['username']);
         }
         $arr_cookie = [];
@@ -69,7 +75,7 @@ class Cart extends Controller{
         $shipping_fee = $this->service_object->get_shipping_fee(json_decode($district_list)[0]->DistrictID, json_decode($ward_list)[0]->WardCode, $weight_total);
         $expected_time = $this->service_object->get_expected_time(json_decode($district_list)[0]->DistrictID, json_decode($ward_list)[0]->WardCode);
         $this->view("Master1", array(
-            "page"=>"check_out",
+            "page"=>"checkout",
             "total"=>$this->item_object->get_total(),
             "num_orders"=>$num_orders,
             "province_list"=>$province_list,
@@ -135,7 +141,7 @@ class Cart extends Controller{
                 )
             );
             if($this->order_object->send_mail($data_email)){
-                header('location: http://localhost/tmdt_201/placeorder/success/'.$result->TxnRef);
+                header('location: http://localhost/tmdt_201/place-order/success/'.$result->TxnRef);
             }
         }
         else{

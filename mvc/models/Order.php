@@ -86,12 +86,14 @@ class Order extends Database{
             $btn = array(
                 "content" => $content,
                 "style" => $style,
+                "status" => $status,
                 "date" => $date
             );
         }
         else{
             $btn = array(
                 "content" => $content,
+                "status" => $status,
                 "style" => $style
             );
         }
@@ -196,7 +198,7 @@ class Order extends Database{
 
         if($check_empty){
             $_SESSION['error'] = [true, '(*) fields must be at least 1 character!'];
-            header("location: http://localhost/tmdt_201/cart/check_out");
+            header("location: http://localhost/tmdt_201/cart/checkout");
         }
         else{
             $id = md5(time() . mt_rand(1, 1000000));
@@ -307,11 +309,6 @@ class Order extends Database{
             }
         }
     }
-
-   /*public function get_date_create_order($id){
-        $sql = "SELECT date_created FROM order_user WHERE id_order='".$id."';";
-        return $this->query_return_row($sql);
-    }*/
 
     public function get_content_email($data){
         $header = array(

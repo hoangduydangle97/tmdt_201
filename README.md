@@ -9,6 +9,6 @@
 
 ## Acknowledgements  
 * JavaScript  
-* Php
+* PHP
 * CSS  
 * Bootstrap

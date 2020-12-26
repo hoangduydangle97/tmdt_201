@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 26, 2020 lúc 02:23 AM
+-- Thời gian đã tạo: Th12 26, 2020 lúc 07:31 PM
 -- Phiên bản máy phục vụ: 10.4.14-MariaDB
 -- Phiên bản PHP: 7.4.10
 
@@ -369,6 +369,7 @@ INSERT INTO `user` (`username_user`, `password_user`, `fname_user`, `lname_user`
 ('hoangduydangle', '$2y$10$2d9x5b1ruHgPh9.4OxDz0ebpixI590JLZMOQBwZFmKr7MdnhoOCky', 'Hoangduy', 'Dangle', '1997-09-30', 'public/images/uploads/users/hoangduydangle/avatar.jpg', '789 Lý Thường Kiệt, Phường 8, Quận Tân Bình, Hồ Chí Minh', '0988341765', 'duy.dang.bku_19@hcmut.edu.vn', 0),
 ('johnsmith', '$2y$10$F1rYCKRdYGNlWlzfnhXivuiKMJVy6CvNdk1eri0k6d66ZpYoOozWS', 'John', 'Smith', '1964-10-31', 'public/images/uploads/users/default-avatar.jpg', NULL, '0903112223', 'johnsmith@gmail.com', 0),
 ('johnwick', '$2y$10$SZ.c3c3Xje7vW9uXjgCuouKmVQ/FVJotzEW.TPFqgn3NLqKkGr0Tu', 'Johnathan', 'Wick', '1967-10-15', 'public/images/uploads/users/default-avatar.jpg', '123 Ly Thuong Kiet, Ward 14, District 10, HCMC', '0984123456', 'johnwick@gmail.com', 0),
+('tedcruz', '$2y$10$OA2h7cDh2t91Ng1C2ql7veX5HNmeod9gqOdTQVM/BzcgRAWlbmOfK', 'Ted', 'Cruz', '1990-01-01', 'public/images/uploads/user/default-avatar.jpg', '123 Lý Thường Kiệt, Phường Tân Định, Quận 1, Hồ Chí Minh', '0123456789', 'tedcruz@gmail.com', 0),
 ('tonystark', '$2y$10$3eqWspe4pFNQsFqaJogBSern8YK1RVDNHdE6fQAso4GdnYJRl9BjS', 'Tony', 'Stark', '1970-05-29', 'public/images/uploads/users/default-avatar.jpg', NULL, '0916654321', 'tonystark@gmail.com', 0);
 
 --

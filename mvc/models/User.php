@@ -43,8 +43,25 @@ class User extends Database{
         $addr = trim($_POST['addr']);
         $email = trim($_POST['email']);
         $phone = trim($_POST['phone']);
+        $province = '';
+        $district = '';
+        $ward = '';
 
-        $avatar = '/tmdt_201/public/images/uploads/user/';
+        if(isset($_POST['province'])){
+            $province = ', '.$_POST['province'];
+        }
+
+        if(isset($_POST['district'])){
+            $district = ', '.$_POST['district'];
+        }
+
+        if(isset($_POST['ward'])){
+            $ward = ', '.$_POST['ward'];
+        }
+
+        $addr .= $ward.$district.$province;
+
+        $avatar = 'public/images/uploads/user/';
         $avatar_name = $_FILES['avatar']['name'];
         $avatar_tmp = $_FILES['avatar']['tmp_name'];
         $target_dir = '';
@@ -69,7 +86,9 @@ class User extends Database{
         $sql = "INSERT INTO user(username_user, password_user, fname_user, lname_user,".
         " bday_user, avatar_user, address_user, phone_user, email_user, role_user)".
         " VALUES ('".$username."', '".$password."', '".$fname."', '".$lname."', ".$bday.
-        ", ".$avatar.", '".$addr."', '".$email."', '".$role."')";
+        ", ".$avatar.", '".$addr."', '".$phone."', '".$email."', '".$role."')";
+
+        echo $sql;
 
         $sql_result = mysqli_query($this->conn, $sql);
         if($sql_result){
@@ -78,7 +97,7 @@ class User extends Database{
         }
         else{
             $_SESSION['error'] = [true, 'There may be errors, please check your input again!'];
-            header("location: http://localhost/tmdt_201/signup");
+            header("location: http://localhost/tmdt_201/sign-up");
         }
     }
 }

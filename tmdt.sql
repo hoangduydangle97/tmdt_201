@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 27, 2020 lúc 03:09 PM
+-- Thời gian đã tạo: Th12 27, 2020 lúc 03:42 PM
 -- Phiên bản máy phục vụ: 10.4.14-MariaDB
 -- Phiên bản PHP: 7.4.10
 
@@ -146,8 +146,8 @@ INSERT INTO `order_item` (`id_order`, `name_item`, `quantity_item`, `total_item`
 ('d46f240b41eb805f47954b4cdb4bbf39', 'Avocado', 1.5, 148500, '2020-12-27 20:10:01'),
 ('d4c9ddd8c209a2944f516abcc7a0262e', 'Apple', 1.5, 52500, '2020-12-26 07:59:50'),
 ('d4c9ddd8c209a2944f516abcc7a0262e', 'Avocado', 1.5, 148500, '2020-12-26 07:59:50'),
-('d864250c50b80453320d98358f4e2ddd', 'Beef', 1, 219000, NULL),
-('d864250c50b80453320d98358f4e2ddd', 'Chicken', 1, 229000, NULL),
+('d864250c50b80453320d98358f4e2ddd', 'Beef', 1, 219000, '2020-12-27 21:34:37'),
+('d864250c50b80453320d98358f4e2ddd', 'Chicken', 1, 229000, '2020-12-27 21:34:37'),
 ('e600d3c0fb0b941c5a285f663051bc2c', 'Avocado', 1, 99000, NULL),
 ('e600d3c0fb0b941c5a285f663051bc2c', 'Bell pepper', 1, 62000, NULL);
 
@@ -218,7 +218,7 @@ INSERT INTO `order_user` (`id_order`, `fname_user_order`, `lname_user_order`, `a
 ('706b7f24fab5679b6a53b0f05d3a9c58', 'Hoangduy', 'Dangle', '123 Lý Thường Kiệt, Phường Tân Định, Quận 1, Hồ Chí Minh', '0123456789', 'duy.dang.bku_19@hcmut.edu.vn', NULL, 'Delivery before this Sunday', 29700, '0', NULL, 108700, '2020-12-08 14:32:38', NULL, '2020-12-27 20:37:36', '2020-12-27 20:37:55', '2020-12-27 20:38:07', NULL, NULL, NULL, 'cod', 0, 'Delivered', NULL, NULL, NULL, NULL),
 ('d46f240b41eb805f47954b4cdb4bbf39', 'Hoangduy', 'Dangle', '123 Lý Thường Kiệt, Phường Tân Định, Quận 1, Hồ Chí Minh', '0123456789', 'duy.dang.bku_19@hcmut.edu.vn', NULL, 'Delivery before this Sunday', 29700, '0', NULL, 230700, '2020-12-27 20:09:06', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'vnpay', 1, 'Not Confirmed', NULL, NULL, NULL, NULL),
 ('d4c9ddd8c209a2944f516abcc7a0262e', 'Hoangduy', 'Dangle', '123 Lý Thường Kiệt, Phường Tân Định, Quận 1, Hồ Chí Minh', '0123456789', 'duy.dang.bku_19@hcmut.edu.vn', NULL, 'Delivery before this Sunday', 29700, '0', NULL, 230700, '2020-12-26 07:24:22', NULL, '2020-12-26 07:59:50', NULL, NULL, NULL, NULL, NULL, 'vnpay', 1, 'Processing', NULL, NULL, NULL, NULL),
-('d864250c50b80453320d98358f4e2ddd', 'Hoangduy', 'Dangle', '79 Lý Thường Kiệt, Phường 8, Quận Tân Bình, Hồ Chí Minh', '0123456789', 'duy.dang.bku_19@hcmut.edu.vn', NULL, 'Delivery before this Sunday', 29700, '1', NULL, 448000, '2020-12-08 15:02:37', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'cod', 0, 'Not Confirmed', NULL, NULL, NULL, NULL),
+('d864250c50b80453320d98358f4e2ddd', 'Hoangduy', 'Dangle', '79 Lý Thường Kiệt, Phường 8, Quận Tân Bình, Hồ Chí Minh', '0123456789', 'duy.dang.bku_19@hcmut.edu.vn', NULL, 'Delivery before this Sunday', 29700, '1', NULL, 448000, '2020-12-08 15:02:37', '2020-12-27 21:34:37', NULL, NULL, NULL, NULL, NULL, NULL, 'cod', 0, 'Canceled', NULL, NULL, 'Cannot contact', 1),
 ('e600d3c0fb0b941c5a285f663051bc2c', 'Hoangduy', 'Dangle', '79 Lý Thường Kiệt, Phường 8, Quận Tân Bình, Hồ Chí Minh', '0123456789', 'duy.dang.bku_19@hcmut.edu.vn', NULL, 'Delivery before this Sunday', 29700, '0', NULL, 190700, '2020-12-08 15:30:06', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'cod', 0, 'Not Confirmed', NULL, NULL, NULL, NULL);
 
 --

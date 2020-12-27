@@ -73,8 +73,8 @@
                 <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#cancel-modal">
                     <i class="fa fa-times-circle"></i> Cancel
                 </button>
-                <?php }?>
                 <div class="spinner-border text-primary d-none" id="spinner-<?php echo $order_info->id_order; ?>"></div>
+                <?php }?>
             </div>
             <?php }
             else{

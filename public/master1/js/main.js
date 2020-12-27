@@ -748,7 +748,7 @@ $('input:radio[name="payment"]').change(
 
 function changeStatusOrder(status, id, style){
     var btn = $('#' + id);
-    var spinner = $('#spinner-' + id).removeClass('d-none');
+    var spinner = $('#spinner-' + id);
     btn.addClass('d-none')
     spinner.removeClass('d-none');
     var expected_status = '';
@@ -784,9 +784,11 @@ function changeStatusOrder(status, id, style){
         function(result, status){
             if(status == 'success'){
                 if(result.content == 'delivered'){
+                    spinner.addClass('d-none');
                     $('#tr-' + id).remove();
                     $('#done-return').remove();
                     $('#' + date).html(result.date);
+                    $('#status-order').html(result.status);
                 }
                 else{
                     spinner.addClass('d-none');

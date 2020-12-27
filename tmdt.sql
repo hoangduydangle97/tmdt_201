@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 27, 2020 lúc 12:11 PM
+-- Thời gian đã tạo: Th12 27, 2020 lúc 02:19 PM
 -- Phiên bản máy phục vụ: 10.4.14-MariaDB
 -- Phiên bản PHP: 7.4.10
 
@@ -140,6 +140,8 @@ INSERT INTO `order_item` (`id_order`, `name_item`, `quantity_item`, `total_item`
 ('5ebf1f404d4218923d6adbb2ce349e40', 'Watermelon', 1, 17000, NULL),
 ('706b7f24fab5679b6a53b0f05d3a9c58', 'Bell pepper', 1, 62000, NULL),
 ('706b7f24fab5679b6a53b0f05d3a9c58', 'Carrot', 1, 17000, NULL),
+('d46f240b41eb805f47954b4cdb4bbf39', 'Apple', 1.5, 52500, '2020-12-27 20:10:01'),
+('d46f240b41eb805f47954b4cdb4bbf39', 'Avocado', 1.5, 148500, '2020-12-27 20:10:01'),
 ('d4c9ddd8c209a2944f516abcc7a0262e', 'Apple', 1.5, 52500, '2020-12-26 07:59:50'),
 ('d4c9ddd8c209a2944f516abcc7a0262e', 'Avocado', 1.5, 148500, '2020-12-26 07:59:50'),
 ('d864250c50b80453320d98358f4e2ddd', 'Beef', 1, 219000, NULL),
@@ -211,6 +213,7 @@ INSERT INTO `order_user` (`id_order`, `fname_user_order`, `lname_user_order`, `a
 ('461dac001cefe4642be0c4266982655b', 'Hoangduy', 'Dangle', '123 Ly Thuong Kiet, Phường Tân Định, Quận 1, Hồ Chí Minh', '0123456789', 'duy.dang.bku_19@hcmut.edu.vn', NULL, 'Delivery before this Sunday', 29700, '0', NULL, 163700, '2020-12-07 18:07:45', NULL, '2020-12-26 03:35:17', '2020-12-26 03:35:32', '2020-12-26 03:35:37', NULL, NULL, NULL, 'cod', 0, 'Delivered', NULL, NULL, NULL, NULL),
 ('5ebf1f404d4218923d6adbb2ce349e40', 'Hoangduy', 'Dangle', '123 Lý Thường Kiệt, Phường Tân Định, Quận 1, Hồ Chí Minh', '0123456789', 'duy.dang.bku_19@hcmut.edu.vn', NULL, 'Delivery before this Sunday', 29700, '0', NULL, 265700, '2020-12-08 14:25:44', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'cod', 0, 'Not Confirmed', NULL, NULL, NULL, NULL),
 ('706b7f24fab5679b6a53b0f05d3a9c58', 'Hoangduy', 'Dangle', '123 Lý Thường Kiệt, Phường Tân Định, Quận 1, Hồ Chí Minh', '0123456789', 'duy.dang.bku_19@hcmut.edu.vn', NULL, 'Delivery before this Sunday', 29700, '0', NULL, 108700, '2020-12-08 14:32:38', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'cod', 0, 'Not Confirmed', NULL, NULL, NULL, NULL),
+('d46f240b41eb805f47954b4cdb4bbf39', 'Hoangduy', 'Dangle', '123 Lý Thường Kiệt, Phường Tân Định, Quận 1, Hồ Chí Minh', '0123456789', 'duy.dang.bku_19@hcmut.edu.vn', NULL, 'Delivery before this Sunday', 29700, '0', NULL, 230700, '2020-12-27 20:09:06', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'vnpay', 1, 'Not Confirmed', NULL, NULL, NULL, NULL),
 ('d4c9ddd8c209a2944f516abcc7a0262e', 'Hoangduy', 'Dangle', '123 Lý Thường Kiệt, Phường Tân Định, Quận 1, Hồ Chí Minh', '0123456789', 'duy.dang.bku_19@hcmut.edu.vn', NULL, 'Delivery before this Sunday', 29700, '0', NULL, 230700, '2020-12-26 07:24:22', NULL, '2020-12-26 07:59:50', NULL, NULL, NULL, NULL, NULL, 'vnpay', 1, 'Processing', NULL, NULL, NULL, NULL),
 ('d864250c50b80453320d98358f4e2ddd', 'Hoangduy', 'Dangle', '79 Lý Thường Kiệt, Phường 8, Quận Tân Bình, Hồ Chí Minh', '0123456789', 'duy.dang.bku_19@hcmut.edu.vn', NULL, 'Delivery before this Sunday', 29700, '1', NULL, 448000, '2020-12-08 15:02:37', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'cod', 0, 'Not Confirmed', NULL, NULL, NULL, NULL),
 ('e600d3c0fb0b941c5a285f663051bc2c', 'Hoangduy', 'Dangle', '79 Lý Thường Kiệt, Phường 8, Quận Tân Bình, Hồ Chí Minh', '0123456789', 'duy.dang.bku_19@hcmut.edu.vn', NULL, 'Delivery before this Sunday', 29700, '0', NULL, 190700, '2020-12-08 15:30:06', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'cod', 0, 'Not Confirmed', NULL, NULL, NULL, NULL);
@@ -251,6 +254,7 @@ CREATE TABLE `order_vnpay` (
 
 INSERT INTO `order_vnpay` (`vnp_TxnRef`, `vnp_ResponseCode`, `vnp_TransactionNo`, `vnp_PayDate`, `vnp_OrderInfo`, `vnp_BankTranNo`, `vnp_BankCode`, `vnp_Amount`, `vnp_SecureHash`) VALUES
 ('113f88954c3be1d17fdc52162dd21ceb', 0, 13431847, 2147483647, 'Thanh toan don hang', '20201208154318', 'NCB', 11670000, 'b1a47bdee62e0d95ed4d399d2236f47b8bf630a19635fb81dcc3df7b9a70e8fc'),
+('d46f240b41eb805f47954b4cdb4bbf39', 0, 13441431, 2147483647, 'Thanh toan don hang', '20201227201004', 'NCB', 23070000, '32a54d58e5d73c769c42fd2ff3d8cb024816e1566bb55287cec43de75d9eb458'),
 ('d4c9ddd8c209a2944f516abcc7a0262e', 0, 13441230, 2147483647, 'Thanh toan don hang', '20201226072522', 'NCB', 23070000, '10e8315083034c4c1ffc8c64a1ab27fb2c60ff5423f8a167e5b8e2e5453d5123');
 
 -- --------------------------------------------------------

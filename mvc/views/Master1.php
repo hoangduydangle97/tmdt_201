@@ -47,6 +47,14 @@ if(isset($_SESSION['order_item_list'])){
                 color: #252525;
             }
 
+            .item-cart:link {
+                color: #252525;
+            }
+
+            .item-cart:visited {
+                color: #252525;
+            }
+
             .select-checkout {
                 font-family: Arial, Helvetica, sans-serif;
             }
@@ -281,8 +289,8 @@ if(isset($_SESSION['order_item_list'])){
             </div>
             <nav class="humberger__menu__nav mobile-menu">
                 <ul>
-                    <li <?php if($data["page"] == "home"){ ?>class="active"<?php }?>><a href="http://localhost/tmdt_201/home">Home</a></li>
                     <?php if(!isset($data['cms'])){?>
+                    <li <?php if($data["page"] == "home"){ ?>class="active"<?php }?>><a href="http://localhost/tmdt_201/home">Home</a></li>
                     <li <?php if($data["page"] == "shop" || $data["page"] == "detail"){ ?>class="active"<?php }?>><a href="http://localhost/tmdt_201/shop">Shop</a></li>
                     <li <?php if($data["page"] == "cart"){ ?>class="active"<?php }?>><a href="http://localhost/tmdt_201/cart">Cart</a></li>
                     <li <?php if($data["page"] == "contact"){ ?>class="active"<?php }?>><a href="http://localhost/tmdt_201/contact">Contact</a></li>
@@ -295,7 +303,7 @@ if(isset($_SESSION['order_item_list'])){
                     <li <?php if($data["page"] == "product" || $data["page"] == "create_item" || $data["page"] == "update_item" || $data["page"] == "categories"){ ?>class="active"<?php }?>>
                         <a href="http://localhost/tmdt_201/list-product">Product</a>
                     </li>
-                    <li <?php if($data["page"] == "order" || $data["page"] == "detail_order"){ ?>class="active"<?php }?>><a href="http://localhost/tmdt_201/list-order">Order</a></li>
+                    <li <?php if($data["page"] == "order" || $data["page"] == "detail_order" || $data["page"] == "done_order"){ ?>class="active"<?php }?>><a href="http://localhost/tmdt_201/list-order">Order</a></li>
                     <?php }?>
                 </ul>
             </nav>
@@ -412,8 +420,8 @@ if(isset($_SESSION['order_item_list'])){
                     <div class="col-lg-6">
                         <nav class="header__menu">
                             <ul>
-                                <li <?php if($data["page"] == "home"){ ?>class="active"<?php }?>><a href="http://localhost/tmdt_201/home">Home</a></li>
                                 <?php if(!isset($data['cms'])){?>
+                                <li <?php if($data["page"] == "home"){ ?>class="active"<?php }?>><a href="http://localhost/tmdt_201/home">Home</a></li>
                                 <li <?php if($data["page"] == "shop" || $data["page"] == "detail"){ ?>class="active"<?php }?>><a href="http://localhost/tmdt_201/shop">Shop</a></li>
                                 <li <?php if($data["page"] == "cart"){ ?>class="active"<?php }?>><a href="http://localhost/tmdt_201/cart">Cart</a></li>
                                 <li <?php if($data["page"] == "contact"){ ?>class="active"<?php }?>><a href="http://localhost/tmdt_201/contact">Contact</a></li>
@@ -426,7 +434,7 @@ if(isset($_SESSION['order_item_list'])){
                                 <li <?php if($data["page"] == "product" || $data["page"] == "create_item" || $data["page"] == "update_item" || $data["page"] == "categories"){ ?>class="active"<?php }?>>
                                     <a href="http://localhost/tmdt_201/list-product">Product</a>
                                 </li>
-                                <li <?php if($data["page"] == "order" || $data["page"] == "detail_order"){ ?>class="active"<?php }?>><a href="http://localhost/tmdt_201/list-order">Order</a></li>
+                                <li <?php if($data["page"] == "order" || $data["page"] == "detail_order" || $data["page"] == "done_order"){ ?>class="active"<?php }?>><a href="http://localhost/tmdt_201/list-order">Order</a></li>
                                 <?php }?>
                             </ul>
                         </nav>
@@ -449,7 +457,7 @@ if(isset($_SESSION['order_item_list'])){
                                             <span class="selected-product">0</span>
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right" style="width: 500px;">
-                                            <div class="container">
+                                            <div class="container" id="fast-cart">
                                                 <div class="row">
                                                     <div class="col-3">
                                                         <a class="dropdown-item disabled" style="color: black;"><b>Product</b></a>

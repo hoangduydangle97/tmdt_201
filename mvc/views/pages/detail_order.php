@@ -65,13 +65,15 @@
             elseif(isset($_SESSION['role']) && $_SESSION['role'] == 1){
             $btn = json_decode($this->order_object->get_status_btn($status)); ?>
             <div class="container mb-5" id="ajax-return" style="font-size: 1.2em;">
-                <button type="button" id="<?php echo $order_info->id_order; ?>" class="btn <?php echo $btn->style; ?>" 
+                <?php if($status != 'Delivered' && $status != 'Returned' && $status != 'Canceled'){?>
+                <button type="button" id="<?php echo $order_info->id_order; ?>" class="btn <?php echo $btn->style; ?> mr-5" 
                     onclick="changeStatusOrder(<?php echo "'".$status."'"; ?>, <?php echo "'".$order_info->id_order."'"; ?>, <?php echo "'".$btn->style."'"; ?>)">
                     <?php echo $btn->content; ?>
                 </button>
-                <button type="button" class="btn btn-dark ml-5" data-toggle="modal" data-target="#cancel-modal">
+                <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#cancel-modal">
                     <i class="fa fa-times-circle"></i> Cancel
                 </button>
+                <?php }?>
                 <div class="spinner-border text-primary d-none" id="spinner-<?php echo $order_info->id_order; ?>"></div>
             </div>
             <?php }

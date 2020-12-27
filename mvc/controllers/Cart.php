@@ -16,10 +16,7 @@ class Cart extends Controller{
 
     public function action(){
         $num_orders = 0;
-        if(isset($_SESSION['role']) && $_SESSION['role'] == 1){
-            $num_orders = count(json_decode($this->order_object->get_undone_order_list()));
-        }
-        else{
+        if(isset($_SESSION['username'])){
             $num_orders = $this->order_object->get_num_orders($_SESSION['username']);
         }
         $arr_cookie = [];
@@ -43,10 +40,7 @@ class Cart extends Controller{
 
     public function checkout(){
         $num_orders = 0;
-        if(isset($_SESSION['role']) && $_SESSION['role'] == 1){
-            $num_orders = count(json_decode($this->order_object->get_undone_order_list()));
-        }
-        else{
+        if(isset($_SESSION['username'])){
             $num_orders = $this->order_object->get_num_orders($_SESSION['username']);
         }
         $arr_cookie = [];

@@ -555,6 +555,16 @@ function SetCart(id_item){
         $(this).html(total.toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' <u style="font-weight: 400;">đ</u>');
     });
     $('.selected.' + id_item).removeAttr("hidden");
+    $.post(
+        'http://localhost/tmdt_201/ajax/fast_cart',
+        {},
+        function(result, status){
+            if(status == 'success'){
+                $('#fast-cart').html(result);
+            }
+        },
+        'html'
+    );
 }
 
 function directToCreate(params){

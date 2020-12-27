@@ -1,8 +1,10 @@
 <?php
 class Ajax extends Controller{
     protected $service_object;
+    protected $item_object;
 
     final public function __construct(){
+        $this->item_object = $this->model("Item");
         $this->service_object = $this->model("Service");
     }
 
@@ -32,6 +34,22 @@ class Ajax extends Controller{
         $shipping_fee = $this->service_object->get_shipping_fee($district_id, $ward_id, $weight_total);
         $expected_time = json_decode($this->service_object->get_expected_time($district_id, $ward_id));
         echo json_encode(array($shipping_fee, $expected_time));
+    }
+
+    public function fast_cart(){
+        $arr_cookie = [];
+        if(isset($_COOKIE)){
+            foreach($_COOKIE as $key => $val){
+                $pos = strpos($key, 'selected-');
+                if($pos === 0){
+                    $arr_cookie[str_replace('selected-', '', $key)] = $val;
+                }
+            }
+        }
+        ksort($arr_cookie);
+        $this->view("/pages/fast_cart", array(
+            "item_cart_list"=>$this->item_object->get_item_list($arr_cookie)
+        ));
     }
 }
 ?>
